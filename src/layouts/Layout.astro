@@ -1,0 +1,29 @@
+---
+import { SEO_INFO } from '../consts';
+import { ClientRouter } from 'astro:transitions';
+
+type Props = { title: string };
+
+const forceTheme = import.meta.env.FORCE_THEME || '';
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class={forceTheme}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    {SEO_INFO.map((tag) => <meta name={tag.name} content={tag.content} />)}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <ClientRouter />
+  </head>
+  <body class="bg-white">
+    <slot />
+    <script>
+      import '../load-gallery.js';
+    </script>
+  </body>
+</html>
