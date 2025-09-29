@@ -1,5 +1,4 @@
 ---
-import { Img } from 'astro-imagetools/components';
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
 import { PERSONAL_INFO } from '../consts';
@@ -45,12 +44,12 @@ const images = galleryItems.map((item) => ({
                 class="gallery-item group relative block overflow-hidden bg-white transition duration-300 hover:shadow-lg"
               >
                 <div class="relative aspect-[4/3] overflow-hidden">
-                  <Img
+                  <img
                     src={image.href}
                     alt={image.label}
-                    format="webp"
                     width={image.size.width / 3}
                     class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                    loading="lazy"
                   />
                 </div>
 
