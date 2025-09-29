@@ -1,8 +1,8 @@
 ---
-import { Img } from 'astro-imagetools/components';
-import Layout from '../layouts/Layout.astro';
-import Footer from '../components/Footer.astro';
-import { PERSONAL_INFO } from '../consts';
+import { Img } from "astro-imagetools/components";
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+import { PERSONAL_INFO } from "../consts";
 
 const { role, name, avatar, contact, about } = PERSONAL_INFO;
 
@@ -20,9 +20,7 @@ const title = `${name} - About`;
         </h1>
       </div>
 
-      <div
-        class="mx-auto max-w-5xl bg-white px-6 py-8 sm:py-12"
-      >
+      <div class="mx-auto max-w-5xl bg-white px-6 py-8 sm:py-12">
         <div class="max-w-screen-lg px-4 md:px-8">
           <div class="grid items-center gap-8 sm:grid-cols-2">
             <div
@@ -39,14 +37,16 @@ const title = `${name} - About`;
                 {name}
               </h2>
 
-              <p class="mb-8 text-center text-gray-600 sm:text-left md:text-lg leading-relaxed">
+              <p
+                class="mb-8 text-center leading-relaxed text-gray-600 sm:text-left md:text-lg"
+              >
                 {about}
               </p>
 
               <a
                 href={contact}
                 class="inline-block border border-gray-300 px-8 py-3 text-center text-sm font-medium text-gray-700 outline-none transition duration-200 hover:border-gray-400 hover:bg-gray-50 focus-visible:ring focus-visible:ring-gray-200 md:text-base"
-                >Get in touch</a
+                >Contact me</a
               >
             </div>
 
