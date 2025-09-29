@@ -17,13 +17,13 @@ const images = galleryItems.map((item) => ({
     <main class="mb-auto">
       <div class="my-16 sm:my-20">
         <h1
-          class="mb-6 text-center text-3xl font-light text-gray-900 md:mb-8 md:text-4xl lg:text-5xl"
+          class="mb-6 text-center text-3xl font-light text-gray-900 dark:text-white md:mb-8 md:text-4xl lg:text-5xl"
         >
           {PERSONAL_INFO.title}
         </h1>
 
         <p
-          class="mx-auto max-w-2xl text-center text-lg text-gray-600 md:text-xl"
+          class="mx-auto max-w-2xl text-center text-lg text-gray-600 dark:text-gray-300 md:text-xl"
         >
           {PERSONAL_INFO.subtitle}
         </p>
@@ -41,7 +41,7 @@ const images = galleryItems.map((item) => ({
                 data-cropped="true"
                 data-pswp-width={image.size.width}
                 data-pswp-height={image.size.height}
-                class="gallery-item group relative block overflow-hidden bg-white transition duration-300 hover:shadow-lg"
+                class="gallery-item group relative block overflow-hidden bg-white dark:bg-gray-800 transition duration-300 hover:shadow-lg dark:hover:shadow-gray-700/25"
               >
                 <div class="relative aspect-[4/3] overflow-hidden">
                   <img
@@ -54,7 +54,7 @@ const images = galleryItems.map((item) => ({
                 </div>
 
                 <div class="p-4">
-                  <h3 class="text-sm font-medium text-gray-900 transition duration-200 group-hover:text-gray-600">
+                  <h3 class="text-sm font-medium text-gray-900 dark:text-white transition duration-200 group-hover:text-gray-600 dark:group-hover:text-gray-300">
                     {image.label}
                   </h3>
                 </div>

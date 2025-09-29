@@ -1,0 +1,71 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<button
+  id="theme-toggle"
+  class="fixed right-4 top-4 z-50 rounded-full bg-white p-2 shadow-lg transition-all duration-200 hover:shadow-xl dark:bg-gray-800 dark:text-white"
+  aria-label="Toggle theme"
+  type="button"
+>
+  <Icon
+    id="theme-toggle-light-icon"
+    name="mdi:white-balance-sunny"
+    class="h-6 w-6 hidden dark:block"
+    fill="currentColor"
+    width="24"
+    height="24"
+  />
+  <Icon
+    id="theme-toggle-dark-icon"
+    name="mdi:moon-waning-crescent"
+    class="h-6 w-6 block dark:hidden"
+    fill="currentColor"
+    width="24"
+    height="24"
+  />
+</button>
+
+<script>
+  // Theme toggle functionality
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+
+  // Check for saved theme preference or default to system preference
+  function getStoredTheme() {
+    return localStorage.getItem('theme');
+  }
+
+  function getSystemTheme() {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  function setTheme(theme) {
+    if (theme === 'dark') {
+      html.classList.add('dark');
+    } else {
+      html.classList.remove('dark');
+    }
+    localStorage.setItem('theme', theme);
+  }
+
+  // Initialize theme
+  const storedTheme = getStoredTheme();
+  const systemTheme = getSystemTheme();
+  const currentTheme = storedTheme || systemTheme;
+  setTheme(currentTheme);
+
+  // Toggle theme on button click
+  themeToggleBtn?.addEventListener('click', () => {
+    const isDark = html.classList.contains('dark');
+    const newTheme = isDark ? 'light' : 'dark';
+    setTheme(newTheme);
+  });
+
+  // Listen for system theme changes
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (!getStoredTheme()) {
+      setTheme(e.matches ? 'dark' : 'light');
+    }
+  });
+</script>

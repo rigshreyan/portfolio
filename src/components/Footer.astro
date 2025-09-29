@@ -30,7 +30,7 @@ const year = new Date().getFullYear();
       }
     </div>
 
-    <div class="text-center text-sm text-gray-400">
+    <div class="text-center text-sm text-gray-400 dark:text-gray-500">
       © {year} {PERSONAL_INFO.name}
     </div>
   </div>
@@ -38,6 +38,6 @@ const year = new Date().getFullYear();
 
 <style>
   a {
-    @apply text-gray-600 transition-colors hover:text-gray-900 active:text-gray-900;
+    @apply text-gray-600 dark:text-gray-300 transition-colors hover:text-gray-900 dark:hover:text-white active:text-gray-900 dark:active:text-white;
   }
 </style>
