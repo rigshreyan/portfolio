@@ -8,8 +8,8 @@
     "start": "astro dev",
     "prebuild": "astro check",
     "build": "astro build",
-    "build:light": "FORCE_THEME=light yarn build",
-    "build:dark": "FORCE_THEME=dark yarn build",
+    "build:light": "FORCE_THEME=light npm run build",
+    "build:dark": "FORCE_THEME=dark npm run build",
     "preview": "astro preview",
     "deploy": "npm run build && npx wrangler deploy",
     "deploy:preview": "npm run build && npx wrangler deploy --dry-run"
