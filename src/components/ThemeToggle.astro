@@ -40,7 +40,7 @@ import { Icon } from 'astro-icon/components';
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
 
-  function setTheme(theme) {
+  function setTheme(theme: 'light' | 'dark') {
     if (theme === 'dark') {
       html.classList.add('dark');
     } else {
