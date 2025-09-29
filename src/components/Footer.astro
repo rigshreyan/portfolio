@@ -1,6 +1,5 @@
 ---
-import { ROUTES, SOCIAL, PERSONAL_INFO } from '../consts';
-import { Icon } from 'astro-icon/components';
+import { ROUTES, PERSONAL_INFO } from '../consts';
 
 const year = new Date().getFullYear();
 ---
@@ -13,22 +12,6 @@ const year = new Date().getFullYear();
       {ROUTES.map((route) => <a href={route.href}>{route.label}</a>)}
     </nav>
 
-    <div class="flex gap-6">
-      {
-        SOCIAL.map((social) => (
-          <a href={social.href} target="_blank">
-            <Icon
-              name={social.icon}
-              aria-label={social.label}
-              class="h-5 w-5"
-              fill="currentColor"
-              width="20"
-              height="20"
-            />
-          </a>
-        ))
-      }
-    </div>
 
     <div class="text-center text-sm text-gray-400 dark:text-gray-500">
       © {year} {PERSONAL_INFO.name}

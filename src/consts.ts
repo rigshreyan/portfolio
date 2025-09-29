@@ -3,24 +3,6 @@ export const ROUTES = [
   { href: "/about", label: "About" },
 ] as const;
 
-// Icons from https://icon-sets.iconify.design
-export const SOCIAL = [
-  {
-    label: "GitHub",
-    href: "https://github.com/shreyansengupta",
-    icon: "mdi:github",
-  },
-  {
-    label: "LinkedIn",
-    href: "https://linkedin.com/in/shreyansengupta",
-    icon: "mdi:linkedin",
-  },
-  {
-    label: "Email",
-    href: "mailto:hello@shreyansengupta.com",
-    icon: "mdi:email",
-  },
-] as const;
 
 export const PERSONAL_INFO = {
   name: "Shreyan Sengupta",

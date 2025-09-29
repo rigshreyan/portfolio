@@ -1,0 +1,259 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Footer from '../../components/Footer.astro';
+import { galleryItems } from '../../data/gallery';
+import ThemeToggle from '../../components/ThemeToggle.astro';
+
+export async function getStaticPaths() {
+  return galleryItems.map((item, index) => ({
+    params: {
+      slug: item.label.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
+    },
+    props: {
+      item,
+      index
+    }
+  }));
+}
+
+const { item } = Astro.props;
+
+// Generate multiple sample photos for the album with different variations
+const albumPhotos = Array.from({ length: 12 }, (_, i) => {
+  const photoIndex = (i % 4) + 1;
+  return {
+    src: `/gallery/sample${photoIndex}.png`,
+    alt: `${item.label} - Photo ${i + 1}`,
+    caption: `${item.label} - Photo ${i + 1}`,
+    description: `Detailed view of ${item.label} project showcasing various aspects and features.`
+  };
+});
+---
+
+<Layout title={`${item.label} - Album`}>
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="/" class="text-xl font-medium text-gray-900 dark:text-white">
+        Shreyan
+      </a>
+
+      <div class="flex items-center gap-8">
+        <a href="/" class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+          ← Back to Gallery
+        </a>
+        <a href="/about" class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+          About
+        </a>
+        <ThemeToggle />
+      </div>
+    </div>
+  </nav>
+
+  <div class="min-h-screen bg-white dark:bg-black">
+    <!-- Header -->
+    <div class="pt-32 pb-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="max-w-4xl">
+          <h1 class="text-5xl md:text-6xl lg:text-7xl font-light text-gray-900 dark:text-white leading-[0.9] mb-8">
+            {item.label}<br>
+            <span class="italic text-gray-600 dark:text-gray-400">Photography</span>
+          </h1>
+
+          <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed mb-8">
+            Explore this curated collection of {albumPhotos.length} photographs. Each image tells a unique story
+            captured through my lens, showcasing the beauty and emotion of {item.label.toLowerCase()} photography.
+          </p>
+
+          {item.category && (
+            <span class="inline-block px-4 py-2 text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full uppercase tracking-wider font-medium">
+              {item.category}
+            </span>
+          )}
+        </div>
+      </div>
+    </div>
+
+    <!-- Photo Grid -->
+    <main class="pb-32">
+      <div class="max-w-6xl mx-auto px-6">
+        <!-- Add Photo Button -->
+        <div class="mb-12 text-center">
+          <button
+            id="add-photo-btn"
+            class="inline-flex items-center px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-700 dark:hover:bg-gray-200 rounded-lg transition-colors duration-200 font-medium"
+          >
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+            </svg>
+            Add Photo
+          </button>
+        </div>
+
+        <div
+          id="album-gallery"
+          class="pswp-gallery columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 xl:gap-8"
+        >
+          {albumPhotos.map((photo, photoIndex) => {
+            // Vary the aspect ratios for a more interesting masonry layout
+            const aspectRatios = ['aspect-[4/3]', 'aspect-[3/4]', 'aspect-[16/9]', 'aspect-[1/1]'];
+            const aspectClass = aspectRatios[photoIndex % aspectRatios.length];
+
+            return (
+              <a
+                href={photo.src}
+                data-cropped="true"
+                data-pswp-width="800"
+                data-pswp-height="600"
+                class="group relative block overflow-hidden bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 mb-6 break-inside-avoid"
+              >
+                <div class={`relative ${aspectClass} overflow-hidden rounded-t-lg`}>
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    width="400"
+                    height="300"
+                    class="h-full w-full object-cover transition duration-300 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                </div>
+
+                <!-- Photo info -->
+                <div class="p-4">
+                  <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">
+                    {photo.caption}
+                  </h3>
+                  <p class="text-xs text-gray-600 dark:text-gray-400">
+                    {photo.description}
+                  </p>
+                </div>
+
+                <!-- Hover overlay -->
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 rounded-lg flex items-center justify-center">
+                  <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div class="bg-white bg-opacity-90 text-gray-900 px-3 py-2 rounded-full text-sm font-medium">
+                      <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                      </svg>
+                      View Full Size
+                    </div>
+                  </div>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+
+        <!-- Load More Button -->
+        <div class="mt-16 text-center">
+          <button
+            id="load-more-btn"
+            class="px-8 py-3 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-900 dark:text-white rounded-lg transition-colors duration-200 font-medium"
+          >
+            Load More Photos
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+  </div>
+
+  <!-- PhotoSwipe Gallery Script -->
+  <script>
+    import PhotoSwipeLightbox from 'photoswipe/lightbox';
+    import 'photoswipe/style.css';
+
+    const lightbox = new PhotoSwipeLightbox({
+      gallery: '#album-gallery',
+      children: 'a',
+      pswpModule: () => import('photoswipe'),
+      paddingFn: () => ({ top: 30, bottom: 30, left: 20, right: 20 })
+    });
+
+    lightbox.init();
+
+    // Add Photo functionality (placeholder)
+    const addPhotoBtn = document.getElementById('add-photo-btn');
+    addPhotoBtn?.addEventListener('click', () => {
+      alert('Photo upload functionality would be implemented here. This could connect to a backend service or file upload system.');
+    });
+
+    // Load More Photos functionality (placeholder)
+    let currentPhotoCount = 12;
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    const gallery = document.getElementById('album-gallery');
+
+    loadMoreBtn?.addEventListener('click', () => {
+      // Simulate loading more photos
+      const newPhotos = Array.from({ length: 6 }, (_, i) => {
+        const photoIndex = ((currentPhotoCount + i) % 4) + 1;
+        return `
+          <a href="/gallery/sample${photoIndex}.png"
+             data-cropped="true"
+             data-pswp-width="800"
+             data-pswp-height="600"
+             class="group relative block overflow-hidden bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 mb-6 break-inside-avoid">
+            <div class="relative aspect-[4/3] overflow-hidden rounded-t-lg">
+              <img src="/gallery/sample${photoIndex}.png"
+                   alt="Additional Photo ${currentPhotoCount + i + 1}"
+                   width="400" height="300"
+                   class="h-full w-full object-cover transition duration-300 group-hover:scale-110"
+                   loading="lazy" />
+            </div>
+            <div class="p-4">
+              <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">
+                Additional Photo ${currentPhotoCount + i + 1}
+              </h3>
+              <p class="text-xs text-gray-600 dark:text-gray-400">
+                More content from this amazing project.
+              </p>
+            </div>
+            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 rounded-lg flex items-center justify-center">
+              <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div class="bg-white bg-opacity-90 text-gray-900 px-3 py-2 rounded-full text-sm font-medium">
+                  <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                  </svg>
+                  View Full Size
+                </div>
+              </div>
+            </div>
+          </a>
+        `;
+      });
+
+      gallery?.insertAdjacentHTML('beforeend', newPhotos.join(''));
+      currentPhotoCount += 6;
+
+      // Reinitialize PhotoSwipe for new elements
+      lightbox.destroy();
+      const newLightbox = new PhotoSwipeLightbox({
+        gallery: '#album-gallery',
+        children: 'a',
+        pswpModule: () => import('photoswipe'),
+        paddingFn: () => ({ top: 30, bottom: 30, left: 20, right: 20 })
+      });
+      newLightbox.init();
+    });
+
+    // Smooth scrolling for better UX
+    const smoothScroll = () => {
+      const links = document.querySelectorAll('a[href^="#"]');
+      links.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const href = link.getAttribute('href');
+          if (href) {
+            const target = document.querySelector(href);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        });
+      });
+    };
+
+    document.addEventListener('DOMContentLoaded', smoothScroll);
+  </script>
+</Layout>

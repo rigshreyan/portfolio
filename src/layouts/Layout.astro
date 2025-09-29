@@ -1,7 +1,6 @@
 ---
 import { SEO_INFO } from '../consts';
 import { ClientRouter } from 'astro:transitions';
-import ThemeToggle from '../components/ThemeToggle.astro';
 
 type Props = { title: string };
 
@@ -9,19 +8,62 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     {SEO_INFO.map((tag) => <meta name={tag.name} content={tag.content} />)}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <title>{title}</title>
     <ClientRouter />
+    <style>
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: rgba(156, 163, 175, 0.5);
+        border-radius: 3px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(156, 163, 175, 0.8);
+      }
+
+      .dark ::-webkit-scrollbar-thumb {
+        background: rgba(75, 85, 99, 0.5);
+      }
+
+      .dark ::-webkit-scrollbar-thumb:hover {
+        background: rgba(75, 85, 99, 0.8);
+      }
+
+      /* Smooth transitions for theme switching */
+      * {
+        transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+      }
+    </style>
   </head>
-  <body class="bg-white dark:bg-gray-900 transition-colors duration-300">
-    <ThemeToggle />
+  <body class="bg-white dark:bg-black transition-colors duration-300 antialiased">
     <slot />
+
     <script>
       import '../load-gallery.js';
     </script>

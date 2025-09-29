@@ -1,29 +1,25 @@
 ---
-import { Icon } from 'astro-icon/components';
+// No imports needed for Unicode symbols
 ---
 
 <button
   id="theme-toggle"
-  class="fixed right-4 top-4 z-50 rounded-full bg-white p-2 shadow-lg transition-all duration-200 hover:shadow-xl dark:bg-gray-800 dark:text-white"
+  class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-200 text-gray-700 dark:text-gray-200"
   aria-label="Toggle theme"
   type="button"
 >
-  <Icon
+  <span
     id="theme-toggle-light-icon"
-    name="mdi:white-balance-sunny"
-    class="h-6 w-6 hidden dark:block"
-    fill="currentColor"
-    width="24"
-    height="24"
-  />
-  <Icon
+    class="text-sm hidden dark:block"
+    role="img"
+    aria-label="Switch to light mode"
+  >☀️</span>
+  <span
     id="theme-toggle-dark-icon"
-    name="mdi:moon-waning-crescent"
-    class="h-6 w-6 block dark:hidden"
-    fill="currentColor"
-    width="24"
-    height="24"
-  />
+    class="text-sm block dark:hidden"
+    role="img"
+    aria-label="Switch to dark mode"
+  >🌙</span>
 </button>
 
 <script>

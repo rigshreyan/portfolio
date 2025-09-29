@@ -6,22 +6,22 @@ export interface GalleryItem {
 
 export const galleryItems: GalleryItem[] = [
   {
-    label: "E-Commerce Platform",
+    label: "Travel",
     href: "/gallery/sample1.png",
     category: "web"
   },
   {
-    label: "Brand Identity Design",
+    label: "B&W",
     href: "/gallery/sample2.png",
     category: "design"
   },
   {
-    label: "React Dashboard",
+    label: "Street",
     href: "/gallery/sample3.png",
     category: "web"
   },
   {
-    label: "Mobile App UI",
+    label: "Landscape",
     href: "/gallery/sample4.png",
     category: "mobile"
   }
