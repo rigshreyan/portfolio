@@ -32,11 +32,12 @@ import { Icon } from 'astro-icon/components';
   const html = document.documentElement;
 
   // Check for saved theme preference or default to system preference
-  function getStoredTheme() {
-    return localStorage.getItem('theme');
+  function getStoredTheme(): 'light' | 'dark' | null {
+    const stored = localStorage.getItem('theme');
+    return stored === 'dark' || stored === 'light' ? stored : null;
   }
 
-  function getSystemTheme() {
+  function getSystemTheme(): 'light' | 'dark' {
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
 

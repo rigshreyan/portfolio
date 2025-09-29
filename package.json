@@ -15,7 +15,8 @@
     "build:dark": "FORCE_THEME=dark npm run build",
     "preview": "astro preview",
     "deploy": "npm run build && npx wrangler deploy",
-    "deploy:preview": "npm run build && npx wrangler deploy --dry-run"
+    "deploy:preview": "npm run build && npx wrangler deploy --dry-run",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
@@ -24,6 +25,7 @@
     "@types/probe-image-size": "^7.2.5",
     "astro-icon": "^1.1.5",
     "astro-imagetools": "^0.9.0",
+    "husky": "^9.1.7",
     "photoswipe": "^5.4.4",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
