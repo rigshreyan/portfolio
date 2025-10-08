@@ -59,8 +59,9 @@ function getProjectDescription(category: string | undefined): string {
           data-aos-delay="400"
           data-aos-duration="1000"
         >
-          Visual
-          <span class="block italic font-extralight opacity-90">Storytelling</span>
+          Independent<br>
+          <span class="italic font-extralight opacity-90">Creative</span><br>
+          Photographer
         </h1>
 
         <p
@@ -69,7 +70,7 @@ function getProjectDescription(category: string | undefined): string {
           data-aos-delay="600"
           data-aos-duration="1000"
         >
-          I'm Shreyan, a photographer who believes every frame holds the power to transport.
+          I'm Shreyan, a photographer who believes every frame holds the power to transport. From the golden hour streets of Amsterdam to the misty highlands of Scotland, I craft visual narratives that celebrate the extraordinary in the everyday— a curated journey through landscapes, cultures, and moments that define contemporary travel photography.
         </p>
 
         <div
@@ -288,14 +289,18 @@ function getProjectDescription(category: string | undefined): string {
       function initSmoothScroll() {
         const links = document.querySelectorAll('a[href^="#"]');
         links.forEach(link => {
-          link.addEventListener('click', function(e) {
+          link.addEventListener('click', function(e: Event) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-              target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-              });
+            const element = e.currentTarget as HTMLAnchorElement;
+            const href = element.getAttribute('href');
+            if (href) {
+              const target = document.querySelector(href);
+              if (target) {
+                target.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+              }
             }
           });
         });
@@ -318,8 +323,10 @@ function getProjectDescription(category: string | undefined): string {
 
         // Observe all project articles for staggered animations
         document.querySelectorAll('article[data-project]').forEach((el, index) => {
-          el.style.setProperty('--animation-delay', `${index * 150}ms`);
-          observer.observe(el);
+          if (el instanceof HTMLElement) {
+            el.style.setProperty('--animation-delay', `${index * 150}ms`);
+            observer.observe(el);
+          }
         });
       }
 
@@ -328,7 +335,7 @@ function getProjectDescription(category: string | undefined): string {
         const projectImages = document.querySelectorAll('article[data-project] img');
         projectImages.forEach(img => {
           const container = img.closest('.relative');
-          if (container) {
+          if (container && img instanceof HTMLImageElement) {
             container.addEventListener('mouseenter', () => {
               img.style.transform = 'scale(1.1)';
             });
