@@ -42,7 +42,7 @@
     "@iconify-json/mdi": "^1.2.3",
     "animejs": "^4.2.0",
     "aos": "^2.3.4",
-    "astro": "^5.10.2",
+    "astro": "^5.14.1",
     "locomotive-scroll": "^4.1.4",
     "p5": "^2.0.5"
   },
