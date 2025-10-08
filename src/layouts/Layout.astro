@@ -20,6 +20,9 @@ const { title } = Astro.props;
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <title>{title}</title>
     <ClientRouter />
+
+    <!-- AOS (Animate On Scroll) CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
       body {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -59,6 +62,36 @@ const { title } = Astro.props;
       * {
         transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
       }
+
+      /* AOS Custom Overrides - TwoCreate Style */
+      [data-aos] {
+        transition-duration: 0.7s !important;
+        transition-timing-function: ease-in-out !important;
+      }
+
+      /* Custom fade-up animation with TwoCreate's exact timing */
+      [data-aos="fade-up"] {
+        transform: translate3d(0, 30px, 0);
+        opacity: 0;
+      }
+
+      [data-aos="fade-up"].aos-animate {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+
+      /* Smooth scroll behavior enhancements */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Reduce motion for accessibility */
+      @media (prefers-reduced-motion: reduce) {
+        [data-aos] {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
     </style>
   </head>
   <body class="bg-white dark:bg-black transition-colors duration-300 antialiased">
@@ -66,6 +99,24 @@ const { title } = Astro.props;
 
     <script>
       import '../load-gallery.js';
+      import AOS from 'aos';
+
+      // Initialize AOS with TwoCreate-style configuration
+      document.addEventListener('DOMContentLoaded', function() {
+        AOS.init({
+          duration: 700,           // TwoCreate's 0.7s timing
+          easing: 'ease-in-out',   // TwoCreate's easing
+          once: true,              // Animation happens only once
+          offset: 120,             // Trigger 120px before element enters viewport
+          delay: 0,                // No global delay
+          anchorPlacement: 'top-bottom' // Trigger when element top crosses viewport bottom
+        });
+
+        // Refresh AOS on Astro page transitions
+        document.addEventListener('astro:after-swap', () => {
+          AOS.refresh();
+        });
+      });
     </script>
   </body>
 </html>
