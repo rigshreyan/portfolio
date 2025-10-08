@@ -21,7 +21,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/tailwind": "^6.0.2",
-    "@notionhq/client": "^2.3.0",
+    "@notionhq/client": "^5.1.0",
     "@types/animejs": "^3.1.13",
     "@types/aos": "^3.0.7",
     "@types/locomotive-scroll": "^4.1.4",
