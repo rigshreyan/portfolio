@@ -561,6 +561,111 @@ const title = "Shreyan Sengupta";
       }
     }
 
+    /* Enhanced Mobile Optimizations */
+    @media (max-width: 768px) {
+      /* Better gallery spacing for tablets */
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important;
+        gap: 16px !important;
+      }
+
+      /* Filter improvements for tablets */
+      .filter-buttons {
+        gap: 8px !important;
+      }
+      .filter-button {
+        padding: 8px 16px !important;
+        font-size: 13px !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      /* Enhanced mobile grid */
+      .gallery-grid {
+        gap: 12px !important;
+      }
+      .main-content {
+        padding: 12px !important;
+        padding-bottom: 110px !important;
+      }
+
+      /* Mobile-optimized gallery items */
+      .gallery-item {
+        border-radius: 8px !important;
+      }
+
+      /* Mobile filter controls */
+      .floating-filter {
+        padding: 12px 16px !important;
+      }
+      .filter-buttons {
+        gap: 6px !important;
+        flex-wrap: wrap !important;
+      }
+      .filter-button {
+        padding: 6px 12px !important;
+        font-size: 12px !important;
+        border-radius: 16px !important;
+        min-width: auto !important;
+      }
+
+      /* Disable hover effects on mobile */
+      .gallery-item:hover {
+        transform: none !important;
+        box-shadow: 0 4px 15px var(--shadow) !important;
+      }
+      .gallery-item:hover img {
+        transform: none !important;
+      }
+
+      /* Mobile touch improvements */
+      .gallery-item {
+        -webkit-tap-highlight-color: transparent;
+        cursor: pointer;
+      }
+
+      /* Better lightbox close button for mobile */
+      .lightbox-close {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 24px !important;
+      }
+
+      /* Mobile metadata text size */
+      .metadata-item {
+        font-size: 13px !important;
+      }
+      .metadata-label {
+        font-size: 11px !important;
+      }
+    }
+
+    /* Very small mobile devices */
+    @media (max-width: 360px) {
+      .main-content {
+        padding: 10px !important;
+        padding-bottom: 100px !important;
+      }
+      .gallery-grid {
+        gap: 10px !important;
+      }
+      .floating-filter {
+        padding: 10px 12px !important;
+      }
+      .filter-button {
+        padding: 5px 10px !important;
+        font-size: 11px !important;
+      }
+      .filter-buttons {
+        gap: 4px !important;
+      }
+
+      /* Smaller gallery items for very small screens */
+      .gallery-item {
+        border-radius: 6px !important;
+      }
+    }
+
     /* Loading Animation */
     .gallery-item {
       animation: fadeInScale 0.6s ease-out;
@@ -637,9 +742,37 @@ const title = "Shreyan Sengupta";
       line-height: 1.4;
     }
 
-    /* Smooth transitions for theme changes */
+    /* Critical Performance Optimizations */
     * {
-      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      /* Smooth transitions for theme changes - optimized */
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      /* Hardware acceleration for better performance */
+      will-change: auto;
+    }
+
+    /* GPU acceleration for gallery items */
+    .gallery-item {
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-transform: translateZ(0);
+      -webkit-backface-visibility: hidden;
+    }
+
+    /* Optimize scrolling performance */
+    .main-content {
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+    }
+
+    /* Critical image loading optimization */
+    .gallery-item img {
+      content-visibility: auto;
+      contain-intrinsic-size: 300px 225px;
+    }
+
+    /* Fast hover transforms */
+    .gallery-item:hover {
+      transform: translateZ(0) translateY(6px);
     }
 
   </style>
@@ -661,12 +794,12 @@ const title = "Shreyan Sengupta";
     <!-- Gallery Grid - 4:3 Aspect Ratio -->
     <section class="gallery-grid">
       {galleryItems.map((item, index) => (
-        <div class={`gallery-item ${index < 12 ? 'loaded' : ''}`} data-category={item.category} data-index={index} data-href={item.href} tabindex="0">
+        <div class={`gallery-item ${index < 24 ? 'loaded' : ''}`} data-category={item.category} data-index={index} data-href={item.href} tabindex="0">
           <img
-            src={index < 12 ? item.href : ''}
+            src={index < 24 ? item.href : ''}
             data-src={item.href}
             alt={item.label}
-            class={index < 12 ? 'loaded' : 'lazy-load'}
+            class={index < 24 ? 'loaded' : 'lazy-load'}
           />
           <div class="gallery-overlay">
             <h3>{item.label}</h3>
@@ -873,44 +1006,53 @@ const title = "Shreyan Sengupta";
               const img = entry.target as HTMLImageElement;
               const container = img.closest('.gallery-item') as HTMLElement;
 
-              // Load the image
+              // Load the image using improved loading logic
               const dataSrc = img.dataset.src;
               if (dataSrc) {
-                img.src = dataSrc;
+                // Use requestIdleCallback for non-blocking image loading
+                const loadImage = () => {
+                  const tempImg = new Image();
+                  tempImg.onload = () => {
+                    img.src = dataSrc;
+                    img.classList.add('loaded');
+                    if (container) {
+                      container.classList.add('loaded');
+                    }
+                    console.log('Lazy loaded image:', dataSrc);
+                  };
+                  tempImg.onerror = () => {
+                    img.classList.add('loaded'); // Still fade in to avoid blank space
+                    if (container) {
+                      container.classList.add('loaded');
+                    }
+                    console.warn('Failed to load image:', dataSrc);
+                  };
+                  tempImg.src = dataSrc;
+                  img.removeAttribute('data-src');
+                  observer.unobserve(img);
+                };
+
+                if ('requestIdleCallback' in window) {
+                  requestIdleCallback(loadImage);
+                } else {
+                  setTimeout(loadImage, 0);
+                }
               }
-
-              // Add loaded state when image loads
-              img.onload = () => {
-                img.classList.add('loaded');
-                if (container) {
-                  container.classList.add('loaded');
-                }
-              };
-
-              // Handle load errors
-              img.onerror = () => {
-                img.classList.add('loaded'); // Still fade in to avoid blank space
-                if (container) {
-                  container.classList.add('loaded');
-                }
-              };
-
-              // Stop observing this image
-              observer.unobserve(img);
             }
           });
         }, {
-          // Load images when they're 100px from entering the viewport
-          rootMargin: '100px',
+          // Load images when they're 150px from entering the viewport
+          rootMargin: '150px',
           threshold: 0.01
         });
 
         // Observe all lazy-load images
-        document.querySelectorAll('img.lazy-load').forEach(img => {
+        const lazyImages = document.querySelectorAll('img.lazy-load');
+        lazyImages.forEach(img => {
           imageObserver.observe(img);
         });
 
-        console.log('Image loading observer initialized');
+        console.log('Image loading observer initialized for', lazyImages.length, 'images');
       }
 
       // Initialize progressive loading
@@ -1081,13 +1223,7 @@ const title = "Shreyan Sengupta";
 
           // Reinitialize image loading for newly visible images
           setTimeout(() => {
-            const newLazyImages = document.querySelectorAll('.gallery-item:not(.hidden) img.lazy-load');
-            newLazyImages.forEach(img => {
-              if (!img.hasAttribute('data-observed')) {
-                imageObserver.observe(img);
-                img.setAttribute('data-observed', 'true');
-              }
-            });
+            observeNewImages();
           }, 100);
         });
       });
@@ -1218,6 +1354,157 @@ const title = "Shreyan Sengupta";
         lightboxImg.addEventListener('dragstart', e => e.preventDefault());
         lightboxImg.style.userSelect = 'none';
       }
+
+      // Mobile touch gesture support for lightbox navigation
+      let touchStartX = 0;
+      let touchEndX = 0;
+      const minSwipeDistance = 50;
+
+      function handleSwipeGesture() {
+        const swipeDistance = touchEndX - touchStartX;
+        if (Math.abs(swipeDistance) > minSwipeDistance) {
+          if (swipeDistance > 0) {
+            // Swipe right - previous image
+            navigateLightbox('prev');
+          } else {
+            // Swipe left - next image
+            navigateLightbox('next');
+          }
+        }
+      }
+
+      if (lightbox) {
+        lightbox.addEventListener('touchstart', (e) => {
+          if (lightbox.classList.contains('active')) {
+            touchStartX = e.changedTouches[0].screenX;
+          }
+        });
+
+        lightbox.addEventListener('touchend', (e) => {
+          if (lightbox.classList.contains('active')) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipeGesture();
+          }
+        });
+      }
+
+      // Mobile viewport meta tag optimization
+      const metaViewport = document.querySelector('meta[name="viewport"]');
+      if (metaViewport) {
+        metaViewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+      }
+
+      // Advanced Performance Optimizations
+
+      // 1. Critical Image Preloading
+      function preloadCriticalImages() {
+        const firstRowImages = document.querySelectorAll('.gallery-item:nth-child(-n+8) img[data-src]');
+        firstRowImages.forEach((img) => {
+          const src = (img as HTMLImageElement).dataset.src;
+          if (src) {
+            const preloadLink = document.createElement('link');
+            preloadLink.rel = 'preload';
+            preloadLink.as = 'image';
+            preloadLink.href = src;
+            document.head.appendChild(preloadLink);
+          }
+        });
+      }
+
+      // Helper function to observe new images (for filtering)
+      function observeNewImages() {
+        if (!imageObserver) return;
+
+        const newLazyImages = document.querySelectorAll('img.lazy-load:not([data-observed])');
+        newLazyImages.forEach(img => {
+          imageObserver.observe(img);
+          img.setAttribute('data-observed', 'true');
+        });
+
+        console.log('Observing', newLazyImages.length, 'new images');
+      }
+
+      // 3. Virtual Scrolling for Better Performance
+      let visibleItemsSet = new Set();
+      const BUFFER_SIZE = 10; // Extra items to render outside viewport
+
+      function optimizeVisibleItems() {
+        const scrollTop = window.pageYOffset;
+        const windowHeight = window.innerHeight;
+        const items = document.querySelectorAll('.gallery-item');
+
+        items.forEach((item, index) => {
+          const rect = (item as HTMLElement).getBoundingClientRect();
+          const isInViewport = (
+            rect.top < windowHeight + 200 &&
+            rect.bottom > -200
+          );
+
+          if (isInViewport && !visibleItemsSet.has(index)) {
+            visibleItemsSet.add(index);
+            (item as HTMLElement).style.visibility = 'visible';
+          } else if (!isInViewport && visibleItemsSet.has(index)) {
+            visibleItemsSet.delete(index);
+          }
+        });
+      }
+
+      // 4. Debounced scroll optimization
+      let scrollTimeout: number;
+      function onOptimizedScroll() {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          optimizeVisibleItems();
+        }, 16); // ~60fps
+      }
+
+      // 5. Memory management for large galleries
+      function cleanupOffscreenImages() {
+        const images = document.querySelectorAll('.gallery-item img');
+        images.forEach((img) => {
+          const rect = (img as HTMLElement).getBoundingClientRect();
+          const isOffscreen = rect.bottom < -500 || rect.top > window.innerHeight + 500;
+
+          if (isOffscreen && (img as HTMLImageElement).src && !(img as HTMLImageElement).dataset.src) {
+            // Move src back to data-src for very far offscreen images
+            (img as HTMLImageElement).dataset.src = (img as HTMLImageElement).src;
+            (img as HTMLImageElement).src = '';
+            (img as HTMLElement).classList.remove('loaded');
+          }
+        });
+      }
+
+      // Initialize performance optimizations
+      preloadCriticalImages();
+
+      // Add optimized scroll listener
+      window.addEventListener('scroll', onOptimizedScroll, { passive: true });
+
+      // Cleanup offscreen images periodically
+      setInterval(cleanupOffscreenImages, 10000); // Every 10 seconds
+
+      // 6. Prefetch next images on hover
+      let prefetchTimeout: number;
+      document.addEventListener('mouseover', (e) => {
+        const galleryItem = (e.target as HTMLElement).closest('.gallery-item');
+        if (galleryItem) {
+          clearTimeout(prefetchTimeout);
+          prefetchTimeout = setTimeout(() => {
+            const nextItems = Array.from(document.querySelectorAll('.gallery-item')).slice(
+              Array.from(document.querySelectorAll('.gallery-item')).indexOf(galleryItem) + 1,
+              Array.from(document.querySelectorAll('.gallery-item')).indexOf(galleryItem) + 4
+            );
+
+            nextItems.forEach((item) => {
+              const img = item.querySelector('img[data-src]') as HTMLImageElement;
+              if (img && img.dataset.src) {
+                const preloadImg = new Image();
+                preloadImg.src = img.dataset.src;
+              }
+            });
+          }, 100);
+        }
+      });
     });
   </script>
 

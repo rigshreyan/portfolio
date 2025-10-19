@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import exifr from 'exifr';
+import sharp from 'sharp';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -74,15 +75,100 @@ function getDefaultMetadata() {
   };
 }
 
+async function optimizeImage(inputPath, outputPath) {
+  try {
+    const image = sharp(inputPath);
+    const metadata = await image.metadata();
+
+    // Calculate dimensions to fit within 1500x1000 while maintaining aspect ratio
+    let { width, height } = metadata;
+    const maxWidth = 1500;
+    const maxHeight = 1000;
+
+    if (width > maxWidth || height > maxHeight) {
+      const widthRatio = maxWidth / width;
+      const heightRatio = maxHeight / height;
+      const ratio = Math.min(widthRatio, heightRatio);
+
+      width = Math.round(width * ratio);
+      height = Math.round(height * ratio);
+    }
+
+    await image
+      .resize(width, height, {
+        fit: 'inside',
+        withoutEnlargement: true
+      })
+      .jpeg({
+        quality: 85,
+        progressive: true,
+        mozjpeg: true // Use mozjpeg for better compression
+      })
+      .toFile(outputPath);
+
+    return { width, height, optimized: true };
+  } catch (error) {
+    console.warn(`⚠️  Could not optimize image ${inputPath}:`, error.message);
+    return { optimized: false };
+  }
+}
+
+async function generateThumbnail(inputPath, outputPath) {
+  try {
+    const image = sharp(inputPath);
+
+    // Generate super-fast loading thumbnail (400x300 max)
+    await image
+      .resize(400, 300, {
+        fit: 'inside',
+        withoutEnlargement: true
+      })
+      .jpeg({
+        quality: 70,
+        progressive: true,
+        mozjpeg: true
+      })
+      .toFile(outputPath);
+
+    return { optimized: true };
+  } catch (error) {
+    console.warn(`⚠️  Could not generate thumbnail ${inputPath}:`, error.message);
+    return { optimized: false };
+  }
+}
+
 async function buildGallery() {
-  console.log('🔍 Scanning gallery folders...');
+  console.log('🔍 Scanning gallery folders for photos with #category naming...');
 
   const galleryItems = [];
-  const photoTracker = new Map(); // Track photos across categories
+  const photoTracker = new Map(); // Track photos with their categories from filename
   const metadataTracker = new Map(); // Track EXIF metadata
   let totalPhotos = 0;
 
-  // First pass: collect all photos and their categories
+  // Function to extract categories from filename
+  function extractCategoriesFromFilename(fileName) {
+    const categoryMatches = fileName.match(/#(\w+)/g);
+    if (categoryMatches) {
+      return categoryMatches.map(match => match.substring(1)); // Remove the # symbol
+    }
+    return [];
+  }
+
+  // Function to get clean photo name without category tags
+  function getCleanPhotoName(fileName) {
+    return fileName.replace(/#\w+/g, '').trim();
+  }
+
+  // Function to sanitize filename for optimized version
+  function sanitizeFileName(fileName) {
+    return fileName
+      .replace(/\s+/g, '-')           // Replace spaces with hyphens
+      .replace(/[^\w\-\.]/g, '')      // Remove special chars except hyphens, dots, underscores
+      .replace(/--+/g, '-')           // Replace multiple hyphens with single
+      .replace(/^-+|-+$/g, '');       // Remove leading/trailing hyphens
+  }
+
+  // Scan all category folders for photos
   for (const category of categories) {
     const categoryPath = path.join(galleryDir, category.folder);
 
@@ -99,12 +185,21 @@ async function buildGallery() {
         const fileName = path.parse(file).name;
         const filePath = path.join(categoryPath, file);
 
-        if (!photoTracker.has(fileName)) {
-          photoTracker.set(fileName, {
+        // Extract categories from filename (e.g., "DSC03555#street#bw" -> ["street", "bw"])
+        const fileCategories = extractCategoriesFromFilename(fileName);
+        const cleanName = getCleanPhotoName(fileName);
+
+        // Use clean name as unique identifier
+        const photoId = cleanName || fileName;
+
+        if (!photoTracker.has(photoId)) {
+          photoTracker.set(photoId, {
             file: file,
-            categories: [],
+            fileName: fileName,
+            categories: new Set(),
             primaryFolder: category.folder,
-            filePath: filePath
+            filePath: filePath,
+            cleanName: photoId
           });
 
           // Extract EXIF metadata from the image
@@ -122,72 +217,133 @@ async function buildGallery() {
               iso: formatISO(exifData?.ISO)
             };
 
-            metadataTracker.set(fileName, metadata);
-            console.log(`📷 EXIF extracted for ${fileName}:`, metadata);
+            metadataTracker.set(photoId, metadata);
+            console.log(`📷 EXIF extracted for ${photoId}:`, metadata);
           } catch (error) {
-            console.warn(`⚠️  Could not extract EXIF for ${fileName}:`, error.message);
-            metadataTracker.set(fileName, getDefaultMetadata());
+            console.warn(`⚠️  Could not extract EXIF for ${photoId}:`, error.message);
+            metadataTracker.set(photoId, getDefaultMetadata());
           }
         }
 
-        photoTracker.get(fileName).categories.push(category.value);
-      }
+        // Add categories from filename to the photo
+        if (fileCategories.length > 0) {
+          fileCategories.forEach(cat => {
+            photoTracker.get(photoId).categories.add(cat);
+          });
+          console.log(`🏷️  "${fileName}" tagged with categories: ${fileCategories.join(', ')}`);
+        } else {
+          // If no categories in filename, use folder name as category
+          photoTracker.get(photoId).categories.add(category.value);
+        }
 
-      totalPhotos += imageFiles.length;
+        totalPhotos++;
+      }
     } else {
       console.log(`📁 ${category.label}: 0 photos (folder doesn't exist)`);
     }
   }
 
-  // Second pass: create gallery items (unique photos plus category-specific entries)
+  // Create gallery items with image optimization
   let uniquePhotos = 0;
+  const optimizedDir = path.join(galleryDir, 'optimized');
 
-  // First, create unique photo entries for "all" category
-  const uniqueGalleryItems = [];
-  const categoryGalleryItems = [];
+  // Ensure optimized directory exists
+  if (!fs.existsSync(optimizedDir)) {
+    fs.mkdirSync(optimizedDir, { recursive: true });
+  }
+
+  const allPhotos = [];
+  const categoryPhotos = new Map();
+
+  // Initialize category arrays
+  categories.forEach(cat => {
+    categoryPhotos.set(cat.value, []);
+  });
 
   for (const [fileName, photoData] of photoTracker) {
     const cleanName = fileName
       .replace(/[-_]/g, ' ')
       .replace(/\b\w/g, l => l.toUpperCase());
 
-    // Create one unique entry for the "all" filter (using primary category)
-    const primaryCategory = photoData.categories[0]; // Use first category as primary
+    // Create optimized version of the image
+    const originalPath = photoData.filePath;
+    const sanitizedFileName = sanitizeFileName(fileName);
+    const optimizedFileName = `${sanitizedFileName}.jpg`;
+    const optimizedPath = path.join(optimizedDir, optimizedFileName);
 
-    // Skip B&W copies (files with format "DSCxxxx-#") from the "all" category
-    const isBWCopy = /^DSC\d+-\d+$/.test(fileName);
+    let optimizationResult = { optimized: false };
 
-    if (!isBWCopy) {
-      uniqueGalleryItems.push({
-        label: cleanName,
-        href: `/gallery/${photoData.primaryFolder}/${photoData.file}`,
-        category: 'all',
-        originalCategory: primaryCategory,
-        metadata: metadataTracker.get(fileName)
-      });
+    // Only optimize if the optimized version doesn't exist or is older than original
+    const shouldOptimize = !fs.existsSync(optimizedPath) ||
+      fs.statSync(originalPath).mtime > fs.statSync(optimizedPath).mtime;
+
+    if (shouldOptimize) {
+      console.log(`🖼️  Optimizing ${fileName}...`);
+      optimizationResult = await optimizeImage(originalPath, optimizedPath);
+    } else {
+      console.log(`✅ Using cached optimized version of ${fileName}`);
+      optimizationResult = { optimized: true }; // Mark as successful for existing files
     }
 
-    // Create category-specific entries for individual category filters
+    // Verify optimized file exists before adding to gallery
+    if (!fs.existsSync(optimizedPath)) {
+      console.warn(`⚠️  Skipping ${fileName} - optimized image not found at ${optimizedPath}`);
+      continue;
+    }
+
+    // Verify file has content
+    const fileStats = fs.statSync(optimizedPath);
+    if (fileStats.size === 0) {
+      console.warn(`⚠️  Skipping ${fileName} - optimized image is empty`);
+      continue;
+    }
+
+    const photoItem = {
+      label: cleanName,
+      href: `/gallery/optimized/${optimizedFileName}`,
+      metadata: metadataTracker.get(fileName)
+    };
+
+    // Add to 'all' category (shuffled later)
+    allPhotos.push({
+      ...photoItem,
+      category: 'all',
+      originalCategory: Array.from(photoData.categories)[0]
+    });
+
+    // Add to specific categories
     photoData.categories.forEach(category => {
-      categoryGalleryItems.push({
-        label: cleanName,
-        href: `/gallery/${photoData.primaryFolder}/${photoData.file}`,
-        category: category,
-        metadata: metadataTracker.get(fileName)
+      categoryPhotos.get(category).push({
+        ...photoItem,
+        category: category
       });
     });
 
     uniquePhotos++;
 
     // Log multi-category photos
-    if (photoData.categories.length > 1) {
-      console.log(`🔄 "${fileName}" appears in: ${photoData.categories.join(', ')}`);
+    if (photoData.categories.size > 1) {
+      console.log(`🔄 "${fileName}" appears in: ${Array.from(photoData.categories).join(', ')}`);
     }
   }
 
-  // Combine unique photos first, then category-specific ones
-  galleryItems.push(...uniqueGalleryItems);
-  galleryItems.push(...categoryGalleryItems);
+  // Shuffle the 'all' photos for variety
+  function shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }
+
+  const shuffledAllPhotos = shuffleArray(allPhotos);
+  galleryItems.push(...shuffledAllPhotos);
+
+  // Add category-specific photos
+  for (const [category, photos] of categoryPhotos) {
+    galleryItems.push(...photos);
+  }
 
   console.log(`\n📸 Total photo files: ${totalPhotos}`);
   console.log(`📸 Unique photos: ${uniquePhotos}`);
