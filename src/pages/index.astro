@@ -745,6 +745,13 @@ const title = "Shreyan Sengupta";
   <script type="application/json" id="gallery-data" set:html={JSON.stringify(galleryItems)}></script>
 
   <script>
+    // Extend Window interface for TypeScript
+    declare global {
+      interface Window {
+        galleryData: any[];
+      }
+    }
+
     // Theme management - DIRECT STYLE APPROACH (WILL WORK!)
     function initTheme() {
       const themeToggle = document.getElementById('themeToggle');
@@ -796,7 +803,7 @@ const title = "Shreyan Sengupta";
       };
 
       // Apply theme function
-      function applyTheme(theme) {
+      function applyTheme(theme: string) {
         console.log('Applying theme:', theme);
 
         const themeVars = theme === 'dark' ? darkTheme : lightTheme;
@@ -808,8 +815,8 @@ const title = "Shreyan Sengupta";
         });
 
         // Toggle icon visibility
-        const lightIcon = document.querySelector('.light-icon');
-        const darkIcon = document.querySelector('.dark-icon');
+        const lightIcon = document.querySelector('.light-icon') as HTMLElement;
+        const darkIcon = document.querySelector('.dark-icon') as HTMLElement;
 
         if (lightIcon && darkIcon) {
           if (theme === 'dark') {
@@ -852,33 +859,40 @@ const title = "Shreyan Sengupta";
     document.addEventListener('DOMContentLoaded', function() {
       // Load gallery data from JSON script tag
       const galleryDataScript = document.getElementById('gallery-data');
-      window.galleryData = galleryDataScript ? JSON.parse(galleryDataScript.textContent) : [];
+      window.galleryData = galleryDataScript ? JSON.parse(galleryDataScript.textContent || '[]') : [];
 
       initTheme();
 
       // Progressive Image Loading with Intersection Observer
-      let imageObserver; // Declare in broader scope
+      let imageObserver: IntersectionObserver; // Declare in broader scope
 
       function initImageLoading() {
         imageObserver = new IntersectionObserver((entries, observer) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
-              const img = entry.target;
-              const container = img.closest('.gallery-item');
+              const img = entry.target as HTMLImageElement;
+              const container = img.closest('.gallery-item') as HTMLElement;
 
               // Load the image
-              img.src = img.dataset.src;
+              const dataSrc = img.dataset.src;
+              if (dataSrc) {
+                img.src = dataSrc;
+              }
 
               // Add loaded state when image loads
               img.onload = () => {
                 img.classList.add('loaded');
-                container.classList.add('loaded');
+                if (container) {
+                  container.classList.add('loaded');
+                }
               };
 
               // Handle load errors
               img.onerror = () => {
                 img.classList.add('loaded'); // Still fade in to avoid blank space
-                container.classList.add('loaded');
+                if (container) {
+                  container.classList.add('loaded');
+                }
               };
 
               // Stop observing this image
@@ -948,12 +962,12 @@ const title = "Shreyan Sengupta";
         const filterTabs = document.querySelectorAll('.filter-tab');
 
         // Count photos in each category
-        const categoryCounts = {};
+        const categoryCounts: { [key: string]: number } = {};
 
         // Initialize all categories with 0 count
         filterTabs.forEach(tab => {
           const filterValue = tab.getAttribute('data-filter');
-          if (filterValue !== 'all') {
+          if (filterValue && filterValue !== 'all') {
             categoryCounts[filterValue] = 0;
           }
         });
@@ -961,18 +975,20 @@ const title = "Shreyan Sengupta";
         // Count actual photos in each category
         galleryItems.forEach(item => {
           const category = item.getAttribute('data-category');
-          if (category && categoryCounts.hasOwnProperty(category)) {
-            categoryCounts[category]++;
+          if (category && category in categoryCounts) {
+            const count = categoryCounts[category];
+            if (count !== undefined) {
+              categoryCounts[category] = count + 1;
+            }
           }
         });
 
         // Sort categories by count (descending)
         const sortedCategories = Object.entries(categoryCounts)
-          .sort(([,a], [,b]) => b - a)
+          .sort(([,a], [,b]) => (b as number) - (a as number))
           .map(([category]) => category);
 
-        // Get the "All" tab and remove all tabs from container
-        const allTab = document.querySelector('.filter-tab[data-filter="all"]');
+        // Get tabs to sort (excluding "All" tab)
         const tabsToSort = Array.from(filterTabs).filter(tab =>
           tab.getAttribute('data-filter') !== 'all'
         );
@@ -985,7 +1001,7 @@ const title = "Shreyan Sengupta";
           const matchingTab = tabsToSort.find(tab =>
             tab.getAttribute('data-filter') === categoryValue
           );
-          if (matchingTab) {
+          if (matchingTab && filterContainer) {
             filterContainer.appendChild(matchingTab);
           }
         });
@@ -1047,16 +1063,16 @@ const title = "Shreyan Sengupta";
             });
           } else {
             // For specific category filters, show all items in that category
-            galleryItems.forEach((item, index) => {
+            galleryItems.forEach((item) => {
               const itemCategory = item.getAttribute('data-category');
 
               if (itemCategory === filterValue) {
                 item.classList.remove('hidden');
                 visibleItems.push(item);
                 // Remove animation delays to prevent blinking
-                item.style.animation = 'none';
-                item.offsetHeight;
-                item.style.animation = 'fadeInScale 0.6s ease-out';
+                (item as HTMLElement).style.animation = 'none';
+                (item as HTMLElement).offsetHeight;
+                (item as HTMLElement).style.animation = 'fadeInScale 0.6s ease-out';
               } else {
                 item.classList.add('hidden');
               }
@@ -1077,52 +1093,65 @@ const title = "Shreyan Sengupta";
       });
 
       // Lightbox functionality
-      function openLightbox(index) {
+      function openLightbox(index: number) {
         const item = visibleItems[index];
-        const img = item.querySelector('img');
-        const title = item.querySelector('h3').textContent;
-        const category = item.querySelector('p').textContent;
-        const originalIndex = parseInt(item.getAttribute('data-index')) || index;
+        if (!item) return;
+
+        const img = item.querySelector('img') as HTMLImageElement;
+        const titleElement = item.querySelector('h3');
+        const categoryElement = item.querySelector('p');
+        const title = titleElement ? titleElement.textContent || '' : '';
+        const category = categoryElement ? categoryElement.textContent || '' : '';
 
         currentImageIndex = index;
 
-        lightboxImage.src = img.src;
-        lightboxImage.alt = img.alt;
-        metadataTitle.textContent = title;
-        metadataCategory.textContent = category.toUpperCase();
+        if (lightboxImage && img) {
+          (lightboxImage as HTMLImageElement).src = img.src;
+          (lightboxImage as HTMLImageElement).alt = img.alt;
+        }
+        if (metadataTitle) {
+          metadataTitle.textContent = title;
+        }
+        if (metadataCategory) {
+          metadataCategory.textContent = category.toUpperCase();
+        }
 
         // Get real metadata from gallery item
         const itemHref = item.getAttribute('data-href');
-        const galleryItemData = window.galleryData.find(galleryItem => galleryItem.href === itemHref);
+        const galleryItemData = window.galleryData.find((galleryItem: any) => galleryItem.href === itemHref);
 
         if (galleryItemData && galleryItemData.metadata) {
           const metadata = galleryItemData.metadata;
-          metadataCamera.textContent = metadata.camera;
-          metadataLens.textContent = metadata.lens;
-          metadataFocalLength.textContent = metadata.focalLength;
-          metadataAperture.textContent = metadata.aperture;
-          metadataShutterSpeed.textContent = metadata.shutterSpeed;
-          metadataISO.textContent = metadata.iso;
+          if (metadataCamera) metadataCamera.textContent = metadata.camera;
+          if (metadataLens) metadataLens.textContent = metadata.lens;
+          if (metadataFocalLength) metadataFocalLength.textContent = metadata.focalLength;
+          if (metadataAperture) metadataAperture.textContent = metadata.aperture;
+          if (metadataShutterSpeed) metadataShutterSpeed.textContent = metadata.shutterSpeed;
+          if (metadataISO) metadataISO.textContent = metadata.iso;
         } else {
           // Fallback to default values if metadata not found
-          metadataCamera.textContent = 'Unknown Camera';
-          metadataLens.textContent = 'Unknown Lens';
-          metadataFocalLength.textContent = 'Unknown';
-          metadataAperture.textContent = 'Unknown';
-          metadataShutterSpeed.textContent = 'Unknown';
-          metadataISO.textContent = 'Unknown';
+          if (metadataCamera) metadataCamera.textContent = 'Unknown Camera';
+          if (metadataLens) metadataLens.textContent = 'Unknown Lens';
+          if (metadataFocalLength) metadataFocalLength.textContent = 'Unknown';
+          if (metadataAperture) metadataAperture.textContent = 'Unknown';
+          if (metadataShutterSpeed) metadataShutterSpeed.textContent = 'Unknown';
+          if (metadataISO) metadataISO.textContent = 'Unknown';
         }
 
-        lightbox.classList.add('active');
+        if (lightbox) {
+          lightbox.classList.add('active');
+        }
         document.body.style.overflow = 'hidden';
       }
 
       function closeLightbox() {
-        lightbox.classList.remove('active');
+        if (lightbox) {
+          lightbox.classList.remove('active');
+        }
         document.body.style.overflow = 'auto';
       }
 
-      function navigateLightbox(direction) {
+      function navigateLightbox(direction: string) {
         if (direction === 'next') {
           currentImageIndex = (currentImageIndex + 1) % visibleItems.length;
         } else {
@@ -1132,7 +1161,7 @@ const title = "Shreyan Sengupta";
       }
 
       // Event listeners
-      galleryItems.forEach((item, index) => {
+      galleryItems.forEach((item) => {
         item.addEventListener('click', () => {
           const visibleIndex = visibleItems.indexOf(item);
           if (visibleIndex !== -1) {
@@ -1141,20 +1170,28 @@ const title = "Shreyan Sengupta";
         });
       });
 
-      lightboxClose.addEventListener('click', closeLightbox);
-      lightboxPrev.addEventListener('click', () => navigateLightbox('prev'));
-      lightboxNext.addEventListener('click', () => navigateLightbox('next'));
+      if (lightboxClose) {
+        lightboxClose.addEventListener('click', closeLightbox);
+      }
+      if (lightboxPrev) {
+        lightboxPrev.addEventListener('click', () => navigateLightbox('prev'));
+      }
+      if (lightboxNext) {
+        lightboxNext.addEventListener('click', () => navigateLightbox('next'));
+      }
 
       // Close lightbox on outside click
-      lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) {
-          closeLightbox();
-        }
-      });
+      if (lightbox) {
+        lightbox.addEventListener('click', (e) => {
+          if (e.target === lightbox) {
+            closeLightbox();
+          }
+        });
+      }
 
       // Keyboard navigation
       document.addEventListener('keydown', (e) => {
-        if (lightbox.classList.contains('active')) {
+        if (lightbox && lightbox.classList.contains('active')) {
           if (e.key === 'Escape') {
             closeLightbox();
           } else if (e.key === 'ArrowLeft') {
@@ -1171,7 +1208,7 @@ const title = "Shreyan Sengupta";
       images.forEach(img => {
         img.addEventListener('contextmenu', e => e.preventDefault());
         img.addEventListener('dragstart', e => e.preventDefault());
-        img.style.userSelect = 'none';
+        (img as HTMLElement).style.userSelect = 'none';
       });
 
       // Image protection - Lightbox image

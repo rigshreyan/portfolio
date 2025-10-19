@@ -2,6 +2,7 @@ export interface GalleryItem {
   label: string;
   href: string;
   category?: string;
+  originalCategory?: string;
   metadata?: {
     camera: string;
     lens: string;
