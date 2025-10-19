@@ -1,0 +1,262 @@
+---
+export interface Props {
+  photos: Array<{
+    src: string;
+    alt: string;
+    caption: string;
+    description: string;
+  }>;
+}
+
+const { photos } = Astro.props;
+---
+
+<!-- Photo Mouse Follow Effect Container -->
+<div id="photo-mouse-follow-container" class="relative">
+  <!-- Photo Navigation List -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {photos.map((photo, index) => (
+      <div
+        class="photo-trigger relative group cursor-pointer"
+        data-photo-index={index}
+        data-photo-src={photo.src}
+        data-aos="fade-up"
+        data-aos-delay={index * 100}
+      >
+        <div class="aspect-[4/3] bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden">
+          <div class="p-8 h-full flex flex-col justify-center">
+            <h3 class="text-xl md:text-2xl font-light text-gray-900 dark:text-white group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-300 mb-3">
+              {photo.caption}
+            </h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+              {photo.description}
+            </p>
+            <div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                Hover to preview
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Floating Photos Container -->
+  <div
+    id="floating-photos-container"
+    class="fixed inset-0 pointer-events-none z-30"
+    style="will-change: transform;"
+  >
+    {photos.map((photo, index) => (
+      <div
+        class="floating-photo absolute opacity-0 transition-opacity duration-300 ease-out"
+        data-photo-index={index}
+        style="transform: translate3d(0, 0, 0); will-change: transform, opacity;"
+      >
+        <div class="relative w-72 h-96 md:w-80 md:h-[28rem] overflow-hidden rounded-lg shadow-2xl">
+          <img
+            src={photo.src}
+            alt={photo.alt}
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-black/5"></div>
+          <!-- Photo caption overlay -->
+          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+            <p class="text-white text-sm font-medium">
+              {photo.caption}
+            </p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .floating-photo {
+    transform: translate3d(-50%, -50%, 0) scale(0.85);
+  }
+
+  .floating-photo.active {
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0) scale(1);
+  }
+
+  .photo-trigger:hover .floating-photo {
+    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  /* Smooth cursor tracking */
+  #floating-photos-container {
+    transition: none;
+  }
+
+  .photo-trigger {
+    transition: transform 0.2s ease;
+  }
+
+  .photo-trigger:hover {
+    transform: translateY(-2px);
+  }
+</style>
+
+<script>
+  class PhotoMouseFollowEffect {
+    private container: HTMLElement | null = null;
+    private floatingContainer: HTMLElement | null = null;
+    private photoTriggers: NodeListOf<Element> | null = null;
+    private floatingPhotos: NodeListOf<Element> | null = null;
+    private currentActiveIndex: number = -1;
+    private mouseX: number = 0;
+    private mouseY: number = 0;
+    private currentX: number = 0;
+    private currentY: number = 0;
+    private animationId: number = 0;
+    private isAnimating: boolean = false;
+
+    constructor() {
+      this.init();
+    }
+
+    private init(): void {
+      this.container = document.getElementById('photo-mouse-follow-container');
+      this.floatingContainer = document.getElementById('floating-photos-container');
+
+      if (!this.container || !this.floatingContainer) return;
+
+      this.photoTriggers = this.container.querySelectorAll('.photo-trigger');
+      this.floatingPhotos = this.floatingContainer.querySelectorAll('.floating-photo');
+
+      this.setupEventListeners();
+      this.startAnimation();
+    }
+
+    private setupEventListeners(): void {
+      if (!this.photoTriggers || !this.floatingPhotos) return;
+
+      // Mouse move tracking
+      document.addEventListener('mousemove', this.handleMouseMove.bind(this));
+
+      // Photo hover events
+      this.photoTriggers.forEach((trigger, index) => {
+        trigger.addEventListener('mouseenter', () => this.showPhoto(index));
+        trigger.addEventListener('mouseleave', () => this.hidePhoto(index));
+      });
+
+      // Hide all photos when mouse leaves the container
+      this.container?.addEventListener('mouseleave', () => this.hideAllPhotos());
+    }
+
+    private handleMouseMove(e: MouseEvent): void {
+      this.mouseX = e.clientX;
+      this.mouseY = e.clientY;
+    }
+
+    private showPhoto(index: number): void {
+      if (!this.floatingPhotos) return;
+
+      this.hideAllPhotos();
+      this.currentActiveIndex = index;
+
+      const photo = this.floatingPhotos[index] as HTMLElement;
+      if (photo) {
+        photo.classList.add('active');
+        photo.style.zIndex = '31';
+      }
+    }
+
+    private hidePhoto(index: number): void {
+      if (!this.floatingPhotos) return;
+
+      const photo = this.floatingPhotos[index] as HTMLElement;
+      if (photo) {
+        photo.classList.remove('active');
+        photo.style.zIndex = '30';
+      }
+
+      if (this.currentActiveIndex === index) {
+        this.currentActiveIndex = -1;
+      }
+    }
+
+    private hideAllPhotos(): void {
+      if (!this.floatingPhotos) return;
+
+      this.floatingPhotos.forEach((photo) => {
+        (photo as HTMLElement).classList.remove('active');
+        (photo as HTMLElement).style.zIndex = '30';
+      });
+
+      this.currentActiveIndex = -1;
+    }
+
+    private updatePhotoPosition(): void {
+      if (!this.floatingPhotos || this.currentActiveIndex === -1) return;
+
+      const photo = this.floatingPhotos[this.currentActiveIndex] as HTMLElement;
+      if (!photo) return;
+
+      // Smooth lerping for cursor following with slight offset
+      const ease = 0.12;
+      const offsetX = 50; // Offset to prevent overlap with cursor
+      const offsetY = -30;
+
+      this.currentX += (this.mouseX + offsetX - this.currentX) * ease;
+      this.currentY += (this.mouseY + offsetY - this.currentY) * ease;
+
+      // Apply transform with bounds checking
+      const maxX = window.innerWidth - 200;
+      const maxY = window.innerHeight - 200;
+      const minX = 200;
+      const minY = 200;
+
+      const boundedX = Math.max(minX, Math.min(maxX, this.currentX));
+      const boundedY = Math.max(minY, Math.min(maxY, this.currentY));
+
+      photo.style.transform = `translate3d(${boundedX}px, ${boundedY}px, 0) translate3d(-50%, -50%, 0) scale(1)`;
+    }
+
+    private startAnimation(): void {
+      if (this.isAnimating) return;
+
+      this.isAnimating = true;
+
+      const animate = () => {
+        this.updatePhotoPosition();
+        this.animationId = requestAnimationFrame(animate);
+      };
+
+      animate();
+    }
+
+    private stopAnimation(): void {
+      if (this.animationId) {
+        cancelAnimationFrame(this.animationId);
+        this.animationId = 0;
+      }
+      this.isAnimating = false;
+    }
+
+    public destroy(): void {
+      this.stopAnimation();
+      document.removeEventListener('mousemove', this.handleMouseMove.bind(this));
+    }
+  }
+
+  // Initialize the effect when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    // Check if we're on a touch device
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    if (!isTouchDevice) {
+      new PhotoMouseFollowEffect();
+    }
+  });
+
+  // Clean up on page navigation
+  document.addEventListener('astro:before-preparation', () => {
+    // This will be called before Astro navigation
+  });
+</script>
