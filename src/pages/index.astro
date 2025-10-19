@@ -875,7 +875,7 @@ const title = "Shreyan Sengupta";
   </div>
 
   <!-- Pass gallery data to client-side -->
-  <script type="application/json" id="gallery-data" set:html={JSON.stringify(galleryItems)}></script>
+  <script type="application/json" id="gallery-data" is:inline set:html={JSON.stringify(galleryItems)}></script>
 
   <script>
     // Extend Window interface for TypeScript
@@ -1376,13 +1376,13 @@ const title = "Shreyan Sengupta";
       if (lightbox) {
         lightbox.addEventListener('touchstart', (e) => {
           if (lightbox.classList.contains('active')) {
-            touchStartX = e.changedTouches[0].screenX;
+            touchStartX = e.changedTouches[0]?.screenX || 0;
           }
         });
 
         lightbox.addEventListener('touchend', (e) => {
           if (lightbox.classList.contains('active')) {
-            touchEndX = e.changedTouches[0].screenX;
+            touchEndX = e.changedTouches[0]?.screenX || 0;
             handleSwipeGesture();
           }
         });
@@ -1426,10 +1426,10 @@ const title = "Shreyan Sengupta";
 
       // 3. Virtual Scrolling for Better Performance
       let visibleItemsSet = new Set();
-      const BUFFER_SIZE = 10; // Extra items to render outside viewport
+      // const BUFFER_SIZE = 10; // Extra items to render outside viewport
 
       function optimizeVisibleItems() {
-        const scrollTop = window.pageYOffset;
+        // const scrollTop = window.pageYOffset;
         const windowHeight = window.innerHeight;
         const items = document.querySelectorAll('.gallery-item');
 
@@ -1450,7 +1450,7 @@ const title = "Shreyan Sengupta";
       }
 
       // 4. Debounced scroll optimization
-      let scrollTimeout: number;
+      let scrollTimeout: ReturnType<typeof setTimeout>;
       function onOptimizedScroll() {
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
@@ -1484,7 +1484,7 @@ const title = "Shreyan Sengupta";
       setInterval(cleanupOffscreenImages, 10000); // Every 10 seconds
 
       // 6. Prefetch next images on hover
-      let prefetchTimeout: number;
+      let prefetchTimeout: ReturnType<typeof setTimeout>;
       document.addEventListener('mouseover', (e) => {
         const galleryItem = (e.target as HTMLElement).closest('.gallery-item');
         if (galleryItem) {

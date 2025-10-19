@@ -17,18 +17,144 @@ export interface GalleryItem {
 // Run: npm run build:gallery to regenerate
 export const galleryItems: GalleryItem[] = [
   {
-    "label": "DSC02138",
-    "href": "/gallery/optimized/DSC02138.jpg",
+    "label": "DSC05058",
+    "href": "/gallery/optimized/DSC05058.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "24-70mm F2.8 DG DN II | Art 024",
+      "focalLength": "24mm",
+      "aperture": "f/9",
+      "shutterSpeed": "1/50s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "IMG 8656 Original",
+    "href": "/gallery/optimized/IMG_8656_Original.jpg",
+    "metadata": {
+      "camera": "Apple iPhone 13 Pro",
+      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "focalLength": "6mm",
+      "aperture": "f/1.5",
+      "shutterSpeed": "1/1200s",
+      "iso": "50"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "IMG 6924 Original",
+    "href": "/gallery/optimized/IMG_6924_Original.jpg",
+    "metadata": {
+      "camera": "Canon EOS 700D",
+      "lens": "Canon EF-S 18-55mm f/3.5-5.6 IS II",
+      "focalLength": "36mm",
+      "aperture": "f/10",
+      "shutterSpeed": "1/60s",
+      "iso": "500"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC08827",
+    "href": "/gallery/optimized/DSC08827.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/125s",
+      "iso": "6400"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "IMG 3403 Original",
+    "href": "/gallery/optimized/IMG_3403_Original.jpg",
+    "metadata": {
+      "camera": "Apple iPhone 13 Pro",
+      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "focalLength": "9mm",
+      "aperture": "f/2.8",
+      "shutterSpeed": "1/5s",
+      "iso": "1250"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "IMG 5105",
+    "href": "/gallery/optimized/IMG_5105.jpg",
+    "metadata": {
+      "camera": "Apple iPhone 13 Pro",
+      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "focalLength": "6mm",
+      "aperture": "f/1.5",
+      "shutterSpeed": "1/4600s",
+      "iso": "50"
+    },
+    "category": "all",
+    "originalCategory": "landscape"
+  },
+  {
+    "label": "IMG 7095 Original",
+    "href": "/gallery/optimized/IMG_7095_Original.jpg",
+    "metadata": {
+      "camera": "Canon EOS 700D",
+      "lens": "EF-S18-55mm f/3.5-5.6 IS II",
+      "focalLength": "18mm",
+      "aperture": "f/5.6",
+      "shutterSpeed": "1/5s",
+      "iso": "6400"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "IMG 4054 Original",
+    "href": "/gallery/optimized/IMG_4054_Original.jpg",
+    "metadata": {
+      "camera": "Apple iPhone 13 Pro",
+      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "focalLength": "6mm",
+      "aperture": "f/1.5",
+      "shutterSpeed": "1/10s",
+      "iso": "500"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC02187",
+    "href": "/gallery/optimized/DSC02187.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
-      "aperture": "f/5.6",
-      "shutterSpeed": "1/800s",
-      "iso": "100"
+      "aperture": "f/22",
+      "shutterSpeed": "1/40s",
+      "iso": "200"
     },
     "category": "all",
-    "originalCategory": "street"
+    "originalCategory": "landscape"
+  },
+  {
+    "label": "IMG 8811",
+    "href": "/gallery/optimized/IMG_8811.jpg",
+    "metadata": {
+      "camera": "Apple iPhone 13 Pro",
+      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "focalLength": "6mm",
+      "aperture": "f/1.5",
+      "shutterSpeed": "1/2800s",
+      "iso": "50"
+    },
+    "category": "all",
+    "originalCategory": "bw"
   },
   {
     "label": "IMG 7946",
@@ -45,15 +171,813 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "street"
   },
   {
-    "label": "DSC00620",
-    "href": "/gallery/optimized/DSC00620.jpg",
+    "label": "DSC01441",
+    "href": "/gallery/optimized/DSC01441.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
-      "lens": "FE 50mm F1.8",
-      "focalLength": "50mm",
+      "lens": "FE 35mm F2.8 ZA",
+      "focalLength": "35mm",
+      "aperture": "f/2.8",
+      "shutterSpeed": "1/40s",
+      "iso": "1250"
+    },
+    "category": "all",
+    "originalCategory": "landscape"
+  },
+  {
+    "label": "IMG 8509",
+    "href": "/gallery/optimized/IMG_8509.jpg",
+    "metadata": {
+      "camera": "Apple iPhone 13 Pro",
+      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "focalLength": "9mm",
+      "aperture": "f/2.8",
+      "shutterSpeed": "1/550s",
+      "iso": "32"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "DSC01401",
+    "href": "/gallery/optimized/DSC01401.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 35mm F2.8 ZA",
+      "focalLength": "35mm",
+      "aperture": "f/22",
+      "shutterSpeed": "1/40s",
+      "iso": "3200"
+    },
+    "category": "all",
+    "originalCategory": "landscape"
+  },
+  {
+    "label": "DSC04236",
+    "href": "/gallery/optimized/DSC04236.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "24-70mm F2.8 DG DN II | Art 024",
+      "focalLength": "31mm",
+      "aperture": "f/5.6",
+      "shutterSpeed": "1/1000s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "landscape"
+  },
+  {
+    "label": "IMG 5009",
+    "href": "/gallery/optimized/IMG_5009.jpg",
+    "metadata": {
+      "camera": "Apple iPhone 13 Pro",
+      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "focalLength": "9mm",
+      "aperture": "f/2.8",
+      "shutterSpeed": "1/540s",
+      "iso": "32"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC06381",
+    "href": "/gallery/optimized/DSC06381.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/80s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "IMG 8413 Original Enhanced NR",
+    "href": "/gallery/optimized/IMG_8413_Original-Enhanced-NR.jpg",
+    "metadata": {
+      "camera": "Canon EOS 700D",
+      "lens": "EF-S24mm f/2.8 STM",
+      "focalLength": "24mm",
+      "aperture": "f/2.8",
+      "shutterSpeed": "1/40s",
+      "iso": "250"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC06329",
+    "href": "/gallery/optimized/DSC06329.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/320s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "IMG 7942",
+    "href": "/gallery/optimized/IMG_7942.jpg",
+    "metadata": {
+      "camera": "Apple iPhone 13 Pro",
+      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "focalLength": "9mm",
+      "aperture": "f/2.8",
+      "shutterSpeed": "1/20s",
+      "iso": "1250"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC02920",
+    "href": "/gallery/optimized/DSC02920.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 40mm F2.5 G",
+      "focalLength": "40mm",
+      "aperture": "f/4",
+      "shutterSpeed": "1/160s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "IMG 8617",
+    "href": "/gallery/optimized/IMG_8617.jpg",
+    "metadata": {
+      "camera": "Apple iPhone 13 Pro",
+      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "focalLength": "6mm",
+      "aperture": "f/1.5",
+      "shutterSpeed": "1/560s",
+      "iso": "50"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "DSC00875",
+    "href": "/gallery/optimized/DSC00875.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 35mm F2.8 ZA",
+      "focalLength": "35mm",
+      "aperture": "f/2.8",
+      "shutterSpeed": "1/400s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "IMG 7397 Original",
+    "href": "/gallery/optimized/IMG_7397_Original.jpg",
+    "metadata": {
+      "camera": "Canon EOS 700D",
+      "lens": "Canon EF-S 18-55mm f/3.5-5.6 IS II",
+      "focalLength": "24mm",
+      "aperture": "f/25",
+      "shutterSpeed": "30s",
+      "iso": "200"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC03629 2",
+    "href": "/gallery/optimized/DSC03629-2.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 40mm F2.5 G",
+      "focalLength": "40mm",
+      "aperture": "f/2.5",
+      "shutterSpeed": "1/800s",
+      "iso": "200"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC01894",
+    "href": "/gallery/optimized/DSC01894.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 40mm F2.5 G",
+      "focalLength": "40mm",
+      "aperture": "f/22",
+      "shutterSpeed": "1/40s",
+      "iso": "2000"
+    },
+    "category": "all",
+    "originalCategory": "landscape"
+  },
+  {
+    "label": "DSC08816",
+    "href": "/gallery/optimized/DSC08816.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/30s",
+      "iso": "800"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "DSC01283 Original",
+    "href": "/gallery/optimized/DSC01283_Original.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 35mm F2.8 ZA",
+      "focalLength": "35mm",
+      "aperture": "f/20",
+      "shutterSpeed": "1/40s",
+      "iso": "160"
+    },
+    "category": "all",
+    "originalCategory": "landscape"
+  },
+  {
+    "label": "IMG 5085",
+    "href": "/gallery/optimized/IMG_5085.jpg",
+    "metadata": {
+      "camera": "Apple iPhone 13 Pro",
+      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "focalLength": "6mm",
+      "aperture": "f/1.5",
+      "shutterSpeed": "1/10000s",
+      "iso": "50"
+    },
+    "category": "all",
+    "originalCategory": "landscape"
+  },
+  {
+    "label": "DSC01465",
+    "href": "/gallery/optimized/DSC01465.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 35mm F2.8 ZA",
+      "focalLength": "35mm",
       "aperture": "f/22",
       "shutterSpeed": "1/50s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "DSC08875",
+    "href": "/gallery/optimized/DSC08875.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/400s",
+      "iso": "320"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "IMG 5804",
+    "href": "/gallery/optimized/IMG_5804.jpg",
+    "metadata": {
+      "camera": "Apple iPhone 13 Pro",
+      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "focalLength": "9mm",
+      "aperture": "f/2.8",
+      "shutterSpeed": "1/450s",
+      "iso": "40"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "DSC01471",
+    "href": "/gallery/optimized/DSC01471.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 35mm F2.8 ZA",
+      "focalLength": "35mm",
+      "aperture": "f/22",
+      "shutterSpeed": "1/50s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "landscape"
+  },
+  {
+    "label": "DSC01278",
+    "href": "/gallery/optimized/DSC01278.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 35mm F2.8 ZA",
+      "focalLength": "35mm",
+      "aperture": "f/20",
+      "shutterSpeed": "1/40s",
+      "iso": "160"
+    },
+    "category": "all",
+    "originalCategory": "landscape"
+  },
+  {
+    "label": "DSC02909",
+    "href": "/gallery/optimized/DSC02909.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 40mm F2.5 G",
+      "focalLength": "40mm",
+      "aperture": "f/4",
+      "shutterSpeed": "1/125s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC06330",
+    "href": "/gallery/optimized/DSC06330.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/80s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC08845",
+    "href": "/gallery/optimized/DSC08845.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/125s",
+      "iso": "800"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "DSC06375",
+    "href": "/gallery/optimized/DSC06375.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/160s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC01979",
+    "href": "/gallery/optimized/DSC01979.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 40mm F2.5 G",
+      "focalLength": "40mm",
+      "aperture": "f/9",
+      "shutterSpeed": "1/40s",
+      "iso": "10000"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC01296",
+    "href": "/gallery/optimized/DSC01296.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 35mm F2.8 ZA",
+      "focalLength": "35mm",
+      "aperture": "f/2.8",
+      "shutterSpeed": "1/500s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "DSC05399",
+    "href": "/gallery/optimized/DSC05399.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "24-70mm F2.8 DG DN II | Art 024",
+      "focalLength": "70mm",
+      "aperture": "f/8",
+      "shutterSpeed": "1/80s",
       "iso": "200"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "IMG 6177 Original Original",
+    "href": "/gallery/optimized/IMG_6177_Original_Original.jpg",
+    "metadata": {
+      "camera": "Canon EOS 700D",
+      "lens": "Canon EF-S 18-55mm f/3.5-5.6 IS II",
+      "focalLength": "24mm",
+      "aperture": "f/25",
+      "shutterSpeed": "1/40s",
+      "iso": "160"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "IMG 7167 Original",
+    "href": "/gallery/optimized/IMG_7167_Original.jpg",
+    "metadata": {
+      "camera": "Canon EOS 700D",
+      "lens": "Canon EF-S 18-55mm f/3.5-5.6 IS II",
+      "focalLength": "46mm",
+      "aperture": "f/5",
+      "shutterSpeed": "1/20s",
+      "iso": "6400"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "IMG 6060 Original",
+    "href": "/gallery/optimized/IMG_6060_Original.jpg",
+    "metadata": {
+      "camera": "Canon EOS 700D",
+      "lens": "Canon EF-S 18-55mm f/3.5-5.6 IS II",
+      "focalLength": "18mm",
+      "aperture": "f/9",
+      "shutterSpeed": "1/200s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "landscape"
+  },
+  {
+    "label": "DSC03729",
+    "href": "/gallery/optimized/DSC03729.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 40mm F2.5 G",
+      "focalLength": "40mm",
+      "aperture": "f/2.8",
+      "shutterSpeed": "1/500s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "architecture"
+  },
+  {
+    "label": "IMG 5145",
+    "href": "/gallery/optimized/IMG_5145.jpg",
+    "metadata": {
+      "camera": "Apple iPhone 13 Pro",
+      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "focalLength": "9mm",
+      "aperture": "f/2.8",
+      "shutterSpeed": "1/1100s",
+      "iso": "32"
+    },
+    "category": "all",
+    "originalCategory": "landscape"
+  },
+  {
+    "label": "DSC06374",
+    "href": "/gallery/optimized/DSC06374.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/200s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC02190",
+    "href": "/gallery/optimized/DSC02190.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 40mm F2.5 G",
+      "focalLength": "40mm",
+      "aperture": "f/2.5",
+      "shutterSpeed": "1/5000s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "landscape"
+  },
+  {
+    "label": "IMG 7427 Original",
+    "href": "/gallery/optimized/IMG_7427_Original.jpg",
+    "metadata": {
+      "camera": "Canon EOS 700D",
+      "lens": "Canon EF-S 18-55mm f/3.5-5.6 IS II",
+      "focalLength": "21mm",
+      "aperture": "f/4.5",
+      "shutterSpeed": "1/40s",
+      "iso": "1250"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC02078",
+    "href": "/gallery/optimized/DSC02078.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 40mm F2.5 G",
+      "focalLength": "40mm",
+      "aperture": "f/22",
+      "shutterSpeed": "1/50s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "landscape"
+  },
+  {
+    "label": "DSC06428",
+    "href": "/gallery/optimized/DSC06428.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/500s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "abstract"
+  },
+  {
+    "label": "IMG 6058 Original",
+    "href": "/gallery/optimized/IMG_6058_Original.jpg",
+    "metadata": {
+      "camera": "Canon EOS 700D",
+      "lens": "Canon EF-S 18-55mm f/3.5-5.6 IS II",
+      "focalLength": "24mm",
+      "aperture": "f/9",
+      "shutterSpeed": "1/200s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "landscape"
+  },
+  {
+    "label": "DSC02138",
+    "href": "/gallery/optimized/DSC02138.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 40mm F2.5 G",
+      "focalLength": "40mm",
+      "aperture": "f/5.6",
+      "shutterSpeed": "1/800s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC02104 HDR",
+    "href": "/gallery/optimized/DSC02104-HDR.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 40mm F2.5 G",
+      "focalLength": "40mm",
+      "aperture": "f/22",
+      "shutterSpeed": "1/40s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "IMG 7948",
+    "href": "/gallery/optimized/IMG_7948.jpg",
+    "metadata": {
+      "camera": "Apple iPhone 13 Pro",
+      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "focalLength": "9mm",
+      "aperture": "f/2.8",
+      "shutterSpeed": "1/8s",
+      "iso": "1250"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC09404",
+    "href": "/gallery/optimized/DSC09404.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/30s",
+      "iso": "2500"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC01010 2 Enhanced SR",
+    "href": "/gallery/optimized/DSC01010-2-Enhanced-SR.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 35mm F2.8 ZA",
+      "focalLength": "35mm",
+      "aperture": "f/22",
+      "shutterSpeed": "1/40s",
+      "iso": "3200"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC08882",
+    "href": "/gallery/optimized/DSC08882.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/400s",
+      "iso": "20000"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "DSC01941",
+    "href": "/gallery/optimized/DSC01941.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 40mm F2.5 G",
+      "focalLength": "40mm",
+      "aperture": "f/4",
+      "shutterSpeed": "1/40s",
+      "iso": "1600"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC00795",
+    "href": "/gallery/optimized/DSC00795.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 35mm F2.8 ZA",
+      "focalLength": "35mm",
+      "aperture": "f/2.8",
+      "shutterSpeed": "1/40s",
+      "iso": "2500"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC03629",
+    "href": "/gallery/optimized/DSC03629.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 40mm F2.5 G",
+      "focalLength": "40mm",
+      "aperture": "f/2.5",
+      "shutterSpeed": "1/800s",
+      "iso": "200"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC00950",
+    "href": "/gallery/optimized/DSC00950.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 35mm F2.8 ZA",
+      "focalLength": "35mm",
+      "aperture": "f/2.8",
+      "shutterSpeed": "1/40s",
+      "iso": "800"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC08808",
+    "href": "/gallery/optimized/DSC08808.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/30s",
+      "iso": "1600"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "DSC04464",
+    "href": "/gallery/optimized/DSC04464.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "24-70mm F2.8 DG DN II | Art 024",
+      "focalLength": "58mm",
+      "aperture": "f/11",
+      "shutterSpeed": "1/320s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "landscape"
+  },
+  {
+    "label": "IMG 3362 Original",
+    "href": "/gallery/optimized/IMG_3362_Original.jpg",
+    "metadata": {
+      "camera": "Apple iPhone 13 Pro",
+      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "focalLength": "9mm",
+      "aperture": "f/2.8",
+      "shutterSpeed": "1/25s",
+      "iso": "1000"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "IMG 6086",
+    "href": "/gallery/optimized/IMG_6086.jpg",
+    "metadata": {
+      "camera": "Canon EOS 700D",
+      "lens": "Canon EF-S 18-55mm f/3.5-5.6 IS II",
+      "focalLength": "24mm",
+      "aperture": "f/5.6",
+      "shutterSpeed": "1/50s",
+      "iso": "3200"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "DSC09113",
+    "href": "/gallery/optimized/DSC09113.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/50s",
+      "iso": "1250"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC02898",
+    "href": "/gallery/optimized/DSC02898.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 40mm F2.5 G",
+      "focalLength": "40mm",
+      "aperture": "f/5.6",
+      "shutterSpeed": "1/60s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC04703",
+    "href": "/gallery/optimized/DSC04703.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "24-70mm F2.8 DG DN II | Art 024",
+      "focalLength": "62mm",
+      "aperture": "f/5.6",
+      "shutterSpeed": "1/80s",
+      "iso": "100"
     },
     "category": "all",
     "originalCategory": "landscape"
@@ -73,32 +997,60 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "bw"
   },
   {
-    "label": "DSC03647",
-    "href": "/gallery/optimized/DSC03647.jpg",
+    "label": "IMG 2323 Original",
+    "href": "/gallery/optimized/IMG_2323_Original.jpg",
+    "metadata": {
+      "camera": "Apple iPhone 13 Pro",
+      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "focalLength": "9mm",
+      "aperture": "f/2.8",
+      "shutterSpeed": "1/100s",
+      "iso": "40"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "DSC08797",
+    "href": "/gallery/optimized/DSC08797.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/60s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "DSC02855",
+    "href": "/gallery/optimized/DSC02855.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
-      "aperture": "f/2.5",
-      "shutterSpeed": "1/500s",
-      "iso": "400"
+      "aperture": "f/8",
+      "shutterSpeed": "1/200s",
+      "iso": "100"
     },
     "category": "all",
     "originalCategory": "street"
   },
   {
-    "label": "IMG 4054 Original",
-    "href": "/gallery/optimized/IMG_4054_Original.jpg",
+    "label": "DSC08817",
+    "href": "/gallery/optimized/DSC08817.jpg",
     "metadata": {
-      "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
-      "focalLength": "6mm",
-      "aperture": "f/1.5",
-      "shutterSpeed": "1/10s",
-      "iso": "500"
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/30s",
+      "iso": "1000"
     },
     "category": "all",
-    "originalCategory": "street"
+    "originalCategory": "bw"
   },
   {
     "label": "DSC03013",
@@ -129,225 +1081,43 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "bw"
   },
   {
-    "label": "IMG 6058 Original",
-    "href": "/gallery/optimized/IMG_6058_Original.jpg",
-    "metadata": {
-      "camera": "Canon EOS 700D",
-      "lens": "Canon EF-S 18-55mm f/3.5-5.6 IS II",
-      "focalLength": "24mm",
-      "aperture": "f/9",
-      "shutterSpeed": "1/200s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "landscape"
-  },
-  {
-    "label": "IMG 7095 Original",
-    "href": "/gallery/optimized/IMG_7095_Original.jpg",
-    "metadata": {
-      "camera": "Canon EOS 700D",
-      "lens": "EF-S18-55mm f/3.5-5.6 IS II",
-      "focalLength": "18mm",
-      "aperture": "f/5.6",
-      "shutterSpeed": "1/5s",
-      "iso": "6400"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "DSC01285",
-    "href": "/gallery/optimized/DSC01285.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 35mm F2.8 ZA",
-      "focalLength": "35mm",
-      "aperture": "f/20",
-      "shutterSpeed": "1/40s",
-      "iso": "250"
-    },
-    "category": "all",
-    "originalCategory": "landscape"
-  },
-  {
-    "label": "DSC02920",
-    "href": "/gallery/optimized/DSC02920.jpg",
+    "label": "DSC01880",
+    "href": "/gallery/optimized/DSC01880.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/4",
-      "shutterSpeed": "1/160s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "IMG 8811",
-    "href": "/gallery/optimized/IMG_8811.jpg",
-    "metadata": {
-      "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
-      "focalLength": "6mm",
-      "aperture": "f/1.5",
-      "shutterSpeed": "1/2800s",
-      "iso": "50"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "DSC06428",
-    "href": "/gallery/optimized/DSC06428.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/500s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "abstract"
-  },
-  {
-    "label": "IMG 5145",
-    "href": "/gallery/optimized/IMG_5145.jpg",
-    "metadata": {
-      "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
-      "focalLength": "9mm",
-      "aperture": "f/2.8",
-      "shutterSpeed": "1/1100s",
-      "iso": "32"
+      "shutterSpeed": "1/40s",
+      "iso": "160"
     },
     "category": "all",
     "originalCategory": "landscape"
   },
   {
-    "label": "DSC06330",
-    "href": "/gallery/optimized/DSC06330.jpg",
+    "label": "DSC03647",
+    "href": "/gallery/optimized/DSC03647.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/80s",
+      "lens": "FE 40mm F2.5 G",
+      "focalLength": "40mm",
+      "aperture": "f/2.5",
+      "shutterSpeed": "1/500s",
+      "iso": "400"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC02125",
+    "href": "/gallery/optimized/DSC02125.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 40mm F2.5 G",
+      "focalLength": "40mm",
+      "aperture": "f/5.6",
+      "shutterSpeed": "1/400s",
       "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "IMG 5009",
-    "href": "/gallery/optimized/IMG_5009.jpg",
-    "metadata": {
-      "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
-      "focalLength": "9mm",
-      "aperture": "f/2.8",
-      "shutterSpeed": "1/540s",
-      "iso": "32"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC05399",
-    "href": "/gallery/optimized/DSC05399.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "24-70mm F2.8 DG DN II | Art 024",
-      "focalLength": "70mm",
-      "aperture": "f/8",
-      "shutterSpeed": "1/80s",
-      "iso": "200"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC07488",
-    "href": "/gallery/optimized/DSC07488.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/200s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "DSC03564 2",
-    "href": "/gallery/optimized/DSC03564-2.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/160s",
-      "iso": "2000"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "IMG 7951",
-    "href": "/gallery/optimized/IMG_7951.jpg",
-    "metadata": {
-      "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
-      "focalLength": "6mm",
-      "aperture": "f/1.5",
-      "shutterSpeed": "1/17s",
-      "iso": "800"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC05058",
-    "href": "/gallery/optimized/DSC05058.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "24-70mm F2.8 DG DN II | Art 024",
-      "focalLength": "24mm",
-      "aperture": "f/9",
-      "shutterSpeed": "1/50s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "DSC08816",
-    "href": "/gallery/optimized/DSC08816.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/30s",
-      "iso": "800"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "DSC09113",
-    "href": "/gallery/optimized/DSC09113.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/50s",
-      "iso": "1250"
     },
     "category": "all",
     "originalCategory": "street"
@@ -367,295 +1137,57 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "landscape"
   },
   {
-    "label": "DSC00875",
-    "href": "/gallery/optimized/DSC00875.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 35mm F2.8 ZA",
-      "focalLength": "35mm",
-      "aperture": "f/2.8",
-      "shutterSpeed": "1/400s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "IMG 8656 Original",
-    "href": "/gallery/optimized/IMG_8656_Original.jpg",
+    "label": "IMG 3399 Original",
+    "href": "/gallery/optimized/IMG_3399_Original.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
-      "focalLength": "6mm",
-      "aperture": "f/1.5",
-      "shutterSpeed": "1/1200s",
-      "iso": "50"
+      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "focalLength": "9mm",
+      "aperture": "f/2.8",
+      "shutterSpeed": "1/8s",
+      "iso": "1600"
     },
     "category": "all",
     "originalCategory": "bw"
   },
   {
-    "label": "DSC01270 Original",
-    "href": "/gallery/optimized/DSC01270_Original.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 35mm F2.8 ZA",
-      "focalLength": "35mm",
-      "aperture": "f/20",
-      "shutterSpeed": "1/50s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "landscape"
-  },
-  {
-    "label": "IMG 7167 Original",
-    "href": "/gallery/optimized/IMG_7167_Original.jpg",
+    "label": "IMG 7254 Original",
+    "href": "/gallery/optimized/IMG_7254_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
       "lens": "Canon EF-S 18-55mm f/3.5-5.6 IS II",
-      "focalLength": "46mm",
-      "aperture": "f/5",
-      "shutterSpeed": "1/20s",
+      "focalLength": "51mm",
+      "aperture": "f/8",
+      "shutterSpeed": "1/3s",
       "iso": "6400"
     },
     "category": "all",
     "originalCategory": "street"
   },
   {
-    "label": "IMG 7121",
-    "href": "/gallery/optimized/IMG_7121.jpg",
-    "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "DSC03629",
-    "href": "/gallery/optimized/DSC03629.jpg",
+    "label": "DSC01285",
+    "href": "/gallery/optimized/DSC01285.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
-      "lens": "FE 40mm F2.5 G",
-      "focalLength": "40mm",
-      "aperture": "f/2.5",
-      "shutterSpeed": "1/800s",
-      "iso": "200"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC02909",
-    "href": "/gallery/optimized/DSC02909.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 40mm F2.5 G",
-      "focalLength": "40mm",
-      "aperture": "f/4",
-      "shutterSpeed": "1/125s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "IMG 5085",
-    "href": "/gallery/optimized/IMG_5085.jpg",
-    "metadata": {
-      "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
-      "focalLength": "6mm",
-      "aperture": "f/1.5",
-      "shutterSpeed": "1/10000s",
-      "iso": "50"
+      "lens": "FE 35mm F2.8 ZA",
+      "focalLength": "35mm",
+      "aperture": "f/20",
+      "shutterSpeed": "1/40s",
+      "iso": "250"
     },
     "category": "all",
     "originalCategory": "landscape"
   },
   {
-    "label": "DSC01401",
-    "href": "/gallery/optimized/DSC01401.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 35mm F2.8 ZA",
-      "focalLength": "35mm",
-      "aperture": "f/22",
-      "shutterSpeed": "1/40s",
-      "iso": "3200"
-    },
-    "category": "all",
-    "originalCategory": "landscape"
-  },
-  {
-    "label": "DSC08892",
-    "href": "/gallery/optimized/DSC08892.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/400s",
-      "iso": "1250"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "DSC08875",
-    "href": "/gallery/optimized/DSC08875.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/400s",
-      "iso": "320"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "DSC01010 2 Enhanced SR",
-    "href": "/gallery/optimized/DSC01010-2-Enhanced-SR.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 35mm F2.8 ZA",
-      "focalLength": "35mm",
-      "aperture": "f/22",
-      "shutterSpeed": "1/40s",
-      "iso": "3200"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC06381",
-    "href": "/gallery/optimized/DSC06381.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/80s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC01471",
-    "href": "/gallery/optimized/DSC01471.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 35mm F2.8 ZA",
-      "focalLength": "35mm",
-      "aperture": "f/22",
-      "shutterSpeed": "1/50s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "landscape"
-  },
-  {
-    "label": "DSC00950",
-    "href": "/gallery/optimized/DSC00950.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 35mm F2.8 ZA",
-      "focalLength": "35mm",
-      "aperture": "f/2.8",
-      "shutterSpeed": "1/40s",
-      "iso": "800"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC02130",
-    "href": "/gallery/optimized/DSC02130.jpg",
+    "label": "DSC02870",
+    "href": "/gallery/optimized/DSC02870.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
-      "aperture": "f/5.6",
-      "shutterSpeed": "1/500s",
+      "aperture": "f/8",
+      "shutterSpeed": "1/200s",
       "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC08806",
-    "href": "/gallery/optimized/DSC08806.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/30s",
-      "iso": "2000"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "DSC08882",
-    "href": "/gallery/optimized/DSC08882.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/400s",
-      "iso": "20000"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "DSC01913",
-    "href": "/gallery/optimized/DSC01913.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 40mm F2.5 G",
-      "focalLength": "40mm",
-      "aperture": "f/4",
-      "shutterSpeed": "1/40s",
-      "iso": "1600"
-    },
-    "category": "all",
-    "originalCategory": "landscape"
-  },
-  {
-    "label": "DSC03647 2",
-    "href": "/gallery/optimized/DSC03647-2.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 40mm F2.5 G",
-      "focalLength": "40mm",
-      "aperture": "f/2.5",
-      "shutterSpeed": "1/500s",
-      "iso": "400"
-    },
-    "category": "all",
-    "originalCategory": "abstract"
-  },
-  {
-    "label": "IMG 7952",
-    "href": "/gallery/optimized/IMG_7952.jpg",
-    "metadata": {
-      "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
-      "focalLength": "9mm",
-      "aperture": "f/2.8",
-      "shutterSpeed": "1/20s",
-      "iso": "2500"
     },
     "category": "all",
     "originalCategory": "street"
@@ -675,46 +1207,32 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "street"
   },
   {
-    "label": "DSC03629 2",
-    "href": "/gallery/optimized/DSC03629-2.jpg",
+    "label": "IMG 8624",
+    "href": "/gallery/optimized/IMG_8624.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 40mm F2.5 G",
-      "focalLength": "40mm",
-      "aperture": "f/2.5",
-      "shutterSpeed": "1/800s",
-      "iso": "200"
+      "camera": "Apple iPhone 13 Pro",
+      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "focalLength": "9mm",
+      "aperture": "f/2.8",
+      "shutterSpeed": "1/190s",
+      "iso": "32"
     },
     "category": "all",
-    "originalCategory": "street"
+    "originalCategory": "bw"
   },
   {
-    "label": "DSC01880",
-    "href": "/gallery/optimized/DSC01880.jpg",
+    "label": "DSC08799",
+    "href": "/gallery/optimized/DSC08799.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
-      "lens": "FE 40mm F2.5 G",
-      "focalLength": "40mm",
-      "aperture": "f/4",
-      "shutterSpeed": "1/40s",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/30s",
       "iso": "160"
     },
     "category": "all",
-    "originalCategory": "landscape"
-  },
-  {
-    "label": "DSC01127",
-    "href": "/gallery/optimized/DSC01127.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 35mm F2.8 ZA",
-      "focalLength": "35mm",
-      "aperture": "f/2.8",
-      "shutterSpeed": "1/3200s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "portrait"
+    "originalCategory": "bw"
   },
   {
     "label": "IMG 7238 Original",
@@ -731,70 +1249,98 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "street"
   },
   {
-    "label": "DSC02898",
-    "href": "/gallery/optimized/DSC02898.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 40mm F2.5 G",
-      "focalLength": "40mm",
-      "aperture": "f/5.6",
-      "shutterSpeed": "1/60s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC03729",
-    "href": "/gallery/optimized/DSC03729.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 40mm F2.5 G",
-      "focalLength": "40mm",
-      "aperture": "f/2.8",
-      "shutterSpeed": "1/500s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "architecture"
-  },
-  {
-    "label": "IMG 7942",
-    "href": "/gallery/optimized/IMG_7942.jpg",
+    "label": "IMG 8605",
+    "href": "/gallery/optimized/IMG_8605.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
       "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
-      "shutterSpeed": "1/20s",
-      "iso": "1250"
+      "shutterSpeed": "1/190s",
+      "iso": "32"
     },
     "category": "all",
-    "originalCategory": "street"
+    "originalCategory": "bw"
   },
   {
-    "label": "IMG 5105",
-    "href": "/gallery/optimized/IMG_5105.jpg",
+    "label": "DSC07488",
+    "href": "/gallery/optimized/DSC07488.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/200s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "IMG 6105",
+    "href": "/gallery/optimized/IMG_6105.jpg",
+    "metadata": {
+      "camera": "Canon EOS 700D",
+      "lens": "Canon EF-S 18-55mm f/3.5-5.6 IS II",
+      "focalLength": "39mm",
+      "aperture": "f/16",
+      "shutterSpeed": "1/15s",
+      "iso": "6400"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "IMG 7951",
+    "href": "/gallery/optimized/IMG_7951.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
       "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
       "focalLength": "6mm",
       "aperture": "f/1.5",
-      "shutterSpeed": "1/4600s",
-      "iso": "50"
+      "shutterSpeed": "1/17s",
+      "iso": "800"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC00620",
+    "href": "/gallery/optimized/DSC00620.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 50mm F1.8",
+      "focalLength": "50mm",
+      "aperture": "f/22",
+      "shutterSpeed": "1/50s",
+      "iso": "200"
     },
     "category": "all",
     "originalCategory": "landscape"
   },
   {
-    "label": "DSC04236",
-    "href": "/gallery/optimized/DSC04236.jpg",
+    "label": "DSC01479",
+    "href": "/gallery/optimized/DSC01479.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 35mm F2.8 ZA",
+      "focalLength": "35mm",
+      "aperture": "f/2.8",
+      "shutterSpeed": "1/1000s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "landscape"
+  },
+  {
+    "label": "DSC04697",
+    "href": "/gallery/optimized/DSC04697.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
       "lens": "24-70mm F2.8 DG DN II | Art 024",
-      "focalLength": "31mm",
+      "focalLength": "55mm",
       "aperture": "f/5.6",
-      "shutterSpeed": "1/1000s",
+      "shutterSpeed": "1/60s",
       "iso": "100"
     },
     "category": "all",
@@ -815,57 +1361,29 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "bw"
   },
   {
-    "label": "DSC06378",
-    "href": "/gallery/optimized/DSC06378.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/200s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC08845",
-    "href": "/gallery/optimized/DSC08845.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/125s",
-      "iso": "800"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "IMG 8358 Original",
-    "href": "/gallery/optimized/IMG_8358_Original.jpg",
-    "metadata": {
-      "camera": "Canon EOS 700D",
-      "lens": "EF-S24mm f/2.8 STM",
-      "focalLength": "24mm",
-      "aperture": "f/18",
-      "shutterSpeed": "1/30s",
-      "iso": "125"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "DSC01479",
-    "href": "/gallery/optimized/DSC01479.jpg",
+    "label": "DSC01270 Original",
+    "href": "/gallery/optimized/DSC01270_Original.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
       "lens": "FE 35mm F2.8 ZA",
       "focalLength": "35mm",
-      "aperture": "f/2.8",
-      "shutterSpeed": "1/1000s",
+      "aperture": "f/20",
+      "shutterSpeed": "1/50s",
       "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "landscape"
+  },
+  {
+    "label": "DSC04696",
+    "href": "/gallery/optimized/DSC04696.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "24-70mm F2.8 DG DN II | Art 024",
+      "focalLength": "51mm",
+      "aperture": "f/5.6",
+      "shutterSpeed": "1/60s",
+      "iso": "125"
     },
     "category": "all",
     "originalCategory": "landscape"
@@ -885,183 +1403,43 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "landscape"
   },
   {
-    "label": "IMG 8547",
-    "href": "/gallery/optimized/IMG_8547.jpg",
-    "metadata": {
-      "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
-      "focalLength": "6mm",
-      "aperture": "f/1.5",
-      "shutterSpeed": "1/50s",
-      "iso": "500"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "IMG 3399 Original",
-    "href": "/gallery/optimized/IMG_3399_Original.jpg",
-    "metadata": {
-      "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
-      "focalLength": "9mm",
-      "aperture": "f/2.8",
-      "shutterSpeed": "1/8s",
-      "iso": "1600"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "IMG 3403 Original",
-    "href": "/gallery/optimized/IMG_3403_Original.jpg",
-    "metadata": {
-      "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
-      "focalLength": "9mm",
-      "aperture": "f/2.8",
-      "shutterSpeed": "1/5s",
-      "iso": "1250"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "DSC02199",
-    "href": "/gallery/optimized/DSC02199.jpg",
+    "label": "DSC03647 2",
+    "href": "/gallery/optimized/DSC03647-2.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/2.5",
-      "shutterSpeed": "1/3200s",
-      "iso": "100"
+      "shutterSpeed": "1/500s",
+      "iso": "400"
     },
     "category": "all",
-    "originalCategory": "street"
+    "originalCategory": "abstract"
   },
   {
-    "label": "DSC04464",
-    "href": "/gallery/optimized/DSC04464.jpg",
+    "label": "IMG 7121",
+    "href": "/gallery/optimized/IMG_7121.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "24-70mm F2.8 DG DN II | Art 024",
-      "focalLength": "58mm",
-      "aperture": "f/11",
-      "shutterSpeed": "1/320s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "landscape"
-  },
-  {
-    "label": "DSC02194",
-    "href": "/gallery/optimized/DSC02194.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 40mm F2.5 G",
-      "focalLength": "40mm",
-      "aperture": "f/2.5",
-      "shutterSpeed": "1/2000s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC02078",
-    "href": "/gallery/optimized/DSC02078.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 40mm F2.5 G",
-      "focalLength": "40mm",
-      "aperture": "f/22",
-      "shutterSpeed": "1/50s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "landscape"
-  },
-  {
-    "label": "IMG 6105",
-    "href": "/gallery/optimized/IMG_6105.jpg",
-    "metadata": {
-      "camera": "Canon EOS 700D",
-      "lens": "Canon EF-S 18-55mm f/3.5-5.6 IS II",
-      "focalLength": "39mm",
-      "aperture": "f/16",
-      "shutterSpeed": "1/15s",
-      "iso": "6400"
+      "camera": "Unknown Camera",
+      "lens": "Unknown Lens",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "Unknown",
+      "iso": "Unknown"
     },
     "category": "all",
     "originalCategory": "bw"
   },
   {
-    "label": "IMG 8617",
-    "href": "/gallery/optimized/IMG_8617.jpg",
-    "metadata": {
-      "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
-      "focalLength": "6mm",
-      "aperture": "f/1.5",
-      "shutterSpeed": "1/560s",
-      "iso": "50"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "DSC01941",
-    "href": "/gallery/optimized/DSC01941.jpg",
+    "label": "DSC03564 2",
+    "href": "/gallery/optimized/DSC03564-2.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
-      "lens": "FE 40mm F2.5 G",
-      "focalLength": "40mm",
-      "aperture": "f/4",
-      "shutterSpeed": "1/40s",
-      "iso": "1600"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "IMG 8413 Original Enhanced NR",
-    "href": "/gallery/optimized/IMG_8413_Original-Enhanced-NR.jpg",
-    "metadata": {
-      "camera": "Canon EOS 700D",
-      "lens": "EF-S24mm f/2.8 STM",
-      "focalLength": "24mm",
-      "aperture": "f/2.8",
-      "shutterSpeed": "1/40s",
-      "iso": "250"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC01894",
-    "href": "/gallery/optimized/DSC01894.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 40mm F2.5 G",
-      "focalLength": "40mm",
-      "aperture": "f/22",
-      "shutterSpeed": "1/40s",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/160s",
       "iso": "2000"
-    },
-    "category": "all",
-    "originalCategory": "landscape"
-  },
-  {
-    "label": "IMG 7254 Original",
-    "href": "/gallery/optimized/IMG_7254_Original.jpg",
-    "metadata": {
-      "camera": "Canon EOS 700D",
-      "lens": "Canon EF-S 18-55mm f/3.5-5.6 IS II",
-      "focalLength": "51mm",
-      "aperture": "f/8",
-      "shutterSpeed": "1/3s",
-      "iso": "6400"
     },
     "category": "all",
     "originalCategory": "street"
@@ -1081,575 +1459,15 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "street"
   },
   {
-    "label": "DSC08799",
-    "href": "/gallery/optimized/DSC08799.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/30s",
-      "iso": "160"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "IMG 6924 Original",
-    "href": "/gallery/optimized/IMG_6924_Original.jpg",
-    "metadata": {
-      "camera": "Canon EOS 700D",
-      "lens": "Canon EF-S 18-55mm f/3.5-5.6 IS II",
-      "focalLength": "36mm",
-      "aperture": "f/10",
-      "shutterSpeed": "1/60s",
-      "iso": "500"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "IMG 6086",
-    "href": "/gallery/optimized/IMG_6086.jpg",
-    "metadata": {
-      "camera": "Canon EOS 700D",
-      "lens": "Canon EF-S 18-55mm f/3.5-5.6 IS II",
-      "focalLength": "24mm",
-      "aperture": "f/5.6",
-      "shutterSpeed": "1/50s",
-      "iso": "3200"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "DSC08817",
-    "href": "/gallery/optimized/DSC08817.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/30s",
-      "iso": "1000"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "DSC08899",
-    "href": "/gallery/optimized/DSC08899.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/400s",
-      "iso": "160"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC02855",
-    "href": "/gallery/optimized/DSC02855.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 40mm F2.5 G",
-      "focalLength": "40mm",
-      "aperture": "f/8",
-      "shutterSpeed": "1/200s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC01979",
-    "href": "/gallery/optimized/DSC01979.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 40mm F2.5 G",
-      "focalLength": "40mm",
-      "aperture": "f/9",
-      "shutterSpeed": "1/40s",
-      "iso": "10000"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "IMG 7427 Original",
-    "href": "/gallery/optimized/IMG_7427_Original.jpg",
-    "metadata": {
-      "camera": "Canon EOS 700D",
-      "lens": "Canon EF-S 18-55mm f/3.5-5.6 IS II",
-      "focalLength": "21mm",
-      "aperture": "f/4.5",
-      "shutterSpeed": "1/40s",
-      "iso": "1250"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC03564",
-    "href": "/gallery/optimized/DSC03564.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/160s",
-      "iso": "2000"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC01278",
-    "href": "/gallery/optimized/DSC01278.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 35mm F2.8 ZA",
-      "focalLength": "35mm",
-      "aperture": "f/20",
-      "shutterSpeed": "1/40s",
-      "iso": "160"
-    },
-    "category": "all",
-    "originalCategory": "landscape"
-  },
-  {
-    "label": "DSC00932",
-    "href": "/gallery/optimized/DSC00932.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 35mm F2.8 ZA",
-      "focalLength": "35mm",
-      "aperture": "f/2.8",
-      "shutterSpeed": "1/50s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "DSC02104 HDR",
-    "href": "/gallery/optimized/DSC02104-HDR.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 40mm F2.5 G",
-      "focalLength": "40mm",
-      "aperture": "f/22",
-      "shutterSpeed": "1/40s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC06329",
-    "href": "/gallery/optimized/DSC06329.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/320s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "IMG 5804",
-    "href": "/gallery/optimized/IMG_5804.jpg",
-    "metadata": {
-      "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
-      "focalLength": "9mm",
-      "aperture": "f/2.8",
-      "shutterSpeed": "1/450s",
-      "iso": "40"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "IMG 7397 Original",
-    "href": "/gallery/optimized/IMG_7397_Original.jpg",
-    "metadata": {
-      "camera": "Canon EOS 700D",
-      "lens": "Canon EF-S 18-55mm f/3.5-5.6 IS II",
-      "focalLength": "24mm",
-      "aperture": "f/25",
-      "shutterSpeed": "30s",
-      "iso": "200"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC01296",
-    "href": "/gallery/optimized/DSC01296.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 35mm F2.8 ZA",
-      "focalLength": "35mm",
-      "aperture": "f/2.8",
-      "shutterSpeed": "1/500s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "DSC04697",
-    "href": "/gallery/optimized/DSC04697.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "24-70mm F2.8 DG DN II | Art 024",
-      "focalLength": "55mm",
-      "aperture": "f/5.6",
-      "shutterSpeed": "1/60s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "landscape"
-  },
-  {
-    "label": "DSC02870",
-    "href": "/gallery/optimized/DSC02870.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 40mm F2.5 G",
-      "focalLength": "40mm",
-      "aperture": "f/8",
-      "shutterSpeed": "1/200s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "IMG 7948",
-    "href": "/gallery/optimized/IMG_7948.jpg",
-    "metadata": {
-      "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
-      "focalLength": "9mm",
-      "aperture": "f/2.8",
-      "shutterSpeed": "1/8s",
-      "iso": "1250"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC02125",
-    "href": "/gallery/optimized/DSC02125.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 40mm F2.5 G",
-      "focalLength": "40mm",
-      "aperture": "f/5.6",
-      "shutterSpeed": "1/400s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "IMG 2323 Original",
-    "href": "/gallery/optimized/IMG_2323_Original.jpg",
-    "metadata": {
-      "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
-      "focalLength": "9mm",
-      "aperture": "f/2.8",
-      "shutterSpeed": "1/100s",
-      "iso": "40"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "IMG 6177 Original Original",
-    "href": "/gallery/optimized/IMG_6177_Original_Original.jpg",
-    "metadata": {
-      "camera": "Canon EOS 700D",
-      "lens": "Canon EF-S 18-55mm f/3.5-5.6 IS II",
-      "focalLength": "24mm",
-      "aperture": "f/25",
-      "shutterSpeed": "1/40s",
-      "iso": "160"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "IMG 3362 Original",
-    "href": "/gallery/optimized/IMG_3362_Original.jpg",
-    "metadata": {
-      "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
-      "focalLength": "9mm",
-      "aperture": "f/2.8",
-      "shutterSpeed": "1/25s",
-      "iso": "1000"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "DSC02190",
-    "href": "/gallery/optimized/DSC02190.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 40mm F2.5 G",
-      "focalLength": "40mm",
-      "aperture": "f/2.5",
-      "shutterSpeed": "1/5000s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "landscape"
-  },
-  {
-    "label": "DSC03555",
-    "href": "/gallery/optimized/DSC03555.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/160s",
-      "iso": "2000"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "IMG 8405 Original Enhanced SR",
-    "href": "/gallery/optimized/IMG_8405_Original-Enhanced-SR.jpg",
+    "label": "IMG 8358 Original",
+    "href": "/gallery/optimized/IMG_8358_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
       "lens": "EF-S24mm f/2.8 STM",
       "focalLength": "24mm",
-      "aperture": "f/2.8",
+      "aperture": "f/18",
       "shutterSpeed": "1/30s",
-      "iso": "800"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC01441",
-    "href": "/gallery/optimized/DSC01441.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 35mm F2.8 ZA",
-      "focalLength": "35mm",
-      "aperture": "f/2.8",
-      "shutterSpeed": "1/40s",
-      "iso": "1250"
-    },
-    "category": "all",
-    "originalCategory": "landscape"
-  },
-  {
-    "label": "DSC06374",
-    "href": "/gallery/optimized/DSC06374.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/200s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC02187",
-    "href": "/gallery/optimized/DSC02187.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 40mm F2.5 G",
-      "focalLength": "40mm",
-      "aperture": "f/22",
-      "shutterSpeed": "1/40s",
-      "iso": "200"
-    },
-    "category": "all",
-    "originalCategory": "landscape"
-  },
-  {
-    "label": "DSC01283 Original",
-    "href": "/gallery/optimized/DSC01283_Original.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 35mm F2.8 ZA",
-      "focalLength": "35mm",
-      "aperture": "f/20",
-      "shutterSpeed": "1/40s",
-      "iso": "160"
-    },
-    "category": "all",
-    "originalCategory": "landscape"
-  },
-  {
-    "label": "DSC04703",
-    "href": "/gallery/optimized/DSC04703.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "24-70mm F2.8 DG DN II | Art 024",
-      "focalLength": "62mm",
-      "aperture": "f/5.6",
-      "shutterSpeed": "1/80s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "landscape"
-  },
-  {
-    "label": "IMG 6060 Original",
-    "href": "/gallery/optimized/IMG_6060_Original.jpg",
-    "metadata": {
-      "camera": "Canon EOS 700D",
-      "lens": "Canon EF-S 18-55mm f/3.5-5.6 IS II",
-      "focalLength": "18mm",
-      "aperture": "f/9",
-      "shutterSpeed": "1/200s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "landscape"
-  },
-  {
-    "label": "IMG 8624",
-    "href": "/gallery/optimized/IMG_8624.jpg",
-    "metadata": {
-      "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
-      "focalLength": "9mm",
-      "aperture": "f/2.8",
-      "shutterSpeed": "1/190s",
-      "iso": "32"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "DSC08827",
-    "href": "/gallery/optimized/DSC08827.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/125s",
-      "iso": "6400"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "DSC06375",
-    "href": "/gallery/optimized/DSC06375.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/160s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC01465",
-    "href": "/gallery/optimized/DSC01465.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "FE 35mm F2.8 ZA",
-      "focalLength": "35mm",
-      "aperture": "f/22",
-      "shutterSpeed": "1/50s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "DSC08808",
-    "href": "/gallery/optimized/DSC08808.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/30s",
-      "iso": "1600"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "DSC04696",
-    "href": "/gallery/optimized/DSC04696.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "24-70mm F2.8 DG DN II | Art 024",
-      "focalLength": "51mm",
-      "aperture": "f/5.6",
-      "shutterSpeed": "1/60s",
       "iso": "125"
-    },
-    "category": "all",
-    "originalCategory": "landscape"
-  },
-  {
-    "label": "DSC09404",
-    "href": "/gallery/optimized/DSC09404.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/30s",
-      "iso": "2500"
-    },
-    "category": "all",
-    "originalCategory": "street"
-  },
-  {
-    "label": "DSC08797",
-    "href": "/gallery/optimized/DSC08797.jpg",
-    "metadata": {
-      "camera": "SONY ILCE-7M3",
-      "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "1/60s",
-      "iso": "100"
-    },
-    "category": "all",
-    "originalCategory": "bw"
-  },
-  {
-    "label": "IMG 8509",
-    "href": "/gallery/optimized/IMG_8509.jpg",
-    "metadata": {
-      "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
-      "focalLength": "9mm",
-      "aperture": "f/2.8",
-      "shutterSpeed": "1/550s",
-      "iso": "32"
     },
     "category": "all",
     "originalCategory": "bw"
@@ -1669,32 +1487,214 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "street"
   },
   {
-    "label": "DSC00795",
-    "href": "/gallery/optimized/DSC00795.jpg",
+    "label": "DSC02199",
+    "href": "/gallery/optimized/DSC02199.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 40mm F2.5 G",
+      "focalLength": "40mm",
+      "aperture": "f/2.5",
+      "shutterSpeed": "1/3200s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC03555",
+    "href": "/gallery/optimized/DSC03555.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/160s",
+      "iso": "2000"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC01913",
+    "href": "/gallery/optimized/DSC01913.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 40mm F2.5 G",
+      "focalLength": "40mm",
+      "aperture": "f/4",
+      "shutterSpeed": "1/40s",
+      "iso": "1600"
+    },
+    "category": "all",
+    "originalCategory": "landscape"
+  },
+  {
+    "label": "IMG 8547",
+    "href": "/gallery/optimized/IMG_8547.jpg",
+    "metadata": {
+      "camera": "Apple iPhone 13 Pro",
+      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "focalLength": "6mm",
+      "aperture": "f/1.5",
+      "shutterSpeed": "1/50s",
+      "iso": "500"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC03564",
+    "href": "/gallery/optimized/DSC03564.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/160s",
+      "iso": "2000"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC08806",
+    "href": "/gallery/optimized/DSC08806.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/30s",
+      "iso": "2000"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "DSC08899",
+    "href": "/gallery/optimized/DSC08899.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/400s",
+      "iso": "160"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC01127",
+    "href": "/gallery/optimized/DSC01127.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
       "lens": "FE 35mm F2.8 ZA",
       "focalLength": "35mm",
       "aperture": "f/2.8",
-      "shutterSpeed": "1/40s",
+      "shutterSpeed": "1/3200s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "portrait"
+  },
+  {
+    "label": "IMG 7952",
+    "href": "/gallery/optimized/IMG_7952.jpg",
+    "metadata": {
+      "camera": "Apple iPhone 13 Pro",
+      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "focalLength": "9mm",
+      "aperture": "f/2.8",
+      "shutterSpeed": "1/20s",
       "iso": "2500"
     },
     "category": "all",
     "originalCategory": "street"
   },
   {
-    "label": "IMG 8605",
-    "href": "/gallery/optimized/IMG_8605.jpg",
+    "label": "DSC02130",
+    "href": "/gallery/optimized/DSC02130.jpg",
     "metadata": {
-      "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
-      "focalLength": "9mm",
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 40mm F2.5 G",
+      "focalLength": "40mm",
+      "aperture": "f/5.6",
+      "shutterSpeed": "1/500s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC06378",
+    "href": "/gallery/optimized/DSC06378.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/200s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC02194",
+    "href": "/gallery/optimized/DSC02194.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 40mm F2.5 G",
+      "focalLength": "40mm",
+      "aperture": "f/2.5",
+      "shutterSpeed": "1/2000s",
+      "iso": "100"
+    },
+    "category": "all",
+    "originalCategory": "street"
+  },
+  {
+    "label": "DSC00932",
+    "href": "/gallery/optimized/DSC00932.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "FE 35mm F2.8 ZA",
+      "focalLength": "35mm",
       "aperture": "f/2.8",
-      "shutterSpeed": "1/190s",
-      "iso": "32"
+      "shutterSpeed": "1/50s",
+      "iso": "100"
     },
     "category": "all",
     "originalCategory": "bw"
+  },
+  {
+    "label": "DSC08892",
+    "href": "/gallery/optimized/DSC08892.jpg",
+    "metadata": {
+      "camera": "SONY ILCE-7M3",
+      "lens": "----",
+      "focalLength": "Unknown",
+      "aperture": "Unknown",
+      "shutterSpeed": "1/400s",
+      "iso": "1250"
+    },
+    "category": "all",
+    "originalCategory": "bw"
+  },
+  {
+    "label": "IMG 8405 Original Enhanced SR",
+    "href": "/gallery/optimized/IMG_8405_Original-Enhanced-SR.jpg",
+    "metadata": {
+      "camera": "Canon EOS 700D",
+      "lens": "EF-S24mm f/2.8 STM",
+      "focalLength": "24mm",
+      "aperture": "f/2.8",
+      "shutterSpeed": "1/30s",
+      "iso": "800"
+    },
+    "category": "all",
+    "originalCategory": "street"
   },
   {
     "label": "DSC00795",
