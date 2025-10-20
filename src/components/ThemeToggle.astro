@@ -46,10 +46,9 @@
     localStorage.setItem('theme', theme);
   }
 
-  // Initialize theme
+  // Initialize theme - use stored preference or system preference, defaulting to dark
   const storedTheme = getStoredTheme();
-  const systemTheme = getSystemTheme();
-  const currentTheme = storedTheme || systemTheme;
+  const currentTheme = storedTheme || getSystemTheme() || 'dark';
   setTheme(currentTheme);
 
   // Toggle theme on button click

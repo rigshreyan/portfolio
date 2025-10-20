@@ -75,6 +75,30 @@ function getDefaultMetadata() {
   };
 }
 
+// Function to generate clean photo labels from filenames
+function generatePhotoLabel(fileName) {
+  return fileName
+    .replace(/#\w+/g, '')           // Remove category tags like #street #bw
+    .replace(/[-_]/g, ' ')          // Replace hyphens and underscores with spaces
+    .replace(/\s+/g, ' ')           // Replace multiple spaces with single space
+    .replace(/^\w/, c => c.toUpperCase()) // Capitalize first letter
+    .trim() || 'Untitled';          // Fallback to 'Untitled' if empty
+}
+
+// Function to determine photo orientation and aspect ratio
+function getPhotoOrientation(width, height) {
+  const aspectRatio = width / height;
+  const aspectRatioString = `${width}:${height}`;
+
+  if (Math.abs(aspectRatio - 1) < 0.1) {
+    return { orientation: 'square', aspectRatio: aspectRatioString };
+  } else if (aspectRatio > 1.2) {
+    return { orientation: 'landscape', aspectRatio: aspectRatioString };
+  } else {
+    return { orientation: 'portrait', aspectRatio: aspectRatioString };
+  }
+}
+
 async function optimizeImage(inputPath, outputPath) {
   try {
     const image = sharp(inputPath);
@@ -84,6 +108,9 @@ async function optimizeImage(inputPath, outputPath) {
     let { width, height } = metadata;
     const maxWidth = 1500;
     const maxHeight = 1000;
+
+    // Get orientation before resizing
+    const orientationData = getPhotoOrientation(width, height);
 
     if (width > maxWidth || height > maxHeight) {
       const widthRatio = maxWidth / width;
@@ -106,7 +133,7 @@ async function optimizeImage(inputPath, outputPath) {
       })
       .toFile(outputPath);
 
-    return { width, height, optimized: true };
+    return { width, height, optimized: true, ...orientationData };
   } catch (error) {
     console.warn(`⚠️  Could not optimize image ${inputPath}:`, error.message);
     return { optimized: false };
@@ -261,9 +288,8 @@ async function buildGallery() {
   });
 
   for (const [fileName, photoData] of photoTracker) {
-    const cleanName = fileName
-      .replace(/[-_]/g, ' ')
-      .replace(/\b\w/g, l => l.toUpperCase());
+    // Generate cleaner photo labels
+    const cleanName = generatePhotoLabel(fileName);
 
     // Create optimized version of the image
     const originalPath = photoData.filePath;
@@ -282,7 +308,13 @@ async function buildGallery() {
       optimizationResult = await optimizeImage(originalPath, optimizedPath);
     } else {
       console.log(`✅ Using cached optimized version of ${fileName}`);
-      optimizationResult = { optimized: true }; // Mark as successful for existing files
+      // Get orientation data even for cached files
+      const image = sharp(originalPath);
+      const metadata = await image.metadata();
+      optimizationResult = {
+        optimized: true,
+        ...getPhotoOrientation(metadata.width, metadata.height)
+      };
     }
 
     // Verify optimized file exists before adding to gallery
@@ -301,7 +333,9 @@ async function buildGallery() {
     const photoItem = {
       label: cleanName,
       href: `/gallery/optimized/${optimizedFileName}`,
-      metadata: metadataTracker.get(fileName)
+      metadata: metadataTracker.get(fileName),
+      orientation: optimizationResult.orientation || 'landscape',
+      aspectRatio: optimizationResult.aspectRatio || '4:3'
     };
 
     // Add to 'all' category (shuffled later)
@@ -354,6 +388,8 @@ async function buildGallery() {
   href: string;
   category?: string;
   originalCategory?: string;
+  orientation?: 'landscape' | 'portrait' | 'square';
+  aspectRatio?: string;
   metadata?: {
     camera: string;
     lens: string;
