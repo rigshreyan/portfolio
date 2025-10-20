@@ -743,6 +743,55 @@ const title = "Shreyan Sengupta";
       font-weight: 400;
       color: var(--text-primary);
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .location-time .location {
+      margin: 0;
+    }
+
+    .location-time .time {
+      margin: 0;
+    }
+
+    /* Mobile header layout fixes */
+    @media (max-width: 768px) {
+      .location-time {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        font-size: 14px;
+        left: 20px;
+      }
+
+      .logo {
+        font-size: 18px;
+      }
+
+      .theme-toggle {
+        right: 15px;
+        font-size: 18px;
+        padding: 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .location-time {
+        font-size: 13px;
+        left: 15px;
+      }
+
+      .logo {
+        font-size: 16px;
+      }
+
+      .theme-toggle {
+        right: 12px;
+        font-size: 16px;
+        padding: 6px;
+      }
     }
 
     /* Fix scroll gaps by ensuring background coverage */
@@ -817,7 +866,10 @@ const title = "Shreyan Sengupta";
   <!-- Minimal Header -->
   <header class="header">
     <div class="header-content">
-      <div class="location-time" id="locationTime">Utrecht // 00:00:00</div>
+      <div class="location-time" id="locationTime">
+        <div class="location">Utrecht</div>
+        <div class="time" id="timeDisplay">00:00:00</div>
+      </div>
       <a href="/" class="logo">{title}</a>
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
         <span class="light-icon">☾</span>
@@ -1118,21 +1170,21 @@ const title = "Shreyan Sengupta";
 
           console.log('Utrecht time string:', timeString);
 
-          const locationElement = document.getElementById('locationTime');
-          if (locationElement) {
-            locationElement.textContent = `Utrecht // ${timeString}`;
-            console.log('Updated element text to:', `Utrecht // ${timeString}`);
+          const timeElement = document.getElementById('timeDisplay');
+          if (timeElement) {
+            timeElement.textContent = timeString;
+            console.log('Updated time element to:', timeString);
           } else {
-            console.error('locationTime element not found');
+            console.error('timeDisplay element not found');
           }
         } catch (error) {
           console.error('Error updating Utrecht time:', error);
           // Fallback to simple time display
-          const locationElement = document.getElementById('locationTime');
-          if (locationElement) {
+          const timeElement = document.getElementById('timeDisplay');
+          if (timeElement) {
             const now = new Date();
             const simpleTime = now.toTimeString().split(' ')[0];
-            locationElement.textContent = `Utrecht // ${simpleTime}`;
+            timeElement.textContent = simpleTime;
           }
         }
       }
@@ -1385,21 +1437,109 @@ const title = "Shreyan Sengupta";
       });
 
 
-      // Image protection - Gallery images
+      // Enhanced Image Protection - Gallery images
       const images = document.querySelectorAll('.gallery-item img');
       images.forEach(img => {
+        // Prevent right-click context menu
         img.addEventListener('contextmenu', e => e.preventDefault());
+        // Prevent drag and drop
         img.addEventListener('dragstart', e => e.preventDefault());
+        // Prevent text selection
         (img as HTMLElement).style.userSelect = 'none';
+        (img as HTMLElement).style.webkitUserSelect = 'none';
+        (img as HTMLElement).style.mozUserSelect = 'none';
+        (img as HTMLElement).style.msUserSelect = 'none';
+        // Prevent touch callout on iOS
+        (img as HTMLElement).style.webkitTouchCallout = 'none';
+        // Prevent image selection on mobile browsers
+        (img as HTMLElement).style.webkitUserDrag = 'none';
+        (img as HTMLElement).style.khtmlUserDrag = 'none';
+        (img as HTMLElement).style.mozUserDrag = 'none';
+        (img as HTMLElement).style.oUserDrag = 'none';
+        // Additional mobile protection
+        img.addEventListener('touchstart', e => {
+          if (e.touches.length > 1) e.preventDefault(); // Prevent pinch zoom
+        });
+        img.addEventListener('touchmove', e => {
+          if (e.touches.length > 1) e.preventDefault(); // Prevent pinch zoom
+        });
+        // Prevent long press on mobile
+        img.addEventListener('touchstart', (e) => {
+          let timer = setTimeout(() => {
+            e.preventDefault();
+          }, 500);
+          img.addEventListener('touchend', () => clearTimeout(timer), { once: true });
+          img.addEventListener('touchmove', () => clearTimeout(timer), { once: true });
+        });
       });
 
-      // Image protection - Lightbox image
+      // Enhanced Image Protection - Lightbox image
       const lightboxImg = document.getElementById('lightboxImage');
       if (lightboxImg) {
         lightboxImg.addEventListener('contextmenu', e => e.preventDefault());
         lightboxImg.addEventListener('dragstart', e => e.preventDefault());
         lightboxImg.style.userSelect = 'none';
+        lightboxImg.style.webkitUserSelect = 'none';
+        lightboxImg.style.mozUserSelect = 'none';
+        lightboxImg.style.msUserSelect = 'none';
+        lightboxImg.style.webkitTouchCallout = 'none';
+        lightboxImg.style.webkitUserDrag = 'none';
+        lightboxImg.style.khtmlUserDrag = 'none';
+        lightboxImg.style.mozUserDrag = 'none';
+        lightboxImg.style.oUserDrag = 'none';
+        // Mobile protection for lightbox
+        lightboxImg.addEventListener('touchstart', e => {
+          if (e.touches.length > 1) e.preventDefault();
+        });
+        lightboxImg.addEventListener('touchmove', e => {
+          if (e.touches.length > 1) e.preventDefault();
+        });
+        // Prevent long press on lightbox image
+        lightboxImg.addEventListener('touchstart', (e) => {
+          let timer = setTimeout(() => {
+            e.preventDefault();
+          }, 500);
+          lightboxImg.addEventListener('touchend', () => clearTimeout(timer), { once: true });
+          lightboxImg.addEventListener('touchmove', () => clearTimeout(timer), { once: true });
+        });
       }
+
+      // Additional global mobile security measures
+      // Prevent zoom on double tap for gallery container
+      const galleryGrid = document.querySelector('.gallery-grid');
+      if (galleryGrid) {
+        galleryGrid.addEventListener('touchstart', (e) => {
+          if (e.touches.length > 1) {
+            e.preventDefault();
+          }
+        });
+      }
+
+      // Disable image saving shortcuts on keyboard
+      document.addEventListener('keydown', (e) => {
+        // Prevent Ctrl+S, Ctrl+Shift+S (save)
+        if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {
+          e.preventDefault();
+        }
+        // Prevent F12 (developer tools)
+        if (e.key === 'F12') {
+          e.preventDefault();
+        }
+        // Prevent Ctrl+Shift+I (developer tools)
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'I') {
+          e.preventDefault();
+        }
+        // Prevent Ctrl+U (view source)
+        if ((e.ctrlKey || e.metaKey) && e.key === 'u') {
+          e.preventDefault();
+        }
+      });
+
+      // Disable print functionality
+      window.addEventListener('beforeprint', (e) => {
+        e.preventDefault();
+        return false;
+      });
 
       // Mobile touch gesture support for lightbox navigation
       let touchStartX = 0;
@@ -1442,19 +1582,37 @@ const title = "Shreyan Sengupta";
 
       // Advanced Performance Optimizations
 
-      // 1. Critical Image Preloading
+      // 1. Critical Image Preloading with Progressive Enhancement
       function preloadCriticalImages() {
         const firstRowImages = document.querySelectorAll('.gallery-item:nth-child(-n+8) img[data-src]');
-        firstRowImages.forEach((img) => {
+        firstRowImages.forEach((img, index) => {
           const src = (img as HTMLImageElement).dataset.src;
           if (src) {
-            const preloadLink = document.createElement('link');
-            preloadLink.rel = 'preload';
-            preloadLink.as = 'image';
-            preloadLink.href = src;
-            document.head.appendChild(preloadLink);
+            // Use setTimeout to spread out preloading and avoid blocking
+            setTimeout(() => {
+              const preloadLink = document.createElement('link');
+              preloadLink.rel = 'preload';
+              preloadLink.as = 'image';
+              preloadLink.href = src;
+              preloadLink.setAttribute('fetchpriority', index < 4 ? 'high' : 'low');
+              document.head.appendChild(preloadLink);
+            }, index * 50);
           }
         });
+      }
+
+      // Enhanced Font Loading Optimization
+      function optimizeFontLoading() {
+        // Preload system fonts to eliminate layout shift
+        const style = document.createElement('style');
+        style.textContent = `
+          @font-face {
+            font-family: 'system-ui-fallback';
+            src: local('system-ui'), local('-apple-system'), local('BlinkMacSystemFont');
+            font-display: block;
+          }
+        `;
+        document.head.appendChild(style);
       }
 
       // Helper function to observe new images (for filtering)
@@ -1521,13 +1679,28 @@ const title = "Shreyan Sengupta";
       }
 
       // Initialize performance optimizations
+      optimizeFontLoading();
       preloadCriticalImages();
 
       // Add optimized scroll listener
       window.addEventListener('scroll', onOptimizedScroll, { passive: true });
 
-      // Cleanup offscreen images periodically
-      setInterval(cleanupOffscreenImages, 10000); // Every 10 seconds
+      // Cleanup offscreen images periodically with longer threshold
+      const cleanupOffscreenImagesEnhanced = () => {
+        const images = document.querySelectorAll('.gallery-item img');
+        images.forEach((img) => {
+          const rect = (img as HTMLElement).getBoundingClientRect();
+          const isOffscreen = rect.bottom < -1000 || rect.top > window.innerHeight + 1000;
+
+          if (isOffscreen && (img as HTMLImageElement).src && !(img as HTMLImageElement).dataset.src) {
+            // Move src back to data-src for very far offscreen images
+            (img as HTMLImageElement).dataset.src = (img as HTMLImageElement).src;
+            (img as HTMLImageElement).src = '';
+            (img as HTMLElement).classList.remove('loaded');
+          }
+        });
+      };
+      setInterval(cleanupOffscreenImagesEnhanced, 30000); // Every 30 seconds
 
       // 6. Prefetch next images on hover
       let prefetchTimeout: ReturnType<typeof setTimeout>;
@@ -1569,19 +1742,19 @@ const title = "Shreyan Sengupta";
           second: '2-digit'
         });
 
-        const element = document.getElementById('locationTime');
-        if (element) {
-          element.textContent = `Utrecht // ${timeString}`;
+        const timeElement = document.getElementById('timeDisplay');
+        if (timeElement) {
+          timeElement.textContent = timeString;
           console.log('Time updated:', timeString);
         } else {
-          console.log('Element not found');
+          console.log('timeDisplay element not found');
         }
       } catch (error) {
         console.error('Time error:', error);
-        const element = document.getElementById('locationTime');
-        if (element) {
+        const timeElement = document.getElementById('timeDisplay');
+        if (timeElement) {
           const localTime = new Date().toTimeString().split(' ')[0];
-          element.textContent = `Utrecht // ${localTime}`;
+          timeElement.textContent = localTime;
         }
       }
     }
