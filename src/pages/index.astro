@@ -109,6 +109,9 @@ const title = "Shreyan Sengupta";
     html {
       transition: background-color 0.3s ease, color 0.3s ease;
       scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
     }
 
     body {
@@ -389,6 +392,7 @@ const title = "Shreyan Sengupta";
       z-index: 2000;
       display: none;
       backdrop-filter: blur(2px);
+      overflow: hidden;
     }
 
     .lightbox.active {
@@ -541,9 +545,18 @@ const title = "Shreyan Sengupta";
     }
 
     @media (max-width: 768px) {
+      /* Enhanced mobile scroll performance */
+      body {
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+      }
+
       .main-content {
         padding: 20px;
         padding-bottom: 120px;
+        min-height: 100vh;
+        min-height: calc(100vh - env(safe-area-inset-bottom));
+        padding-bottom: calc(120px + env(safe-area-inset-bottom));
       }
 
       .gallery-grid {
@@ -572,14 +585,18 @@ const title = "Shreyan Sengupta";
 
       .lightbox-sidebar {
         width: 100%;
-        height: 40%;
+        height: 35%;
+        max-height: 35%;
         border-left: none;
         border-top: 1px solid var(--border-color);
+        padding: 15px 20px !important;
+        overflow-y: auto;
       }
 
       .lightbox-image-container {
-        height: 60%;
-        padding: 20px;
+        height: 65%;
+        padding: 10px;
+        overflow: hidden;
       }
 
       .lightbox-nav {
@@ -693,10 +710,28 @@ const title = "Shreyan Sengupta";
 
       /* Mobile metadata text size */
       .metadata-item {
-        font-size: 13px !important;
+        font-size: 12px !important;
+        margin-bottom: 6px !important;
+        line-height: 1.2 !important;
       }
       .metadata-label {
+        font-size: 10px !important;
+        font-weight: 500 !important;
+      }
+      .metadata-value {
+        font-size: 12px !important;
+      }
+      .metadata-title {
+        font-size: 18px !important;
+        margin-bottom: 8px !important;
+        line-height: 1.2 !important;
+      }
+      .metadata-category {
         font-size: 11px !important;
+        margin-bottom: 15px !important;
+      }
+      .metadata-section {
+        margin-bottom: 15px !important;
       }
     }
 
@@ -894,6 +929,8 @@ const title = "Shreyan Sengupta";
     .main-content {
       -webkit-overflow-scrolling: touch;
       scroll-behavior: smooth;
+      will-change: scroll-position;
+      contain: layout style paint;
     }
 
     /* Critical image loading optimization */
@@ -919,7 +956,9 @@ const title = "Shreyan Sengupta";
       <a href="/" class="logo">{title}</a>
       <div class="header-controls">
         <a href="https://www.instagram.com/rigeveryday/" class="instagram-link" id="instagramLink" target="_blank" rel="noopener noreferrer" aria-label="Visit Instagram">
-          📷
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
         </a>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
           <span class="light-icon">☾</span>
@@ -1402,19 +1441,68 @@ const title = "Shreyan Sengupta";
 
         currentImageIndex = index;
 
-        if (lightboxImage && img) {
-          (lightboxImage as HTMLImageElement).src = img.src;
-          (lightboxImage as HTMLImageElement).alt = img.alt;
+        // Get image source from data-href instead of relying on lazy-loaded src
+        const itemHref = item.getAttribute('data-href');
+
+        if (lightboxImage && itemHref) {
+          // Always use the data-href as the source of truth for lightbox images
+          (lightboxImage as HTMLImageElement).src = itemHref;
+          (lightboxImage as HTMLImageElement).alt = img.alt || title;
+
+          // Add loading indicator
+          lightboxImage.style.opacity = '0.5';
+
+          // Handle image load completion
+          const handleImageLoad = () => {
+            lightboxImage.style.opacity = '1';
+            lightboxImage.removeEventListener('load', handleImageLoad);
+            lightboxImage.removeEventListener('error', handleImageError);
+          };
+
+          // Handle image load error
+          const handleImageError = () => {
+            console.warn('Failed to load lightbox image:', itemHref);
+            lightboxImage.style.opacity = '1';
+            lightboxImage.removeEventListener('load', handleImageLoad);
+            lightboxImage.removeEventListener('error', handleImageError);
+          };
+
+          lightboxImage.addEventListener('load', handleImageLoad);
+          lightboxImage.addEventListener('error', handleImageError);
+
+          // Preload adjacent images for smoother navigation (optimized for mobile)
+          setTimeout(() => {
+            // Check if user is on mobile or has slow connection
+            const isMobile = window.innerWidth <= 768;
+            const isSlowConnection = 'connection' in navigator &&
+              (navigator.connection as any)?.effectiveType &&
+              ['slow-2g', '2g', '3g'].includes((navigator.connection as any).effectiveType);
+
+            // Only preload on desktop with good connection to save bandwidth
+            if (!isMobile && !isSlowConnection) {
+              const nextIndex = (index + 1) % visibleItems.length;
+
+              // Preload next image only (most likely to be viewed)
+              if (visibleItems[nextIndex]) {
+                const nextHref = visibleItems[nextIndex].getAttribute('data-href');
+                if (nextHref) {
+                  const preloadNext = new Image();
+                  preloadNext.src = nextHref;
+                }
+              }
+            }
+          }, 1000); // Longer delay to prioritize current image loading
         }
         if (metadataTitle) {
-          metadataTitle.textContent = title;
+          // Clean up filename by removing DSC, IMG, and camera prefixes
+          const cleanTitle = title.replace(/^(DSC_?|IMG_?|DSCF_?|DSCN_?|[A-Z]{2,}_?)/, '').replace(/[-_]/g, ' ');
+          metadataTitle.textContent = cleanTitle;
         }
         if (metadataCategory) {
           metadataCategory.textContent = category.toUpperCase();
         }
 
-        // Get real metadata from gallery item
-        const itemHref = item.getAttribute('data-href');
+        // Get real metadata from gallery item (reuse itemHref from above)
         const galleryItemData = window.galleryData.find((galleryItem: any) => galleryItem.href === itemHref);
 
         if (galleryItemData && galleryItemData.metadata) {
@@ -1645,21 +1733,32 @@ const title = "Shreyan Sengupta";
 
       // Advanced Performance Optimizations
 
-      // 1. Critical Image Preloading with Progressive Enhancement
+      // 1. Critical Image Preloading with Progressive Enhancement (Mobile-Optimized)
       function preloadCriticalImages() {
-        const firstRowImages = document.querySelectorAll('.gallery-item:nth-child(-n+8) img[data-src]');
+        // Check device and connection before aggressive preloading
+        const isMobile = window.innerWidth <= 768;
+        const isSlowConnection = 'connection' in navigator &&
+          (navigator.connection as any)?.effectiveType &&
+          ['slow-2g', '2g', '3g'].includes((navigator.connection as any).effectiveType);
+
+        // Reduce preloading on mobile and slow connections
+        const maxPreload = isMobile || isSlowConnection ? 4 : 8;
+        const selector = `.gallery-item:nth-child(-n+${maxPreload}) img[data-src]`;
+        const firstRowImages = document.querySelectorAll(selector);
+
         firstRowImages.forEach((img, index) => {
           const src = (img as HTMLImageElement).dataset.src;
           if (src) {
-            // Use setTimeout to spread out preloading and avoid blocking
+            // Longer delays on mobile to avoid blocking main thread
+            const delay = (isMobile || isSlowConnection) ? index * 200 : index * 50;
             setTimeout(() => {
               const preloadLink = document.createElement('link');
               preloadLink.rel = 'preload';
               preloadLink.as = 'image';
               preloadLink.href = src;
-              preloadLink.setAttribute('fetchpriority', index < 4 ? 'high' : 'low');
+              preloadLink.setAttribute('fetchpriority', index < 2 ? 'high' : 'low');
               document.head.appendChild(preloadLink);
-            }, index * 50);
+            }, delay);
           }
         });
       }
@@ -1751,28 +1850,39 @@ const title = "Shreyan Sengupta";
       };
       setInterval(cleanupOffscreenImagesEnhanced, 30000); // Every 30 seconds
 
-      // 6. Prefetch next images on hover
+      // 6. Prefetch next images on hover (Desktop-optimized)
       let prefetchTimeout: ReturnType<typeof setTimeout>;
-      document.addEventListener('mouseover', (e) => {
-        const galleryItem = (e.target as HTMLElement).closest('.gallery-item');
-        if (galleryItem) {
-          clearTimeout(prefetchTimeout);
-          prefetchTimeout = setTimeout(() => {
-            const nextItems = Array.from(document.querySelectorAll('.gallery-item')).slice(
-              Array.from(document.querySelectorAll('.gallery-item')).indexOf(galleryItem) + 1,
-              Array.from(document.querySelectorAll('.gallery-item')).indexOf(galleryItem) + 4
-            );
+      const isMobileDevice = window.innerWidth <= 768 || 'ontouchstart' in window;
 
-            nextItems.forEach((item) => {
-              const img = item.querySelector('img[data-src]') as HTMLImageElement;
-              if (img && img.dataset.src) {
-                const preloadImg = new Image();
-                preloadImg.src = img.dataset.src;
-              }
-            });
-          }, 100);
+      // Only enable hover prefetch on desktop with good connections
+      if (!isMobileDevice) {
+        const hasGoodConnection = !('connection' in navigator) ||
+          !(navigator.connection as any)?.effectiveType ||
+          !['slow-2g', '2g', '3g'].includes((navigator.connection as any).effectiveType);
+
+        if (hasGoodConnection) {
+          document.addEventListener('mouseover', (e) => {
+            const galleryItem = (e.target as HTMLElement).closest('.gallery-item');
+            if (galleryItem) {
+              clearTimeout(prefetchTimeout);
+              prefetchTimeout = setTimeout(() => {
+                const nextItems = Array.from(document.querySelectorAll('.gallery-item')).slice(
+                  Array.from(document.querySelectorAll('.gallery-item')).indexOf(galleryItem) + 1,
+                  Array.from(document.querySelectorAll('.gallery-item')).indexOf(galleryItem) + 3
+                );
+
+                nextItems.forEach((item) => {
+                  const img = item.querySelector('img[data-src]') as HTMLImageElement;
+                  if (img && img.dataset.src) {
+                    const preloadImg = new Image();
+                    preloadImg.src = img.dataset.src;
+                  }
+                });
+              }, 150);
+            }
+          });
         }
-      });
+      }
     });
   </script>
 

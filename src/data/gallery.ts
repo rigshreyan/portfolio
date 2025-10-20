@@ -3877,7 +3877,7 @@ export const galleryItems: GalleryItem[] = [
 
 export const categories = [
   { value: "all", label: "All" },
-  { value: "street", label: "Street Photography" },
+  { value: "street", label: "Street" },
   { value: "landscape", label: "Landscape" },
   { value: "architecture", label: "Architecture" },
   { value: "portrait", label: "Portrait" },
