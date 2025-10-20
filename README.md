@@ -1,6 +1,6 @@
 # Shreyan Sengupta Portfolio
 
-A clean, minimalist portfolio website built with Astro and optimized for Cloudflare Workers deployment. Inspired by the aesthetic of rahulnathsr.com.
+A clean, minimalist portfolio website built with Astro and optimized for Cloudflare Workers deployment.
 
 ## 🚀 Live Demo
 
@@ -74,6 +74,3 @@ See `DEPLOYMENT_GUIDE.md` for complete deployment instructions to Cloudflare Wor
 
 Built for Shreyan Sengupta - hello@shreyansengupta.com
 
----
-
-Portfolio template based on [astro-art-portfolio](https://github.com/EmaSuriano/astro-art-portfolio) by Emanuel Suriano.

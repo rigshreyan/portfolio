@@ -55,4 +55,4 @@ export const categories = [
 - **Start dev server**: `npm run dev`
 - **Check types**: `npm run prebuild`
 
-The portfolio is optimized for Cloudflare Workers deployment with fast image loading and a clean, minimalist design inspired by rahulnathsr.com.
+The portfolio is optimized for Cloudflare Workers deployment with fast image loading and a clean, minimalist design.
