@@ -157,6 +157,36 @@ const title = "Shreyan Sengupta";
       transform: translateX(-50%);
     }
 
+    /* Header Controls */
+    .header-controls {
+      position: absolute;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Instagram Link */
+    .instagram-link {
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 20px;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .instagram-link:hover {
+      background: var(--card-bg);
+      transform: scale(1.1);
+    }
+
     /* Theme Toggle */
     .theme-toggle {
       background: none;
@@ -167,8 +197,6 @@ const title = "Shreyan Sengupta";
       padding: 10px;
       border-radius: 8px;
       transition: all 0.2s ease;
-      position: absolute;
-      right: 20px;
     }
 
     .theme-toggle:hover {
@@ -770,8 +798,17 @@ const title = "Shreyan Sengupta";
         font-size: 18px;
       }
 
-      .theme-toggle {
+      .header-controls {
         right: 15px;
+        gap: 6px;
+      }
+
+      .instagram-link {
+        font-size: 18px;
+        padding: 8px;
+      }
+
+      .theme-toggle {
         font-size: 18px;
         padding: 8px;
       }
@@ -787,8 +824,17 @@ const title = "Shreyan Sengupta";
         font-size: 16px;
       }
 
-      .theme-toggle {
+      .header-controls {
         right: 12px;
+        gap: 4px;
+      }
+
+      .instagram-link {
+        font-size: 16px;
+        padding: 6px;
+      }
+
+      .theme-toggle {
         font-size: 16px;
         padding: 6px;
       }
@@ -871,10 +917,15 @@ const title = "Shreyan Sengupta";
         <div class="time" id="timeDisplay">00:00:00</div>
       </div>
       <a href="/" class="logo">{title}</a>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <span class="light-icon">☾</span>
-        <span class="dark-icon">☀</span>
-      </button>
+      <div class="header-controls">
+        <a href="https://www.instagram.com/rigeveryday/" class="instagram-link" id="instagramLink" target="_blank" rel="noopener noreferrer" aria-label="Visit Instagram">
+          📷
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <span class="light-icon">☾</span>
+          <span class="dark-icon">☀</span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -1057,6 +1108,18 @@ const title = "Shreyan Sengupta";
           }
         }
 
+        // Update Instagram link based on theme
+        const instagramLink = document.getElementById('instagramLink') as HTMLAnchorElement;
+        if (instagramLink) {
+          if (theme === 'dark') {
+            instagramLink.href = 'https://www.instagram.com/noir.kiln/';
+            instagramLink.setAttribute('aria-label', 'Visit @noir.kiln on Instagram');
+          } else {
+            instagramLink.href = 'https://www.instagram.com/rigeveryday/';
+            instagramLink.setAttribute('aria-label', 'Visit @rigeveryday on Instagram');
+          }
+        }
+
         localStorage.setItem('theme', theme);
         console.log('Theme applied successfully:', theme);
       }
@@ -1184,7 +1247,7 @@ const title = "Shreyan Sengupta";
           if (timeElement) {
             const now = new Date();
             const simpleTime = now.toTimeString().split(' ')[0];
-            timeElement.textContent = simpleTime;
+            timeElement.textContent = simpleTime || '00:00:00';
           }
         }
       }
@@ -1446,22 +1509,22 @@ const title = "Shreyan Sengupta";
         img.addEventListener('dragstart', e => e.preventDefault());
         // Prevent text selection
         (img as HTMLElement).style.userSelect = 'none';
-        (img as HTMLElement).style.webkitUserSelect = 'none';
-        (img as HTMLElement).style.mozUserSelect = 'none';
-        (img as HTMLElement).style.msUserSelect = 'none';
+        (img as any).style.webkitUserSelect = 'none';
+        (img as any).style.mozUserSelect = 'none';
+        (img as any).style.msUserSelect = 'none';
         // Prevent touch callout on iOS
-        (img as HTMLElement).style.webkitTouchCallout = 'none';
+        (img as any).style.webkitTouchCallout = 'none';
         // Prevent image selection on mobile browsers
-        (img as HTMLElement).style.webkitUserDrag = 'none';
-        (img as HTMLElement).style.khtmlUserDrag = 'none';
-        (img as HTMLElement).style.mozUserDrag = 'none';
-        (img as HTMLElement).style.oUserDrag = 'none';
+        (img as any).style.webkitUserDrag = 'none';
+        (img as any).style.khtmlUserDrag = 'none';
+        (img as any).style.mozUserDrag = 'none';
+        (img as any).style.oUserDrag = 'none';
         // Additional mobile protection
-        img.addEventListener('touchstart', e => {
-          if (e.touches.length > 1) e.preventDefault(); // Prevent pinch zoom
+        img.addEventListener('touchstart', (e: any) => {
+          if (e.touches && e.touches.length > 1) e.preventDefault(); // Prevent pinch zoom
         });
-        img.addEventListener('touchmove', e => {
-          if (e.touches.length > 1) e.preventDefault(); // Prevent pinch zoom
+        img.addEventListener('touchmove', (e: any) => {
+          if (e.touches && e.touches.length > 1) e.preventDefault(); // Prevent pinch zoom
         });
         // Prevent long press on mobile
         img.addEventListener('touchstart', (e) => {
@@ -1479,20 +1542,20 @@ const title = "Shreyan Sengupta";
         lightboxImg.addEventListener('contextmenu', e => e.preventDefault());
         lightboxImg.addEventListener('dragstart', e => e.preventDefault());
         lightboxImg.style.userSelect = 'none';
-        lightboxImg.style.webkitUserSelect = 'none';
-        lightboxImg.style.mozUserSelect = 'none';
-        lightboxImg.style.msUserSelect = 'none';
-        lightboxImg.style.webkitTouchCallout = 'none';
-        lightboxImg.style.webkitUserDrag = 'none';
-        lightboxImg.style.khtmlUserDrag = 'none';
-        lightboxImg.style.mozUserDrag = 'none';
-        lightboxImg.style.oUserDrag = 'none';
+        (lightboxImg as any).style.webkitUserSelect = 'none';
+        (lightboxImg as any).style.mozUserSelect = 'none';
+        (lightboxImg as any).style.msUserSelect = 'none';
+        (lightboxImg as any).style.webkitTouchCallout = 'none';
+        (lightboxImg as any).style.webkitUserDrag = 'none';
+        (lightboxImg as any).style.khtmlUserDrag = 'none';
+        (lightboxImg as any).style.mozUserDrag = 'none';
+        (lightboxImg as any).style.oUserDrag = 'none';
         // Mobile protection for lightbox
-        lightboxImg.addEventListener('touchstart', e => {
-          if (e.touches.length > 1) e.preventDefault();
+        lightboxImg.addEventListener('touchstart', (e: any) => {
+          if (e.touches && e.touches.length > 1) e.preventDefault();
         });
-        lightboxImg.addEventListener('touchmove', e => {
-          if (e.touches.length > 1) e.preventDefault();
+        lightboxImg.addEventListener('touchmove', (e: any) => {
+          if (e.touches && e.touches.length > 1) e.preventDefault();
         });
         // Prevent long press on lightbox image
         lightboxImg.addEventListener('touchstart', (e) => {
@@ -1508,8 +1571,8 @@ const title = "Shreyan Sengupta";
       // Prevent zoom on double tap for gallery container
       const galleryGrid = document.querySelector('.gallery-grid');
       if (galleryGrid) {
-        galleryGrid.addEventListener('touchstart', (e) => {
-          if (e.touches.length > 1) {
+        galleryGrid.addEventListener('touchstart', (e: any) => {
+          if (e.touches && e.touches.length > 1) {
             e.preventDefault();
           }
         });
@@ -1662,21 +1725,7 @@ const title = "Shreyan Sengupta";
         }, 16); // ~60fps
       }
 
-      // 5. Memory management for large galleries
-      function cleanupOffscreenImages() {
-        const images = document.querySelectorAll('.gallery-item img');
-        images.forEach((img) => {
-          const rect = (img as HTMLElement).getBoundingClientRect();
-          const isOffscreen = rect.bottom < -500 || rect.top > window.innerHeight + 500;
-
-          if (isOffscreen && (img as HTMLImageElement).src && !(img as HTMLImageElement).dataset.src) {
-            // Move src back to data-src for very far offscreen images
-            (img as HTMLImageElement).dataset.src = (img as HTMLImageElement).src;
-            (img as HTMLImageElement).src = '';
-            (img as HTMLElement).classList.remove('loaded');
-          }
-        });
-      }
+      // Note: cleanupOffscreenImages replaced by cleanupOffscreenImagesEnhanced below
 
       // Initialize performance optimizations
       optimizeFontLoading();
@@ -1754,7 +1803,7 @@ const title = "Shreyan Sengupta";
         const timeElement = document.getElementById('timeDisplay');
         if (timeElement) {
           const localTime = new Date().toTimeString().split(' ')[0];
-          timeElement.textContent = localTime;
+          timeElement.textContent = localTime || '00:00:00';
         }
       }
     }
