@@ -75,8 +75,11 @@ const { title } = Astro.props;
         background: rgba(75, 85, 99, 0.8);
       }
 
-      /* Smooth transitions for theme switching */
-      * {
+      /* Smooth transitions for theme switching - Targeted only */
+      body,
+      .header,
+      .theme-toggle,
+      .instagram-link {
         transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
       }
     </style>
