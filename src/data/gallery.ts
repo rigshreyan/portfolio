@@ -5,6 +5,10 @@ export interface GalleryItem {
   originalCategory?: string;
   orientation?: 'landscape' | 'portrait' | 'square';
   aspectRatio?: string;
+  description?: {
+    title: string;
+    caption: string;
+  };
   metadata?: {
     camera: string;
     lens: string;
@@ -19,7 +23,7 @@ export interface GalleryItem {
 // Run: npm run build:gallery to regenerate
 export const galleryItems: GalleryItem[] = [
   {
-    "label": "IMG 8413 Original Enhanced NR",
+    "label": "IMG 8413",
     "href": "/gallery/optimized/IMG_8413_Original-Enhanced-NR.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -51,11 +55,11 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "bw"
   },
   {
-    "label": "IMG 4054 Original",
+    "label": "IMG 4054",
     "href": "/gallery/optimized/IMG_4054_Original.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro 5.7mm f/1.5",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/10s",
@@ -87,7 +91,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_8811.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro 5.7mm f/1.5",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/2800s",
@@ -211,11 +215,11 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "street"
   },
   {
-    "label": "IMG 3403 Original",
+    "label": "IMG 3403",
     "href": "/gallery/optimized/IMG_3403_Original.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/5s",
@@ -227,11 +231,11 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "bw"
   },
   {
-    "label": "IMG 8656 Original",
+    "label": "IMG 8656",
     "href": "/gallery/optimized/IMG_8656_Original.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro 5.7mm f/1.5",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/1200s",
@@ -243,7 +247,7 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "bw"
   },
   {
-    "label": "DSC01283 Original",
+    "label": "DSC01283",
     "href": "/gallery/optimized/DSC01283_Original.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
@@ -259,7 +263,7 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "landscape"
   },
   {
-    "label": "IMG 6339 Original",
+    "label": "IMG 6339",
     "href": "/gallery/optimized/IMG_6339_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -275,7 +279,7 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "bw"
   },
   {
-    "label": "IMG 8358 Original",
+    "label": "IMG 8358",
     "href": "/gallery/optimized/IMG_8358_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -295,7 +299,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_8547.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro 5.7mm f/1.5",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/50s",
@@ -307,11 +311,11 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "street"
   },
   {
-    "label": "IMG 3399 Original",
+    "label": "IMG 3399",
     "href": "/gallery/optimized/IMG_3399_Original.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/8s",
@@ -371,7 +375,7 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "street"
   },
   {
-    "label": "DSC01270 Original",
+    "label": "DSC01270",
     "href": "/gallery/optimized/DSC01270_Original.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
@@ -439,7 +443,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_7951.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro 5.7mm f/1.5",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/17s",
@@ -563,7 +567,7 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "street"
   },
   {
-    "label": "IMG 7238 Original",
+    "label": "IMG 7238",
     "href": "/gallery/optimized/IMG_7238_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -595,7 +599,7 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "landscape"
   },
   {
-    "label": "DSC01010 2 Enhanced SR",
+    "label": "DSC01010",
     "href": "/gallery/optimized/DSC01010-2-Enhanced-SR.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
@@ -695,7 +699,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_5105.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro 5.7mm f/1.5",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/4600s",
@@ -707,7 +711,7 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "landscape"
   },
   {
-    "label": "DSC03629 2",
+    "label": "DSC03629",
     "href": "/gallery/optimized/DSC03629-2.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
@@ -791,7 +795,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_7948.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/8s",
@@ -839,7 +843,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_5085.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro 5.7mm f/1.5",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/10000s",
@@ -883,7 +887,7 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "landscape"
   },
   {
-    "label": "IMG 7254 Original",
+    "label": "IMG 7254",
     "href": "/gallery/optimized/IMG_7254_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -899,7 +903,7 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "street"
   },
   {
-    "label": "IMG 7427 Original",
+    "label": "IMG 7427",
     "href": "/gallery/optimized/IMG_7427_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -915,7 +919,7 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "street"
   },
   {
-    "label": "IMG 7167 Original",
+    "label": "IMG 7167",
     "href": "/gallery/optimized/IMG_7167_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -951,7 +955,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_8509.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/550s",
@@ -1043,7 +1047,7 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "bw"
   },
   {
-    "label": "IMG 6924 Original",
+    "label": "IMG 6924",
     "href": "/gallery/optimized/IMG_6924_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -1059,7 +1063,7 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "street"
   },
   {
-    "label": "IMG 6058 Original",
+    "label": "IMG 6058",
     "href": "/gallery/optimized/IMG_6058_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -1079,7 +1083,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_5804.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/450s",
@@ -1091,7 +1095,7 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "bw"
   },
   {
-    "label": "DSC03564 2",
+    "label": "DSC03564",
     "href": "/gallery/optimized/DSC03564-2.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
@@ -1155,7 +1159,7 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "bw"
   },
   {
-    "label": "IMG 7095 Original",
+    "label": "IMG 7095",
     "href": "/gallery/optimized/IMG_7095_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -1191,7 +1195,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_8605.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/190s",
@@ -1203,11 +1207,11 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "bw"
   },
   {
-    "label": "IMG 2323 Original",
+    "label": "IMG 2323",
     "href": "/gallery/optimized/IMG_2323_Original.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/100s",
@@ -1219,7 +1223,7 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "bw"
   },
   {
-    "label": "IMG 6177 Original Original",
+    "label": "IMG 6177",
     "href": "/gallery/optimized/IMG_6177_Original_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -1239,7 +1243,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_5009.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/540s",
@@ -1251,7 +1255,7 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "street"
   },
   {
-    "label": "DSC03647 2",
+    "label": "DSC03647",
     "href": "/gallery/optimized/DSC03647-2.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
@@ -1447,7 +1451,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_8624.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/190s",
@@ -1463,7 +1467,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_7946.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro 5.7mm f/1.5",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/25s",
@@ -1491,7 +1495,7 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "landscape"
   },
   {
-    "label": "IMG 6060 Original",
+    "label": "IMG 6060",
     "href": "/gallery/optimized/IMG_6060_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -1555,11 +1559,11 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "street"
   },
   {
-    "label": "IMG 3362 Original",
+    "label": "IMG 3362",
     "href": "/gallery/optimized/IMG_3362_Original.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/25s",
@@ -1575,7 +1579,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_8617.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro 5.7mm f/1.5",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/560s",
@@ -1719,7 +1723,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_7942.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/20s",
@@ -1731,7 +1735,7 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "street"
   },
   {
-    "label": "IMG 7397 Original",
+    "label": "IMG 7397",
     "href": "/gallery/optimized/IMG_7397_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -1747,7 +1751,7 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "street"
   },
   {
-    "label": "IMG 6508 Original",
+    "label": "IMG 6508",
     "href": "/gallery/optimized/IMG_6508_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -1795,7 +1799,7 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "bw"
   },
   {
-    "label": "IMG 8405 Original Enhanced SR",
+    "label": "IMG 8405",
     "href": "/gallery/optimized/IMG_8405_Original-Enhanced-SR.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -1831,7 +1835,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_5145.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/1100s",
@@ -1843,7 +1847,7 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "landscape"
   },
   {
-    "label": "DSC03833 2",
+    "label": "DSC03833",
     "href": "/gallery/optimized/DSC03833-2.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
@@ -1863,7 +1867,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_7952.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/20s",
@@ -1891,7 +1895,7 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "bw"
   },
   {
-    "label": "IMG 4020 Original",
+    "label": "IMG 4020",
     "href": "/gallery/optimized/IMG_4020_Original.jpg",
     "metadata": {
       "camera": "Apple iPhone 8",
@@ -1969,7 +1973,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "street"
   },
   {
-    "label": "DSC01010 2 Enhanced SR",
+    "label": "DSC01010",
     "href": "/gallery/optimized/DSC01010-2-Enhanced-SR.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
@@ -2224,7 +2228,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "street"
   },
   {
-    "label": "DSC03564 2",
+    "label": "DSC03564",
     "href": "/gallery/optimized/DSC03564-2.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
@@ -2254,7 +2258,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "street"
   },
   {
-    "label": "DSC03629 2",
+    "label": "DSC03629",
     "href": "/gallery/optimized/DSC03629-2.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
@@ -2314,7 +2318,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "street"
   },
   {
-    "label": "DSC03833 2",
+    "label": "DSC03833",
     "href": "/gallery/optimized/DSC03833-2.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
@@ -2479,11 +2483,11 @@ export const galleryItems: GalleryItem[] = [
     "category": "street"
   },
   {
-    "label": "IMG 4054 Original",
+    "label": "IMG 4054",
     "href": "/gallery/optimized/IMG_4054_Original.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro 5.7mm f/1.5",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/10s",
@@ -2498,7 +2502,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_5009.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/540s",
@@ -2509,7 +2513,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "street"
   },
   {
-    "label": "IMG 6924 Original",
+    "label": "IMG 6924",
     "href": "/gallery/optimized/IMG_6924_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -2524,7 +2528,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "street"
   },
   {
-    "label": "IMG 7167 Original",
+    "label": "IMG 7167",
     "href": "/gallery/optimized/IMG_7167_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -2539,7 +2543,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "street"
   },
   {
-    "label": "IMG 7238 Original",
+    "label": "IMG 7238",
     "href": "/gallery/optimized/IMG_7238_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -2554,7 +2558,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "street"
   },
   {
-    "label": "IMG 7254 Original",
+    "label": "IMG 7254",
     "href": "/gallery/optimized/IMG_7254_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -2569,7 +2573,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "street"
   },
   {
-    "label": "IMG 7397 Original",
+    "label": "IMG 7397",
     "href": "/gallery/optimized/IMG_7397_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -2584,7 +2588,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "street"
   },
   {
-    "label": "IMG 7427 Original",
+    "label": "IMG 7427",
     "href": "/gallery/optimized/IMG_7427_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -2603,7 +2607,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_7942.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/20s",
@@ -2618,7 +2622,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_7946.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro 5.7mm f/1.5",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/25s",
@@ -2633,7 +2637,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_7948.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/8s",
@@ -2648,7 +2652,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_7951.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro 5.7mm f/1.5",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/17s",
@@ -2663,7 +2667,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_7952.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/20s",
@@ -2674,7 +2678,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "street"
   },
   {
-    "label": "IMG 8405 Original Enhanced SR",
+    "label": "IMG 8405",
     "href": "/gallery/optimized/IMG_8405_Original-Enhanced-SR.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -2689,7 +2693,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "street"
   },
   {
-    "label": "IMG 8413 Original Enhanced NR",
+    "label": "IMG 8413",
     "href": "/gallery/optimized/IMG_8413_Original-Enhanced-NR.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -2708,7 +2712,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_8547.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro 5.7mm f/1.5",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/50s",
@@ -2734,7 +2738,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "landscape"
   },
   {
-    "label": "DSC01270 Original",
+    "label": "DSC01270",
     "href": "/gallery/optimized/DSC01270_Original.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
@@ -2764,7 +2768,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "landscape"
   },
   {
-    "label": "DSC01283 Original",
+    "label": "DSC01283",
     "href": "/gallery/optimized/DSC01283_Original.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
@@ -3019,7 +3023,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "landscape"
   },
   {
-    "label": "IMG 4020 Original",
+    "label": "IMG 4020",
     "href": "/gallery/optimized/IMG_4020_Original.jpg",
     "metadata": {
       "camera": "Apple iPhone 8",
@@ -3038,7 +3042,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_5085.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro 5.7mm f/1.5",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/10000s",
@@ -3053,7 +3057,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_5105.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro 5.7mm f/1.5",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/4600s",
@@ -3068,7 +3072,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_5145.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/1100s",
@@ -3079,7 +3083,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "landscape"
   },
   {
-    "label": "IMG 6058 Original",
+    "label": "IMG 6058",
     "href": "/gallery/optimized/IMG_6058_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -3094,7 +3098,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "landscape"
   },
   {
-    "label": "IMG 6060 Original",
+    "label": "IMG 6060",
     "href": "/gallery/optimized/IMG_6060_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -3109,7 +3113,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "landscape"
   },
   {
-    "label": "IMG 6508 Original",
+    "label": "IMG 6508",
     "href": "/gallery/optimized/IMG_6508_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -3154,7 +3158,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "portrait"
   },
   {
-    "label": "DSC03647 2",
+    "label": "DSC03647",
     "href": "/gallery/optimized/DSC03647-2.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
@@ -3229,7 +3233,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "bw"
   },
   {
-    "label": "DSC03629 2",
+    "label": "DSC03629",
     "href": "/gallery/optimized/DSC03629-2.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
@@ -3274,7 +3278,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "bw"
   },
   {
-    "label": "DSC03833 2",
+    "label": "DSC03833",
     "href": "/gallery/optimized/DSC03833-2.jpg",
     "metadata": {
       "camera": "SONY ILCE-7M3",
@@ -3604,11 +3608,11 @@ export const galleryItems: GalleryItem[] = [
     "category": "bw"
   },
   {
-    "label": "IMG 2323 Original",
+    "label": "IMG 2323",
     "href": "/gallery/optimized/IMG_2323_Original.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/100s",
@@ -3619,11 +3623,11 @@ export const galleryItems: GalleryItem[] = [
     "category": "bw"
   },
   {
-    "label": "IMG 3362 Original",
+    "label": "IMG 3362",
     "href": "/gallery/optimized/IMG_3362_Original.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/25s",
@@ -3634,11 +3638,11 @@ export const galleryItems: GalleryItem[] = [
     "category": "bw"
   },
   {
-    "label": "IMG 3399 Original",
+    "label": "IMG 3399",
     "href": "/gallery/optimized/IMG_3399_Original.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/8s",
@@ -3649,11 +3653,11 @@ export const galleryItems: GalleryItem[] = [
     "category": "bw"
   },
   {
-    "label": "IMG 3403 Original",
+    "label": "IMG 3403",
     "href": "/gallery/optimized/IMG_3403_Original.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/5s",
@@ -3668,7 +3672,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_5804.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/450s",
@@ -3709,7 +3713,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "bw"
   },
   {
-    "label": "IMG 6177 Original Original",
+    "label": "IMG 6177",
     "href": "/gallery/optimized/IMG_6177_Original_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -3724,7 +3728,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "bw"
   },
   {
-    "label": "IMG 6339 Original",
+    "label": "IMG 6339",
     "href": "/gallery/optimized/IMG_6339_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -3739,7 +3743,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "bw"
   },
   {
-    "label": "IMG 7095 Original",
+    "label": "IMG 7095",
     "href": "/gallery/optimized/IMG_7095_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -3769,7 +3773,7 @@ export const galleryItems: GalleryItem[] = [
     "category": "bw"
   },
   {
-    "label": "IMG 8358 Original",
+    "label": "IMG 8358",
     "href": "/gallery/optimized/IMG_8358_Original.jpg",
     "metadata": {
       "camera": "Canon EOS 700D",
@@ -3788,7 +3792,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_8509.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/550s",
@@ -3803,7 +3807,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_8605.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/190s",
@@ -3818,7 +3822,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_8617.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro 5.7mm f/1.5",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/560s",
@@ -3833,7 +3837,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_8624.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro 9mm f/2.8",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/190s",
@@ -3844,11 +3848,11 @@ export const galleryItems: GalleryItem[] = [
     "category": "bw"
   },
   {
-    "label": "IMG 8656 Original",
+    "label": "IMG 8656",
     "href": "/gallery/optimized/IMG_8656_Original.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro 5.7mm f/1.5",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/1200s",
@@ -3863,7 +3867,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_8811.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro 5.7mm f/1.5",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/2800s",

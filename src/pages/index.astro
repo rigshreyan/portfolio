@@ -6,8 +6,8 @@ const title = "Shreyan Sengupta";
 ---
 
 <Layout title={title}>
-  <style>
-    /* Dark Mode Variables (Default) */
+  <style is:global>
+    /* Theme Variables - Dark Mode Default */
     :root {
       --bg-primary: #000000;
       --bg-secondary: #000000;
@@ -17,9 +17,9 @@ const title = "Shreyan Sengupta";
       --card-bg: #000000;
       --card-border: #1a1a1a;
       --overlay-bg: rgba(0, 0, 0, 0.85);
-      --filter-bg: rgba(0, 0, 0, 0.6);
+      --filter-bg: rgba(0, 0, 0, 0.2);
       --filter-border: rgba(255, 255, 255, 0.08);
-      --filter-hover-bg: rgba(0, 0, 0, 0.7);
+      --filter-hover-bg: rgba(0, 0, 0, 0.35);
       --shadow: rgba(0, 0, 0, 0.3);
       --lightbox-bg: rgba(0, 0, 0, 0.98);
       --lightbox-sidebar: #000000;
@@ -29,51 +29,25 @@ const title = "Shreyan Sengupta";
       --filter-active-text: #000000;
     }
 
-    /* Light Mode Variables (Explicit) */
-    .light-theme {
-      --bg-primary: #ffffff !important;
-      --bg-secondary: #ffffff !important;
-      --text-primary: #000000 !important;
-      --text-secondary: #333333 !important;
-      --border-color: #e0e0e0 !important;
-      --card-bg: #ffffff !important;
-      --card-border: #e0e0e0 !important;
-      --overlay-bg: rgba(0, 0, 0, 0.75) !important;
-      --filter-bg: rgba(255, 255, 255, 0.4) !important;
-      --filter-border: rgba(0, 0, 0, 0.08) !important;
-      --filter-hover-bg: rgba(255, 255, 255, 0.6) !important;
-      --shadow: rgba(0, 0, 0, 0.12) !important;
-      --lightbox-bg: rgba(0, 0, 0, 0.95) !important;
-      --lightbox-sidebar: #ffffff !important;
-      --filter-text: #ffffff !important;
-      --filter-text-secondary: #ffffff !important;
-      --filter-active-bg: #000000 !important;
-      --filter-active-text: #ffffff !important;
+    /* Light Mode Overrides */
+    :root.light-theme {
+      --bg-primary: #ffffff;
+      --bg-secondary: #ffffff;
+      --text-primary: #000000;
+      --text-secondary: #333333;
+      --border-color: #e0e0e0;
+      --card-bg: #ffffff;
+      --card-border: #e0e0e0;
+      --filter-bg: rgba(255, 255, 255, 0.15);
+      --filter-border: rgba(0, 0, 0, 0.08);
+      --filter-hover-bg: rgba(255, 255, 255, 0.25);
+      --shadow: rgba(0, 0, 0, 0.12);
+      --lightbox-sidebar: #ffffff;
+      --filter-active-bg: #000000;
+      --filter-active-text: #ffffff;
     }
 
-    /* Dark Mode Variables */
-    .dark-theme {
-      --bg-primary: #000000 !important;
-      --bg-secondary: #000000 !important;
-      --text-primary: #ffffff !important;
-      --text-secondary: #cccccc !important;
-      --border-color: #1a1a1a !important;
-      --card-bg: #000000 !important;
-      --card-border: #1a1a1a !important;
-      --overlay-bg: rgba(0, 0, 0, 0.85) !important;
-      --filter-bg: rgba(0, 0, 0, 0.7) !important;
-      --filter-border: rgba(255, 255, 255, 0.1) !important;
-      --filter-hover-bg: rgba(0, 0, 0, 0.8) !important;
-      --shadow: rgba(0, 0, 0, 0.3) !important;
-      --lightbox-bg: rgba(0, 0, 0, 0.98) !important;
-      --lightbox-sidebar: #000000 !important;
-      --filter-text: #ffffff !important;
-      --filter-text-secondary: #ffffff !important;
-      --filter-active-bg: #ffffff !important;
-      --filter-active-text: #000000 !important;
-    }
-
-    /* Dark theme icon visibility */
+    /* Theme icon visibility */
     .light-icon {
       display: block;
     }
@@ -82,21 +56,12 @@ const title = "Shreyan Sengupta";
       display: none;
     }
 
-    .dark-theme .light-icon {
-      display: none;
-    }
-
-    .dark-theme .dark-icon {
+    :root.light-theme .dark-icon {
       display: block;
     }
 
-    /* Theme-specific hover overrides for filter banner only */
-    .light-theme .floating-filter:hover {
-      background: var(--filter-hover-bg) !important;
-    }
-
-    .dark-theme .floating-filter:hover {
-      background: var(--filter-hover-bg) !important;
+    :root.light-theme .light-icon {
+      display: none;
     }
 
     /* Reset and Base Styles */
@@ -107,11 +72,13 @@ const title = "Shreyan Sengupta";
     }
 
     html {
+      background: var(--bg-primary);
       transition: background-color 0.3s ease, color 0.3s ease;
       scroll-behavior: smooth;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
+      position: relative;
     }
 
     body {
@@ -121,6 +88,44 @@ const title = "Shreyan Sengupta";
       line-height: 1.4;
       overflow-x: hidden;
       transition: background-color 0.3s ease, color 0.3s ease;
+      position: relative;
+    }
+
+    /* Theme Transition Gradient Overlay */
+    .theme-transition-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .theme-transition-overlay.active {
+      opacity: 0.25;
+    }
+
+    .theme-transition-overlay.to-dark {
+      background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(230, 230, 235, 0.85) 20%,
+        rgba(180, 180, 190, 0.75) 40%,
+        rgba(100, 100, 110, 0.7) 60%,
+        rgba(40, 40, 50, 0.85) 80%,
+        rgba(0, 0, 0, 0.95) 100%);
+    }
+
+    .theme-transition-overlay.to-light {
+      background: linear-gradient(135deg,
+        rgba(0, 0, 0, 0.95) 0%,
+        rgba(30, 30, 40, 0.85) 20%,
+        rgba(80, 80, 90, 0.75) 40%,
+        rgba(140, 140, 150, 0.7) 60%,
+        rgba(200, 200, 210, 0.85) 80%,
+        rgba(255, 255, 255, 0.95) 100%);
     }
 
     /* Fixed Seamless Header */
@@ -130,9 +135,9 @@ const title = "Shreyan Sengupta";
       left: 0 !important;
       right: 0 !important;
       width: 100% !important;
-      z-index: 1000 !important;
+      z-index: 1001 !important;
       background: var(--bg-primary) !important;
-      border-bottom: 1px solid var(--border-color);
+      border-bottom: none;
       height: 60px;
       transition: all 0.3s ease;
       box-shadow: none;
@@ -214,6 +219,8 @@ const title = "Shreyan Sengupta";
       background: var(--bg-primary);
       min-height: calc(100vh - 60px);
       transition: background-color 0.3s ease;
+      position: relative;
+      z-index: 10;
     }
 
     /* Masonry/Brick Wall Gallery Layout */
@@ -339,11 +346,13 @@ const title = "Shreyan Sengupta";
       left: 0;
       right: 0;
       width: 100%;
-      z-index: 999;
-      background: rgba(0, 0, 0, 0.85);
+      z-index: 1000;
+      background: linear-gradient(to bottom,
+        transparent 0%,
+        var(--filter-bg) 100%);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-top: none;
       padding: 20px;
       display: flex;
       justify-content: center;
@@ -352,7 +361,9 @@ const title = "Shreyan Sengupta";
     }
 
     .floating-filter:hover {
-      background: rgba(0, 0, 0, 0.9);
+      background: linear-gradient(to bottom,
+        transparent 0%,
+        var(--filter-hover-bg) 100%);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
     }
@@ -433,8 +444,11 @@ const title = "Shreyan Sengupta";
       width: 350px;
       background: var(--lightbox-sidebar);
       padding: 40px 30px;
+      padding-top: 80px;
+      padding-bottom: 80px;
       overflow-y: auto;
       border-left: 1px solid var(--border-color);
+      position: relative;
     }
 
     .lightbox-close {
@@ -466,38 +480,102 @@ const title = "Shreyan Sengupta";
     }
 
     .metadata-section {
-      margin-bottom: 30px;
+      margin-bottom: 12px;
     }
 
     .metadata-title {
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 2px;
       color: var(--text-primary);
+      line-height: 1.1;
     }
 
     .metadata-category {
-      font-size: 14px;
+      font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       color: var(--text-secondary);
-      margin-bottom: 20px;
+      margin-bottom: 6px;
     }
 
     .metadata-item {
       display: flex;
       justify-content: space-between;
-      padding: 12px 0;
+      padding: 5px 0;
       border-bottom: 1px solid var(--border-color);
     }
 
     .metadata-label {
       font-weight: 600;
       color: var(--text-primary);
+      font-size: 13px;
     }
 
     .metadata-value {
       color: var(--text-secondary);
+      text-align: right;
+      font-size: 13px;
+    }
+
+    /* Description section */
+    .description-section {
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .description-section-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .description-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      font-style: italic;
+    }
+
+    .description-caption {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin: 0;
+      white-space: pre-line;
+      text-align: justify;
+    }
+
+    /* Copyright section - less prominent, positioned bottom right */
+    .copyright-section {
+      opacity: 0.5;
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      margin: 0;
+      text-align: right;
+    }
+
+    .copyright-section .metadata-item {
+      padding: 4px 0;
+      font-size: 10px;
+      border-bottom: none;
+      justify-content: flex-end;
+    }
+
+    .copyright-section .metadata-label {
+      font-weight: 500;
+      font-size: 9px;
+      display: none;
+    }
+
+    .copyright-section .metadata-value {
+      font-size: 10px;
       text-align: right;
     }
 
@@ -506,18 +584,23 @@ const title = "Shreyan Sengupta";
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.1);
-      border: none;
-      color: white;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.5);
       font-size: 24px;
       cursor: pointer;
       padding: 20px;
       border-radius: 8px;
-      transition: background 0.2s ease;
+      transition: all 0.3s ease;
+      opacity: 0.6;
     }
 
     .lightbox-nav:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.95);
+      border-color: rgba(255, 255, 255, 0.3);
+      opacity: 1;
+      transform: translateY(-50%) scale(1.05);
     }
 
     .lightbox-prev {
@@ -545,46 +628,37 @@ const title = "Shreyan Sengupta";
     }
 
     @media (max-width: 768px) {
-      /* Enhanced mobile scroll performance */
       body {
         -webkit-overflow-scrolling: touch;
         overscroll-behavior: contain;
       }
 
-      /* Mobile performance: Remove heavy effects */
-      .floating-filter {
-        background: rgba(0, 0, 0, 0.95) !important;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-      }
-
-      .floating-filter:hover {
-        background: rgba(0, 0, 0, 0.98) !important;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-      }
-
       .main-content {
         padding: 20px;
-        padding-bottom: 120px;
-        min-height: 100vh;
-        min-height: calc(100vh - env(safe-area-inset-bottom));
         padding-bottom: calc(120px + env(safe-area-inset-bottom));
+        min-height: calc(100vh - env(safe-area-inset-bottom));
       }
 
       .gallery-grid {
         column-count: 2;
-        column-gap: 20px;
+        column-gap: 18px;
       }
 
       .gallery-item {
-        margin-bottom: 20px;
+        margin-bottom: 18px;
       }
 
       .floating-filter {
         padding: 15px;
         flex-wrap: wrap;
         justify-content: center;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+
+      .floating-filter:hover {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
       }
 
       .filter-tab {
@@ -602,8 +676,10 @@ const title = "Shreyan Sengupta";
         max-height: 35%;
         border-left: none;
         border-top: 1px solid var(--border-color);
-        padding: 15px 20px !important;
+        padding: 25px 20px;
+        padding-bottom: 60px;
         overflow-y: auto;
+        position: relative;
       }
 
       .lightbox-image-container {
@@ -615,167 +691,163 @@ const title = "Shreyan Sengupta";
       .lightbox-nav {
         display: none;
       }
+
+      .location-time {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        font-size: 14px;
+        left: 20px;
+      }
+
+      .logo {
+        font-size: 18px;
+      }
+
+      .header-controls {
+        right: 15px;
+        gap: 6px;
+      }
+
+      .instagram-link,
+      .theme-toggle {
+        font-size: 18px;
+        padding: 8px;
+      }
     }
 
     @media (max-width: 480px) {
+      .main-content {
+        padding: 12px;
+        padding-bottom: 110px;
+      }
+
       .gallery-grid {
         column-count: 2;
-        column-gap: 18px;
+        column-gap: 15px;
       }
 
       .gallery-item {
-        margin-bottom: 18px;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        -webkit-tap-highlight-color: transparent;
       }
 
-      .main-content {
-        padding: 15px;
-        padding-bottom: 100px;
+      .gallery-item:hover {
+        transform: none;
+        box-shadow: 0 4px 15px var(--shadow);
+      }
+
+      .gallery-item:hover img {
+        transform: none;
       }
 
       .floating-filter {
-        padding: 12px;
+        padding: 12px 16px;
       }
 
       .filter-tab {
         padding: 6px 12px;
+        font-size: 12px;
+      }
+
+      .lightbox-close {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+      }
+
+      .metadata-item {
+        font-size: 11px;
+        padding: 4px 0;
+        line-height: 1.1;
+      }
+
+      .metadata-label {
+        font-size: 11px;
+        font-weight: 500;
+      }
+
+      .metadata-value {
         font-size: 11px;
       }
-    }
 
-    /* Enhanced Mobile Optimizations */
-    @media (max-width: 768px) {
-      /* Better gallery spacing for tablets */
-      .gallery-grid {
-        column-count: 2 !important;
-        column-gap: 18px !important;
-      }
-
-      .gallery-item {
-        margin-bottom: 18px !important;
-      }
-
-      /* Filter improvements for tablets */
-      .filter-buttons {
-        gap: 8px !important;
-      }
-      .filter-button {
-        padding: 8px 16px !important;
-        font-size: 13px !important;
-      }
-    }
-
-    @media (max-width: 480px) {
-      /* Enhanced mobile grid */
-      .gallery-grid {
-        column-count: 2 !important;
-        column-gap: 15px !important;
-      }
-
-      .gallery-item {
-        margin-bottom: 15px !important;
-      }
-      .main-content {
-        padding: 12px !important;
-        padding-bottom: 110px !important;
-      }
-
-      /* Mobile-optimized gallery items */
-      .gallery-item {
-        border-radius: 8px !important;
-      }
-
-      /* Mobile filter controls */
-      .floating-filter {
-        padding: 12px 16px !important;
-      }
-      .filter-buttons {
-        gap: 6px !important;
-        flex-wrap: wrap !important;
-      }
-      .filter-button {
-        padding: 6px 12px !important;
-        font-size: 12px !important;
-        border-radius: 16px !important;
-        min-width: auto !important;
-      }
-
-      /* Disable hover effects on mobile */
-      .gallery-item:hover {
-        transform: none !important;
-        box-shadow: 0 4px 15px var(--shadow) !important;
-      }
-      .gallery-item:hover img {
-        transform: none !important;
-      }
-
-      /* Mobile touch improvements */
-      .gallery-item {
-        -webkit-tap-highlight-color: transparent;
-        cursor: pointer;
-      }
-
-      /* Better lightbox close button for mobile */
-      .lightbox-close {
-        width: 50px !important;
-        height: 50px !important;
-        font-size: 24px !important;
-      }
-
-      /* Mobile metadata text size */
-      .metadata-item {
-        font-size: 12px !important;
-        margin-bottom: 6px !important;
-        line-height: 1.2 !important;
-      }
-      .metadata-label {
-        font-size: 10px !important;
-        font-weight: 500 !important;
-      }
-      .metadata-value {
-        font-size: 12px !important;
-      }
       .metadata-title {
-        font-size: 18px !important;
-        margin-bottom: 8px !important;
-        line-height: 1.2 !important;
+        font-size: 18px;
+        margin-bottom: 2px;
+        line-height: 1.1;
       }
+
       .metadata-category {
-        font-size: 11px !important;
-        margin-bottom: 15px !important;
+        font-size: 10px;
+        margin-bottom: 6px;
       }
+
       .metadata-section {
-        margin-bottom: 15px !important;
+        margin-bottom: 10px;
+      }
+
+      .description-section {
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+      }
+
+      .description-title {
+        font-size: 12px;
+        margin-bottom: 6px;
+      }
+
+      .description-caption {
+        font-size: 11px;
+        line-height: 1.5;
+        white-space: pre-line;
+        text-align: justify;
+      }
+
+      .location-time {
+        font-size: 13px;
+        left: 15px;
+      }
+
+      .logo {
+        font-size: 16px;
+      }
+
+      .header-controls {
+        right: 12px;
+        gap: 4px;
+      }
+
+      .instagram-link,
+      .theme-toggle {
+        font-size: 16px;
+        padding: 6px;
       }
     }
 
-    /* Very small mobile devices */
     @media (max-width: 360px) {
       .main-content {
-        padding: 10px !important;
-        padding-bottom: 100px !important;
+        padding: 10px;
+        padding-bottom: 100px;
       }
+
       .gallery-grid {
-        column-count: 2 !important;
-        column-gap: 12px !important;
+        column-count: 2;
+        column-gap: 12px;
       }
 
       .gallery-item {
-        margin-bottom: 12px !important;
+        margin-bottom: 12px;
+        border-radius: 8px;
       }
+
       .floating-filter {
-        padding: 10px 12px !important;
-      }
-      .filter-button {
-        padding: 5px 10px !important;
-        font-size: 11px !important;
-      }
-      .filter-buttons {
-        gap: 4px !important;
+        padding: 10px 12px;
       }
 
-      /* Smaller gallery items for very small screens */
-      .gallery-item {
-        border-radius: 6px !important;
+      .filter-tab {
+        padding: 5px 10px;
+        font-size: 11px;
       }
     }
 
@@ -830,63 +902,18 @@ const title = "Shreyan Sengupta";
 
     .location-time .time {
       margin: 0;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.05em;
     }
 
-    /* Mobile header layout fixes */
-    @media (max-width: 768px) {
-      .location-time {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 2px;
-        font-size: 14px;
-        left: 20px;
-      }
-
-      .logo {
-        font-size: 18px;
-      }
-
-      .header-controls {
-        right: 15px;
-        gap: 6px;
-      }
-
-      .instagram-link {
-        font-size: 18px;
-        padding: 8px;
-      }
-
-      .theme-toggle {
-        font-size: 18px;
-        padding: 8px;
-      }
+    /* Seconds styling - consistent with hours and minutes */
+    .time-seconds {
+      font-weight: 400;
+      font-size: inherit;
+      color: var(--text-primary);
+      display: inline-block;
     }
 
-    @media (max-width: 480px) {
-      .location-time {
-        font-size: 13px;
-        left: 15px;
-      }
-
-      .logo {
-        font-size: 16px;
-      }
-
-      .header-controls {
-        right: 12px;
-        gap: 4px;
-      }
-
-      .instagram-link {
-        font-size: 16px;
-        padding: 6px;
-      }
-
-      .theme-toggle {
-        font-size: 16px;
-        padding: 6px;
-      }
-    }
 
     /* Fix scroll gaps by ensuring background coverage */
     html {
@@ -970,6 +997,9 @@ const title = "Shreyan Sengupta";
 
   </style>
 
+  <!-- Theme Transition Overlay -->
+  <div class="theme-transition-overlay" id="themeTransitionOverlay"></div>
+
   <!-- Minimal Header -->
   <header class="header">
     <div class="header-content">
@@ -990,7 +1020,7 @@ const title = "Shreyan Sengupta";
               <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>
             </svg>
           </span>
-          <span class="dark-icon">
+          <span class="dark-icon" id="moonIcon">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"/>
             </svg>
@@ -1057,12 +1087,20 @@ const title = "Shreyan Sengupta";
         <button class="lightbox-nav lightbox-next" id="lightboxNext">›</button>
       </div>
       <div class="lightbox-sidebar">
-        <div class="metadata-section">
-          <h2 class="metadata-title" id="metadataTitle">Image Title</h2>
-          <p class="metadata-category" id="metadataCategory">Category</p>
+        <div class="metadata-section description-section" id="descriptionSection" style="display: none;">
+          <h4 class="description-title" id="descriptionTitle"></h4>
+          <p class="description-caption" id="descriptionCaption"></p>
         </div>
 
         <div class="metadata-section">
+          <div class="metadata-item">
+            <span class="metadata-label">File Number #</span>
+            <span class="metadata-value" id="metadataFileNumber">8413</span>
+          </div>
+          <div class="metadata-item">
+            <span class="metadata-label">Category</span>
+            <span class="metadata-value" id="metadataCategoryValue">All</span>
+          </div>
           <div class="metadata-item">
             <span class="metadata-label">Camera</span>
             <span class="metadata-value" id="metadataCamera">Canon EOS R5</span>
@@ -1088,6 +1126,17 @@ const title = "Shreyan Sengupta";
             <span class="metadata-value" id="metadataISO">400</span>
           </div>
         </div>
+
+        <div class="metadata-section copyright-section">
+          <div class="metadata-item">
+            <span class="metadata-label">Copyright</span>
+            <span class="metadata-value">© 2025 Shreyan Sengupta.<br>All rights reserved.</span>
+          </div>
+          <div class="metadata-item">
+            <span class="metadata-label">Usage Rights</span>
+            <span class="metadata-value">Text and data mining not permitted</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1103,80 +1152,35 @@ const title = "Shreyan Sengupta";
       }
     }
 
-    // Theme management - DIRECT STYLE APPROACH (WILL WORK!)
+    // Development-only logging wrapper
+    const isDev = import.meta.env.DEV;
+    const devLog = (...args: any[]) => {
+      if (isDev) console.log(...args);
+    };
+    const devError = (...args: any[]) => {
+      if (isDev) console.error(...args);
+    };
+
+    // Theme management
     function initTheme() {
       const themeToggle = document.getElementById('themeToggle');
       const root = document.documentElement;
 
-      console.log('Theme system initializing...');
-
-      // Define theme variables
-      const lightTheme = {
-        '--bg-primary': '#ffffff',
-        '--bg-secondary': '#ffffff',
-        '--text-primary': '#000000',
-        '--text-secondary': '#333333',
-        '--border-color': '#e0e0e0',
-        '--card-bg': '#ffffff',
-        '--card-border': '#e0e0e0',
-        '--overlay-bg': 'rgba(0, 0, 0, 0.75)',
-        '--filter-bg': 'rgba(255, 255, 255, 0.7)',
-        '--filter-border': 'rgba(0, 0, 0, 0.1)',
-        '--filter-hover-bg': 'rgba(255, 255, 255, 0.8)',
-        '--shadow': 'rgba(0, 0, 0, 0.12)',
-        '--lightbox-bg': 'rgba(0, 0, 0, 0.95)',
-        '--lightbox-sidebar': '#ffffff',
-        '--filter-text': '#ffffff',
-        '--filter-text-secondary': '#ffffff',
-        '--filter-active-bg': '#000000',
-        '--filter-active-text': '#ffffff'
-      };
-
-      const darkTheme = {
-        '--bg-primary': '#000000',
-        '--bg-secondary': '#000000',
-        '--text-primary': '#ffffff',
-        '--text-secondary': '#cccccc',
-        '--border-color': '#1a1a1a',
-        '--card-bg': '#000000',
-        '--card-border': '#1a1a1a',
-        '--overlay-bg': 'rgba(0, 0, 0, 0.85)',
-        '--filter-bg': 'rgba(0, 0, 0, 0.7)',
-        '--filter-border': 'rgba(255, 255, 255, 0.1)',
-        '--filter-hover-bg': 'rgba(0, 0, 0, 0.8)',
-        '--shadow': 'rgba(0, 0, 0, 0.3)',
-        '--lightbox-bg': 'rgba(0, 0, 0, 0.98)',
-        '--lightbox-sidebar': '#000000',
-        '--filter-text': '#ffffff',
-        '--filter-text-secondary': '#ffffff',
-        '--filter-active-bg': '#ffffff',
-        '--filter-active-text': '#000000'
-      };
+      devLog('Theme system initializing...');
 
       // Apply theme function
       function applyTheme(theme: string) {
-        console.log('Applying theme:', theme);
+        devLog('Applying theme:', theme);
 
-        const themeVars = theme === 'dark' ? darkTheme : lightTheme;
-
-        // Apply each CSS variable directly
-        Object.entries(themeVars).forEach(([property, value]) => {
-          root.style.setProperty(property, value);
-          console.log(`Set ${property}: ${value}`);
-        });
-
-        // Toggle icon visibility
-        const lightIcon = document.querySelector('.light-icon') as HTMLElement;
-        const darkIcon = document.querySelector('.dark-icon') as HTMLElement;
-
-        if (lightIcon && darkIcon) {
-          if (theme === 'dark') {
-            lightIcon.style.display = 'none';
-            darkIcon.style.display = 'block';
-          } else {
-            lightIcon.style.display = 'block';
-            darkIcon.style.display = 'none';
-          }
+        // Toggle theme class and inline styles for instant switching
+        if (theme === 'light') {
+          root.classList.add('light-theme');
+          root.style.backgroundColor = '#ffffff';
+          root.style.color = '#000000';
+        } else {
+          root.classList.remove('light-theme');
+          root.style.backgroundColor = '#000000';
+          root.style.color = '#ffffff';
         }
 
         // Update Instagram link based on theme
@@ -1192,15 +1196,17 @@ const title = "Shreyan Sengupta";
         }
 
         localStorage.setItem('theme', theme);
-        console.log('Theme applied successfully:', theme);
+        devLog('Theme applied successfully:', theme);
       }
 
-      // Get saved theme or default to dark
-      const savedTheme = localStorage.getItem('theme') || 'dark';
-      console.log('Saved theme:', savedTheme);
+      // Get saved theme or default to dark (with validation)
+      const rawTheme = localStorage.getItem('theme');
+      const validThemes = ['light', 'dark'];
+      const savedTheme = (rawTheme && validThemes.includes(rawTheme)) ? rawTheme : 'dark';
+      devLog('Saved theme:', savedTheme);
       applyTheme(savedTheme);
 
-      // Theme toggle event with debouncing
+      // Theme toggle event - fast and responsive
       if (themeToggle) {
         let currentTheme = savedTheme;
         let isToggling = false;
@@ -1212,21 +1218,23 @@ const title = "Shreyan Sengupta";
           if (isToggling) return;
           isToggling = true;
 
-          console.log('Theme toggle clicked, current theme:', currentTheme);
+          devLog('Theme toggle clicked, current theme:', currentTheme);
 
-          currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-          console.log('Switching to:', currentTheme);
+          const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+          devLog('Switching to:', nextTheme);
 
+          // Apply theme immediately
+          currentTheme = nextTheme;
           applyTheme(currentTheme);
 
-          // Reset toggle lock after animation completes
+          // Quick debounce reset
           setTimeout(() => {
             isToggling = false;
-          }, 300);
+          }, 100);
         });
-        console.log('Theme toggle event listener added');
+        devLog('Theme toggle event listener added');
       } else {
-        console.error('Theme toggle button not found!');
+        devError('Theme toggle button not found!');
       }
     }
 
@@ -1259,14 +1267,14 @@ const title = "Shreyan Sengupta";
                     if (container) {
                       container.classList.add('loaded');
                     }
-                    console.log('Lazy loaded image:', dataSrc);
+                    devLog('Lazy loaded image:', dataSrc);
                   };
                   tempImg.onerror = () => {
                     img.classList.add('loaded'); // Still fade in to avoid blank space
                     if (container) {
                       container.classList.add('loaded');
                     }
-                    console.warn('Failed to load image:', dataSrc);
+                    devError('Failed to load image:', dataSrc);
                   };
                   tempImg.src = dataSrc;
                   img.removeAttribute('data-src');
@@ -1293,7 +1301,7 @@ const title = "Shreyan Sengupta";
           imageObserver.observe(img);
         });
 
-        console.log('Image loading observer initialized for', lazyImages.length, 'images');
+        devLog('Image loading observer initialized for', lazyImages.length, 'images');
       }
 
       // Initialize progressive loading
@@ -1303,7 +1311,6 @@ const title = "Shreyan Sengupta";
       function updateUtrechtTime() {
         try {
           const now = new Date();
-          console.log('Current time:', now);
 
           const timeString = now.toLocaleTimeString('en-US', {
             timeZone: "Europe/Amsterdam",
@@ -1313,23 +1320,45 @@ const title = "Shreyan Sengupta";
             second: '2-digit'
           });
 
-          console.log('Utrecht time string:', timeString);
-
           const timeElement = document.getElementById('timeDisplay');
           if (timeElement) {
-            timeElement.textContent = timeString;
-            console.log('Updated time element to:', timeString);
+            // Split time string to wrap seconds in a span for dramatic effect
+            const timeParts = timeString.split(':');
+            if (timeParts.length === 3 && timeParts[2] !== undefined) {
+              // Safely create elements to avoid XSS
+              timeElement.textContent = '';
+              const hoursText = document.createTextNode(`${timeParts[0]}:${timeParts[1]}:`);
+              const secondsSpan = document.createElement('span');
+              secondsSpan.className = 'time-seconds';
+              secondsSpan.textContent = timeParts[2];
+              timeElement.appendChild(hoursText);
+              timeElement.appendChild(secondsSpan);
+            } else {
+              timeElement.textContent = timeString;
+            }
           } else {
-            console.error('timeDisplay element not found');
+            devError('timeDisplay element not found');
           }
         } catch (error) {
-          console.error('Error updating Utrecht time:', error);
+          devError('Error updating Utrecht time:', error);
           // Fallback to simple time display
           const timeElement = document.getElementById('timeDisplay');
           if (timeElement) {
             const now = new Date();
-            const simpleTime = now.toTimeString().split(' ')[0];
-            timeElement.textContent = simpleTime || '00:00:00';
+            const simpleTime = now.toTimeString().split(' ')[0] || '00:00:00';
+            const timeParts = simpleTime.split(':');
+            if (timeParts.length === 3 && timeParts[2] !== undefined) {
+              // Safely create elements to avoid XSS
+              timeElement.textContent = '';
+              const hoursText = document.createTextNode(`${timeParts[0]}:${timeParts[1]}:`);
+              const secondsSpan = document.createElement('span');
+              secondsSpan.className = 'time-seconds';
+              secondsSpan.textContent = timeParts[2];
+              timeElement.appendChild(hoursText);
+              timeElement.appendChild(secondsSpan);
+            } else {
+              timeElement.textContent = simpleTime;
+            }
           }
         }
       }
@@ -1337,6 +1366,9 @@ const title = "Shreyan Sengupta";
       // Update time immediately and then every second
       updateUtrechtTime();
       setInterval(updateUtrechtTime, 1000);
+
+      // Moon phase icon update disabled to prevent glitching
+      // setInterval(updateMoonIcon, 24 * 60 * 60 * 1000); // Update every 24 hours
 
       // Dynamic filter sorting based on photo counts
       function sortFiltersByPhotoCount() {
@@ -1389,7 +1421,7 @@ const title = "Shreyan Sengupta";
           }
         });
 
-        console.log('Filter tabs sorted by photo count:', categoryCounts);
+        devLog('Filter tabs sorted by photo count:', categoryCounts);
       }
 
       // Apply dynamic sorting
@@ -1409,8 +1441,8 @@ const title = "Shreyan Sengupta";
       const lightboxNext = document.getElementById('lightboxNext');
 
       // Metadata elements
-      const metadataTitle = document.getElementById('metadataTitle');
-      const metadataCategory = document.getElementById('metadataCategory');
+      const metadataFileNumber = document.getElementById('metadataFileNumber');
+      const metadataCategoryValue = document.getElementById('metadataCategoryValue');
       const metadataCamera = document.getElementById('metadataCamera');
       const metadataLens = document.getElementById('metadataLens');
       const metadataFocalLength = document.getElementById('metadataFocalLength');
@@ -1433,7 +1465,7 @@ const title = "Shreyan Sengupta";
 
           if (filterValue === 'all') {
             // For "All" filter, show only items with category="all" (these are already deduplicated)
-            console.log('Starting "All" filter - showing dedicated "all" category items');
+            devLog('Starting "All" filter - showing dedicated "all" category items');
 
             galleryItems.forEach((item) => {
               const itemCategory = item.getAttribute('data-category');
@@ -1441,7 +1473,7 @@ const title = "Shreyan Sengupta";
               if (itemCategory === 'all') {
                 item.classList.remove('hidden');
                 visibleItems.push(item);
-                console.log('Showing "all" category item:', item.getAttribute('data-href'));
+                devLog('Showing "all" category item:', item.getAttribute('data-href'));
               } else {
                 item.classList.add('hidden');
               }
@@ -1478,9 +1510,7 @@ const title = "Shreyan Sengupta";
 
         const img = item.querySelector('img') as HTMLImageElement;
         const titleElement = item.querySelector('h3');
-        const categoryElement = item.querySelector('p');
         const title = titleElement ? titleElement.textContent || '' : '';
-        const category = categoryElement ? categoryElement.textContent || '' : '';
 
         currentImageIndex = index;
 
@@ -1536,17 +1566,24 @@ const title = "Shreyan Sengupta";
             }
           }, 1000); // Longer delay to prioritize current image loading
         }
-        if (metadataTitle) {
-          // Clean up filename by removing DSC, IMG, and camera prefixes
-          const cleanTitle = title.replace(/^(DSC_?|IMG_?|DSCF_?|DSCN_?|[A-Z]{2,}_?)/, '').replace(/[-_]/g, ' ');
-          metadataTitle.textContent = cleanTitle;
-        }
-        if (metadataCategory) {
-          metadataCategory.textContent = category.toUpperCase();
-        }
 
         // Get real metadata from gallery item (reuse itemHref from above)
         const galleryItemData = window.galleryData.find((galleryItem: any) => galleryItem.href === itemHref);
+
+        // Set file number - extract just the number from the label
+        if (metadataFileNumber && galleryItemData) {
+          const label = galleryItemData.label || title;
+          // Extract the number from labels like "IMG 8413", "DSC02870", etc.
+          const cleanNumber = label.replace(/^(DSC_?|IMG_?|DSCF_?|DSCN_?|[A-Z]{2,}_?)\s*/, '').replace(/[-_\s]/g, '');
+          metadataFileNumber.textContent = cleanNumber;
+        }
+
+        // Set category value in metadata section
+        if (metadataCategoryValue && galleryItemData) {
+          const categoryLabel = galleryItemData.category || 'All';
+          // Capitalize first letter for display
+          metadataCategoryValue.textContent = categoryLabel.charAt(0).toUpperCase() + categoryLabel.slice(1);
+        }
 
         if (galleryItemData && galleryItemData.metadata) {
           const metadata = galleryItemData.metadata;
@@ -1564,6 +1601,19 @@ const title = "Shreyan Sengupta";
           if (metadataAperture) metadataAperture.textContent = 'Unknown';
           if (metadataShutterSpeed) metadataShutterSpeed.textContent = 'Unknown';
           if (metadataISO) metadataISO.textContent = 'Unknown';
+        }
+
+        // Handle description/notes section
+        const descriptionSection = document.getElementById('descriptionSection');
+        const descriptionTitle = document.getElementById('descriptionTitle');
+        const descriptionCaption = document.getElementById('descriptionCaption');
+
+        if (galleryItemData && galleryItemData.description && descriptionSection && descriptionTitle && descriptionCaption) {
+          descriptionTitle.textContent = galleryItemData.description.title;
+          descriptionCaption.textContent = galleryItemData.description.caption;
+          descriptionSection.style.display = 'block';
+        } else if (descriptionSection) {
+          descriptionSection.style.display = 'none';
         }
 
         if (lightbox) {
@@ -1631,72 +1681,40 @@ const title = "Shreyan Sengupta";
       });
 
 
-      // Enhanced Image Protection - Gallery images
-      const images = document.querySelectorAll('.gallery-item img');
-      images.forEach(img => {
-        // Prevent right-click context menu
+      // Image protection helper function
+      function protectImage(img: HTMLElement) {
         img.addEventListener('contextmenu', e => e.preventDefault());
-        // Prevent drag and drop
         img.addEventListener('dragstart', e => e.preventDefault());
-        // Prevent text selection
-        (img as HTMLElement).style.userSelect = 'none';
+        img.style.userSelect = 'none';
         (img as any).style.webkitUserSelect = 'none';
         (img as any).style.mozUserSelect = 'none';
         (img as any).style.msUserSelect = 'none';
-        // Prevent touch callout on iOS
         (img as any).style.webkitTouchCallout = 'none';
-        // Prevent image selection on mobile browsers
         (img as any).style.webkitUserDrag = 'none';
         (img as any).style.khtmlUserDrag = 'none';
         (img as any).style.mozUserDrag = 'none';
         (img as any).style.oUserDrag = 'none';
-        // Additional mobile protection
+
+        // Mobile protection
         img.addEventListener('touchstart', (e: any) => {
-          if (e.touches && e.touches.length > 1) e.preventDefault(); // Prevent pinch zoom
+          if (e.touches && e.touches.length > 1) e.preventDefault();
         });
         img.addEventListener('touchmove', (e: any) => {
-          if (e.touches && e.touches.length > 1) e.preventDefault(); // Prevent pinch zoom
+          if (e.touches && e.touches.length > 1) e.preventDefault();
         });
-        // Prevent long press on mobile
+
+        // Prevent long press
         img.addEventListener('touchstart', (e) => {
-          let timer = setTimeout(() => {
-            e.preventDefault();
-          }, 500);
+          let timer = setTimeout(() => e.preventDefault(), 500);
           img.addEventListener('touchend', () => clearTimeout(timer), { once: true });
           img.addEventListener('touchmove', () => clearTimeout(timer), { once: true });
         });
-      });
-
-      // Enhanced Image Protection - Lightbox image
-      const lightboxImg = document.getElementById('lightboxImage');
-      if (lightboxImg) {
-        lightboxImg.addEventListener('contextmenu', e => e.preventDefault());
-        lightboxImg.addEventListener('dragstart', e => e.preventDefault());
-        lightboxImg.style.userSelect = 'none';
-        (lightboxImg as any).style.webkitUserSelect = 'none';
-        (lightboxImg as any).style.mozUserSelect = 'none';
-        (lightboxImg as any).style.msUserSelect = 'none';
-        (lightboxImg as any).style.webkitTouchCallout = 'none';
-        (lightboxImg as any).style.webkitUserDrag = 'none';
-        (lightboxImg as any).style.khtmlUserDrag = 'none';
-        (lightboxImg as any).style.mozUserDrag = 'none';
-        (lightboxImg as any).style.oUserDrag = 'none';
-        // Mobile protection for lightbox
-        lightboxImg.addEventListener('touchstart', (e: any) => {
-          if (e.touches && e.touches.length > 1) e.preventDefault();
-        });
-        lightboxImg.addEventListener('touchmove', (e: any) => {
-          if (e.touches && e.touches.length > 1) e.preventDefault();
-        });
-        // Prevent long press on lightbox image
-        lightboxImg.addEventListener('touchstart', (e) => {
-          let timer = setTimeout(() => {
-            e.preventDefault();
-          }, 500);
-          lightboxImg.addEventListener('touchend', () => clearTimeout(timer), { once: true });
-          lightboxImg.addEventListener('touchmove', () => clearTimeout(timer), { once: true });
-        });
       }
+
+      // Apply image protection
+      document.querySelectorAll('.gallery-item img').forEach(img => protectImage(img as HTMLElement));
+      const lightboxImg = document.getElementById('lightboxImage');
+      if (lightboxImg) protectImage(lightboxImg);
 
       // Additional global mobile security measures
       // Prevent zoom on double tap for gallery container
@@ -1709,30 +1727,12 @@ const title = "Shreyan Sengupta";
         });
       }
 
-      // Disable image saving shortcuts on keyboard
+      // Image protection - only prevent Ctrl+S to avoid interfering with legitimate browser functionality
       document.addEventListener('keydown', (e) => {
-        // Prevent Ctrl+S, Ctrl+Shift+S (save)
+        // Prevent Ctrl+S, Ctrl+Shift+S (save) - basic image protection
         if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {
           e.preventDefault();
         }
-        // Prevent F12 (developer tools)
-        if (e.key === 'F12') {
-          e.preventDefault();
-        }
-        // Prevent Ctrl+Shift+I (developer tools)
-        if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'I') {
-          e.preventDefault();
-        }
-        // Prevent Ctrl+U (view source)
-        if ((e.ctrlKey || e.metaKey) && e.key === 'u') {
-          e.preventDefault();
-        }
-      });
-
-      // Disable print functionality
-      window.addEventListener('beforeprint', (e) => {
-        e.preventDefault();
-        return false;
       });
 
       // Mobile touch gesture support for lightbox navigation
@@ -1830,7 +1830,7 @@ const title = "Shreyan Sengupta";
           img.setAttribute('data-observed', 'true');
         });
 
-        console.log('Observing', newLazyImages.length, 'new images');
+        devLog('Observing', newLazyImages.length, 'new images');
       }
 
       // 3. Virtual Scrolling for Better Performance
@@ -1875,23 +1875,6 @@ const title = "Shreyan Sengupta";
 
       // Add optimized scroll listener
       window.addEventListener('scroll', onOptimizedScroll, { passive: true });
-
-      // Cleanup offscreen images periodically with longer threshold
-      const cleanupOffscreenImagesEnhanced = () => {
-        const images = document.querySelectorAll('.gallery-item img');
-        images.forEach((img) => {
-          const rect = (img as HTMLElement).getBoundingClientRect();
-          const isOffscreen = rect.bottom < -1000 || rect.top > window.innerHeight + 1000;
-
-          if (isOffscreen && (img as HTMLImageElement).src && !(img as HTMLImageElement).dataset.src) {
-            // Move src back to data-src for very far offscreen images
-            (img as HTMLImageElement).dataset.src = (img as HTMLImageElement).src;
-            (img as HTMLImageElement).src = '';
-            (img as HTMLElement).classList.remove('loaded');
-          }
-        });
-      };
-      setInterval(cleanupOffscreenImagesEnhanced, 30000); // Every 30 seconds
 
       // 6. Prefetch next images on hover (Desktop-optimized)
       let prefetchTimeout: ReturnType<typeof setTimeout>;

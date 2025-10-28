@@ -11,9 +11,7 @@ export const PERSONAL_INFO = {
   role: "Developer & Creator",
   contact: "mailto:hello@shreyansengupta.com",
   avatar: "/avatar.png",
-  about: `Welcome to my portfolio. I'm a developer and creator passionate about building
-    meaningful digital experiences. Explore my work, projects, and creative endeavors
-    through this curated collection.`,
+  about: `I'm a developer who builds things for the web. This is where I keep my work: photos, projects, and experiments. Some of it's practical, some of it's just for fun.`,
 } as const;
 
 export const SEO_INFO = [
