@@ -1003,6 +1003,7 @@ const currentYear = new Date().getFullYear();
       display: inline-block;
     }
 
+
     /* Mobile header layout fixes */
     @media (max-width: 768px) {
       .location-time {
@@ -1511,9 +1512,6 @@ const currentYear = new Date().getFullYear();
       updateUtrechtTime();
       setInterval(updateUtrechtTime, 1000);
 
-      // Moon phase icon update disabled to prevent glitching
-      // setInterval(updateMoonIcon, 24 * 60 * 60 * 1000); // Update every 24 hours
-
       // Dynamic filter sorting based on photo counts
       function sortFiltersByPhotoCount() {
         const galleryItems = document.querySelectorAll('.gallery-item');
@@ -1979,7 +1977,6 @@ const currentYear = new Date().getFullYear();
 
       // 3. Virtual Scrolling for Better Performance
       let visibleItemsSet = new Set();
-      // const BUFFER_SIZE = 10; // Extra items to render outside viewport
 
       function optimizeVisibleItems() {
         // const scrollTop = window.pageYOffset;
@@ -2010,8 +2007,6 @@ const currentYear = new Date().getFullYear();
           optimizeVisibleItems();
         }, 16); // ~60fps
       }
-
-      // Note: cleanupOffscreenImages replaced by cleanupOffscreenImagesEnhanced below
 
       // Initialize performance optimizations
       optimizeFontLoading();

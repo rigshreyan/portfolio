@@ -361,17 +361,65 @@ async function buildGallery() {
     }
   }
 
-  // Shuffle the 'all' photos for variety
-  function shuffleArray(array) {
-    const shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  // Smart shuffle to spread out photos with similar file numbers
+  function smartShuffleByFileNumber(array) {
+    // Extract file numbers from labels
+    function extractFileNumber(label) {
+      // Match common patterns like "IMG 8413", "DSC02870", "IMG_4127", "DSC 08799"
+      const match = label.match(/(\d+)/);
+      return match ? parseInt(match[1], 10) : 0;
     }
-    return shuffled;
+
+    // Create array with file numbers
+    const photosWithNumbers = array.map(photo => ({
+      photo,
+      fileNumber: extractFileNumber(photo.label),
+      originalLabel: photo.label
+    }));
+
+    // Sort by file number
+    photosWithNumbers.sort((a, b) => a.fileNumber - b.fileNumber);
+
+    // Interleaved distribution algorithm
+    // This spreads out consecutive numbers maximally
+    const result = new Array(array.length);
+    const step = Math.ceil(Math.sqrt(array.length)); // Dynamic step based on array size
+
+    let resultIndex = 0;
+    let sourceIndex = 0;
+
+    // First pass: distribute every Nth item
+    while (sourceIndex < photosWithNumbers.length) {
+      if (resultIndex >= result.length) {
+        // Wrap around and find next empty slot
+        resultIndex = result.findIndex(item => item === undefined);
+        if (resultIndex === -1) break;
+      }
+
+      if (result[resultIndex] === undefined) {
+        result[resultIndex] = photosWithNumbers[sourceIndex].photo;
+        sourceIndex++;
+      }
+
+      resultIndex += step;
+    }
+
+    // Fill any remaining gaps (shouldn't happen, but just in case)
+    let gapIndex = result.findIndex(item => item === undefined);
+    while (gapIndex !== -1 && sourceIndex < photosWithNumbers.length) {
+      result[gapIndex] = photosWithNumbers[sourceIndex].photo;
+      sourceIndex++;
+      gapIndex = result.findIndex(item => item === undefined);
+    }
+
+    console.log(`🔀 Smart shuffle applied: ${array.length} photos distributed by file number`);
+    console.log(`   File number range: ${photosWithNumbers[0]?.fileNumber} - ${photosWithNumbers[photosWithNumbers.length - 1]?.fileNumber}`);
+    console.log(`   Distribution step: ${step}`);
+
+    return result.filter(item => item !== undefined);
   }
 
-  const shuffledAllPhotos = shuffleArray(allPhotos);
+  const shuffledAllPhotos = smartShuffleByFileNumber(allPhotos);
   galleryItems.push(...shuffledAllPhotos);
 
   // Add category-specific photos
