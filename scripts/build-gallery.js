@@ -7,8 +7,9 @@ import sharp from 'sharp';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Gallery directory path
-const galleryDir = path.join(__dirname, '../public/gallery');
+// Gallery directory paths
+const gallerySourceDir = path.join(__dirname, '../gallery-source'); // Source images (not deployed)
+const galleryDir = path.join(__dirname, '../public/gallery'); // Optimized images (deployed)
 const outputFile = path.join(__dirname, '../src/data/gallery.ts');
 
 // Supported image extensions
@@ -197,7 +198,7 @@ async function buildGallery() {
 
   // Scan all category folders for photos
   for (const category of categories) {
-    const categoryPath = path.join(galleryDir, category.folder);
+    const categoryPath = path.join(gallerySourceDir, category.folder);
 
     if (fs.existsSync(categoryPath)) {
       const files = fs.readdirSync(categoryPath);

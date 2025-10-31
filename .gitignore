@@ -19,3 +19,6 @@ pnpm-debug.log*
 .vscode
 .jampack
 .astro
+
+# gallery source images (large files, not deployed)
+gallery-source/
