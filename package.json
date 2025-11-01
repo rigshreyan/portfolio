@@ -35,7 +35,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.67.0",
+    "@anthropic-ai/sdk": "^0.68.0",
     "@iconify-json/mdi": "^1.2.3",
     "astro": "^5.10.2",
     "exifr": "^7.1.3"
