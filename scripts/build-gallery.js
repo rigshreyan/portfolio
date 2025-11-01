@@ -362,7 +362,8 @@ async function buildGallery() {
     }
   }
 
-  // Smart shuffle to spread out photos with similar file numbers
+  // Hybrid shuffle: Smart distribution with Fisher-Yates randomization
+  // Keeps similar file numbers far apart (priority) while adding random variation
   function smartShuffleByFileNumber(array) {
     // Extract file numbers from labels
     function extractFileNumber(label) {
@@ -381,15 +382,35 @@ async function buildGallery() {
     // Sort by file number
     photosWithNumbers.sort((a, b) => a.fileNumber - b.fileNumber);
 
-    // Interleaved distribution algorithm
+    // Add controlled randomness: shuffle within small adjacent groups
+    // This maintains distance between similar numbers while adding variety
+    const groupSize = Math.max(3, Math.floor(photosWithNumbers.length / 20));
+    for (let i = 0; i < photosWithNumbers.length; i += groupSize) {
+      const groupEnd = Math.min(i + groupSize, photosWithNumbers.length);
+      const group = photosWithNumbers.slice(i, groupEnd);
+
+      // Fisher-Yates shuffle within the small group
+      for (let j = group.length - 1; j > 0; j--) {
+        const k = Math.floor(Math.random() * (j + 1));
+        [group[j], group[k]] = [group[k], group[j]];
+      }
+
+      // Put shuffled group back
+      for (let j = 0; j < group.length; j++) {
+        photosWithNumbers[i + j] = group[j];
+      }
+    }
+
+    // Interleaved distribution algorithm with randomized step
     // This spreads out consecutive numbers maximally
     const result = new Array(array.length);
-    const step = Math.ceil(Math.sqrt(array.length)); // Dynamic step based on array size
+    const baseStep = Math.ceil(Math.sqrt(array.length));
 
-    let resultIndex = 0;
+    // Add random variation to starting position
+    let resultIndex = Math.floor(Math.random() * Math.min(baseStep, array.length));
     let sourceIndex = 0;
 
-    // First pass: distribute every Nth item
+    // First pass: distribute with randomized step size
     while (sourceIndex < photosWithNumbers.length) {
       if (resultIndex >= result.length) {
         // Wrap around and find next empty slot
@@ -402,22 +423,112 @@ async function buildGallery() {
         sourceIndex++;
       }
 
-      resultIndex += step;
+      // Add random variation to step size (±20% of base step)
+      const stepVariation = Math.floor(baseStep * 0.2);
+      const randomizedStep = baseStep + Math.floor(Math.random() * (stepVariation * 2 + 1)) - stepVariation;
+      resultIndex += Math.max(1, randomizedStep);
     }
 
-    // Fill any remaining gaps (shouldn't happen, but just in case)
-    let gapIndex = result.findIndex(item => item === undefined);
-    while (gapIndex !== -1 && sourceIndex < photosWithNumbers.length) {
-      result[gapIndex] = photosWithNumbers[sourceIndex].photo;
+    // Fill remaining gaps with Fisher-Yates-style random placement
+    let remainingIndices = result
+      .map((item, idx) => item === undefined ? idx : -1)
+      .filter(idx => idx !== -1);
+
+    while (remainingIndices.length > 0 && sourceIndex < photosWithNumbers.length) {
+      // Randomly select from available positions
+      const randomIdx = Math.floor(Math.random() * remainingIndices.length);
+      const targetIdx = remainingIndices[randomIdx];
+
+      result[targetIdx] = photosWithNumbers[sourceIndex].photo;
       sourceIndex++;
-      gapIndex = result.findIndex(item => item === undefined);
+      remainingIndices.splice(randomIdx, 1);
     }
 
-    console.log(`🔀 Smart shuffle applied: ${array.length} photos distributed by file number`);
+    console.log(`🔀 Hybrid shuffle applied: ${array.length} photos (smart distribution + random variation)`);
     console.log(`   File number range: ${photosWithNumbers[0]?.fileNumber} - ${photosWithNumbers[photosWithNumbers.length - 1]?.fileNumber}`);
-    console.log(`   Distribution step: ${step}`);
+    console.log(`   Base step: ${baseStep} (with ±20% random variation)`);
+    console.log(`   Group shuffle size: ${groupSize}`);
 
-    return result.filter(item => item !== undefined);
+    const filteredResult = result.filter(item => item !== undefined);
+
+    // Post-process: Create brickwork layout by distributing portraits optimally
+    // Ensures vertical photos mix and match with horizontal/square photos
+    function createBrickworkLayout(shuffled) {
+      const columnCount = 3; // Desktop default (2 for mobile, but optimizing for desktop)
+
+      function isPortrait(item) {
+        return item.orientation === 'portrait';
+      }
+
+      function isLandscape(item) {
+        return item.orientation === 'landscape' || item.orientation === 'square';
+      }
+
+      let swapCount = 0;
+
+      // Strategy: Create alternating pattern for balanced brickwork
+      // Pass 1: Break up consecutive portraits (no 2+ portraits side by side)
+      for (let i = 0; i < shuffled.length - columnCount + 1; i++) {
+        const consecutiveGroup = shuffled.slice(i, i + columnCount);
+        const portraitCount = consecutiveGroup.filter(isPortrait).length;
+
+        // If we have 2+ portraits in a row, redistribute
+        if (portraitCount >= 2) {
+          // Find the second portrait in the group
+          let portraitsSeen = 0;
+          for (let k = 0; k < consecutiveGroup.length; k++) {
+            if (isPortrait(consecutiveGroup[k])) {
+              portraitsSeen++;
+              if (portraitsSeen >= 2) {
+                const swapIdx = i + k;
+                // Find a landscape photo further down to swap with
+                for (let j = i + columnCount; j < shuffled.length; j++) {
+                  if (isLandscape(shuffled[j])) {
+                    [shuffled[swapIdx], shuffled[j]] = [shuffled[j], shuffled[swapIdx]];
+                    swapCount++;
+                    break;
+                  }
+                }
+                break;
+              }
+            }
+          }
+        }
+      }
+
+      // Pass 2: Ensure better vertical distribution (across columns)
+      // Check every Nth position (same column) to avoid vertical stacking
+      for (let col = 0; col < columnCount; col++) {
+        let consecutivePortraitsInColumn = 0;
+        for (let row = 0; row * columnCount + col < shuffled.length; row++) {
+          const idx = row * columnCount + col;
+          if (idx >= shuffled.length) break;
+
+          if (isPortrait(shuffled[idx])) {
+            consecutivePortraitsInColumn++;
+            // If we have 2+ portraits vertically in the same column, swap one out
+            if (consecutivePortraitsInColumn >= 2) {
+              // Find a landscape photo to swap with
+              for (let j = idx + 1; j < Math.min(idx + columnCount * 3, shuffled.length); j++) {
+                if (isLandscape(shuffled[j])) {
+                  [shuffled[idx], shuffled[j]] = [shuffled[j], shuffled[idx]];
+                  swapCount++;
+                  consecutivePortraitsInColumn = 0;
+                  break;
+                }
+              }
+            }
+          } else {
+            consecutivePortraitsInColumn = 0;
+          }
+        }
+      }
+
+      console.log(`✅ Brickwork layout created - ${swapCount} optimizations for balanced distribution`);
+      return shuffled;
+    }
+
+    return createBrickworkLayout(filteredResult);
   }
 
   const shuffledAllPhotos = smartShuffleByFileNumber(allPhotos);

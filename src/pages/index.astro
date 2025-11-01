@@ -1392,8 +1392,12 @@ const currentYear = new Date().getFullYear();
       <a href="/" class="logo">{title}</a>
       <div class="header-controls">
         <a href="https://www.instagram.com/rigeveryday/" class="instagram-link" id="instagramLink" target="_blank" rel="noopener noreferrer" aria-label="Visit Instagram">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="8" width="14" height="11" rx="0.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <circle cx="12" cy="13.5" r="3.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <rect x="8" y="5" width="8" height="3" rx="0.5" fill="currentColor"/>
+            <rect x="15.5" y="9.5" width="2" height="2" rx="0.3" fill="currentColor"/>
+            <circle cx="7.5" cy="10" r="0.6" fill="currentColor"/>
           </svg>
         </a>
         <button class="shuffle-button" id="shuffleButton" aria-label="Shuffle photos">
@@ -2098,16 +2102,185 @@ const currentYear = new Date().getFullYear();
         }
       });
 
-      // Shuffle functionality - Fisher-Yates algorithm
-      function shuffleArray<T>(array: T[]): T[] {
-        const shuffled = [...array]; // Create a copy to avoid mutating original
-        for (let i = shuffled.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          const temp = shuffled[i];
-          shuffled[i] = shuffled[j] as T;
-          shuffled[j] = temp as T;
+      // Hybrid shuffle: Smart distribution with Fisher-Yates randomization
+      // Keeps similar file numbers far apart (priority) while adding random variation
+      function smartShuffleByFileNumber(items: Element[]): Element[] {
+        // Extract file numbers from labels
+        function extractFileNumber(item: Element): number {
+          const img = item.querySelector('img');
+          const label = img?.alt || '';
+          // Match common patterns like "IMG 8413", "DSC02870", "IMG_4127", "DSC 08799"
+          const match = label.match(/(\d+)/);
+          return match?.[1] ? parseInt(match[1], 10) : 0;
         }
-        return shuffled;
+
+        // Create array with file numbers
+        const photosWithNumbers = items.map(item => ({
+          item,
+          fileNumber: extractFileNumber(item)
+        }));
+
+        // Sort by file number
+        photosWithNumbers.sort((a, b) => a.fileNumber - b.fileNumber);
+
+        // Add controlled randomness: shuffle within small adjacent groups
+        // This maintains distance between similar numbers while adding variety
+        const groupSize = Math.max(3, Math.floor(photosWithNumbers.length / 20));
+        for (let i = 0; i < photosWithNumbers.length; i += groupSize) {
+          const groupEnd = Math.min(i + groupSize, photosWithNumbers.length);
+          const group = photosWithNumbers.slice(i, groupEnd);
+
+          // Fisher-Yates shuffle within the small group
+          for (let j = group.length - 1; j > 0; j--) {
+            const k = Math.floor(Math.random() * (j + 1));
+            [group[j]!, group[k]!] = [group[k]!, group[j]!];
+          }
+
+          // Put shuffled group back
+          for (let j = 0; j < group.length; j++) {
+            photosWithNumbers[i + j] = group[j]!;
+          }
+        }
+
+        // Interleaved distribution algorithm with randomized step
+        // This spreads out consecutive numbers maximally
+        const result = new Array(items.length);
+        const baseStep = Math.ceil(Math.sqrt(items.length));
+
+        // Add random variation to starting position
+        let resultIndex = Math.floor(Math.random() * Math.min(baseStep, items.length));
+        let sourceIndex = 0;
+
+        // First pass: distribute with randomized step size
+        while (sourceIndex < photosWithNumbers.length) {
+          if (resultIndex >= result.length) {
+            // Wrap around and find next empty slot
+            resultIndex = result.findIndex((item: any) => item === undefined);
+            if (resultIndex === -1) break;
+          }
+
+          if (result[resultIndex] === undefined) {
+            result[resultIndex] = photosWithNumbers[sourceIndex]!.item;
+            sourceIndex++;
+          }
+
+          // Add random variation to step size (±20% of base step)
+          const stepVariation = Math.floor(baseStep * 0.2);
+          const randomizedStep = baseStep + Math.floor(Math.random() * (stepVariation * 2 + 1)) - stepVariation;
+          resultIndex += Math.max(1, randomizedStep);
+        }
+
+        // Fill remaining gaps with Fisher-Yates-style random placement
+        let remainingIndices = result
+          .map((item, idx) => item === undefined ? idx : -1)
+          .filter(idx => idx !== -1);
+
+        while (remainingIndices.length > 0 && sourceIndex < photosWithNumbers.length) {
+          // Randomly select from available positions
+          const randomIdx = Math.floor(Math.random() * remainingIndices.length);
+          const targetIdx = remainingIndices[randomIdx]!;
+
+          result[targetIdx] = photosWithNumbers[sourceIndex]!.item;
+          sourceIndex++;
+          remainingIndices.splice(randomIdx, 1);
+        }
+
+        devLog('🔀 Hybrid shuffle applied:', items.length, 'photos (smart distribution + random variation)');
+        devLog('   File number range:', photosWithNumbers[0]?.fileNumber, '-', photosWithNumbers[photosWithNumbers.length - 1]?.fileNumber);
+        devLog('   Base step:', baseStep, '(with ±20% random variation)');
+        devLog('   Group shuffle size:', groupSize);
+
+        const filteredResult = result.filter((item: any) => item !== undefined) as Element[];
+
+        // Post-process: Create brickwork layout by distributing portraits optimally
+        // Ensures vertical photos mix and match with horizontal/square photos
+        function createBrickworkLayout(shuffled: Element[]): Element[] {
+          const columnCount = window.innerWidth <= 768 ? 2 : 3; // Match CSS breakpoint
+
+          function isPortrait(item: Element): boolean {
+            const orientation = item.getAttribute('data-orientation');
+            return orientation === 'portrait';
+          }
+
+          function isLandscape(item: Element): boolean {
+            const orientation = item.getAttribute('data-orientation');
+            return orientation === 'landscape' || orientation === 'square';
+          }
+
+          let swapCount = 0;
+
+          // Strategy: Create alternating pattern for balanced brickwork
+          // Pass 1: Break up consecutive portraits (no 2+ portraits side by side)
+          for (let i = 0; i < shuffled.length - columnCount + 1; i++) {
+            const consecutiveGroup = shuffled.slice(i, i + columnCount);
+            const portraitCount = consecutiveGroup.filter(isPortrait).length;
+
+            // If we have 2+ portraits in a row, redistribute
+            if (portraitCount >= 2) {
+              // Find the second portrait in the group
+              let portraitsSeen = 0;
+              for (let k = 0; k < consecutiveGroup.length; k++) {
+                const groupItem = consecutiveGroup[k];
+                if (groupItem && isPortrait(groupItem)) {
+                  portraitsSeen++;
+                  if (portraitsSeen >= 2) {
+                    const swapIdx = i + k;
+                    // Find a landscape photo further down to swap with
+                    for (let j = i + columnCount; j < shuffled.length; j++) {
+                      const targetItem = shuffled[j];
+                      if (targetItem && isLandscape(targetItem)) {
+                        [shuffled[swapIdx]!, shuffled[j]!] = [shuffled[j]!, shuffled[swapIdx]!];
+                        swapCount++;
+                        devLog(`🧱 Brickwork swap: portrait at ${swapIdx} ↔ landscape at ${j}`);
+                        break;
+                      }
+                    }
+                    break;
+                  }
+                }
+              }
+            }
+          }
+
+          // Pass 2: Ensure better vertical distribution (across columns)
+          // Check every Nth position (same column) to avoid vertical stacking
+          for (let col = 0; col < columnCount; col++) {
+            let consecutivePortraitsInColumn = 0;
+            for (let row = 0; row * columnCount + col < shuffled.length; row++) {
+              const idx = row * columnCount + col;
+              if (idx >= shuffled.length) break;
+
+              const currentItem = shuffled[idx];
+              if (currentItem && isPortrait(currentItem)) {
+                consecutivePortraitsInColumn++;
+                // If we have 2+ portraits vertically in the same column, swap one out
+                if (consecutivePortraitsInColumn >= 2) {
+                  // Find a landscape photo to swap with
+                  for (let j = idx + 1; j < Math.min(idx + columnCount * 3, shuffled.length); j++) {
+                    const swapItem = shuffled[j];
+                    if (swapItem && isLandscape(swapItem)) {
+                      [shuffled[idx]!, shuffled[j]!] = [shuffled[j]!, shuffled[idx]!];
+                      swapCount++;
+                      consecutivePortraitsInColumn = 0;
+                      devLog(`🧱 Vertical distribution: portrait at ${idx} ↔ landscape at ${j}`);
+                      break;
+                    }
+                  }
+                }
+              } else {
+                consecutivePortraitsInColumn = 0;
+              }
+            }
+          }
+
+          devLog(`✅ Brickwork layout created: ${swapCount} optimizations for balanced distribution`);
+          return shuffled;
+        }
+
+        const finalResult = createBrickworkLayout(filteredResult);
+        devLog('🧱 Portrait distribution optimized for brickwork pattern');
+
+        return finalResult;
       }
 
       function shuffleGallery() {
@@ -2117,8 +2290,8 @@ const currentYear = new Date().getFullYear();
         const galleryGrid = document.querySelector('.gallery-grid');
         if (!galleryGrid) return;
 
-        // Shuffle the visible items array
-        const shuffledItems = shuffleArray(visibleItems);
+        // Smart shuffle the visible items array to keep similar numbers far apart
+        const shuffledItems = smartShuffleByFileNumber(visibleItems);
 
         // Re-append items to the DOM in the shuffled order
         shuffledItems.forEach((item) => {
