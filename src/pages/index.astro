@@ -210,6 +210,238 @@ const currentYear = new Date().getFullYear();
 
     .theme-toggle:hover {
       background: var(--card-bg);
+      transform: scale(1.1);
+    }
+
+    /* Shuffle Button */
+    .shuffle-button {
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 20px;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .shuffle-button:hover {
+      background: var(--card-bg);
+      transform: scale(1.1);
+    }
+
+    .shuffle-button.shuffling svg {
+      animation: rotate360 0.5s ease-in-out;
+    }
+
+    /* Enable SVG transformations on circles */
+    .shuffle-button svg circle {
+      transform-origin: center center;
+      transform-box: fill-box;
+    }
+
+    /* Theme toggle animations */
+    .theme-toggle svg path {
+      transform-origin: center center;
+      transform-box: fill-box;
+    }
+
+    /* Big Bang expansion - sun expands outward dramatically */
+    @keyframes bigBangExpansion {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      30% {
+        transform: scale(1.5);
+        opacity: 0.8;
+      }
+      70% {
+        transform: scale(4);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* Black hole implosion - moon gets sucked into singularity */
+    @keyframes blackHoleImplosion {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      30% {
+        transform: scale(0.7);
+        opacity: 0.8;
+      }
+      70% {
+        transform: scale(0.05);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(0);
+        opacity: 0;
+      }
+    }
+
+    /* New icon appears - fades in from nothing */
+    @keyframes cosmicAppear {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes rotate360 {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Bubble animations for shuffle dots - rise up and return from below */
+    @keyframes bubble1 {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      45% {
+        transform: translate(-8px, -12px) scale(1.3);
+        opacity: 0;
+      }
+      50% {
+        transform: translate(-8px, 20px) scale(0.5);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bubble2 {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      45% {
+        transform: translate(10px, -15px) scale(1.5);
+        opacity: 0;
+      }
+      50% {
+        transform: translate(10px, 20px) scale(0.5);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bubble3 {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      45% {
+        transform: translate(-5px, -18px) scale(1.2);
+        opacity: 0;
+      }
+      50% {
+        transform: translate(-5px, 20px) scale(0.5);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bubble4 {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      45% {
+        transform: translate(12px, -10px) scale(1.4);
+        opacity: 0;
+      }
+      50% {
+        transform: translate(12px, 20px) scale(0.5);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bubble5 {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      45% {
+        transform: translate(-10px, -20px) scale(1.6);
+        opacity: 0;
+      }
+      50% {
+        transform: translate(-10px, 20px) scale(0.5);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bubble6 {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      45% {
+        transform: translate(9px, -14px) scale(1.3);
+        opacity: 0;
+      }
+      50% {
+        transform: translate(9px, 20px) scale(0.5);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bubble7 {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      45% {
+        transform: translate(-12px, -8px) scale(1.5);
+        opacity: 0;
+      }
+      50% {
+        transform: translate(-12px, 20px) scale(0.5);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
     }
 
     /* Main Content - Full Width */
@@ -1032,6 +1264,11 @@ const currentYear = new Date().getFullYear();
         font-size: 18px;
         padding: 8px;
       }
+
+      .shuffle-button {
+        font-size: 18px;
+        padding: 8px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -1055,6 +1292,11 @@ const currentYear = new Date().getFullYear();
       }
 
       .theme-toggle {
+        font-size: 16px;
+        padding: 6px;
+      }
+
+      .shuffle-button {
         font-size: 16px;
         padding: 6px;
       }
@@ -1108,6 +1350,7 @@ const currentYear = new Date().getFullYear();
     .header,
     .theme-toggle,
     .instagram-link,
+    .shuffle-button,
     .filter-tab,
     .floating-filter {
       transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
@@ -1159,6 +1402,17 @@ const currentYear = new Date().getFullYear();
             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
           </svg>
         </a>
+        <button class="shuffle-button" id="shuffleButton" aria-label="Shuffle photos">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="6" cy="6" r="2"></circle>
+            <circle cx="18" cy="8" r="2"></circle>
+            <circle cx="8" cy="12" r="2"></circle>
+            <circle cx="16" cy="16" r="2"></circle>
+            <circle cx="12" cy="20" r="2"></circle>
+            <circle cx="20" cy="18" r="2"></circle>
+            <circle cx="4" cy="16" r="2"></circle>
+          </svg>
+        </button>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
           <span class="light-icon">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1368,14 +1622,44 @@ const currentYear = new Date().getFullYear();
           const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
           devLog('Switching to:', nextTheme);
 
-          // Apply theme immediately
-          currentTheme = nextTheme;
-          applyTheme(currentTheme);
+          // Animate the current icon disappearing
+          const currentIcon = themeToggle.querySelector('.light-icon, .dark-icon:not([style*="display: none"])');
+          const currentPath = currentIcon?.querySelector('path');
 
-          // Quick debounce reset
+          if (currentPath) {
+            // Clear any existing animation
+            (currentPath as unknown as HTMLElement).style.animation = 'none';
+            void themeToggle.offsetWidth; // Force reflow
+
+            // Big Bang expansion (sun disappears when switching to dark)
+            // Black Hole implosion (moon disappears when switching to light)
+            const exitAnimation = currentTheme === 'light' ? 'bigBangExpansion' : 'blackHoleImplosion';
+            (currentPath as unknown as HTMLElement).style.animation = `${exitAnimation} 1.2s ease-out forwards`;
+
+            devLog(`Playing ${exitAnimation} animation on current icon`);
+          }
+
+          // Apply theme after a brief delay to let the exit animation start
+          setTimeout(() => {
+            currentTheme = nextTheme;
+            applyTheme(currentTheme);
+
+            // Animate the new icon appearing from nothing
+            setTimeout(() => {
+              const newIcon = themeToggle.querySelector('.light-icon, .dark-icon:not([style*="display: none"])');
+              const newPath = newIcon?.querySelector('path');
+
+              if (newPath) {
+                (newPath as unknown as HTMLElement).style.animation = 'cosmicAppear 0.8s ease-out forwards';
+                devLog('New icon appearing with cosmicAppear animation');
+              }
+            }, 100);
+          }, 400);
+
+          // Reset debounce - allow clicking again once theme switches
           setTimeout(() => {
             isToggling = false;
-          }, 100);
+          }, 600);
         });
         devLog('Theme toggle event listener added');
       } else {
@@ -1821,6 +2105,89 @@ const currentYear = new Date().getFullYear();
           }
         }
       });
+
+      // Shuffle functionality - Fisher-Yates algorithm
+      function shuffleArray<T>(array: T[]): T[] {
+        const shuffled = [...array]; // Create a copy to avoid mutating original
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const temp = shuffled[i];
+          shuffled[i] = shuffled[j] as T;
+          shuffled[j] = temp as T;
+        }
+        return shuffled;
+      }
+
+      function shuffleGallery() {
+        devLog('Shuffling gallery...');
+
+        // Get the gallery container
+        const galleryGrid = document.querySelector('.gallery-grid');
+        if (!galleryGrid) return;
+
+        // Shuffle the visible items array
+        const shuffledItems = shuffleArray(visibleItems);
+
+        // Re-append items to the DOM in the shuffled order
+        shuffledItems.forEach((item) => {
+          if (item.parentElement === galleryGrid) {
+            galleryGrid.appendChild(item);
+          }
+        });
+
+        // Update the visibleItems array to reflect the new order
+        visibleItems = shuffledItems;
+
+        // Add a subtle animation to show the shuffle happened
+        shuffledItems.forEach((item, index) => {
+          (item as HTMLElement).style.animation = 'none';
+          (item as HTMLElement).offsetHeight; // Trigger reflow
+          (item as HTMLElement).style.animation = `fadeInScale 0.4s ease-out ${index * 0.01}s`;
+        });
+
+        devLog('Gallery shuffled with', visibleItems.length, 'visible items');
+      }
+
+      // Shuffle button event listener
+      const shuffleButton = document.getElementById('shuffleButton');
+      if (shuffleButton) {
+        shuffleButton.addEventListener('click', () => {
+          // Add bubbling class for bubble animation
+          shuffleButton.classList.add('bubbling');
+          const circles = shuffleButton.querySelectorAll('circle');
+
+          devLog('Shuffle clicked! Found', circles.length, 'circles');
+
+          // First, clear any existing animations to allow re-triggering
+          circles.forEach(circle => {
+            (circle as unknown as HTMLElement).style.animation = 'none';
+          });
+
+          // Force a reflow to restart the animation
+          void shuffleButton.offsetWidth;
+
+          // Apply random bubble animations to each circle
+          circles.forEach((circle, index) => {
+            const animationName = `bubble${(index % 7) + 1}`;
+            const delay = Math.random() * 0.1;
+            const duration = 0.8 + Math.random() * 0.2; // Full cycle duration
+
+            const animationString = `${animationName} ${duration}s ease-in-out ${delay}s`;
+            (circle as unknown as HTMLElement).style.animation = animationString;
+
+            devLog(`Circle ${index}: applying animation "${animationString}"`);
+          });
+
+          // Trigger the shuffle
+          shuffleGallery();
+
+          // Remove bubbling class after animation completes
+          setTimeout(() => {
+            shuffleButton.classList.remove('bubbling');
+            devLog('Bubble animation complete');
+          }, 1100); // Time for animation to complete
+        });
+      }
 
 
       // Image protection helper function
