@@ -196,7 +196,7 @@ const currentYear = new Date().getFullYear();
       transform: scale(1.1);
     }
 
-    /* Theme Toggle */
+    /* Theme Toggle - Black & White Only */
     .theme-toggle {
       background: none;
       border: none;
@@ -206,11 +206,25 @@ const currentYear = new Date().getFullYear();
       padding: 10px;
       border-radius: 8px;
       transition: all 0.2s ease;
+      filter: none;
     }
 
     .theme-toggle:hover {
       background: var(--card-bg);
       transform: scale(1.1);
+    }
+
+    /* Ensure SVG icons are pure black or white */
+    .theme-toggle svg {
+      filter: none;
+    }
+
+    :root.light-theme .theme-toggle svg {
+      color: #000000;
+    }
+
+    :root:not(.light-theme) .theme-toggle svg {
+      color: #ffffff;
     }
 
     /* Shuffle Button */
@@ -243,60 +257,40 @@ const currentYear = new Date().getFullYear();
       transform-box: fill-box;
     }
 
-    /* Theme toggle animations */
+    /* Theme toggle animations - Squeeze Effect Only */
     .theme-toggle svg path {
       transform-origin: center center;
       transform-box: fill-box;
     }
 
-    /* Big Bang expansion - sun expands outward dramatically */
-    @keyframes bigBangExpansion {
+    /* Exit animation - Pure squeeze effect */
+    @keyframes exitIconAnimation {
       0% {
-        transform: scale(1);
+        transform: scaleX(1) scaleY(1);
         opacity: 1;
       }
-      30% {
-        transform: scale(1.5);
-        opacity: 0.8;
-      }
-      70% {
-        transform: scale(4);
+      50% {
+        transform: scaleX(0) scaleY(1.5);
         opacity: 0;
       }
       100% {
-        transform: scale(4);
+        transform: scaleX(0) scaleY(1.5);
         opacity: 0;
       }
     }
 
-    /* Black hole implosion - moon gets sucked into singularity */
-    @keyframes blackHoleImplosion {
+    /* Enter animation - Pure squeeze effect */
+    @keyframes enterIconAnimation {
       0% {
-        transform: scale(1);
-        opacity: 1;
+        transform: scaleX(0) scaleY(1.5);
+        opacity: 0;
       }
-      30% {
-        transform: scale(0.7);
-        opacity: 0.8;
-      }
-      70% {
-        transform: scale(0.05);
+      50% {
+        transform: scaleX(0) scaleY(1.5);
         opacity: 0;
       }
       100% {
-        transform: scale(0);
-        opacity: 0;
-      }
-    }
-
-    /* New icon appears - fades in from nothing */
-    @keyframes cosmicAppear {
-      0% {
-        transform: scale(0);
-        opacity: 0;
-      }
-      100% {
-        transform: scale(1);
+        transform: scaleX(1) scaleY(1);
         opacity: 1;
       }
     }
@@ -1252,7 +1246,7 @@ const currentYear = new Date().getFullYear();
 
       .header-controls {
         right: 15px;
-        gap: 6px;
+        gap: 2px;
       }
 
       .instagram-link {
@@ -1283,7 +1277,7 @@ const currentYear = new Date().getFullYear();
 
       .header-controls {
         right: 12px;
-        gap: 4px;
+        gap: 0px;
       }
 
       .instagram-link {
@@ -1631,35 +1625,33 @@ const currentYear = new Date().getFullYear();
             (currentPath as unknown as HTMLElement).style.animation = 'none';
             void themeToggle.offsetWidth; // Force reflow
 
-            // Big Bang expansion (sun disappears when switching to dark)
-            // Black Hole implosion (moon disappears when switching to light)
-            const exitAnimation = currentTheme === 'light' ? 'bigBangExpansion' : 'blackHoleImplosion';
-            (currentPath as unknown as HTMLElement).style.animation = `${exitAnimation} 1.2s ease-out forwards`;
+            // Pure squeeze exit animation - faster
+            (currentPath as unknown as HTMLElement).style.animation = `exitIconAnimation 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards`;
 
-            devLog(`Playing ${exitAnimation} animation on current icon`);
+            devLog(`Playing exitIconAnimation (squeeze) on current icon`);
           }
 
-          // Apply theme after a brief delay to let the exit animation start
+          // Apply theme quickly
           setTimeout(() => {
             currentTheme = nextTheme;
             applyTheme(currentTheme);
 
-            // Animate the new icon appearing from nothing
+            // Animate the new icon appearing immediately
             setTimeout(() => {
               const newIcon = themeToggle.querySelector('.light-icon, .dark-icon:not([style*="display: none"])');
               const newPath = newIcon?.querySelector('path');
 
               if (newPath) {
-                (newPath as unknown as HTMLElement).style.animation = 'cosmicAppear 0.8s ease-out forwards';
-                devLog('New icon appearing with cosmicAppear animation');
+                (newPath as unknown as HTMLElement).style.animation = 'enterIconAnimation 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards';
+                devLog('New icon appearing with enterIconAnimation (squeeze)');
               }
-            }, 100);
-          }, 400);
+            }, 20);
+          }, 150);
 
-          // Reset debounce - allow clicking again once theme switches
+          // Reset debounce - allow clicking again once animation completes
           setTimeout(() => {
             isToggling = false;
-          }, 600);
+          }, 500);
         });
         devLog('Theme toggle event listener added');
       } else {
