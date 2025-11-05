@@ -31,6 +31,11 @@ function formatCameraName(make, model) {
   if (!make) return model || 'Unknown Camera';
   if (!model) return make || 'Unknown Camera';
 
+  // Special case: SONY ILCE-7M3 -> Sony A7iii
+  if (model === 'ILCE-7M3' || model === 'SONY ILCE-7M3') {
+    return 'Sony A7iii';
+  }
+
   // Clean up duplicated brand names
   const cleanModel = model.replace(new RegExp(`^${make}\\s*`, 'i'), '');
   return `${make} ${cleanModel}`.trim();
@@ -38,7 +43,19 @@ function formatCameraName(make, model) {
 
 function formatLensName(lens) {
   if (!lens) return 'Unknown Lens';
-  return lens.toString();
+
+  let lensStr = lens.toString();
+
+  // Clean up iPhone lens names
+  // "iPhone 13 Pro back triple camera 1.57mm f/1.8" -> "iPhone 13 Pro"
+  if (lensStr.includes('iPhone') && lensStr.includes('back')) {
+    const match = lensStr.match(/(iPhone[^b]*)/);
+    if (match) {
+      return match[1].trim();
+    }
+  }
+
+  return lensStr;
 }
 
 function formatFocalLength(focalLength) {

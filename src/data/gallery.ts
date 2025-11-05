@@ -23,7 +23,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC04438",
     "href": "/gallery/optimized/DSC04438.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -40,7 +40,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC04445",
     "href": "/gallery/optimized/DSC04445.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -57,7 +57,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC04452",
     "href": "/gallery/optimized/DSC04452.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -74,7 +74,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC04463",
     "href": "/gallery/optimized/DSC04463.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -91,7 +91,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC04462",
     "href": "/gallery/optimized/DSC04462.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -108,7 +108,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC04467",
     "href": "/gallery/optimized/DSC04467.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -125,7 +125,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC04464",
     "href": "/gallery/optimized/DSC04464.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -142,7 +142,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC04475",
     "href": "/gallery/optimized/DSC04475.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -159,7 +159,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC04497",
     "href": "/gallery/optimized/DSC04497.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -176,7 +176,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC04514 2",
     "href": "/gallery/optimized/DSC04514-2.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -193,7 +193,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC04503",
     "href": "/gallery/optimized/DSC04503.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -211,7 +211,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_5150.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/2800s",
@@ -228,7 +228,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_2952_dng.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/1200s",
@@ -245,7 +245,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_6741.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/105s",
@@ -262,7 +262,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_6742.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/9400s",
@@ -296,7 +296,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_6842.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/100s",
@@ -313,7 +313,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_6845.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/50s",
@@ -330,7 +330,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_6846.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/120s",
@@ -343,11 +343,11 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "architecture"
   },
   {
-    "label": "FullSizeRender (1)",
-    "href": "/gallery/optimized/FullSizeRender-1.jpg",
+    "label": "IMG09416",
+    "href": "/gallery/optimized/IMG09416.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/10s",
@@ -360,11 +360,11 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "landscape"
   },
   {
-    "label": "FullSizeRender",
-    "href": "/gallery/optimized/FullSizeRender.jpg",
+    "label": "IMG09415",
+    "href": "/gallery/optimized/IMG09415.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/10s",
@@ -381,7 +381,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_7081.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/50s",
@@ -398,7 +398,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_7068.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/150s",
@@ -466,7 +466,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_8825.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/35s",
@@ -479,11 +479,11 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "architecture"
   },
   {
-    "label": "42835AB1 9853 4BB8 BCE0 F0093AC00044",
-    "href": "/gallery/optimized/42835AB1-9853-4BB8-BCE0-F0093AC00044.jpg",
+    "label": "IMG09414",
+    "href": "/gallery/optimized/IMG09414.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/100s",
@@ -496,11 +496,11 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "urban"
   },
   {
-    "label": "Snapseed",
-    "href": "/gallery/optimized/Snapseed.jpg",
+    "label": "IMG09413",
+    "href": "/gallery/optimized/IMG09413.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/100s",
@@ -517,7 +517,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_0081.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/808s",
@@ -534,7 +534,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_0082.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/846s",
@@ -551,7 +551,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_0079.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/1112s",
@@ -568,7 +568,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_0908.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/100s",
@@ -585,7 +585,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_1053.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/280s",
@@ -601,7 +601,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 2560",
     "href": "/gallery/optimized/IMG_2560.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 50mm F1.8",
       "focalLength": "50mm",
       "aperture": "f/10",
@@ -618,7 +618,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 2559",
     "href": "/gallery/optimized/IMG_2559.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 50mm F1.8",
       "focalLength": "50mm",
       "aperture": "f/10",
@@ -635,7 +635,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 1973",
     "href": "/gallery/optimized/IMG_1973.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 50mm F1.8",
       "focalLength": "50mm",
       "aperture": "f/22",
@@ -652,7 +652,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 1809",
     "href": "/gallery/optimized/IMG_1809.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 50mm F1.8",
       "focalLength": "50mm",
       "aperture": "f/22",
@@ -669,7 +669,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 1984",
     "href": "/gallery/optimized/IMG_1984.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 50mm F1.8",
       "focalLength": "50mm",
       "aperture": "f/1.8",
@@ -686,7 +686,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 1982",
     "href": "/gallery/optimized/IMG_1982.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 50mm F1.8",
       "focalLength": "50mm",
       "aperture": "f/22",
@@ -703,7 +703,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 1986",
     "href": "/gallery/optimized/IMG_1986.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 50mm F1.8",
       "focalLength": "50mm",
       "aperture": "f/22",
@@ -720,7 +720,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 1979",
     "href": "/gallery/optimized/IMG_1979.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 50mm F1.8",
       "focalLength": "50mm",
       "aperture": "f/1.8",
@@ -738,7 +738,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_2641.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/100s",
@@ -754,7 +754,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 2034",
     "href": "/gallery/optimized/IMG_2034.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 50mm F1.8",
       "focalLength": "50mm",
       "aperture": "f/14",
@@ -771,7 +771,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 1548",
     "href": "/gallery/optimized/IMG_1548.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 50mm F1.8",
       "focalLength": "50mm",
       "aperture": "f/22",
@@ -788,7 +788,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 1547",
     "href": "/gallery/optimized/IMG_1547.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 50mm F1.8",
       "focalLength": "50mm",
       "aperture": "f/22",
@@ -805,7 +805,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 1550",
     "href": "/gallery/optimized/IMG_1550.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 50mm F1.8",
       "focalLength": "50mm",
       "aperture": "f/22",
@@ -823,7 +823,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_8621.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/25s",
@@ -840,7 +840,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_8613.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/20s",
@@ -857,7 +857,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_2942.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/5s",
@@ -870,8 +870,8 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "urban"
   },
   {
-    "label": "53927FC3 EC2D 44B8 8037 10E31444BEFF",
-    "href": "/gallery/optimized/53927FC3-EC2D-44B8-8037-10E31444BEFF.jpg",
+    "label": "IMG09410",
+    "href": "/gallery/optimized/IMG09410.jpg",
     "metadata": {
       "camera": "Unknown Camera",
       "lens": "Unknown Lens",
@@ -887,8 +887,8 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "urban"
   },
   {
-    "label": "7801728D AA69 4E41 98C3 FF427C415458",
-    "href": "/gallery/optimized/7801728D-AA69-4E41-98C3-FF427C415458.jpg",
+    "label": "IMG09411",
+    "href": "/gallery/optimized/IMG09411.jpg",
     "metadata": {
       "camera": "Unknown Camera",
       "lens": "Unknown Lens",
@@ -904,8 +904,8 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "urban"
   },
   {
-    "label": "CADDB989 7615 4C12 8161 25A509F775A9",
-    "href": "/gallery/optimized/CADDB989-7615-4C12-8161-25A509F775A9.jpg",
+    "label": "IMG09412",
+    "href": "/gallery/optimized/IMG09412.jpg",
     "metadata": {
       "camera": "Unknown Camera",
       "lens": "Unknown Lens",
@@ -921,8 +921,8 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "urban"
   },
   {
-    "label": "2965DF35 717A 4BB9 9A1E 84F196D36C04",
-    "href": "/gallery/optimized/2965DF35-717A-4BB9-9A1E-84F196D36C04.jpg",
+    "label": "IMG09408",
+    "href": "/gallery/optimized/IMG09408.jpg",
     "metadata": {
       "camera": "Unknown Camera",
       "lens": "Unknown Lens",
@@ -938,8 +938,8 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "urban"
   },
   {
-    "label": "36F8DA73 32E7 4E2C 9577 78FD296356CC",
-    "href": "/gallery/optimized/36F8DA73-32E7-4E2C-9577-78FD296356CC.jpg",
+    "label": "IMG09409",
+    "href": "/gallery/optimized/IMG09409.jpg",
     "metadata": {
       "camera": "Unknown Camera",
       "lens": "Unknown Lens",
@@ -955,8 +955,8 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "urban"
   },
   {
-    "label": "B0FF3DA9 8366 4082 B45C 835F036F7C27",
-    "href": "/gallery/optimized/B0FF3DA9-8366-4082-B45C-835F036F7C27.jpg",
+    "label": "IMG09407",
+    "href": "/gallery/optimized/IMG09407.jpg",
     "metadata": {
       "camera": "Unknown Camera",
       "lens": "Unknown Lens",
@@ -1027,7 +1027,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_9204.jpg",
     "metadata": {
       "camera": "Unknown Camera",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "Unknown",
       "aperture": "f/2.8",
       "shutterSpeed": "Unknown",
@@ -1112,7 +1112,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_4898.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/738s",
@@ -1129,7 +1129,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_4921.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/30s",
@@ -1142,11 +1142,11 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "urban"
   },
   {
-    "label": "F7B309A2 63D7 4826 8E4A DA8D78F3B09A",
-    "href": "/gallery/optimized/F7B309A2-63D7-4826-8E4A-DA8D78F3B09A.jpg",
+    "label": "IMG09406",
+    "href": "/gallery/optimized/IMG09406.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 1.57mm f/1.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "2mm",
       "aperture": "f/1.8",
       "shutterSpeed": "1/100s",
@@ -1159,11 +1159,11 @@ export const galleryItems: GalleryItem[] = [
     "originalCategory": "bw"
   },
   {
-    "label": "5F36F9B4 840C 4CA6 95DD 50AA25820895",
-    "href": "/gallery/optimized/5F36F9B4-840C-4CA6-95DD-50AA25820895.jpg",
+    "label": "IMG09405",
+    "href": "/gallery/optimized/IMG09405.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/6211s",
@@ -1180,7 +1180,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_4782.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/34s",
@@ -1197,7 +1197,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_4792.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/2137s",
@@ -1214,7 +1214,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_4924.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/166s",
@@ -1231,7 +1231,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_4703.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/982s",
@@ -1248,7 +1248,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_4925.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/99s",
@@ -1265,7 +1265,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_4797.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/6211s",
@@ -1282,7 +1282,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_4793.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/72s",
@@ -1299,7 +1299,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_4633.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 1.57mm f/1.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "2mm",
       "aperture": "f/1.8",
       "shutterSpeed": "1/100s",
@@ -1315,7 +1315,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC08892",
     "href": "/gallery/optimized/DSC08892.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -1332,7 +1332,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC08899",
     "href": "/gallery/optimized/DSC08899.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -1349,7 +1349,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC08875",
     "href": "/gallery/optimized/DSC08875.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -1366,7 +1366,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC08865",
     "href": "/gallery/optimized/DSC08865.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -1383,7 +1383,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC08882",
     "href": "/gallery/optimized/DSC08882.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -1400,7 +1400,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC08827",
     "href": "/gallery/optimized/DSC08827.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -1417,7 +1417,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC08845",
     "href": "/gallery/optimized/DSC08845.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -1434,7 +1434,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC08817",
     "href": "/gallery/optimized/DSC08817.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -1451,7 +1451,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC08808",
     "href": "/gallery/optimized/DSC08808.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -1468,7 +1468,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC08818",
     "href": "/gallery/optimized/DSC08818.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -1485,7 +1485,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC08806",
     "href": "/gallery/optimized/DSC08806.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -1502,7 +1502,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC08799",
     "href": "/gallery/optimized/DSC08799.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -1519,7 +1519,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC08816",
     "href": "/gallery/optimized/DSC08816.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -1536,7 +1536,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC06428",
     "href": "/gallery/optimized/DSC06428.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -1553,7 +1553,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC08797",
     "href": "/gallery/optimized/DSC08797.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -1570,7 +1570,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC07488",
     "href": "/gallery/optimized/DSC07488.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -1587,7 +1587,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC06381",
     "href": "/gallery/optimized/DSC06381.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -1604,7 +1604,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC06375",
     "href": "/gallery/optimized/DSC06375.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -1621,7 +1621,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC06374",
     "href": "/gallery/optimized/DSC06374.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -1638,7 +1638,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC06378",
     "href": "/gallery/optimized/DSC06378.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -1655,7 +1655,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC06330",
     "href": "/gallery/optimized/DSC06330.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -1672,7 +1672,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC06329",
     "href": "/gallery/optimized/DSC06329.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -1689,7 +1689,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC04236",
     "href": "/gallery/optimized/DSC04236.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "24-70mm F2.8 DG DN II | Art 024",
       "focalLength": "31mm",
       "aperture": "f/5.6",
@@ -1706,7 +1706,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC05058",
     "href": "/gallery/optimized/DSC05058.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "24-70mm F2.8 DG DN II | Art 024",
       "focalLength": "24mm",
       "aperture": "f/9",
@@ -1723,7 +1723,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC05399",
     "href": "/gallery/optimized/DSC05399.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "24-70mm F2.8 DG DN II | Art 024",
       "focalLength": "70mm",
       "aperture": "f/8",
@@ -1741,7 +1741,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_5085.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/10000s",
@@ -1758,7 +1758,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_5105.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/4600s",
@@ -1775,7 +1775,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_5804.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/450s",
@@ -1791,7 +1791,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC02920",
     "href": "/gallery/optimized/DSC02920.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/4",
@@ -1809,7 +1809,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_5145.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/1100s",
@@ -1826,7 +1826,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_5009.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/540s",
@@ -1842,7 +1842,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC02909",
     "href": "/gallery/optimized/DSC02909.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/4",
@@ -1859,7 +1859,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC02870",
     "href": "/gallery/optimized/DSC02870.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/8",
@@ -1876,7 +1876,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC02898",
     "href": "/gallery/optimized/DSC02898.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/5.6",
@@ -1893,7 +1893,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC02855",
     "href": "/gallery/optimized/DSC02855.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/8",
@@ -1911,7 +1911,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_8547.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/50s",
@@ -1928,7 +1928,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_7951.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/17s",
@@ -1945,7 +1945,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_7952.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/20s",
@@ -1962,7 +1962,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_7942.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/20s",
@@ -1978,7 +1978,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC02190",
     "href": "/gallery/optimized/DSC02190.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/2.5",
@@ -1996,7 +1996,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_7948.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/8s",
@@ -2012,7 +2012,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC02199",
     "href": "/gallery/optimized/DSC02199.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/2.5",
@@ -2029,7 +2029,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC02194",
     "href": "/gallery/optimized/DSC02194.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/2.5",
@@ -2046,7 +2046,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC02187",
     "href": "/gallery/optimized/DSC02187.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/22",
@@ -2063,7 +2063,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC02130",
     "href": "/gallery/optimized/DSC02130.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/5.6",
@@ -2080,7 +2080,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC02138",
     "href": "/gallery/optimized/DSC02138.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/5.6",
@@ -2097,7 +2097,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC02078",
     "href": "/gallery/optimized/DSC02078.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/22",
@@ -2114,7 +2114,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC02125",
     "href": "/gallery/optimized/DSC02125.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/5.6",
@@ -2131,7 +2131,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC01913",
     "href": "/gallery/optimized/DSC01913.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/4",
@@ -2148,7 +2148,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC01979",
     "href": "/gallery/optimized/DSC01979.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/9",
@@ -2165,7 +2165,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC02104 HDR",
     "href": "/gallery/optimized/DSC02104-HDR.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/22",
@@ -2182,7 +2182,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC01955",
     "href": "/gallery/optimized/DSC01955.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/4",
@@ -2199,7 +2199,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC01894",
     "href": "/gallery/optimized/DSC01894.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/22",
@@ -2216,7 +2216,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC01941",
     "href": "/gallery/optimized/DSC01941.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/4",
@@ -2233,7 +2233,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC01880",
     "href": "/gallery/optimized/DSC01880.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/4",
@@ -2250,7 +2250,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC01465",
     "href": "/gallery/optimized/DSC01465.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 35mm F2.8 ZA",
       "focalLength": "35mm",
       "aperture": "f/22",
@@ -2267,7 +2267,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC01479",
     "href": "/gallery/optimized/DSC01479.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 35mm F2.8 ZA",
       "focalLength": "35mm",
       "aperture": "f/2.8",
@@ -2284,7 +2284,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC01471",
     "href": "/gallery/optimized/DSC01471.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 35mm F2.8 ZA",
       "focalLength": "35mm",
       "aperture": "f/22",
@@ -2301,7 +2301,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC01441",
     "href": "/gallery/optimized/DSC01441.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 35mm F2.8 ZA",
       "focalLength": "35mm",
       "aperture": "f/2.8",
@@ -2318,7 +2318,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC01401",
     "href": "/gallery/optimized/DSC01401.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 35mm F2.8 ZA",
       "focalLength": "35mm",
       "aperture": "f/22",
@@ -2335,7 +2335,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC01296",
     "href": "/gallery/optimized/DSC01296.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 35mm F2.8 ZA",
       "focalLength": "35mm",
       "aperture": "f/2.8",
@@ -2352,7 +2352,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC01127",
     "href": "/gallery/optimized/DSC01127.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 35mm F2.8 ZA",
       "focalLength": "35mm",
       "aperture": "f/2.8",
@@ -2369,7 +2369,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC01285",
     "href": "/gallery/optimized/DSC01285.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 35mm F2.8 ZA",
       "focalLength": "35mm",
       "aperture": "f/20",
@@ -2386,7 +2386,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC01010 2 Enhanced SR",
     "href": "/gallery/optimized/DSC01010-2-Enhanced-SR.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 35mm F2.8 ZA",
       "focalLength": "35mm",
       "aperture": "f/22",
@@ -2403,7 +2403,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC01278",
     "href": "/gallery/optimized/DSC01278.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 35mm F2.8 ZA",
       "focalLength": "35mm",
       "aperture": "f/20",
@@ -2420,7 +2420,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC01283 Original",
     "href": "/gallery/optimized/DSC01283_Original.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 35mm F2.8 ZA",
       "focalLength": "35mm",
       "aperture": "f/20",
@@ -2437,7 +2437,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC01270 Original",
     "href": "/gallery/optimized/DSC01270_Original.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 35mm F2.8 ZA",
       "focalLength": "35mm",
       "aperture": "f/20",
@@ -2454,7 +2454,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC00950",
     "href": "/gallery/optimized/DSC00950.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 35mm F2.8 ZA",
       "focalLength": "35mm",
       "aperture": "f/2.8",
@@ -2488,7 +2488,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC00932",
     "href": "/gallery/optimized/DSC00932.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 35mm F2.8 ZA",
       "focalLength": "35mm",
       "aperture": "f/2.8",
@@ -2505,7 +2505,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC00875",
     "href": "/gallery/optimized/DSC00875.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 35mm F2.8 ZA",
       "focalLength": "35mm",
       "aperture": "f/2.8",
@@ -2522,7 +2522,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC00795",
     "href": "/gallery/optimized/DSC00795.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 35mm F2.8 ZA",
       "focalLength": "35mm",
       "aperture": "f/2.8",
@@ -2540,7 +2540,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_8624.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/190s",
@@ -2556,7 +2556,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC00620",
     "href": "/gallery/optimized/DSC00620.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 50mm F1.8",
       "focalLength": "50mm",
       "aperture": "f/22",
@@ -2574,7 +2574,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_8811.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/2800s",
@@ -2591,7 +2591,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_8605.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/190s",
@@ -2625,7 +2625,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_8617.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/560s",
@@ -2659,7 +2659,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_8509.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/550s",
@@ -2693,7 +2693,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_4054_Original.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/10s",
@@ -2761,7 +2761,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_3403_Original.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/5s",
@@ -2778,7 +2778,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_3362_Original.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/25s",
@@ -2795,7 +2795,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_3399_Original.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/8s",
@@ -2914,7 +2914,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_8656_Original.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 5.7mm f/1.5",
+      "lens": "iPhone 13 Pro",
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/1200s",
@@ -2931,7 +2931,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_2323_Original.jpg",
     "metadata": {
       "camera": "Apple iPhone 13 Pro",
-      "lens": "iPhone 13 Pro back triple camera 9mm f/2.8",
+      "lens": "iPhone 13 Pro",
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/100s",
@@ -3016,7 +3016,7 @@ export const galleryItems: GalleryItem[] = [
     "href": "/gallery/optimized/IMG_4020_Original.jpg",
     "metadata": {
       "camera": "Apple iPhone 8",
-      "lens": "iPhone 8 back camera 3.99mm f/1.8",
+      "lens": "iPhone 8",
       "focalLength": "4mm",
       "aperture": "f/1.8",
       "shutterSpeed": "1/3700s",
@@ -3049,7 +3049,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC09404",
     "href": "/gallery/optimized/DSC09404.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -3066,7 +3066,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC09113",
     "href": "/gallery/optimized/DSC09113.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -3083,7 +3083,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC03833 2",
     "href": "/gallery/optimized/DSC03833-2.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/2.5",
@@ -3100,7 +3100,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC03763",
     "href": "/gallery/optimized/DSC03763.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/2.5",
@@ -3117,7 +3117,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC03647",
     "href": "/gallery/optimized/DSC03647.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/2.5",
@@ -3134,7 +3134,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC03629",
     "href": "/gallery/optimized/DSC03629.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/2.5",
@@ -3151,7 +3151,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC03629 2",
     "href": "/gallery/optimized/DSC03629-2.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/2.5",
@@ -3168,7 +3168,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC03564",
     "href": "/gallery/optimized/DSC03564.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -3185,7 +3185,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC03564 2",
     "href": "/gallery/optimized/DSC03564-2.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -3202,7 +3202,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC03555",
     "href": "/gallery/optimized/DSC03555.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -3219,7 +3219,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC03013",
     "href": "/gallery/optimized/DSC03013.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -3236,7 +3236,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC04703",
     "href": "/gallery/optimized/DSC04703.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "24-70mm F2.8 DG DN II | Art 024",
       "focalLength": "62mm",
       "aperture": "f/5.6",
@@ -3253,7 +3253,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC04697",
     "href": "/gallery/optimized/DSC04697.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "24-70mm F2.8 DG DN II | Art 024",
       "focalLength": "55mm",
       "aperture": "f/5.6",
@@ -3270,7 +3270,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC04696",
     "href": "/gallery/optimized/DSC04696.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "24-70mm F2.8 DG DN II | Art 024",
       "focalLength": "51mm",
       "aperture": "f/5.6",
@@ -3287,7 +3287,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC03729",
     "href": "/gallery/optimized/DSC03729.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/2.8",
@@ -3304,7 +3304,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC03647 2",
     "href": "/gallery/optimized/DSC03647-2.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "FE 40mm F2.5 G",
       "focalLength": "40mm",
       "aperture": "f/2.5",
@@ -3338,7 +3338,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC00759",
     "href": "/gallery/optimized/DSC00759.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -3355,7 +3355,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 4336",
     "href": "/gallery/optimized/IMG_4336.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -3372,7 +3372,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 4294",
     "href": "/gallery/optimized/IMG_4294.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
@@ -3474,7 +3474,7 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC03574 2",
     "href": "/gallery/optimized/DSC03574-2.jpg",
     "metadata": {
-      "camera": "SONY ILCE-7M3",
+      "camera": "Sony A7iii",
       "lens": "----",
       "focalLength": "Unknown",
       "aperture": "Unknown",
