@@ -17,7 +17,7 @@ const imageExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.avif'];
 
 // Category mappings
 const categories = [
-  { folder: 'street', value: 'street', label: 'Street Photography' },
+  { folder: 'urban', value: 'urban', label: 'Urban' },
   { folder: 'landscape', value: 'landscape', label: 'Landscape' },
   { folder: 'architecture', value: 'architecture', label: 'Architecture' },
   { folder: 'portrait', value: 'portrait', label: 'Portrait' },
@@ -221,13 +221,17 @@ async function buildGallery() {
         const photoId = cleanName || fileName;
 
         if (!photoTracker.has(photoId)) {
+          // Get file modification time for sorting
+          const fileStats = fs.statSync(filePath);
+
           photoTracker.set(photoId, {
             file: file,
             fileName: fileName,
             categories: new Set(),
             primaryFolder: category.folder,
             filePath: filePath,
-            cleanName: photoId
+            cleanName: photoId,
+            modifiedTime: fileStats.mtime
           });
 
           // Extract EXIF metadata from the image
@@ -336,7 +340,8 @@ async function buildGallery() {
       href: `/gallery/optimized/${optimizedFileName}`,
       metadata: metadataTracker.get(fileName),
       orientation: optimizationResult.orientation || 'landscape',
-      aspectRatio: optimizationResult.aspectRatio || '4:3'
+      aspectRatio: optimizationResult.aspectRatio || '4:3',
+      modifiedTime: photoData.modifiedTime.getTime() // Store as timestamp
     };
 
     // Add to 'all' category (shuffled later)
@@ -531,13 +536,18 @@ async function buildGallery() {
     return createBrickworkLayout(filteredResult);
   }
 
-  const shuffledAllPhotos = smartShuffleByFileNumber(allPhotos);
-  galleryItems.push(...shuffledAllPhotos);
+  // Sort by modification time (newest first) instead of shuffling
+  const sortedAllPhotos = allPhotos.sort((a, b) => b.modifiedTime - a.modifiedTime);
 
-  // Add category-specific photos
-  for (const [category, photos] of categoryPhotos) {
-    galleryItems.push(...photos);
-  }
+  console.log(`📅 Sorted ${sortedAllPhotos.length} photos by date (newest first)`);
+  console.log(`   Newest: ${sortedAllPhotos[0]?.label} (${new Date(sortedAllPhotos[0]?.modifiedTime).toLocaleDateString()})`);
+  console.log(`   Oldest: ${sortedAllPhotos[sortedAllPhotos.length - 1]?.label} (${new Date(sortedAllPhotos[sortedAllPhotos.length - 1]?.modifiedTime).toLocaleDateString()})`);
+
+  // Only push sortedAllPhotos - don't add category-specific duplicates
+  // Each photo already has its category stored in the 'originalCategory' field
+  galleryItems.push(...sortedAllPhotos);
+
+  console.log(`✅ Gallery built with ${galleryItems.length} unique photos (no duplicates)`);
 
   console.log(`\n📸 Total photo files: ${totalPhotos}`);
   console.log(`📸 Unique photos: ${uniquePhotos}`);
@@ -550,6 +560,7 @@ async function buildGallery() {
   originalCategory?: string;
   orientation?: 'landscape' | 'portrait' | 'square';
   aspectRatio?: string;
+  modifiedTime?: number;
   metadata?: {
     camera: string;
     lens: string;
@@ -566,7 +577,7 @@ export const galleryItems: GalleryItem[] = ${JSON.stringify(galleryItems, null, 
 
 export const categories = [
   { value: "all", label: "All" },
-  { value: "street", label: "Street Photography" },
+  { value: "urban", label: "Urban" },
   { value: "landscape", label: "Landscape" },
   { value: "architecture", label: "Architecture" },
   { value: "portrait", label: "Portrait" },
