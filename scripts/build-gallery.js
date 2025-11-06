@@ -27,9 +27,9 @@ const categories = [
 
 // EXIF formatting functions
 function formatCameraName(make, model) {
-  if (!make && !model) return 'Unknown Camera';
-  if (!make) return model || 'Unknown Camera';
-  if (!model) return make || 'Unknown Camera';
+  if (!make && !model) return '---';
+  if (!make) return model || '---';
+  if (!model) return make || '---';
 
   // Special case: SONY ILCE-7M3 -> Sony A7iii
   if (model === 'ILCE-7M3' || model === 'SONY ILCE-7M3') {
@@ -42,7 +42,7 @@ function formatCameraName(make, model) {
 }
 
 function formatLensName(lens) {
-  if (!lens) return 'Unknown Lens';
+  if (!lens) return '---';
 
   let lensStr = lens.toString();
 
@@ -59,17 +59,17 @@ function formatLensName(lens) {
 }
 
 function formatFocalLength(focalLength) {
-  if (!focalLength) return 'Unknown';
+  if (!focalLength) return '---';
   return `${Math.round(focalLength)}mm`;
 }
 
 function formatAperture(fNumber) {
-  if (!fNumber) return 'Unknown';
+  if (!fNumber) return '---';
   return `f/${fNumber}`;
 }
 
 function formatShutterSpeed(exposureTime) {
-  if (!exposureTime) return 'Unknown';
+  if (!exposureTime) return '---';
   if (exposureTime >= 1) {
     return `${exposureTime}s`;
   } else {
@@ -78,18 +78,46 @@ function formatShutterSpeed(exposureTime) {
 }
 
 function formatISO(iso) {
-  if (!iso) return 'Unknown';
+  if (!iso) return '---';
   return iso.toString();
+}
+
+function formatDate(dateTime) {
+  if (!dateTime) return '---';
+  const date = new Date(dateTime);
+  if (isNaN(date.getTime())) return '---';
+
+  // Format as "1 October 1992"
+  return date.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+}
+
+function formatTime(dateTime) {
+  if (!dateTime) return '---';
+  const date = new Date(dateTime);
+  if (isNaN(date.getTime())) return '---';
+
+  // Format as "14:30" (24-hour format)
+  return date.toLocaleTimeString('en-GB', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false
+  });
 }
 
 function getDefaultMetadata() {
   return {
-    camera: 'Unknown Camera',
-    lens: 'Unknown Lens',
-    focalLength: 'Unknown',
-    aperture: 'Unknown',
-    shutterSpeed: 'Unknown',
-    iso: 'Unknown'
+    camera: '---',
+    lens: '---',
+    focalLength: '---',
+    aperture: '---',
+    shutterSpeed: '---',
+    iso: '---',
+    date: '---',
+    time: '---'
   };
 }
 
@@ -254,8 +282,11 @@ async function buildGallery() {
           // Extract EXIF metadata from the image
           try {
             const exifData = await exifr.parse(filePath, {
-              pick: ['Make', 'Model', 'LensModel', 'FocalLength', 'FNumber', 'ExposureTime', 'ISO']
+              pick: ['Make', 'Model', 'LensModel', 'FocalLength', 'FNumber', 'ExposureTime', 'ISO', 'DateTimeOriginal', 'DateTime', 'CreateDate']
             });
+
+            // Try multiple date fields in order of preference
+            const dateTime = exifData?.DateTimeOriginal || exifData?.CreateDate || exifData?.DateTime;
 
             const metadata = {
               camera: formatCameraName(exifData?.Make, exifData?.Model),
@@ -263,7 +294,9 @@ async function buildGallery() {
               focalLength: formatFocalLength(exifData?.FocalLength),
               aperture: formatAperture(exifData?.FNumber),
               shutterSpeed: formatShutterSpeed(exifData?.ExposureTime),
-              iso: formatISO(exifData?.ISO)
+              iso: formatISO(exifData?.ISO),
+              date: formatDate(dateTime),
+              time: formatTime(dateTime)
             };
 
             metadataTracker.set(photoId, metadata);
@@ -585,6 +618,8 @@ async function buildGallery() {
     aperture: string;
     shutterSpeed: string;
     iso: string;
+    date: string;
+    time: string;
   };
 }
 

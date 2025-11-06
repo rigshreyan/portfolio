@@ -13,6 +13,9 @@ export interface GalleryItem {
     aperture: string;
     shutterSpeed: string;
     iso: string;
+    date: string;
+    time: string;
+    location?: string;
   };
 }
 
@@ -25,10 +28,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/800s",
-      "iso": "6400"
+      "iso": "6400",
+      "date": "2 November 2025",
+      "time": "13:57"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -42,10 +47,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/40s",
-      "iso": "320"
+      "iso": "320",
+      "date": "2 November 2025",
+      "time": "14:00"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -59,10 +66,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/160s",
-      "iso": "100"
+      "iso": "100",
+      "date": "2 November 2025",
+      "time": "14:09"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -76,10 +85,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/160s",
-      "iso": "200"
+      "iso": "200",
+      "date": "2 November 2025",
+      "time": "14:12"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -93,10 +104,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/160s",
-      "iso": "250"
+      "iso": "250",
+      "date": "2 November 2025",
+      "time": "14:12"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -110,10 +123,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/100s",
-      "iso": "125"
+      "iso": "125",
+      "date": "2 November 2025",
+      "time": "14:15"
     },
     "orientation": "portrait",
     "aspectRatio": "1365:2048",
@@ -127,10 +142,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/160s",
-      "iso": "320"
+      "iso": "320",
+      "date": "2 November 2025",
+      "time": "14:14"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -144,10 +161,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/200s",
-      "iso": "320"
+      "iso": "320",
+      "date": "2 November 2025",
+      "time": "14:15"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -161,10 +180,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/200s",
-      "iso": "125"
+      "iso": "125",
+      "date": "2 November 2025",
+      "time": "14:27"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -178,10 +199,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/80s",
-      "iso": "25600"
+      "iso": "25600",
+      "date": "2 November 2025",
+      "time": "18:41"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -195,10 +218,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/250s",
-      "iso": "20000"
+      "iso": "20000",
+      "date": "2 November 2025",
+      "time": "18:40"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -215,7 +240,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/2800s",
-      "iso": "50"
+      "iso": "50",
+      "date": "1 August 2023",
+      "time": "18:23"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -232,7 +259,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/1200s",
-      "iso": "32"
+      "iso": "32",
+      "date": "29 July 2023",
+      "time": "16:59"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -249,7 +278,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/105s",
-      "iso": "32"
+      "iso": "32",
+      "date": "26 August 2023",
+      "time": "18:06"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -266,7 +297,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/9400s",
-      "iso": "50"
+      "iso": "50",
+      "date": "26 August 2023",
+      "time": "18:39"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -278,12 +311,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 6750",
     "href": "/gallery/optimized/IMG_6750.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "30 August 2023",
+      "time": "00:36"
     },
     "orientation": "portrait",
     "aspectRatio": "1170:1560",
@@ -300,7 +335,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/100s",
-      "iso": "64"
+      "iso": "64",
+      "date": "25 October 2023",
+      "time": "17:45"
     },
     "orientation": "portrait",
     "aspectRatio": "2266:4029",
@@ -317,7 +354,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/50s",
-      "iso": "64"
+      "iso": "64",
+      "date": "25 October 2023",
+      "time": "17:44"
     },
     "orientation": "portrait",
     "aspectRatio": "3012:4016",
@@ -334,7 +373,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/120s",
-      "iso": "50"
+      "iso": "50",
+      "date": "25 October 2023",
+      "time": "17:51"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -351,7 +392,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/10s",
-      "iso": "1000"
+      "iso": "1000",
+      "date": "26 October 2023",
+      "time": "23:07"
     },
     "orientation": "landscape",
     "aspectRatio": "4032:3024",
@@ -368,7 +411,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/10s",
-      "iso": "1000"
+      "iso": "1000",
+      "date": "26 October 2023",
+      "time": "23:07"
     },
     "orientation": "landscape",
     "aspectRatio": "4032:3024",
@@ -385,7 +430,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/50s",
-      "iso": "500"
+      "iso": "500",
+      "date": "25 November 2023",
+      "time": "18:00"
     },
     "orientation": "portrait",
     "aspectRatio": "2717:3623",
@@ -402,7 +449,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/150s",
-      "iso": "32"
+      "iso": "32",
+      "date": "25 November 2023",
+      "time": "14:05"
     },
     "orientation": "portrait",
     "aspectRatio": "2142:2856",
@@ -414,12 +463,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 8066",
     "href": "/gallery/optimized/IMG_8066.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "15 January 2024",
+      "time": "23:53"
     },
     "orientation": "portrait",
     "aspectRatio": "1170:2532",
@@ -431,12 +482,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 8070",
     "href": "/gallery/optimized/IMG_8070.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "15 January 2024",
+      "time": "23:53"
     },
     "orientation": "portrait",
     "aspectRatio": "1170:2532",
@@ -448,12 +501,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 8069",
     "href": "/gallery/optimized/IMG_8069.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "16 January 2024",
+      "time": "00:13"
     },
     "orientation": "portrait",
     "aspectRatio": "1170:2532",
@@ -470,7 +525,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/35s",
-      "iso": "640"
+      "iso": "640",
+      "date": "27 October 2023",
+      "time": "20:24"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -487,7 +544,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/100s",
-      "iso": "64"
+      "iso": "64",
+      "date": "21 March 2024",
+      "time": "18:58"
     },
     "orientation": "square",
     "aspectRatio": "1957:1957",
@@ -504,7 +563,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/100s",
-      "iso": "64"
+      "iso": "64",
+      "date": "21 March 2024",
+      "time": "18:58"
     },
     "orientation": "square",
     "aspectRatio": "1957:1957",
@@ -521,7 +582,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/808s",
-      "iso": "50"
+      "iso": "50",
+      "date": "4 May 2024",
+      "time": "12:18"
     },
     "orientation": "portrait",
     "aspectRatio": "2845:3794",
@@ -538,7 +601,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/846s",
-      "iso": "50"
+      "iso": "50",
+      "date": "4 May 2024",
+      "time": "12:57"
     },
     "orientation": "portrait",
     "aspectRatio": "1790:2386",
@@ -555,7 +620,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/1112s",
-      "iso": "50"
+      "iso": "50",
+      "date": "4 May 2024",
+      "time": "13:22"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -572,7 +639,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/100s",
-      "iso": "32"
+      "iso": "32",
+      "date": "8 June 2024",
+      "time": "15:20"
     },
     "orientation": "portrait",
     "aspectRatio": "2929:3905",
@@ -589,7 +658,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/280s",
-      "iso": "32"
+      "iso": "32",
+      "date": "17 June 2024",
+      "time": "09:06"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -606,7 +677,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "50mm",
       "aperture": "f/10",
       "shutterSpeed": "1/250s",
-      "iso": "100"
+      "iso": "100",
+      "date": "22 June 2024",
+      "time": "12:25"
     },
     "orientation": "portrait",
     "aspectRatio": "2624:3936",
@@ -623,7 +696,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "50mm",
       "aperture": "f/10",
       "shutterSpeed": "1/250s",
-      "iso": "100"
+      "iso": "100",
+      "date": "22 June 2024",
+      "time": "12:25"
     },
     "orientation": "portrait",
     "aspectRatio": "2624:3936",
@@ -640,7 +715,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "50mm",
       "aperture": "f/22",
       "shutterSpeed": "1/50s",
-      "iso": "400"
+      "iso": "400",
+      "date": "23 June 2024",
+      "time": "17:42"
     },
     "orientation": "portrait",
     "aspectRatio": "4000:6000",
@@ -657,7 +734,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "50mm",
       "aperture": "f/22",
       "shutterSpeed": "1/50s",
-      "iso": "200"
+      "iso": "200",
+      "date": "23 June 2024",
+      "time": "17:44"
     },
     "orientation": "portrait",
     "aspectRatio": "4000:6000",
@@ -674,7 +753,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "50mm",
       "aperture": "f/1.8",
       "shutterSpeed": "1/8000s",
-      "iso": "100"
+      "iso": "100",
+      "date": "24 June 2024",
+      "time": "15:01"
     },
     "orientation": "square",
     "aspectRatio": "2528:2528",
@@ -691,7 +772,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "50mm",
       "aperture": "f/22",
       "shutterSpeed": "1/50s",
-      "iso": "1250"
+      "iso": "1250",
+      "date": "24 June 2024",
+      "time": "19:36"
     },
     "orientation": "landscape",
     "aspectRatio": "6000:4000",
@@ -708,7 +791,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "50mm",
       "aperture": "f/22",
       "shutterSpeed": "1/50s",
-      "iso": "320"
+      "iso": "320",
+      "date": "24 June 2024",
+      "time": "19:23"
     },
     "orientation": "landscape",
     "aspectRatio": "4804:3600",
@@ -725,7 +810,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "50mm",
       "aperture": "f/1.8",
       "shutterSpeed": "1/50s",
-      "iso": "6400"
+      "iso": "6400",
+      "date": "24 June 2024",
+      "time": "21:48"
     },
     "orientation": "portrait",
     "aspectRatio": "4000:6000",
@@ -742,7 +829,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/100s",
-      "iso": "64"
+      "iso": "64",
+      "date": "25 June 2024",
+      "time": "19:20"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -759,7 +848,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "50mm",
       "aperture": "f/14",
       "shutterSpeed": "1/50s",
-      "iso": "100"
+      "iso": "100",
+      "date": "26 June 2024",
+      "time": "18:16"
     },
     "orientation": "landscape",
     "aspectRatio": "6000:4000",
@@ -776,7 +867,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "50mm",
       "aperture": "f/22",
       "shutterSpeed": "1/80s",
-      "iso": "400"
+      "iso": "400",
+      "date": "22 June 2024",
+      "time": "11:21"
     },
     "orientation": "portrait",
     "aspectRatio": "2624:3936",
@@ -793,7 +886,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "50mm",
       "aperture": "f/22",
       "shutterSpeed": "1/80s",
-      "iso": "500"
+      "iso": "500",
+      "date": "22 June 2024",
+      "time": "11:21"
     },
     "orientation": "landscape",
     "aspectRatio": "3499:2624",
@@ -810,7 +905,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "50mm",
       "aperture": "f/22",
       "shutterSpeed": "1/80s",
-      "iso": "640"
+      "iso": "640",
+      "date": "22 June 2024",
+      "time": "19:13"
     },
     "orientation": "landscape",
     "aspectRatio": "3936:2624",
@@ -827,7 +924,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/25s",
-      "iso": "1250"
+      "iso": "1250",
+      "date": "7 December 2024",
+      "time": "18:18"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -844,7 +943,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/20s",
-      "iso": "1600"
+      "iso": "1600",
+      "date": "7 December 2024",
+      "time": "16:49"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -861,7 +962,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/5s",
-      "iso": "800"
+      "iso": "800",
+      "date": "4 March 2025",
+      "time": "21:25"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -873,12 +976,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG09410",
     "href": "/gallery/optimized/IMG09410.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "---",
+      "time": "---"
     },
     "orientation": "portrait",
     "aspectRatio": "1440:1800",
@@ -890,12 +995,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG09411",
     "href": "/gallery/optimized/IMG09411.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "---",
+      "time": "---"
     },
     "orientation": "portrait",
     "aspectRatio": "1440:1800",
@@ -907,12 +1014,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG09412",
     "href": "/gallery/optimized/IMG09412.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "---",
+      "time": "---"
     },
     "orientation": "portrait",
     "aspectRatio": "1440:1800",
@@ -924,12 +1033,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG09408",
     "href": "/gallery/optimized/IMG09408.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "---",
+      "time": "---"
     },
     "orientation": "portrait",
     "aspectRatio": "1440:1800",
@@ -941,12 +1052,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG09409",
     "href": "/gallery/optimized/IMG09409.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "---",
+      "time": "---"
     },
     "orientation": "portrait",
     "aspectRatio": "1440:1800",
@@ -958,12 +1071,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG09407",
     "href": "/gallery/optimized/IMG09407.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "---",
+      "time": "---"
     },
     "orientation": "portrait",
     "aspectRatio": "1440:1800",
@@ -975,12 +1090,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 8934",
     "href": "/gallery/optimized/IMG_8934.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "2 August 2025",
+      "time": "01:19"
     },
     "orientation": "landscape",
     "aspectRatio": "990:737",
@@ -992,12 +1109,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 9201",
     "href": "/gallery/optimized/IMG_9201.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "12 August 2025",
+      "time": "18:11"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -1009,12 +1128,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 9202",
     "href": "/gallery/optimized/IMG_9202.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "12 August 2025",
+      "time": "18:20"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -1026,12 +1147,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 9204",
     "href": "/gallery/optimized/IMG_9204.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
+      "camera": "---",
       "lens": "iPhone 13 Pro",
-      "focalLength": "Unknown",
+      "focalLength": "---",
       "aperture": "f/2.8",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "12 August 2025",
+      "time": "18:20"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -1043,12 +1166,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "DSC08341",
     "href": "/gallery/optimized/DSC08341.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "28 June 2025",
+      "time": "14:40"
     },
     "orientation": "portrait",
     "aspectRatio": "4000:6000",
@@ -1060,12 +1185,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 8840",
     "href": "/gallery/optimized/IMG_8840.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "30 July 2025",
+      "time": "16:20"
     },
     "orientation": "portrait",
     "aspectRatio": "1170:1411",
@@ -1077,12 +1204,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 8837",
     "href": "/gallery/optimized/IMG_8837.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "30 July 2025",
+      "time": "15:36"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -1094,12 +1223,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 8834",
     "href": "/gallery/optimized/IMG_8834.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "30 July 2025",
+      "time": "15:36"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -1116,7 +1247,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/738s",
-      "iso": "50"
+      "iso": "50",
+      "date": "22 August 2025",
+      "time": "19:59"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -1133,7 +1266,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/30s",
-      "iso": "2500"
+      "iso": "2500",
+      "date": "28 October 2025",
+      "time": "21:21"
     },
     "orientation": "portrait",
     "aspectRatio": "2160:3840",
@@ -1150,7 +1285,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "2mm",
       "aperture": "f/1.8",
       "shutterSpeed": "1/100s",
-      "iso": "250"
+      "iso": "250",
+      "date": "25 October 2025",
+      "time": "18:27"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -1167,7 +1304,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/6211s",
-      "iso": "50"
+      "iso": "50",
+      "date": "26 October 2025",
+      "time": "12:27"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -1184,7 +1323,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/34s",
-      "iso": "800"
+      "iso": "800",
+      "date": "26 October 2025",
+      "time": "17:34"
     },
     "orientation": "portrait",
     "aspectRatio": "2886:3848",
@@ -1201,7 +1342,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/2137s",
-      "iso": "32"
+      "iso": "32",
+      "date": "26 October 2025",
+      "time": "12:42"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -1218,7 +1361,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/166s",
-      "iso": "50"
+      "iso": "50",
+      "date": "26 October 2025",
+      "time": "12:41"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -1235,7 +1380,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/982s",
-      "iso": "50"
+      "iso": "50",
+      "date": "26 October 2025",
+      "time": "12:38"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -1252,7 +1399,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/99s",
-      "iso": "64"
+      "iso": "64",
+      "date": "26 October 2025",
+      "time": "12:37"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -1269,7 +1418,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/6211s",
-      "iso": "50"
+      "iso": "50",
+      "date": "26 October 2025",
+      "time": "12:27"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -1286,7 +1437,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/72s",
-      "iso": "200"
+      "iso": "200",
+      "date": "26 October 2025",
+      "time": "12:20"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -1303,7 +1456,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "2mm",
       "aperture": "f/1.8",
       "shutterSpeed": "1/100s",
-      "iso": "250"
+      "iso": "250",
+      "date": "25 October 2025",
+      "time": "18:27"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -1317,10 +1472,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/400s",
-      "iso": "1250"
+      "iso": "1250",
+      "date": "5 July 2025",
+      "time": "15:23"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1334,10 +1491,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/400s",
-      "iso": "160"
+      "iso": "160",
+      "date": "5 July 2025",
+      "time": "15:24"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1351,10 +1510,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/400s",
-      "iso": "320"
+      "iso": "320",
+      "date": "5 July 2025",
+      "time": "15:16"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1368,10 +1529,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/400s",
-      "iso": "1600"
+      "iso": "1600",
+      "date": "5 July 2025",
+      "time": "15:11"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1385,10 +1548,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/400s",
-      "iso": "20000"
+      "iso": "20000",
+      "date": "5 July 2025",
+      "time": "15:20"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1402,10 +1567,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/125s",
-      "iso": "6400"
+      "iso": "6400",
+      "date": "5 July 2025",
+      "time": "15:02"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1419,10 +1586,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/125s",
-      "iso": "800"
+      "iso": "800",
+      "date": "5 July 2025",
+      "time": "15:06"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1366",
@@ -1436,10 +1605,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/30s",
-      "iso": "1000"
+      "iso": "1000",
+      "date": "5 July 2025",
+      "time": "15:01"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1453,10 +1624,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/30s",
-      "iso": "1600"
+      "iso": "1600",
+      "date": "5 July 2025",
+      "time": "14:38"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1470,10 +1643,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/30s",
-      "iso": "400"
+      "iso": "400",
+      "date": "5 July 2025",
+      "time": "15:01"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1487,10 +1662,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/30s",
-      "iso": "2000"
+      "iso": "2000",
+      "date": "5 July 2025",
+      "time": "14:38"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1504,10 +1681,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/30s",
-      "iso": "160"
+      "iso": "160",
+      "date": "5 July 2025",
+      "time": "14:37"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1521,10 +1700,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/30s",
-      "iso": "800"
+      "iso": "800",
+      "date": "5 July 2025",
+      "time": "15:01"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1538,10 +1719,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/500s",
-      "iso": "100"
+      "iso": "100",
+      "date": "7 June 2025",
+      "time": "18:53"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1555,10 +1738,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/60s",
-      "iso": "100"
+      "iso": "100",
+      "date": "5 July 2025",
+      "time": "14:37"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1572,10 +1757,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/200s",
-      "iso": "100"
+      "iso": "100",
+      "date": "15 June 2025",
+      "time": "21:19"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1589,10 +1776,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/80s",
-      "iso": "100"
+      "iso": "100",
+      "date": "7 June 2025",
+      "time": "18:30"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1606,10 +1795,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/160s",
-      "iso": "100"
+      "iso": "100",
+      "date": "7 June 2025",
+      "time": "18:27"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1623,10 +1814,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/200s",
-      "iso": "100"
+      "iso": "100",
+      "date": "7 June 2025",
+      "time": "18:26"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1640,10 +1833,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/200s",
-      "iso": "100"
+      "iso": "100",
+      "date": "7 June 2025",
+      "time": "18:29"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1657,10 +1852,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/80s",
-      "iso": "100"
+      "iso": "100",
+      "date": "7 June 2025",
+      "time": "17:56"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1674,10 +1871,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/320s",
-      "iso": "100"
+      "iso": "100",
+      "date": "7 June 2025",
+      "time": "17:55"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1694,7 +1893,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "31mm",
       "aperture": "f/5.6",
       "shutterSpeed": "1/1000s",
-      "iso": "100"
+      "iso": "100",
+      "date": "10 May 2025",
+      "time": "14:09"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1711,7 +1912,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "24mm",
       "aperture": "f/9",
       "shutterSpeed": "1/50s",
-      "iso": "100"
+      "iso": "100",
+      "date": "13 May 2025",
+      "time": "17:44"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1728,7 +1931,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "70mm",
       "aperture": "f/8",
       "shutterSpeed": "1/80s",
-      "iso": "200"
+      "iso": "200",
+      "date": "14 May 2025",
+      "time": "21:08"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1369",
@@ -1745,7 +1950,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/10000s",
-      "iso": "50"
+      "iso": "50",
+      "date": "25 April 2025",
+      "time": "15:24"
     },
     "orientation": "portrait",
     "aspectRatio": "1536:2048",
@@ -1762,7 +1969,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/4600s",
-      "iso": "50"
+      "iso": "50",
+      "date": "25 April 2025",
+      "time": "15:37"
     },
     "orientation": "portrait",
     "aspectRatio": "1536:2048",
@@ -1779,7 +1988,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/450s",
-      "iso": "40"
+      "iso": "40",
+      "date": "9 May 2025",
+      "time": "18:13"
     },
     "orientation": "portrait",
     "aspectRatio": "1536:2048",
@@ -1796,7 +2007,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/4",
       "shutterSpeed": "1/160s",
-      "iso": "100"
+      "iso": "100",
+      "date": "8 March 2025",
+      "time": "17:57"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1813,7 +2026,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/1100s",
-      "iso": "32"
+      "iso": "32",
+      "date": "25 April 2025",
+      "time": "17:34"
     },
     "orientation": "portrait",
     "aspectRatio": "1536:2048",
@@ -1830,7 +2045,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/540s",
-      "iso": "32"
+      "iso": "32",
+      "date": "25 April 2025",
+      "time": "12:40"
     },
     "orientation": "portrait",
     "aspectRatio": "1536:2048",
@@ -1847,7 +2064,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/4",
       "shutterSpeed": "1/125s",
-      "iso": "100"
+      "iso": "100",
+      "date": "8 March 2025",
+      "time": "17:56"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -1864,7 +2083,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/8",
       "shutterSpeed": "1/200s",
-      "iso": "100"
+      "iso": "100",
+      "date": "8 March 2025",
+      "time": "17:47"
     },
     "orientation": "portrait",
     "aspectRatio": "1152:2048",
@@ -1881,7 +2102,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/5.6",
       "shutterSpeed": "1/60s",
-      "iso": "100"
+      "iso": "100",
+      "date": "8 March 2025",
+      "time": "17:53"
     },
     "orientation": "portrait",
     "aspectRatio": "1365:2048",
@@ -1898,7 +2121,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/8",
       "shutterSpeed": "1/200s",
-      "iso": "100"
+      "iso": "100",
+      "date": "8 March 2025",
+      "time": "17:26"
     },
     "orientation": "portrait",
     "aspectRatio": "1536:2048",
@@ -1915,7 +2140,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/50s",
-      "iso": "500"
+      "iso": "500",
+      "date": "7 December 2024",
+      "time": "18:05"
     },
     "orientation": "portrait",
     "aspectRatio": "1536:2048",
@@ -1932,7 +2159,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/17s",
-      "iso": "800"
+      "iso": "800",
+      "date": "16 November 2024",
+      "time": "20:29"
     },
     "orientation": "portrait",
     "aspectRatio": "1536:2048",
@@ -1949,7 +2178,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/20s",
-      "iso": "2500"
+      "iso": "2500",
+      "date": "16 November 2024",
+      "time": "20:30"
     },
     "orientation": "portrait",
     "aspectRatio": "1536:2048",
@@ -1966,7 +2197,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/20s",
-      "iso": "1250"
+      "iso": "1250",
+      "date": "16 November 2024",
+      "time": "20:27"
     },
     "orientation": "portrait",
     "aspectRatio": "1536:2048",
@@ -1983,7 +2216,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/2.5",
       "shutterSpeed": "1/5000s",
-      "iso": "100"
+      "iso": "100",
+      "date": "29 September 2024",
+      "time": "14:23"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2000,7 +2235,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/8s",
-      "iso": "1250"
+      "iso": "1250",
+      "date": "16 November 2024",
+      "time": "20:29"
     },
     "orientation": "portrait",
     "aspectRatio": "1536:2048",
@@ -2017,7 +2254,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/2.5",
       "shutterSpeed": "1/3200s",
-      "iso": "100"
+      "iso": "100",
+      "date": "29 September 2024",
+      "time": "14:32"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2034,7 +2273,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/2.5",
       "shutterSpeed": "1/2000s",
-      "iso": "100"
+      "iso": "100",
+      "date": "29 September 2024",
+      "time": "14:29"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2051,7 +2292,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/22",
       "shutterSpeed": "1/40s",
-      "iso": "200"
+      "iso": "200",
+      "date": "29 September 2024",
+      "time": "14:22"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2068,7 +2311,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/5.6",
       "shutterSpeed": "1/500s",
-      "iso": "100"
+      "iso": "100",
+      "date": "29 September 2024",
+      "time": "14:00"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2085,7 +2330,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/5.6",
       "shutterSpeed": "1/800s",
-      "iso": "100"
+      "iso": "100",
+      "date": "29 September 2024",
+      "time": "14:02"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2102,7 +2349,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/22",
       "shutterSpeed": "1/50s",
-      "iso": "100"
+      "iso": "100",
+      "date": "29 September 2024",
+      "time": "13:42"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2119,7 +2368,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/5.6",
       "shutterSpeed": "1/400s",
-      "iso": "100"
+      "iso": "100",
+      "date": "29 September 2024",
+      "time": "13:59"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2136,7 +2387,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/4",
       "shutterSpeed": "1/40s",
-      "iso": "1600"
+      "iso": "1600",
+      "date": "28 September 2024",
+      "time": "19:17"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2153,7 +2406,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/9",
       "shutterSpeed": "1/40s",
-      "iso": "10000"
+      "iso": "10000",
+      "date": "28 September 2024",
+      "time": "19:42"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2170,7 +2425,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/22",
       "shutterSpeed": "1/40s",
-      "iso": "100"
+      "iso": "100",
+      "date": "29 September 2024",
+      "time": "13:52"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2187,7 +2444,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/4",
       "shutterSpeed": "1/40s",
-      "iso": "2500"
+      "iso": "2500",
+      "date": "28 September 2024",
+      "time": "19:32"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2204,7 +2463,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/22",
       "shutterSpeed": "1/40s",
-      "iso": "2000"
+      "iso": "2000",
+      "date": "28 September 2024",
+      "time": "19:08"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2221,7 +2482,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/4",
       "shutterSpeed": "1/40s",
-      "iso": "1600"
+      "iso": "1600",
+      "date": "28 September 2024",
+      "time": "19:29"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2238,7 +2501,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/4",
       "shutterSpeed": "1/40s",
-      "iso": "160"
+      "iso": "160",
+      "date": "28 September 2024",
+      "time": "19:02"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2255,7 +2520,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "35mm",
       "aperture": "f/22",
       "shutterSpeed": "1/50s",
-      "iso": "100"
+      "iso": "100",
+      "date": "27 July 2024",
+      "time": "11:29"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2272,7 +2539,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "35mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/1000s",
-      "iso": "100"
+      "iso": "100",
+      "date": "27 July 2024",
+      "time": "11:41"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2289,7 +2558,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "35mm",
       "aperture": "f/22",
       "shutterSpeed": "1/50s",
-      "iso": "100"
+      "iso": "100",
+      "date": "27 July 2024",
+      "time": "11:40"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2306,7 +2577,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "35mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/40s",
-      "iso": "1250"
+      "iso": "1250",
+      "date": "26 July 2024",
+      "time": "21:12"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2323,7 +2596,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "35mm",
       "aperture": "f/22",
       "shutterSpeed": "1/40s",
-      "iso": "3200"
+      "iso": "3200",
+      "date": "26 July 2024",
+      "time": "20:26"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2340,7 +2615,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "35mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/500s",
-      "iso": "100"
+      "iso": "100",
+      "date": "26 July 2024",
+      "time": "17:36"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1536",
@@ -2357,7 +2634,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "35mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/3200s",
-      "iso": "100"
+      "iso": "100",
+      "date": "25 July 2024",
+      "time": "15:49"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2374,7 +2653,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "35mm",
       "aperture": "f/20",
       "shutterSpeed": "1/40s",
-      "iso": "250"
+      "iso": "250",
+      "date": "26 July 2024",
+      "time": "17:18"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1536",
@@ -2391,7 +2672,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "35mm",
       "aperture": "f/22",
       "shutterSpeed": "1/40s",
-      "iso": "3200"
+      "iso": "3200",
+      "date": "24 July 2024",
+      "time": "21:34"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2408,7 +2691,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "35mm",
       "aperture": "f/20",
       "shutterSpeed": "1/40s",
-      "iso": "160"
+      "iso": "160",
+      "date": "26 July 2024",
+      "time": "17:16"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2425,7 +2710,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "35mm",
       "aperture": "f/20",
       "shutterSpeed": "1/40s",
-      "iso": "160"
+      "iso": "160",
+      "date": "26 July 2024",
+      "time": "17:17"
     },
     "orientation": "portrait",
     "aspectRatio": "1365:2048",
@@ -2442,7 +2729,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "35mm",
       "aperture": "f/20",
       "shutterSpeed": "1/50s",
-      "iso": "100"
+      "iso": "100",
+      "date": "26 July 2024",
+      "time": "17:14"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2459,7 +2748,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "35mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/40s",
-      "iso": "800"
+      "iso": "800",
+      "date": "24 July 2024",
+      "time": "20:59"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1536",
@@ -2476,7 +2767,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "24mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/30s",
-      "iso": "800"
+      "iso": "800",
+      "date": "9 April 2023",
+      "time": "15:26"
     },
     "orientation": "portrait",
     "aspectRatio": "1152:2048",
@@ -2493,7 +2786,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "35mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/50s",
-      "iso": "100"
+      "iso": "100",
+      "date": "24 July 2024",
+      "time": "20:25"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2510,7 +2805,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "35mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/400s",
-      "iso": "100"
+      "iso": "100",
+      "date": "24 July 2024",
+      "time": "19:50"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2527,7 +2824,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "35mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/40s",
-      "iso": "2500"
+      "iso": "2500",
+      "date": "20 July 2024",
+      "time": "22:20"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2544,7 +2843,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/190s",
-      "iso": "32"
+      "iso": "32",
+      "date": "12 April 2023",
+      "time": "18:25"
     },
     "orientation": "portrait",
     "aspectRatio": "1536:2048",
@@ -2561,7 +2862,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "50mm",
       "aperture": "f/22",
       "shutterSpeed": "1/50s",
-      "iso": "200"
+      "iso": "200",
+      "date": "28 June 2024",
+      "time": "16:44"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1536",
@@ -2578,7 +2881,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/2800s",
-      "iso": "50"
+      "iso": "50",
+      "date": "14 April 2023",
+      "time": "15:54"
     },
     "orientation": "square",
     "aspectRatio": "2048:2048",
@@ -2595,7 +2900,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/190s",
-      "iso": "32"
+      "iso": "32",
+      "date": "12 April 2023",
+      "time": "18:21"
     },
     "orientation": "portrait",
     "aspectRatio": "1536:2048",
@@ -2612,7 +2919,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "24mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/40s",
-      "iso": "250"
+      "iso": "250",
+      "date": "9 April 2023",
+      "time": "15:28"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2629,7 +2938,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/560s",
-      "iso": "50"
+      "iso": "50",
+      "date": "12 April 2023",
+      "time": "18:23"
     },
     "orientation": "portrait",
     "aspectRatio": "1536:2048",
@@ -2646,7 +2957,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "24mm",
       "aperture": "f/18",
       "shutterSpeed": "1/30s",
-      "iso": "125"
+      "iso": "125",
+      "date": "9 April 2023",
+      "time": "14:29"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1638",
@@ -2663,7 +2976,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/550s",
-      "iso": "32"
+      "iso": "32",
+      "date": "12 April 2023",
+      "time": "17:47"
     },
     "orientation": "portrait",
     "aspectRatio": "1536:2048",
@@ -2675,12 +2990,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 7121",
     "href": "/gallery/optimized/IMG_7121.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "10 April 2023",
+      "time": "03:23"
     },
     "orientation": "portrait",
     "aspectRatio": "1536:2048",
@@ -2697,7 +3014,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/10s",
-      "iso": "500"
+      "iso": "500",
+      "date": "9 January 2023",
+      "time": "22:03"
     },
     "orientation": "portrait",
     "aspectRatio": "1536:2048",
@@ -2714,7 +3033,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "21mm",
       "aperture": "f/4.5",
       "shutterSpeed": "1/40s",
-      "iso": "1250"
+      "iso": "1250",
+      "date": "23 December 2022",
+      "time": "19:54"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1536",
@@ -2731,7 +3052,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "39mm",
       "aperture": "f/16",
       "shutterSpeed": "1/15s",
-      "iso": "6400"
+      "iso": "6400",
+      "date": "23 December 2022",
+      "time": "18:14"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2748,7 +3071,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "24mm",
       "aperture": "f/25",
       "shutterSpeed": "30s",
-      "iso": "200"
+      "iso": "200",
+      "date": "23 December 2022",
+      "time": "19:26"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2765,7 +3090,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/5s",
-      "iso": "1250"
+      "iso": "1250",
+      "date": "23 December 2022",
+      "time": "17:04"
     },
     "orientation": "portrait",
     "aspectRatio": "1536:2048",
@@ -2782,7 +3109,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/25s",
-      "iso": "1000"
+      "iso": "1000",
+      "date": "23 December 2022",
+      "time": "16:20"
     },
     "orientation": "portrait",
     "aspectRatio": "1536:2048",
@@ -2799,7 +3128,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/8s",
-      "iso": "1600"
+      "iso": "1600",
+      "date": "23 December 2022",
+      "time": "16:59"
     },
     "orientation": "portrait",
     "aspectRatio": "1536:2048",
@@ -2816,7 +3147,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "24mm",
       "aperture": "f/5.6",
       "shutterSpeed": "1/50s",
-      "iso": "3200"
+      "iso": "3200",
+      "date": "20 December 2022",
+      "time": "19:41"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2833,7 +3166,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "18mm",
       "aperture": "f/5.6",
       "shutterSpeed": "1/5s",
-      "iso": "6400"
+      "iso": "6400",
+      "date": "17 December 2022",
+      "time": "18:11"
     },
     "orientation": "portrait",
     "aspectRatio": "1365:2048",
@@ -2850,7 +3185,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "51mm",
       "aperture": "f/8",
       "shutterSpeed": "1/3s",
-      "iso": "6400"
+      "iso": "6400",
+      "date": "20 December 2022",
+      "time": "18:55"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2867,7 +3204,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "46mm",
       "aperture": "f/5",
       "shutterSpeed": "1/20s",
-      "iso": "6400"
+      "iso": "6400",
+      "date": "19 December 2022",
+      "time": "17:15"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2884,7 +3223,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "30mm",
       "aperture": "f/4.5",
       "shutterSpeed": "1/6s",
-      "iso": "1600"
+      "iso": "1600",
+      "date": "20 December 2022",
+      "time": "18:35"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2901,7 +3242,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "36mm",
       "aperture": "f/10",
       "shutterSpeed": "1/60s",
-      "iso": "500"
+      "iso": "500",
+      "date": "17 December 2022",
+      "time": "16:06"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2918,7 +3261,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "6mm",
       "aperture": "f/1.5",
       "shutterSpeed": "1/1200s",
-      "iso": "50"
+      "iso": "50",
+      "date": "25 August 2022",
+      "time": "19:37"
     },
     "orientation": "portrait",
     "aspectRatio": "1536:2048",
@@ -2935,7 +3280,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "9mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/100s",
-      "iso": "40"
+      "iso": "40",
+      "date": "20 November 2022",
+      "time": "12:28"
     },
     "orientation": "portrait",
     "aspectRatio": "1536:2048",
@@ -2952,7 +3299,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "18mm",
       "aperture": "f/9",
       "shutterSpeed": "1/200s",
-      "iso": "100"
+      "iso": "100",
+      "date": "27 May 2022",
+      "time": "04:17"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2969,7 +3318,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "24mm",
       "aperture": "f/9",
       "shutterSpeed": "1/200s",
-      "iso": "100"
+      "iso": "100",
+      "date": "27 May 2022",
+      "time": "04:16"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -2986,7 +3337,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "37mm",
       "aperture": "f/20",
       "shutterSpeed": "1/60s",
-      "iso": "1000"
+      "iso": "1000",
+      "date": "27 May 2022",
+      "time": "09:01"
     },
     "orientation": "portrait",
     "aspectRatio": "1365:2048",
@@ -3003,7 +3356,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "24mm",
       "aperture": "f/25",
       "shutterSpeed": "1/40s",
-      "iso": "160"
+      "iso": "160",
+      "date": "27 May 2022",
+      "time": "06:45"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -3020,7 +3375,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "4mm",
       "aperture": "f/1.8",
       "shutterSpeed": "1/3700s",
-      "iso": "20"
+      "iso": "20",
+      "date": "9 October 2020",
+      "time": "15:03"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -3037,7 +3394,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "43mm",
       "aperture": "f/25",
       "shutterSpeed": "1/80s",
-      "iso": "320"
+      "iso": "320",
+      "date": "2 July 2022",
+      "time": "14:24"
     },
     "orientation": "landscape",
     "aspectRatio": "2048:1365",
@@ -3051,10 +3410,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/30s",
-      "iso": "2500"
+      "iso": "2500",
+      "date": "12 July 2025",
+      "time": "16:18"
     },
     "orientation": "square",
     "aspectRatio": "4000:4000",
@@ -3068,10 +3429,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/50s",
-      "iso": "1250"
+      "iso": "1250",
+      "date": "5 July 2025",
+      "time": "19:20"
     },
     "orientation": "landscape",
     "aspectRatio": "6000:4000",
@@ -3088,7 +3451,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/2.5",
       "shutterSpeed": "1/1250s",
-      "iso": "1600"
+      "iso": "1600",
+      "date": "6 September 2025",
+      "time": "19:54"
     },
     "orientation": "landscape",
     "aspectRatio": "6000:4000",
@@ -3105,7 +3470,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/2.5",
       "shutterSpeed": "1/160s",
-      "iso": "2500"
+      "iso": "2500",
+      "date": "5 September 2025",
+      "time": "20:49"
     },
     "orientation": "landscape",
     "aspectRatio": "5661:3774",
@@ -3122,7 +3489,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/2.5",
       "shutterSpeed": "1/500s",
-      "iso": "400"
+      "iso": "400",
+      "date": "4 September 2025",
+      "time": "19:55"
     },
     "orientation": "landscape",
     "aspectRatio": "6000:4000",
@@ -3139,7 +3508,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/2.5",
       "shutterSpeed": "1/800s",
-      "iso": "200"
+      "iso": "200",
+      "date": "4 September 2025",
+      "time": "19:19"
     },
     "orientation": "landscape",
     "aspectRatio": "6000:4000",
@@ -3156,7 +3527,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/2.5",
       "shutterSpeed": "1/800s",
-      "iso": "200"
+      "iso": "200",
+      "date": "4 September 2025",
+      "time": "19:19"
     },
     "orientation": "landscape",
     "aspectRatio": "6000:4000",
@@ -3170,10 +3543,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/160s",
-      "iso": "2000"
+      "iso": "2000",
+      "date": "2 September 2025",
+      "time": "18:45"
     },
     "orientation": "landscape",
     "aspectRatio": "3936:2624",
@@ -3187,10 +3562,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/160s",
-      "iso": "2000"
+      "iso": "2000",
+      "date": "2 September 2025",
+      "time": "18:45"
     },
     "orientation": "landscape",
     "aspectRatio": "3936:2624",
@@ -3204,10 +3581,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/160s",
-      "iso": "2000"
+      "iso": "2000",
+      "date": "2 September 2025",
+      "time": "18:26"
     },
     "orientation": "landscape",
     "aspectRatio": "6000:4000",
@@ -3221,10 +3600,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/1000s",
-      "iso": "25600"
+      "iso": "25600",
+      "date": "25 August 2025",
+      "time": "20:39"
     },
     "orientation": "landscape",
     "aspectRatio": "6000:4000",
@@ -3241,7 +3622,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "62mm",
       "aperture": "f/5.6",
       "shutterSpeed": "1/80s",
-      "iso": "100"
+      "iso": "100",
+      "date": "13 May 2025",
+      "time": "08:36"
     },
     "orientation": "landscape",
     "aspectRatio": "6000:4000",
@@ -3258,7 +3641,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "55mm",
       "aperture": "f/5.6",
       "shutterSpeed": "1/60s",
-      "iso": "100"
+      "iso": "100",
+      "date": "13 May 2025",
+      "time": "08:36"
     },
     "orientation": "landscape",
     "aspectRatio": "6000:4000",
@@ -3275,7 +3660,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "51mm",
       "aperture": "f/5.6",
       "shutterSpeed": "1/60s",
-      "iso": "125"
+      "iso": "125",
+      "date": "13 May 2025",
+      "time": "08:35"
     },
     "orientation": "landscape",
     "aspectRatio": "6000:4000",
@@ -3292,7 +3679,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/2.8",
       "shutterSpeed": "1/500s",
-      "iso": "100"
+      "iso": "100",
+      "date": "5 September 2025",
+      "time": "17:19"
     },
     "orientation": "landscape",
     "aspectRatio": "3787:2525",
@@ -3309,7 +3698,9 @@ export const galleryItems: GalleryItem[] = [
       "focalLength": "40mm",
       "aperture": "f/2.5",
       "shutterSpeed": "1/500s",
-      "iso": "400"
+      "iso": "400",
+      "date": "4 September 2025",
+      "time": "19:55"
     },
     "orientation": "landscape",
     "aspectRatio": "6000:4000",
@@ -3321,12 +3712,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 4341",
     "href": "/gallery/optimized/IMG_4341.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "17 October 2025",
+      "time": "22:33"
     },
     "orientation": "landscape",
     "aspectRatio": "1169:781",
@@ -3340,10 +3733,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/200s",
-      "iso": "100"
+      "iso": "100",
+      "date": "17 August 2025",
+      "time": "14:41"
     },
     "orientation": "landscape",
     "aspectRatio": "6000:4000",
@@ -3357,10 +3752,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/200s",
-      "iso": "100"
+      "iso": "100",
+      "date": "17 August 2025",
+      "time": "14:41"
     },
     "orientation": "landscape",
     "aspectRatio": "6000:4000",
@@ -3374,10 +3771,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/250s",
-      "iso": "100"
+      "iso": "100",
+      "date": "2 September 2025",
+      "time": "19:41"
     },
     "orientation": "landscape",
     "aspectRatio": "6000:4000",
@@ -3389,12 +3788,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 4246",
     "href": "/gallery/optimized/IMG_4246.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "10 October 2025",
+      "time": "22:20"
     },
     "orientation": "square",
     "aspectRatio": "3024:3024",
@@ -3406,12 +3807,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 4243",
     "href": "/gallery/optimized/IMG_4243.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "10 October 2025",
+      "time": "22:18"
     },
     "orientation": "square",
     "aspectRatio": "2160:2160",
@@ -3423,12 +3826,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 4158",
     "href": "/gallery/optimized/IMG_4158.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "9 October 2025",
+      "time": "09:59"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4031",
@@ -3440,12 +3845,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 4157",
     "href": "/gallery/optimized/IMG_4157.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "9 October 2025",
+      "time": "09:59"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -3457,12 +3864,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 4127",
     "href": "/gallery/optimized/IMG_4127.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "9 October 2025",
+      "time": "09:54"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -3476,10 +3885,12 @@ export const galleryItems: GalleryItem[] = [
     "metadata": {
       "camera": "Sony A7iii",
       "lens": "----",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
+      "focalLength": "---",
+      "aperture": "---",
       "shutterSpeed": "1/160s",
-      "iso": "320"
+      "iso": "320",
+      "date": "2 September 2025",
+      "time": "19:39"
     },
     "orientation": "landscape",
     "aspectRatio": "6000:4000",
@@ -3491,12 +3902,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 3984",
     "href": "/gallery/optimized/IMG_3984.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "3 October 2025",
+      "time": "20:17"
     },
     "orientation": "portrait",
     "aspectRatio": "2264:4024",
@@ -3508,12 +3921,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 3985",
     "href": "/gallery/optimized/IMG_3985.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "3 October 2025",
+      "time": "20:10"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",
@@ -3525,12 +3940,14 @@ export const galleryItems: GalleryItem[] = [
     "label": "IMG 9320",
     "href": "/gallery/optimized/IMG_9320.jpg",
     "metadata": {
-      "camera": "Unknown Camera",
-      "lens": "Unknown Lens",
-      "focalLength": "Unknown",
-      "aperture": "Unknown",
-      "shutterSpeed": "Unknown",
-      "iso": "Unknown"
+      "camera": "---",
+      "lens": "---",
+      "focalLength": "---",
+      "aperture": "---",
+      "shutterSpeed": "---",
+      "iso": "---",
+      "date": "15 August 2025",
+      "time": "23:18"
     },
     "orientation": "portrait",
     "aspectRatio": "3024:4032",

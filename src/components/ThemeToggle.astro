@@ -27,14 +27,15 @@
   const themeToggleBtn = document.getElementById('theme-toggle');
   const html = document.documentElement;
 
-  // Check for saved theme preference or default to system preference
+  // Check for saved theme preference or default to time-based theme
   function getStoredTheme(): 'light' | 'dark' | null {
     const stored = localStorage.getItem('theme');
     return stored === 'dark' || stored === 'light' ? stored : null;
   }
 
-  function getSystemTheme(): 'light' | 'dark' {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  function getTimeBasedTheme(): 'light' | 'dark' {
+    const currentHour = new Date().getHours();
+    return currentHour < 18 ? 'light' : 'dark';
   }
 
   function setTheme(theme: 'light' | 'dark') {
@@ -46,9 +47,9 @@
     localStorage.setItem('theme', theme);
   }
 
-  // Initialize theme - use stored preference or system preference, defaulting to dark
+  // Initialize theme - use stored preference or time-based theme
   const storedTheme = getStoredTheme();
-  const currentTheme = storedTheme || getSystemTheme() || 'dark';
+  const currentTheme = storedTheme || getTimeBasedTheme();
   setTheme(currentTheme);
 
   // Toggle theme on button click
@@ -58,10 +59,5 @@
     setTheme(newTheme);
   });
 
-  // Listen for system theme changes
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (!getStoredTheme()) {
-      setTheme(e.matches ? 'dark' : 'light');
-    }
-  });
+  // No longer listening to system theme changes - using time-based theme instead
 </script>

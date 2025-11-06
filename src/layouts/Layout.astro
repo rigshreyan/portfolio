@@ -15,7 +15,18 @@ const { title } = Astro.props;
       (function() {
         try {
           const savedTheme = localStorage.getItem('theme');
-          const theme = (savedTheme === 'light' || savedTheme === 'dark') ? savedTheme : 'dark';
+          let theme;
+
+          // If user has manually set a theme preference, use that
+          if (savedTheme === 'light' || savedTheme === 'dark') {
+            theme = savedTheme;
+          } else {
+            // Otherwise, set theme based on time of day
+            const currentHour = new Date().getHours();
+            // Before 6 PM (18:00) = light mode, after = dark mode
+            theme = currentHour < 18 ? 'light' : 'dark';
+          }
+
           const root = document.documentElement;
 
           if (theme === 'light') {

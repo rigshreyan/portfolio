@@ -133,6 +133,12 @@ const currentYear = new Date().getFullYear();
       height: 60px;
       transition: all 0.3s ease;
       box-shadow: none;
+      /* Mobile-specific fixes for iOS Safari */
+      -webkit-position: fixed;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
 
@@ -155,6 +161,8 @@ const currentYear = new Date().getFullYear();
       left: 50%;
       transform: translateX(-50%);
       color: var(--text-primary);
+      text-align: center;
+      white-space: nowrap;
     }
 
     /* Header Controls */
@@ -688,31 +696,31 @@ const currentYear = new Date().getFullYear();
     .lightbox-close {
       position: absolute;
       top: 20px;
-      right: 20px;
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      left: 20px;
+      background: none;
+      border-top: 1px solid rgba(255,255,255,0.3);
+      border-left: none;
+      border-right: none;
+      border-bottom: none;
+      border-radius: 12px;
       color: white;
-      font-size: 20px;
-      font-weight: 400;
+      font-size: 18px;
+      font-weight: 200;
       cursor: pointer;
       padding: 0;
-      border-radius: 50%;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.3s ease;
       z-index: 2002;
       width: 36px;
       height: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
-      backdrop-filter: blur(8px);
-      opacity: 0.7;
+      opacity: 0.25;
     }
 
     .lightbox-close:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.4);
+      opacity: 0.7;
       transform: scale(1.05);
-      opacity: 1;
     }
 
     .metadata-section {
@@ -754,6 +762,76 @@ const currentYear = new Date().getFullYear();
       text-align: right;
       font-size: 13px;
       font-weight: 400;
+    }
+
+    .metadata-location-input {
+      background: var(--background-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 13px;
+      color: var(--text-primary);
+      width: 60%;
+      text-align: right;
+      font-family: inherit;
+    }
+
+    .metadata-location-input:focus {
+      outline: none;
+      border-color: var(--text-primary);
+    }
+
+    .metadata-location-input::placeholder {
+      color: var(--text-secondary);
+      opacity: 0.5;
+    }
+
+    /* Location dropdown */
+    .location-dropdown-container {
+      margin-top: 8px;
+      padding: 12px;
+      background: var(--background-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      max-width: 100%;
+    }
+
+    .location-dropdown-header {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .location-dropdown-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      max-height: 150px;
+      overflow-y: auto;
+    }
+
+    .location-dropdown-item {
+      padding: 6px 8px;
+      font-size: 13px;
+      color: var(--text-primary);
+      background: var(--background-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .location-dropdown-item:hover {
+      background: var(--text-primary);
+      color: var(--background-primary);
+      border-color: var(--text-primary);
+    }
+
+    .location-dropdown-item.current {
+      opacity: 0.5;
+      cursor: default;
+      pointer-events: none;
     }
 
     /* Description section */
@@ -818,37 +896,48 @@ const currentYear = new Date().getFullYear();
       text-align: right;
     }
 
-    /* Navigation Arrows - Visible but outside photo */
+    /* Navigation Arrows - Side borders only */
     .lightbox-nav {
-      position: absolute;
-      top: 50%;
+      position: fixed;
+      top: 50vh;
       transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 22px;
+      background: none;
+      color: white;
+      font-size: 32px;
+      font-weight: 200;
       cursor: pointer;
-      padding: 14px;
-      border-radius: 6px;
+      padding: 0;
       transition: all 0.3s ease;
-      opacity: 0.7;
+      opacity: 0.25;
       z-index: 2001;
+      line-height: 1;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
     }
 
     .lightbox-nav:hover {
-      background: rgba(255, 255, 255, 0.15);
-      color: rgba(255, 255, 255, 1);
-      border-color: rgba(255, 255, 255, 0.3);
-      opacity: 1;
+      opacity: 0.7;
       transform: translateY(-50%) scale(1.05);
     }
 
     .lightbox-prev {
-      left: 20px; /* At the left edge */
+      left: 20px;
+      border-left: 1px solid rgba(255,255,255,0.3);
+      border-top: none;
+      border-right: none;
+      border-bottom: none;
     }
 
     .lightbox-next {
-      right: 20px; /* At the right edge */
+      right: 370px; /* 350px sidebar + 20px padding */
+      border-right: 1px solid rgba(255,255,255,0.3);
+      border-top: none;
+      border-left: none;
+      border-bottom: none;
     }
 
     /* Responsive Design */
@@ -871,7 +960,7 @@ const currentYear = new Date().getFullYear();
       }
 
       .lightbox-next {
-        right: 15px; /* At the right edge */
+        right: 315px; /* 300px sidebar + 15px padding */
       }
     }
 
@@ -945,8 +1034,8 @@ const currentYear = new Date().getFullYear();
 
       .lightbox-sidebar {
         width: 100%;
-        height: 42%;
-        max-height: 42%;
+        height: 32%;
+        max-height: 32%;
         border-left: none;
         border-top: 1px solid var(--border-color);
         padding: 15px 18px;
@@ -1022,36 +1111,43 @@ const currentYear = new Date().getFullYear();
       }
 
       .lightbox-image-container {
-        height: 58%;
-        padding: 10px 45px; /* Horizontal padding for arrows */
+        height: 68%;
+        padding: 10px 35px; /* Horizontal padding for arrows */
         overflow: hidden;
       }
 
       .lightbox-nav {
-        padding: 10px;
-        font-size: 20px;
+        padding: 0;
+        font-size: 28px;
         width: 38px;
         height: 38px;
-        top: 58%;
+        top: 34%;
         transform: translateY(-50%);
-        opacity: 0.65;
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 255, 255, 0.15);
-        color: rgba(255, 255, 255, 0.65);
+        opacity: 0.4;
+        background: none;
+        color: white;
+        border-radius: 8px;
       }
 
       .lightbox-nav:hover,
       .lightbox-nav:active {
-        opacity: 1;
-        background: rgba(255, 255, 255, 0.15);
+        opacity: 0.7;
       }
 
       .lightbox-prev {
-        left: 10px; /* In the padding zone */
+        left: 5px;
+        border-left: 1px solid rgba(255,255,255,0.3);
+        border-top: none;
+        border-right: none;
+        border-bottom: none;
       }
 
       .lightbox-next {
-        right: 10px; /* In the padding zone */
+        right: 5px;
+        border-right: 1px solid rgba(255,255,255,0.3);
+        border-top: none;
+        border-left: none;
+        border-bottom: none;
       }
     }
 
@@ -1093,9 +1189,10 @@ const currentYear = new Date().getFullYear();
       .lightbox-close {
         width: 40px;
         height: 40px;
-        font-size: 18px;
+        font-size: 20px;
         top: 15px;
-        right: 15px;
+        left: 15px;
+        border-radius: 14px;
       }
 
       .metadata-item {
@@ -1148,8 +1245,8 @@ const currentYear = new Date().getFullYear();
       .lightbox-sidebar {
         padding: 12px 15px;
         padding-bottom: 12px;
-        height: 43%;
-        max-height: 43%;
+        height: 33%;
+        max-height: 33%;
       }
 
       .metadata-section {
@@ -1297,6 +1394,18 @@ const currentYear = new Date().getFullYear();
 
     /* Mobile header layout fixes */
     @media (max-width: 768px) {
+      /* Reinforce fixed positioning on mobile */
+      .header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+        will-change: transform;
+      }
+
       .location-time {
         flex-direction: column;
         align-items: flex-start;
@@ -1331,6 +1440,14 @@ const currentYear = new Date().getFullYear();
     }
 
     @media (max-width: 480px) {
+      /* Reinforce fixed positioning on smaller mobile devices */
+      .header {
+        position: fixed !important;
+        top: 0 !important;
+        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+      }
+
       .location-time {
         font-size: 13px;
         left: 15px;
@@ -1589,6 +1706,23 @@ const currentYear = new Date().getFullYear();
           <div class="metadata-item">
             <span class="metadata-label">ISO</span>
             <span class="metadata-value" id="metadataISO">400</span>
+          </div>
+          <div class="metadata-item">
+            <span class="metadata-label">Date</span>
+            <span class="metadata-value" id="metadataDate">---</span>
+          </div>
+          <div class="metadata-item">
+            <span class="metadata-label">Time</span>
+            <span class="metadata-value" id="metadataTime">---</span>
+          </div>
+          <div class="metadata-item" id="metadataLocationItem" style="display: none;">
+            <span class="metadata-label">Location</span>
+            <span class="metadata-value" id="metadataLocationDisplay"></span>
+            <input type="text" id="metadataLocationInput" class="metadata-location-input" placeholder="Enter location..." style="display: none;">
+          </div>
+          <div class="location-dropdown-container" id="locationDropdownContainer" style="display: none;">
+            <div class="location-dropdown-header">Other photos at this location:</div>
+            <div class="location-dropdown-list" id="locationDropdownList"></div>
           </div>
         </div>
 
@@ -1975,6 +2109,11 @@ const currentYear = new Date().getFullYear();
       const metadataAperture = document.getElementById('metadataAperture');
       const metadataShutterSpeed = document.getElementById('metadataShutterSpeed');
       const metadataISO = document.getElementById('metadataISO');
+      const metadataDate = document.getElementById('metadataDate');
+      const metadataTime = document.getElementById('metadataTime');
+      const metadataLocationItem = document.getElementById('metadataLocationItem');
+      const metadataLocationDisplay = document.getElementById('metadataLocationDisplay');
+      const metadataLocationInput = document.getElementById('metadataLocationInput');
 
       let currentImageIndex = 0;
       let visibleItems = [...galleryItems];
@@ -2110,21 +2249,147 @@ const currentYear = new Date().getFullYear();
 
         if (galleryItemData && galleryItemData.metadata) {
           const metadata = galleryItemData.metadata;
-          if (metadataCamera) metadataCamera.textContent = metadata.camera;
-          if (metadataLens) metadataLens.textContent = metadata.lens;
-          if (metadataFocalLength) metadataFocalLength.textContent = metadata.focalLength;
-          if (metadataAperture) metadataAperture.textContent = metadata.aperture;
-          if (metadataShutterSpeed) metadataShutterSpeed.textContent = metadata.shutterSpeed;
-          if (metadataISO) metadataISO.textContent = metadata.iso;
+          // Helper function to display "---" for unknown/empty values
+          const displayValue = (value: string) => {
+            return (value && value !== 'Unknown' && value !== 'Unknown Camera' && value !== 'Unknown Lens') ? value : '---';
+          };
+          if (metadataCamera) metadataCamera.textContent = displayValue(metadata.camera);
+          if (metadataLens) metadataLens.textContent = displayValue(metadata.lens);
+          if (metadataFocalLength) metadataFocalLength.textContent = displayValue(metadata.focalLength);
+          if (metadataAperture) metadataAperture.textContent = displayValue(metadata.aperture);
+          if (metadataShutterSpeed) metadataShutterSpeed.textContent = displayValue(metadata.shutterSpeed);
+          if (metadataISO) metadataISO.textContent = displayValue(metadata.iso);
+          if (metadataDate) metadataDate.textContent = displayValue(metadata.date);
+          if (metadataTime) metadataTime.textContent = displayValue(metadata.time);
         } else {
           // Fallback to default values if metadata not found
-          if (metadataCamera) metadataCamera.textContent = 'Unknown Camera';
-          if (metadataLens) metadataLens.textContent = 'Unknown Lens';
-          if (metadataFocalLength) metadataFocalLength.textContent = 'Unknown';
-          if (metadataAperture) metadataAperture.textContent = 'Unknown';
-          if (metadataShutterSpeed) metadataShutterSpeed.textContent = 'Unknown';
-          if (metadataISO) metadataISO.textContent = 'Unknown';
+          if (metadataCamera) metadataCamera.textContent = '---';
+          if (metadataLens) metadataLens.textContent = '---';
+          if (metadataFocalLength) metadataFocalLength.textContent = '---';
+          if (metadataAperture) metadataAperture.textContent = '---';
+          if (metadataShutterSpeed) metadataShutterSpeed.textContent = '---';
+          if (metadataISO) metadataISO.textContent = '---';
+          if (metadataDate) metadataDate.textContent = '---';
+          if (metadataTime) metadataTime.textContent = '---';
         }
+
+        // Handle location metadata (localhost only for editing)
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const imageLabel = galleryItemData ? galleryItemData.label : '';
+
+        // Load location from localStorage or gallery data
+        const savedLocations = JSON.parse(localStorage.getItem('photoLocations') || '{}');
+        let location = savedLocations[imageLabel] || (galleryItemData?.metadata?.location) || '';
+
+        if (metadataLocationItem && metadataLocationDisplay && metadataLocationInput) {
+          if (location || isLocalhost) {
+            // Show location item if location exists OR if on localhost
+            metadataLocationItem.style.display = 'flex';
+
+            if (isLocalhost) {
+              // On localhost: show input field, hide display
+              metadataLocationDisplay.style.display = 'none';
+              metadataLocationInput.style.display = 'block';
+              (metadataLocationInput as HTMLInputElement).value = location;
+
+              // Save location on input change
+              metadataLocationInput.onchange = () => {
+                const newLocation = (metadataLocationInput as HTMLInputElement).value.trim();
+                if (newLocation) {
+                  savedLocations[imageLabel] = newLocation;
+                  localStorage.setItem('photoLocations', JSON.stringify(savedLocations));
+                } else {
+                  delete savedLocations[imageLabel];
+                  localStorage.setItem('photoLocations', JSON.stringify(savedLocations));
+                  // Hide the item if location is empty and not on localhost display mode
+                  if (!isLocalhost) {
+                    metadataLocationItem.style.display = 'none';
+                  }
+                }
+                // Update dropdown after location change
+                updateLocationDropdown(newLocation, imageLabel);
+              };
+            } else {
+              // Not on localhost: show display only if location exists
+              metadataLocationDisplay.style.display = 'inline';
+              metadataLocationInput.style.display = 'none';
+              metadataLocationDisplay.textContent = location;
+            }
+          } else {
+            // No location and not localhost: hide completely
+            metadataLocationItem.style.display = 'none';
+          }
+        }
+
+        // Handle location dropdown - show other photos at same location
+        const locationDropdownContainer = document.getElementById('locationDropdownContainer');
+        const locationDropdownList = document.getElementById('locationDropdownList');
+
+        function updateLocationDropdown(currentLocation: string, currentImageLabel: string) {
+          if (!locationDropdownContainer || !locationDropdownList) return;
+
+          // Clear existing items
+          locationDropdownList.innerHTML = '';
+
+          if (!currentLocation) {
+            locationDropdownContainer.style.display = 'none';
+            return;
+          }
+
+          // Build location index from both localStorage and gallery data
+          const locationIndex: Record<string, string[]> = {};
+
+          // Add locations from localStorage
+          const savedLocations = JSON.parse(localStorage.getItem('photoLocations') || '{}') as Record<string, string>;
+          Object.keys(savedLocations).forEach((label: string) => {
+            const loc = savedLocations[label];
+            if (loc) {
+              if (!locationIndex[loc]) locationIndex[loc] = [];
+              locationIndex[loc].push(label);
+            }
+          });
+
+          // Add locations from gallery data
+          galleryItems.forEach((item: any) => {
+            if (item.metadata?.location) {
+              const loc = item.metadata.location;
+              if (!locationIndex[loc]) locationIndex[loc] = [];
+              if (!locationIndex[loc].includes(item.label)) {
+                locationIndex[loc].push(item.label);
+              }
+            }
+          });
+
+          // Get photos at the same location (excluding current photo)
+          const photosAtLocation = (locationIndex[currentLocation] || [])
+            .filter((label: string) => label !== currentImageLabel);
+
+          if (photosAtLocation.length === 0) {
+            locationDropdownContainer.style.display = 'none';
+            return;
+          }
+
+          // Show dropdown and populate with photos
+          locationDropdownContainer.style.display = 'block';
+
+          photosAtLocation.forEach((photoLabel: string) => {
+            const item = document.createElement('div');
+            item.className = 'location-dropdown-item';
+            item.textContent = photoLabel;
+            item.onclick = () => {
+              // Find the index of the photo in visibleItems
+              const photoIndex = visibleItems.findIndex((img: any) => img.label === photoLabel);
+              if (photoIndex !== -1) {
+                currentImageIndex = photoIndex;
+                openLightbox(currentImageIndex);
+              }
+            };
+            locationDropdownList.appendChild(item);
+          });
+        }
+
+        // Initial update of location dropdown
+        updateLocationDropdown(location, imageLabel);
 
         // Handle description/notes section
         const descriptionSection = document.getElementById('descriptionSection');
@@ -2158,7 +2423,12 @@ const currentYear = new Date().getFullYear();
         if (direction === 'next') {
           currentImageIndex = (currentImageIndex + 1) % visibleItems.length;
         } else {
-          currentImageIndex = (currentImageIndex - 1 + visibleItems.length) % visibleItems.length;
+          // Left arrow goes to a random photo (transient viewing)
+          let randomIndex;
+          do {
+            randomIndex = Math.floor(Math.random() * visibleItems.length);
+          } while (randomIndex === currentImageIndex && visibleItems.length > 1);
+          currentImageIndex = randomIndex;
         }
         openLightbox(currentImageIndex);
       }
