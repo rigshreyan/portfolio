@@ -1,4 +1,33 @@
 ---
+/*
+ * ============================================================================
+ * FEATURE INDEX - src/pages/album/[slug].astro
+ * ============================================================================
+ *
+ * FRONTMATTER (Lines 1-44)
+ * ├─ Imports (Lines 16-19)
+ * ├─ Static Path Generation (Line 21) - Creates pages for each gallery item
+ * └─ Album Photos Generation (Line 35)
+ *
+ * HTML (Lines 46-160)
+ * ├─ Navigation Bar (Line 48)
+ * ├─ Album Header (Line 68)
+ * ├─ Photo Grid (Line 91)
+ * │  ├─ Add Photo Button (Line 94)
+ * │  ├─ Masonry Gallery (Line 107)
+ * │  └─ Load More Button (Line 161)
+ * └─ Footer (Line 173)
+ *
+ * SCRIPT (Lines 176-258)
+ * └─ PhotoSwipe Lightbox Integration
+ *    ├─ Lightbox Initialization (Line 180)
+ *    ├─ Add Photo Handler (Line 190)
+ *    ├─ Load More Handler (Line 197)
+ *    └─ Smooth Scroll (Line 254)
+ *
+ * ============================================================================
+ */
+
 import Layout from '../../layouts/Layout.astro';
 import Footer from '../../components/Footer.astro';
 import { galleryItems } from '../../data/gallery';
@@ -159,6 +188,20 @@ const albumPhotos = Array.from({ length: 12 }, (_, i) => {
     <Footer />
   </div>
 
+  <!-- Custom styles for focus states -->
+  <style>
+    /* Remove default focus outline on gallery links */
+    .pswp-gallery a:focus {
+      outline: none;
+    }
+
+    /* Optional: Add subtle focus state for keyboard navigation only */
+    .pswp-gallery a:focus-visible {
+      outline: 2px solid rgba(59, 130, 246, 0.5);
+      outline-offset: 2px;
+    }
+  </style>
+
   <!-- PhotoSwipe Gallery Script -->
   <script>
     import PhotoSwipeLightbox from 'photoswipe/lightbox';
@@ -168,7 +211,66 @@ const albumPhotos = Array.from({ length: 12 }, (_, i) => {
       gallery: '#album-gallery',
       children: 'a',
       pswpModule: () => import('photoswipe'),
-      paddingFn: () => ({ top: 30, bottom: 30, left: 20, right: 20 })
+      paddingFn: () => ({ top: 30, bottom: 30, left: 20, right: 20 }),
+      loop: false // Disable looping to prevent seeing the same photo twice
+    });
+
+    // Add mobile touch navigation
+    lightbox.on('uiRegister', function() {
+      const pswp = lightbox.pswp;
+
+      // Check if we're on a mobile/touch device
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+      if (isTouchDevice && pswp) {
+        // Listen for tap events on the main image container
+        pswp.on('tapAction', (e) => {
+          // Only handle taps on the image itself, not on UI elements
+          const target = e.originalEvent.target as HTMLElement | null;
+          if (target && (target.classList.contains('pswp__img') ||
+              target.classList.contains('pswp__zoom-wrap') ||
+              target.closest('.pswp__container'))) {
+
+            const tapX = e.originalEvent.clientX || (e.originalEvent as any).touches?.[0]?.clientX;
+            const screenWidth = window.innerWidth;
+
+            // Divide screen into left (40%) and right (40%) zones
+            // Leave middle 20% for other interactions
+            if (tapX < screenWidth * 0.4) {
+              // Tap on left side - go to previous image
+              pswp.prev();
+            } else if (tapX > screenWidth * 0.6) {
+              // Tap on right side - go to next image
+              pswp.next();
+            }
+          }
+        });
+
+        // Alternative: Listen for click events directly on the container
+        pswp.on('bindEvents', () => {
+          const container = pswp.container;
+          if (container) {
+            container.addEventListener('click', (e) => {
+              // Check if click is on the image area (not UI buttons)
+              const target = e.target as HTMLElement | null;
+              const isUIElement = target && (target.closest('.pswp__button') ||
+                                  target.closest('.pswp__top-bar'));
+
+              if (!isUIElement) {
+                const clickX = e.clientX;
+                const screenWidth = window.innerWidth;
+
+                // Divide screen into left (40%) and right (40%) zones
+                if (clickX < screenWidth * 0.4) {
+                  pswp.prev();
+                } else if (clickX > screenWidth * 0.6) {
+                  pswp.next();
+                }
+              }
+            });
+          }
+        });
+      }
     });
 
     lightbox.init();
@@ -232,8 +334,57 @@ const albumPhotos = Array.from({ length: 12 }, (_, i) => {
         gallery: '#album-gallery',
         children: 'a',
         pswpModule: () => import('photoswipe'),
-        paddingFn: () => ({ top: 30, bottom: 30, left: 20, right: 20 })
+        paddingFn: () => ({ top: 30, bottom: 30, left: 20, right: 20 }),
+        loop: false // Disable looping to prevent seeing the same photo twice
       });
+
+      // Add mobile touch navigation for new lightbox instance
+      newLightbox.on('uiRegister', function() {
+        const pswp = newLightbox.pswp;
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+        if (isTouchDevice && pswp) {
+          pswp.on('tapAction', (e) => {
+            const target = e.originalEvent.target as HTMLElement | null;
+            if (target && (target.classList.contains('pswp__img') ||
+                target.classList.contains('pswp__zoom-wrap') ||
+                target.closest('.pswp__container'))) {
+
+              const tapX = e.originalEvent.clientX || (e.originalEvent as any).touches?.[0]?.clientX;
+              const screenWidth = window.innerWidth;
+
+              if (tapX < screenWidth * 0.4) {
+                pswp.prev();
+              } else if (tapX > screenWidth * 0.6) {
+                pswp.next();
+              }
+            }
+          });
+
+          pswp.on('bindEvents', () => {
+            const container = pswp.container;
+            if (container) {
+              container.addEventListener('click', (e) => {
+                const target = e.target as HTMLElement | null;
+                const isUIElement = target && (target.closest('.pswp__button') ||
+                                    target.closest('.pswp__top-bar'));
+
+                if (!isUIElement) {
+                  const clickX = e.clientX;
+                  const screenWidth = window.innerWidth;
+
+                  if (clickX < screenWidth * 0.4) {
+                    pswp.prev();
+                  } else if (clickX > screenWidth * 0.6) {
+                    pswp.next();
+                  }
+                }
+              });
+            }
+          });
+        }
+      });
+
       newLightbox.init();
     });
 

@@ -1,4 +1,27 @@
 ---
+/*
+ * ============================================================================
+ * FEATURE INDEX - src/layouts/Layout.astro
+ * ============================================================================
+ *
+ * FRONTMATTER (Lines 1-22)
+ * └─ Imports, types, and props
+ *
+ * HTML (Lines 23-113)
+ * ├─ Head Section (Lines 25-108)
+ * │  ├─ Theme Initialization Script (Line 27) - Time-based theme detection
+ * │  ├─ Meta Tags (Lines 62-70) - SEO and security headers
+ * │  ├─ Font Loading (Lines 72-74) - Inter font with preconnect
+ * │  └─ Global Styles (Lines 78-107)
+ * │     ├─ Body Typography (Line 79)
+ * │     ├─ Custom Scrollbar (Line 87)
+ * │     └─ Theme Transition Styles (Line 113)
+ * └─ Body (Lines 109-111)
+ *    └─ Slot for page content
+ *
+ * ============================================================================
+ */
+
 import { SEO_INFO } from '../consts';
 import { ClientRouter } from 'astro:transitions';
 

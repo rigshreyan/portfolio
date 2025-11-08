@@ -1,9 +1,137 @@
 ---
+/*
+ * ============================================================================
+ * FEATURE INDEX - src/pages/index.astro
+ * ============================================================================
+ *
+ * FRONTMATTER (Lines 1-23)
+ * └─ Imports and variables
+ *
+ * STYLES (Lines 24-1759)
+ * ├─ Theme Variables (Line 25)
+ * ├─ Theme Icon Visibility (Line 66)
+ * ├─ Reset and Base Styles (Line 83)
+ * ├─ Theme Transition Background (Line 108)
+ * ├─ Header Styles (Line 137)
+ * │  ├─ Fixed Seamless Header (Line 137)
+ * │  ├─ Header Controls (Line 182)
+ * │  ├─ Instagram Link (Line 191)
+ * │  ├─ Theme Toggle (Line 210)
+ * │  └─ Shuffle Button (Line 238)
+ * ├─ SVG Transformations (Line 265)
+ * ├─ Theme Toggle Animations (Line 279)
+ * ├─ Bubble Animations (Line 334)
+ * ├─ Main Content (Line 468)
+ * ├─ Masonry Gallery Layout (Line 478)
+ * ├─ Image Overlay (Line 569)
+ * ├─ Filter Banner (Line 596)
+ * ├─ Lightbox (Line 649)
+ * ├─ Location Manager Modal (Line 854)
+ * ├─ Navigation Arrows (Line 1099)
+ * ├─ Responsive Design (Line 1144)
+ * ├─ Loading Animation (Line 1539)
+ * ├─ Hidden Class (Line 1555)
+ * ├─ Focus States (Line 1560)
+ * ├─ Location and Time Display (Line 1571)
+ * ├─ Mobile Header Layout (Line 1603)
+ * ├─ Copyright Footer (Line 1694)
+ * └─ Performance Optimizations (Line 1723)
+ *
+ * HTML (Lines 1760-2016)
+ * ├─ Theme Transition Overlay (Line 1775)
+ * ├─ Header (Line 1779)
+ * │  ├─ Location/Time Display (Line 1781)
+ * │  ├─ Logo (Line 1785)
+ * │  └─ Header Controls (Line 1786)
+ * ├─ Main Content (Line 1823)
+ * │  ├─ Filter Banner (Line 1824)
+ * │  └─ Gallery Grid (Line 1848)
+ * ├─ Lightbox (Line 1871)
+ * │  ├─ Main Image (Line 1872)
+ * │  ├─ Sidebar (Line 1878)
+ * │  └─ Navigation Arrows (Line 1951)
+ * ├─ Location Manager Modal (Line 1967)
+ * └─ Gallery Data Script (Line 2001)
+ *
+ * SCRIPTS (Lines 2017-3990)
+ * ├─ Logging Utilities (Line 2018)
+ * ├─ Theme Initialization (Line 2030)
+ * ├─ DOMContentLoaded Handler (Line 2127)
+ * │  ├─ Gallery Data Loading (Line 2128)
+ * │  ├─ Progressive Image Loading (Line 2134)
+ * │  ├─ Image Error Handling (Line 2180)
+ * │  ├─ Category Filtering (Line 2262)
+ * │  ├─ Lightbox Functionality (Line 2421)
+ * │  ├─ Keyboard Navigation (Line 2784)
+ * │  ├─ Location Manager (Line 2894)
+ * │  ├─ Shuffle Functionality (Line 3198)
+ * │  ├─ Clock Display (Line 3534)
+ * │  └─ Animations (Line 3592)
+ * └─ Page Transition Handler (Line 3897)
+ *
+ * ============================================================================
+ */
+
 import Layout from '../layouts/Layout.astro';
-import { galleryItems, categories } from '../data/gallery';
+import { galleryItems as importedGalleryItems, categories } from '../data/gallery';
 
 const title = "Shreyan Sengupta";
 const currentYear = new Date().getFullYear();
+
+// In development mode, prioritize photos with missing data for easy editing
+let galleryItems = [...importedGalleryItems];
+if (import.meta.env.DEV) {
+  galleryItems.sort((a, b) => {
+    // Helper to check if location is missing or empty
+    const hasMissingLocation = (item: any) => {
+      return !item.metadata?.location ||
+             item.metadata.location === '' ||
+             item.metadata.location === '----' ||
+             item.metadata.location === 'Unknown';
+    };
+
+    // Helper to check if lens is missing or empty
+    const hasMissingLens = (item: any) => {
+      return !item.metadata?.lens ||
+             item.metadata.lens === '' ||
+             item.metadata.lens === '----' ||
+             item.metadata.lens === 'Unknown';
+    };
+
+    const aMissingLocation = hasMissingLocation(a);
+    const bMissingLocation = hasMissingLocation(b);
+    const aMissingLens = hasMissingLens(a);
+    const bMissingLens = hasMissingLens(b);
+
+    // Priority 1: Photos missing location data come first
+    if (aMissingLocation && !bMissingLocation) return -1;
+    if (!aMissingLocation && bMissingLocation) return 1;
+
+    // Priority 2: Among photos with location data (or both missing location),
+    // prioritize those missing lens data
+    if (!aMissingLocation && !bMissingLocation) {
+      if (aMissingLens && !bMissingLens) return -1;
+      if (!aMissingLens && bMissingLens) return 1;
+    }
+
+    // Keep original order for items with the same priority
+    return 0;
+  });
+
+  console.log('🔧 DEV MODE: Photos sorted to show missing data first');
+  console.log(`   - Photos missing location: ${galleryItems.filter((item: any) =>
+    !item.metadata?.location ||
+    item.metadata.location === '' ||
+    item.metadata.location === '----' ||
+    item.metadata.location === 'Unknown'
+  ).length}`);
+  console.log(`   - Photos missing lens: ${galleryItems.filter((item: any) =>
+    !item.metadata?.lens ||
+    item.metadata.lens === '' ||
+    item.metadata.lens === '----' ||
+    item.metadata.lens === 'Unknown'
+  ).length}`);
+}
 ---
 
 <Layout title={title}>
@@ -233,6 +361,11 @@ const currentYear = new Date().getFullYear();
       display: flex;
       align-items: center;
       justify-content: center;
+      /* Improve touch support on mobile */
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
     .shuffle-button:hover {
@@ -247,6 +380,77 @@ const currentYear = new Date().getFullYear();
     .shuffle-button svg circle {
       transform-origin: center center;
       transform-box: fill-box;
+      -webkit-transform-origin: center center;
+      -webkit-transform-box: fill-box;
+      will-change: transform, opacity;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      /* Force hardware acceleration on mobile */
+      transform: translate3d(0, 0, 0);
+      -webkit-transform: translate3d(0, 0, 0);
+    }
+
+    /* Dev Mode Toggle Button - Development Only */
+    .dev-mode-toggle {
+      background: none;
+      border: 1px solid var(--text-primary);
+      color: var(--text-primary);
+      cursor: pointer;
+      padding: 6px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+      font-size: 11px;
+      font-weight: 500;
+      opacity: 0.6;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .dev-mode-toggle:hover {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+
+    .dev-mode-toggle.prod-mode {
+      background: var(--text-primary);
+      color: var(--bg-primary);
+      opacity: 0.8;
+    }
+
+    .dev-mode-toggle.prod-mode:hover {
+      opacity: 1;
+    }
+
+    /* Larger font size for desktop */
+    @media (min-width: 769px) {
+      .dev-mode-toggle {
+        font-size: 13px;
+        padding: 8px 12px;
+      }
+    }
+
+    /* Production Preview Mode - Hide dev-only elements without affecting DOM state */
+    body.prod-preview-mode .location-shortcuts,
+    body.prod-preview-mode .category-dropdown-btn,
+    body.prod-preview-mode .category-dropdown-menu,
+    body.prod-preview-mode .location-input-container,
+    body.prod-preview-mode .lens-input-container,
+    body.prod-preview-mode .manage-locations-btn,
+    body.prod-preview-mode .manage-lenses-btn {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+      position: absolute !important;
+      left: -9999px !important;
     }
 
     /* Theme toggle animations - Squeeze Effect Only */
@@ -443,7 +647,10 @@ const currentYear = new Date().getFullYear();
       margin-top: 60px;
       padding: 30px;
       padding-bottom: 100px;
-      min-height: calc(100vh - 60px);
+      /* Fallback for older browsers */
+      min-height: calc(var(--vh, 1vh) * 100 - 60px);
+      /* Modern browsers with dvh support */
+      min-height: calc(100dvh - 60px);
       position: relative;
       z-index: 1;
     }
@@ -680,14 +887,22 @@ const currentYear = new Date().getFullYear();
       -moz-user-drag: none;
       -o-user-drag: none;
       user-drag: none;
+      /* Disable all transitions for instant photo switching */
+      transition: none !important;
+      /* Prevent any flashing or dimming during src changes */
+      will-change: contents;
+      /* Optimize rendering for smooth transitions */
+      image-rendering: -webkit-optimize-contrast;
+      /* Ensure image stays opaque during loading */
+      background-color: transparent;
     }
 
     .lightbox-sidebar {
       width: 350px;
       background: var(--lightbox-sidebar);
-      padding: 40px 30px;
-      padding-top: 120px;
-      padding-bottom: 80px;
+      padding: 16px 20px;
+      padding-top: 70px;
+      padding-bottom: 24px;
       overflow-y: auto;
       border-left: 1px solid var(--border-color);
       position: relative;
@@ -724,7 +939,7 @@ const currentYear = new Date().getFullYear();
     }
 
     .metadata-section {
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
     .metadata-title {
@@ -736,44 +951,87 @@ const currentYear = new Date().getFullYear();
     }
 
     .metadata-category {
-      font-size: 11px;
+      font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: var(--text-secondary);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       font-weight: 400;
     }
 
     .metadata-item {
       display: flex;
+      flex-direction: row;
       justify-content: space-between;
-      padding: 5px 0;
+      align-items: center;
+      padding: 3px 0;
       border-bottom: 1px solid var(--border-color);
+    }
+
+    /* Single-column layout for all metadata */
+    .metadata-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      width: 100%;
+      margin-top: 0;
+    }
+
+    .metadata-grid .metadata-item {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 3px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .metadata-grid .metadata-label {
+      font-size: 11px !important;
+      opacity: 0.7;
+      font-weight: 500;
+    }
+
+    .metadata-grid .metadata-value {
+      font-size: 11px !important;
+      text-align: right;
+      font-weight: 400;
     }
 
     .metadata-label {
       font-weight: 500;
       color: var(--text-primary);
-      font-size: 13px;
+      font-size: 11px;
+      line-height: 1.2;
+      opacity: 0.7;
     }
 
     .metadata-value {
       color: var(--text-secondary);
       text-align: right;
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 400;
+      line-height: 1.2;
+    }
+
+    .location-input-container {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      width: 60%;
+      justify-content: flex-end;
     }
 
     .metadata-location-input {
-      background: var(--background-primary);
+      background: var(--bg-primary);
       border: 1px solid var(--border-color);
       border-radius: 4px;
       padding: 4px 8px;
       font-size: 13px;
-      color: var(--text-primary);
-      width: 60%;
+      color: var(--text-secondary);
+      flex: 1;
       text-align: right;
-      font-family: inherit;
+      font-weight: 400;
     }
 
     .metadata-location-input:focus {
@@ -786,11 +1044,297 @@ const currentYear = new Date().getFullYear();
       opacity: 0.5;
     }
 
+    .manage-locations-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      color: var(--text-primary);
+      font-size: 14px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      padding: 0;
+    }
+
+    .manage-locations-btn:hover {
+      background: var(--text-primary);
+      color: var(--bg-primary);
+      border-color: var(--text-primary);
+    }
+
+    .location-shortcuts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      width: 100%;
+      justify-content: flex-start;
+      margin-top: 8px;
+      box-sizing: border-box;
+    }
+
+    .location-shortcut-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      color: var(--text-primary);
+      font-size: 11px;
+      padding: 4px 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      font-family: inherit;
+    }
+
+    .location-shortcut-btn:hover {
+      background: var(--text-primary);
+      color: var(--bg-primary);
+      border-color: var(--text-primary);
+    }
+
+    /* Category Multi-Select Dropdown */
+    .category-dropdown-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+      width: auto;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
+    .category-dropdown-display {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
+    .category-tag {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 2px 6px;
+      font-size: 9px;
+      color: var(--text-primary);
+      white-space: nowrap;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .category-dropdown-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      color: var(--text-primary);
+      font-size: 9px;
+      padding: 2px 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      line-height: 1;
+    }
+
+    .category-dropdown-btn:hover {
+      background: var(--text-primary);
+      color: var(--bg-primary);
+      border-color: var(--text-primary);
+    }
+
+    .category-dropdown-menu {
+      position: relative;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 8px;
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      max-height: 200px;
+      overflow-y: auto;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+    }
+
+    .category-dropdown-menu.active {
+      display: flex;
+    }
+
+    .category-dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 8px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.2s ease;
+      font-size: 12px;
+      color: var(--text-primary);
+    }
+
+    .category-dropdown-item:hover {
+      background: var(--bg-secondary);
+    }
+
+    .category-dropdown-item input[type="checkbox"] {
+      cursor: pointer;
+      width: 14px;
+      height: 14px;
+      accent-color: var(--text-primary);
+    }
+
+    .category-dropdown-item label {
+      cursor: pointer;
+      flex: 1;
+      user-select: none;
+    }
+
+    /* Location Manager Modal */
+    .location-manager-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 10001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .location-manager-content {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      max-width: 500px;
+      width: 100%;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .location-manager-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .location-manager-header h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .location-manager-close {
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 28px;
+      cursor: pointer;
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .location-manager-close:hover {
+      background: var(--bg-secondary);
+    }
+
+    .location-manager-list {
+      padding: 20px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .location-manager-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+
+    .location-manager-item-name {
+      flex: 1;
+      font-size: 14px;
+      color: var(--text-primary);
+      background: transparent;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .location-manager-item-name:focus {
+      outline: none;
+      background: var(--bg-primary);
+    }
+
+    .location-manager-item-name.readonly {
+      cursor: default;
+    }
+
+    .location-manager-item-count {
+      font-size: 12px;
+      color: var(--text-secondary);
+      padding: 2px 8px;
+      background: var(--bg-primary);
+      border-radius: 12px;
+    }
+
+    .location-manager-btn {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      color: var(--text-primary);
+      font-size: 12px;
+      padding: 4px 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .location-manager-btn:hover {
+      background: var(--text-primary);
+      color: var(--bg-primary);
+      border-color: var(--text-primary);
+    }
+
+    .location-manager-btn.delete:hover {
+      background: #e74c3c;
+      border-color: #e74c3c;
+      color: white;
+    }
+
+    .location-manager-empty {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 14px;
+      padding: 40px 20px;
+    }
+
     /* Location dropdown */
     .location-dropdown-container {
       margin-top: 8px;
       padding: 12px;
-      background: var(--background-secondary);
+      background: var(--bg-secondary);
       border: 1px solid var(--border-color);
       border-radius: 6px;
       max-width: 100%;
@@ -815,7 +1359,7 @@ const currentYear = new Date().getFullYear();
       padding: 6px 8px;
       font-size: 13px;
       color: var(--text-primary);
-      background: var(--background-primary);
+      background: var(--bg-primary);
       border: 1px solid var(--border-color);
       border-radius: 4px;
       cursor: pointer;
@@ -824,7 +1368,7 @@ const currentYear = new Date().getFullYear();
 
     .location-dropdown-item:hover {
       background: var(--text-primary);
-      color: var(--background-primary);
+      color: var(--bg-primary);
       border-color: var(--text-primary);
     }
 
@@ -834,33 +1378,223 @@ const currentYear = new Date().getFullYear();
       pointer-events: none;
     }
 
+    /* Lens styling */
+    .lens-input-container {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      width: 60%;
+      justify-content: flex-end;
+    }
+
+    .metadata-lens-input {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      flex: 1;
+      text-align: right;
+      font-family: inherit;
+      font-weight: 400;
+    }
+
+    .metadata-lens-input:focus {
+      outline: none;
+      border-color: var(--text-primary);
+    }
+
+    .metadata-lens-input::placeholder {
+      color: var(--text-secondary);
+      opacity: 0.5;
+    }
+
+    .manage-lenses-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      color: var(--text-primary);
+      font-size: 14px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      padding: 0;
+    }
+
+    .manage-lenses-btn:hover {
+      background: var(--text-primary);
+      color: var(--bg-primary);
+      border-color: var(--text-primary);
+    }
+
+    /* Lens Manager Modal */
+    .lens-manager-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 10001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .lens-manager-content {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      max-width: 500px;
+      width: 100%;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .lens-manager-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .lens-manager-header h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .lens-manager-close {
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 28px;
+      cursor: pointer;
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .lens-manager-close:hover {
+      background: var(--bg-secondary);
+    }
+
+    .lens-manager-list {
+      padding: 20px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .lens-manager-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+
+    .lens-manager-item-name {
+      flex: 1;
+      font-size: 14px;
+      color: var(--text-primary);
+      background: transparent;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .lens-manager-item-name:focus {
+      outline: none;
+      background: var(--bg-primary);
+    }
+
+    .lens-manager-item-name.readonly {
+      cursor: default;
+    }
+
+    .lens-manager-item-count {
+      font-size: 12px;
+      color: var(--text-secondary);
+      padding: 2px 8px;
+      background: var(--bg-primary);
+      border-radius: 12px;
+    }
+
+    .lens-manager-btn {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      color: var(--text-primary);
+      font-size: 12px;
+      padding: 4px 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .lens-manager-btn:hover {
+      background: var(--text-primary);
+      color: var(--bg-primary);
+      border-color: var(--text-primary);
+    }
+
+    .lens-manager-btn.delete:hover {
+      background: #e74c3c;
+      border-color: #e74c3c;
+      color: white;
+    }
+
+    .lens-manager-empty {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 14px;
+      padding: 40px 20px;
+    }
+
+
     /* Description section */
     .description-section {
-      margin-bottom: 20px;
-      padding-bottom: 15px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
       border-bottom: 1px solid var(--border-color);
     }
 
     .description-section-label {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 500;
       color: var(--text-secondary);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 0.8px;
     }
 
     .description-title {
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 500;
       color: var(--text-primary);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       font-style: italic;
     }
 
     .description-caption {
-      font-size: 13px;
-      line-height: 1.6;
+      font-size: 12px;
+      line-height: 1.5;
       color: var(--text-secondary);
       margin: 0;
       white-space: pre-line;
@@ -870,30 +1604,32 @@ const currentYear = new Date().getFullYear();
 
     /* Copyright section - less prominent, positioned bottom right */
     .copyright-section {
-      opacity: 0.5;
+      opacity: 0.4;
       position: absolute;
-      bottom: 20px;
+      bottom: 15px;
       right: 20px;
       margin: 0;
       text-align: right;
     }
 
     .copyright-section .metadata-item {
-      padding: 4px 0;
-      font-size: 10px;
+      padding: 2px 0;
+      font-size: 9px;
       border-bottom: none;
       justify-content: flex-end;
+      line-height: 1.3;
     }
 
     .copyright-section .metadata-label {
       font-weight: 500;
-      font-size: 9px;
+      font-size: 8px;
       display: none;
     }
 
     .copyright-section .metadata-value {
-      font-size: 10px;
+      font-size: 9px;
       text-align: right;
+      line-height: 1.3;
     }
 
     /* Navigation Arrows - Side borders only */
@@ -917,6 +1653,7 @@ const currentYear = new Date().getFullYear();
       align-items: center;
       justify-content: center;
       border-radius: 8px;
+      pointer-events: auto;
     }
 
     .lightbox-nav:hover {
@@ -995,7 +1732,10 @@ const currentYear = new Date().getFullYear();
       .main-content {
         padding: 20px;
         padding-bottom: calc(120px + env(safe-area-inset-bottom));
-        min-height: calc(100vh - env(safe-area-inset-bottom));
+        /* Fallback for older browsers */
+        min-height: calc(var(--vh, 1vh) * 100 - env(safe-area-inset-bottom));
+        /* Modern browsers with dvh support */
+        min-height: calc(100dvh - env(safe-area-inset-bottom));
       }
 
       .gallery-grid {
@@ -1034,12 +1774,12 @@ const currentYear = new Date().getFullYear();
 
       .lightbox-sidebar {
         width: 100%;
-        height: 32%;
-        max-height: 32%;
+        height: 28%;
+        max-height: 28%;
         border-left: none;
         border-top: 1px solid var(--border-color);
-        padding: 15px 18px;
-        padding-bottom: 15px;
+        padding: 6px 12px;
+        padding-bottom: 4px;
         overflow-y: hidden;
         position: relative;
         display: flex;
@@ -1051,67 +1791,140 @@ const currentYear = new Date().getFullYear();
       }
 
       .metadata-section {
-        margin-bottom: 8px !important;
+        margin-bottom: 1px !important;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
       }
 
       .metadata-item {
-        padding: 4px 0 !important;
-        font-size: 10px !important;
-        line-height: 1.3 !important;
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 2px 0 !important;
+        font-size: 8px !important;
+        line-height: 1.1 !important;
+        border-bottom: none;
+      }
+
+      /* Camera settings grid - single column */
+      .metadata-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0 !important;
+        margin-top: 0 !important;
+      }
+
+      .metadata-grid .metadata-item {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        padding: 2px 0 !important;
+        border-bottom: none;
       }
 
       .metadata-label {
-        font-size: 10px !important;
+        font-size: 8px !important;
+        opacity: 0.7;
+        font-weight: 500;
       }
 
       .metadata-value {
-        font-size: 10px !important;
+        font-size: 8px !important;
+        text-align: right !important;
+        font-weight: 400;
+      }
+
+      .metadata-grid .metadata-label {
+        font-size: 8px !important;
+      }
+
+      .metadata-grid .metadata-value {
+        font-size: 8px !important;
+      }
+
+      .metadata-title {
+        font-size: 12px !important;
+        margin-bottom: 0 !important;
+        line-height: 1 !important;
+      }
+
+      .metadata-category {
+        font-size: 8px !important;
+        margin-bottom: 1px !important;
+      }
+
+      .category-dropdown-container {
+        gap: 2px !important;
+      }
+
+      .category-tag {
+        font-size: 8px !important;
+        padding: 1px 4px !important;
+      }
+
+      .category-dropdown-btn {
+        font-size: 8px !important;
+        padding: 1px 4px !important;
       }
 
       .description-section {
-        margin-bottom: 8px !important;
-        padding-bottom: 6px !important;
-        max-height: 80px;
+        margin-bottom: 1px !important;
+        padding-bottom: 2px !important;
+        max-height: 40px;
         overflow: hidden;
       }
 
       .description-title {
-        font-size: 11px !important;
-        margin-bottom: 4px !important;
+        font-size: 8px !important;
+        margin-bottom: 1px !important;
       }
 
       .description-caption {
-        font-size: 10px !important;
-        line-height: 1.3 !important;
-        max-height: 50px;
+        font-size: 8px !important;
+        line-height: 1.1 !important;
+        max-height: 28px;
         overflow: hidden;
         text-overflow: ellipsis;
       }
 
       .copyright-section {
-        position: static;
-        margin-top: auto;
-        padding-top: 8px;
-        border-top: 1px solid var(--border-color);
-        opacity: 0.5;
-        text-align: center;
+        position: absolute;
+        bottom: 4px;
+        right: 8px;
+        margin: 0;
+        padding: 0;
+        border-top: none;
+        opacity: 0.25;
+        text-align: right;
         flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
       }
 
       .copyright-section .metadata-item {
-        justify-content: center;
-        font-size: 8px !important;
-        padding: 2px 0 !important;
+        display: block !important;
+        font-size: 5px !important;
+        padding: 0 !important;
+        border-bottom: none !important;
+        line-height: 1.4 !important;
       }
 
       .copyright-section .metadata-value {
-        font-size: 8px !important;
-        text-align: center;
-        line-height: 1.2;
+        display: block !important;
+        font-size: 5px !important;
+        text-align: right;
+        line-height: 1.4 !important;
+      }
+
+      .copyright-section .metadata-label {
+        display: none !important;
       }
 
       .lightbox-image-container {
-        height: 68%;
+        height: 72%;
         padding: 10px 35px; /* Horizontal padding for arrows */
         overflow: hidden;
       }
@@ -1149,6 +1962,8 @@ const currentYear = new Date().getFullYear();
         border-left: none;
         border-bottom: none;
       }
+
+      /* Remove rotation for vertical photos */
     }
 
     @media (max-width: 480px) {
@@ -1196,28 +2011,28 @@ const currentYear = new Date().getFullYear();
       }
 
       .metadata-item {
-        font-size: 11px;
+        font-size: 8px;
         padding: 4px 0;
         line-height: 1.1;
       }
 
       .metadata-label {
-        font-size: 11px;
+        font-size: 8px;
         font-weight: 500;
       }
 
       .metadata-value {
-        font-size: 11px;
+        font-size: 8px;
       }
 
       .metadata-title {
-        font-size: 18px;
+        font-size: 12px;
         margin-bottom: 2px;
         line-height: 1.1;
       }
 
       .metadata-category {
-        font-size: 10px;
+        font-size: 8px;
         margin-bottom: 6px;
       }
 
@@ -1231,57 +2046,124 @@ const currentYear = new Date().getFullYear();
       }
 
       .description-title {
-        font-size: 12px;
+        font-size: 8px;
         margin-bottom: 6px;
       }
 
       .description-caption {
-        font-size: 11px;
+        font-size: 8px;
         line-height: 1.5;
         white-space: pre-line;
         text-align: justify;
       }
 
       .lightbox-sidebar {
-        padding: 12px 15px;
-        padding-bottom: 12px;
+        padding: 8px 12px;
+        padding-bottom: 8px;
+        padding-top: 10px;
         height: 33%;
         max-height: 33%;
+        overflow-y: auto;
+        overflow-x: hidden;
       }
 
       .metadata-section {
-        margin-bottom: 6px !important;
+        margin-bottom: 1px !important;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
       }
 
       .metadata-item {
-        padding: 3px 0 !important;
-        font-size: 9px !important;
-        line-height: 1.3 !important;
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 2px 0 !important;
+        font-size: 8px !important;
+        line-height: 1.1 !important;
+        border-bottom: none;
+      }
+
+      /* Camera settings grid - single column */
+      .metadata-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0 !important;
+        margin-top: 0 !important;
+      }
+
+      .metadata-grid .metadata-item {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        padding: 2px 0 !important;
+        border-bottom: none;
       }
 
       .metadata-label {
-        font-size: 9px !important;
+        font-size: 8px !important;
+        opacity: 0.7;
+        font-weight: 500;
       }
 
       .metadata-value {
-        font-size: 9px !important;
+        font-size: 8px !important;
+        text-align: right !important;
+        font-weight: 400;
+      }
+
+      .metadata-grid .metadata-label {
+        font-size: 8px !important;
+      }
+
+      .metadata-grid .metadata-value {
+        font-size: 8px !important;
       }
 
       .description-section {
-        margin-bottom: 6px !important;
-        padding-bottom: 4px !important;
-        max-height: 60px;
+        margin-bottom: 3px !important;
+        padding-bottom: 3px !important;
+        max-height: 50px;
+        overflow: hidden;
       }
 
       .description-title {
-        font-size: 10px !important;
-        margin-bottom: 3px !important;
+        font-size: 8px !important;
+        margin-bottom: 2px !important;
       }
 
       .description-caption {
-        font-size: 9px !important;
-        line-height: 1.3 !important;
-        max-height: 40px;
+        font-size: 8px !important;
+        line-height: 1.2 !important;
+        max-height: 35px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .metadata-title {
+        font-size: 12px !important;
+        margin-bottom: 0 !important;
+        line-height: 1 !important;
+      }
+
+      .metadata-category {
+        font-size: 8px !important;
+        margin-bottom: 1px !important;
+      }
+
+      .category-dropdown-container {
+        gap: 2px !important;
+      }
+
+      .category-tag {
+        font-size: 8px !important;
+        padding: 1px 4px !important;
+      }
+
+      .category-dropdown-btn {
+        font-size: 8px !important;
+        padding: 1px 4px !important;
       }
 
       .copyright-section {
@@ -1289,12 +2171,12 @@ const currentYear = new Date().getFullYear();
       }
 
       .copyright-section .metadata-item {
-        font-size: 7px !important;
+        font-size: 5px !important;
         padding: 1px 0 !important;
       }
 
       .copyright-section .metadata-value {
-        font-size: 7px !important;
+        font-size: 5px !important;
       }
 
       .lightbox-image-container {
@@ -1350,8 +2232,15 @@ const currentYear = new Date().getFullYear();
     }
 
     /* Focus states for accessibility */
+    /* Remove outline completely - lightbox provides visual feedback */
     .filter-tab:focus,
-    .gallery-item:focus {
+    .gallery-item:focus,
+    .gallery-item:focus-visible {
+      outline: none !important;
+    }
+
+    /* Keep focus outline only for filter tabs on keyboard navigation */
+    .filter-tab:focus-visible {
       outline: 2px solid #007bff;
       outline-offset: 2px;
     }
@@ -1596,6 +2485,11 @@ const currentYear = new Date().getFullYear();
             <circle cx="4" cy="16" r="2"></circle>
           </svg>
         </button>
+        {import.meta.env.DEV && (
+          <button class="dev-mode-toggle" id="devModeToggle" aria-label="Toggle production preview" title="Preview how the site looks in production">
+            DEV
+          </button>
+        )}
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
           <span class="light-icon">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1663,7 +2557,7 @@ const currentYear = new Date().getFullYear();
   <div class="lightbox" id="lightbox">
     <div class="lightbox-content">
       <div class="lightbox-image-container">
-        <img class="lightbox-image" id="lightboxImage" src="" alt="">
+        <img class="lightbox-image" id="lightboxImage" src="" alt="" decoding="sync">
         <button class="lightbox-close" id="lightboxClose">&times;</button>
         <button class="lightbox-nav lightbox-prev" id="lightboxPrev">‹</button>
         <button class="lightbox-nav lightbox-next" id="lightboxNext">›</button>
@@ -1675,38 +2569,36 @@ const currentYear = new Date().getFullYear();
         </div>
 
         <div class="metadata-section">
-          <div class="metadata-item">
-            <span class="metadata-label">File Number #</span>
-            <span class="metadata-value" id="metadataFileNumber">8413</span>
+          <!-- Location, Date, Time first -->
+          <div class="metadata-item" id="metadataLocationItem" style="display: none;">
+            <span class="metadata-label">Location</span>
+            <span class="metadata-value" id="metadataLocationDisplay"></span>
+            {import.meta.env.DEV && (
+              <>
+                <div class="location-input-container" style="display: none;">
+                  <input type="text" id="metadataLocationInput" list="locationSuggestions" class="metadata-location-input" placeholder="Enter location...">
+                  <button id="manageLocationsBtn" class="manage-locations-btn" title="Manage locations">⚙</button>
+                </div>
+                <div class="location-shortcuts" id="locationShortcuts" style="display: none;">
+                  <!-- Shortcut buttons will be populated here -->
+                </div>
+                <datalist id="locationSuggestions"></datalist>
+              </>
+            )}
           </div>
-          <div class="metadata-item">
-            <span class="metadata-label">Category</span>
-            <span class="metadata-value" id="metadataCategoryValue">All</span>
-          </div>
-          <div class="metadata-item">
-            <span class="metadata-label">Camera</span>
-            <span class="metadata-value" id="metadataCamera">Canon EOS R5</span>
-          </div>
-          <div class="metadata-item">
-            <span class="metadata-label">Lens</span>
-            <span class="metadata-value" id="metadataLens">24-70mm f/2.8</span>
-          </div>
-          <div class="metadata-item">
-            <span class="metadata-label">Focal Length</span>
-            <span class="metadata-value" id="metadataFocalLength">50mm</span>
-          </div>
-          <div class="metadata-item">
-            <span class="metadata-label">Aperture</span>
-            <span class="metadata-value" id="metadataAperture">f/2.8</span>
-          </div>
-          <div class="metadata-item">
-            <span class="metadata-label">Shutter Speed</span>
-            <span class="metadata-value" id="metadataShutterSpeed">1/250s</span>
-          </div>
-          <div class="metadata-item">
-            <span class="metadata-label">ISO</span>
-            <span class="metadata-value" id="metadataISO">400</span>
-          </div>
+          {import.meta.env.DEV && (
+            <div class="location-manager-modal" id="locationManagerModal" style="display: none;">
+              <div class="location-manager-content">
+                <div class="location-manager-header">
+                  <h3>Manage Locations</h3>
+                  <button class="location-manager-close" id="closeLocationManager">×</button>
+                </div>
+                <div class="location-manager-list" id="locationManagerList">
+                  <!-- Locations will be populated here -->
+                </div>
+              </div>
+            </div>
+          )}
           <div class="metadata-item">
             <span class="metadata-label">Date</span>
             <span class="metadata-value" id="metadataDate">---</span>
@@ -1715,14 +2607,77 @@ const currentYear = new Date().getFullYear();
             <span class="metadata-label">Time</span>
             <span class="metadata-value" id="metadataTime">---</span>
           </div>
-          <div class="metadata-item" id="metadataLocationItem" style="display: none;">
-            <span class="metadata-label">Location</span>
-            <span class="metadata-value" id="metadataLocationDisplay"></span>
-            <input type="text" id="metadataLocationInput" class="metadata-location-input" placeholder="Enter location..." style="display: none;">
+          <div class="metadata-item">
+            <span class="metadata-label">File #</span>
+            <span class="metadata-value" id="metadataFileNumber">8413</span>
           </div>
-          <div class="location-dropdown-container" id="locationDropdownContainer" style="display: none;">
-            <div class="location-dropdown-header">Other photos at this location:</div>
-            <div class="location-dropdown-list" id="locationDropdownList"></div>
+          <div class="metadata-item" id="metadataCategoryItem">
+            <span class="metadata-label">Categories</span>
+            <div class="category-dropdown-container">
+              <div class="category-dropdown-display" id="categoryDisplay">
+                <!-- Primary category tag will be displayed here -->
+              </div>
+              {import.meta.env.DEV && (
+                <>
+                  <button class="category-dropdown-btn" id="categoryDropdownBtn">
+                    <span>+ Add Categories</span>
+                  </button>
+                  <div class="category-dropdown-menu" id="categoryDropdownMenu">
+                    <!-- Category checkboxes will be populated here -->
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+          <div class="metadata-item">
+            <span class="metadata-label">Camera</span>
+            <span class="metadata-value" id="metadataCamera">Canon EOS R5</span>
+          </div>
+          <div class="metadata-item" id="metadataLensItem" style="display: none;">
+            <span class="metadata-label">Lens</span>
+            <span class="metadata-value" id="metadataLensDisplay"></span>
+            {import.meta.env.DEV && (
+              <>
+                <div class="lens-input-container" style="display: none;">
+                  <input type="text" id="metadataLensInput" list="lensSuggestions" class="metadata-lens-input" placeholder="Enter lens...">
+                  <button id="manageLensesBtn" class="manage-lenses-btn" title="Manage lenses">⚙</button>
+                </div>
+                <datalist id="lensSuggestions"></datalist>
+              </>
+            )}
+          </div>
+          {import.meta.env.DEV && (
+            <div class="lens-manager-modal" id="lensManagerModal" style="display: none;">
+              <div class="lens-manager-content">
+                <div class="lens-manager-header">
+                  <h3>Manage Lenses</h3>
+                  <button class="lens-manager-close" id="closeLensManager">×</button>
+                </div>
+                <div class="lens-manager-list" id="lensManagerList">
+                  <!-- Lenses will be populated here -->
+                </div>
+              </div>
+            </div>
+          )}
+
+          <!-- Camera settings in compact two-column grid -->
+          <div class="metadata-grid">
+            <div class="metadata-item">
+              <span class="metadata-label">Focal Length</span>
+              <span class="metadata-value" id="metadataFocalLength">50mm</span>
+            </div>
+            <div class="metadata-item">
+              <span class="metadata-label">Aperture</span>
+              <span class="metadata-value" id="metadataAperture">f/2.8</span>
+            </div>
+            <div class="metadata-item">
+              <span class="metadata-label">Shutter</span>
+              <span class="metadata-value" id="metadataShutterSpeed">1/250s</span>
+            </div>
+            <div class="metadata-item">
+              <span class="metadata-label">ISO</span>
+              <span class="metadata-value" id="metadataISO">400</span>
+            </div>
           </div>
         </div>
 
@@ -1759,6 +2714,40 @@ const currentYear = new Date().getFullYear();
     const devError = (...args: any[]) => {
       if (isDev) console.error(...args);
     };
+
+    // Dynamic viewport height fallback for older browsers
+    function initViewportHeight() {
+      // Check if dvh is supported
+      const supportsDvh = CSS.supports('height', '100dvh');
+
+      if (!supportsDvh) {
+        devLog('dvh not supported, using JavaScript fallback');
+
+        // Set CSS custom property with actual viewport height
+        const setVh = () => {
+          const vh = window.innerHeight * 0.01;
+          document.documentElement.style.setProperty('--vh', `${vh}px`);
+        };
+
+        // Set on load
+        setVh();
+
+        // Update on resize (handles mobile browser chrome changes)
+        let resizeTimer: ReturnType<typeof setTimeout>;
+        window.addEventListener('resize', () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(setVh, 100);
+        });
+
+        // Update on orientation change
+        window.addEventListener('orientationchange', setVh);
+      } else {
+        devLog('dvh is supported');
+      }
+    }
+
+    // Initialize viewport height fix
+    initViewportHeight();
 
     // Theme management
     function initTheme() {
@@ -1902,11 +2891,144 @@ const currentYear = new Date().getFullYear();
     }
 
     document.addEventListener('DOMContentLoaded', function() {
+      // Safe JSON parse helper with error handling
+      function safeJSONParse<T>(data: string | null, fallback: T): T {
+        if (!data) return fallback;
+        try {
+          return JSON.parse(data) as T;
+        } catch (error) {
+          console.error('Failed to parse JSON data:', error);
+          return fallback;
+        }
+      }
+
       // Load gallery data from JSON script tag
       const galleryDataScript = document.getElementById('gallery-data');
-      window.galleryData = galleryDataScript ? JSON.parse(galleryDataScript.textContent || '[]') : [];
+      window.galleryData = galleryDataScript ? safeJSONParse(galleryDataScript.textContent, []) : [];
 
       initTheme();
+
+      // Dev Mode Toggle - Production Preview (development only)
+      if (import.meta.env.DEV) {
+        const devModeToggle = document.getElementById('devModeToggle');
+        if (devModeToggle) {
+          // Check localStorage for saved preference
+          const isProdMode = localStorage.getItem('prodPreviewMode') === 'true';
+
+          // Function to update UI based on mode
+          function updateDevMode(prodMode: boolean) {
+            if (prodMode) {
+              // Production preview mode - hide dev elements
+              document.body.classList.add('prod-preview-mode');
+              devModeToggle!.classList.add('prod-mode');
+              devModeToggle!.textContent = 'PROD';
+              devModeToggle!.title = 'Switch back to development mode';
+            } else {
+              // Development mode - show dev elements
+              document.body.classList.remove('prod-preview-mode');
+              devModeToggle!.classList.remove('prod-mode');
+              devModeToggle!.textContent = 'DEV';
+              devModeToggle!.title = 'Preview how the site looks in production';
+            }
+
+            localStorage.setItem('prodPreviewMode', prodMode.toString());
+          }
+
+          // Initialize with saved preference
+          updateDevMode(isProdMode);
+
+          // Toggle on click
+          devModeToggle.addEventListener('click', () => {
+            const currentMode = localStorage.getItem('prodPreviewMode') === 'true';
+            const newMode = !currentMode;
+            console.log('🔄 Toggling mode:', currentMode ? 'PROD → DEV' : 'DEV → PROD');
+            updateDevMode(newMode);
+
+            // Get current lightbox image to refresh its metadata display
+            const currentImage = document.querySelector('.lightbox-image:not([style*="display: none"])');
+            console.log('Current image found:', !!currentImage);
+            if (currentImage) {
+              const imageLabel = currentImage.getAttribute('data-label') || '';
+              console.log('Image label:', imageLabel);
+
+              // Get saved data from localStorage
+              const savedLocations = safeJSONParse<Record<string, string>>(localStorage.getItem('photoLocations'), {});
+              const savedLenses = safeJSONParse<Record<string, string>>(localStorage.getItem('photoLenses'), {});
+              const location = savedLocations[imageLabel] || '';
+              const lens = savedLenses[imageLabel] || '';
+              console.log('Location:', location, '| Lens:', lens);
+
+              // Get display elements
+              const metadataLocationDisplay = document.getElementById('metadataLocationDisplay');
+              const metadataLensDisplay = document.getElementById('metadataLensDisplay');
+              const locationInputContainer = document.querySelector('.location-input-container') as HTMLElement;
+              const lensInputContainer = document.querySelector('.lens-input-container') as HTMLElement;
+              const metadataLocationInput = document.getElementById('metadataLocationInput') as HTMLInputElement;
+              const metadataLensInput = document.getElementById('metadataLensInput') as HTMLInputElement;
+
+              console.log('📦 Element check:', {
+                'locationInputContainer exists': !!locationInputContainer,
+                'lensInputContainer exists': !!lensInputContainer,
+                'metadataLocationInput exists': !!metadataLocationInput,
+                'metadataLensInput exists': !!metadataLensInput,
+                'categoryDropdownBtn exists': !!document.getElementById('categoryDropdownBtn')
+              });
+
+              if (newMode) {
+                // Switching TO production mode: show displays, hide inputs
+                console.log('➡️ Switching to PROD mode - hiding inputs, showing displays');
+                if (metadataLocationDisplay && location) {
+                  metadataLocationDisplay.style.display = 'inline';
+                  metadataLocationDisplay.innerHTML = location.replace(', ', '<br>');
+                }
+                if (metadataLensDisplay && lens) {
+                  metadataLensDisplay.style.display = 'inline';
+                  metadataLensDisplay.textContent = lens;
+                }
+                // Hide input containers
+                if (locationInputContainer) locationInputContainer.style.display = 'none';
+                if (lensInputContainer) lensInputContainer.style.display = 'none';
+              } else {
+                // Switching TO dev mode: show inputs, hide displays
+                console.log('⬅️ Switching to DEV mode - showing inputs, hiding displays');
+                if (metadataLocationDisplay && locationInputContainer) {
+                  metadataLocationDisplay.style.display = 'none';
+                  locationInputContainer.style.display = 'flex';
+                  console.log('✅ Location input container set to flex');
+                }
+                if (metadataLensDisplay && lensInputContainer) {
+                  metadataLensDisplay.style.display = 'none';
+                  lensInputContainer.style.display = 'flex';
+                  console.log('✅ Lens input container set to flex');
+                }
+
+                // Update input values
+                if (metadataLocationInput && location) {
+                  metadataLocationInput.value = location;
+                }
+                if (metadataLensInput && lens) {
+                  metadataLensInput.value = lens;
+                }
+
+                // Remove any inline display:none styles that might have been set
+                const devElements = [
+                  document.getElementById('locationShortcuts'),
+                  document.getElementById('categoryDropdownBtn'),
+                  document.getElementById('categoryDropdownMenu'),
+                  document.getElementById('manageLocationsBtn'),
+                  document.getElementById('manageLensesBtn')
+                ];
+
+                devElements.forEach(el => {
+                  if (el && (el as HTMLElement).style.display === 'none') {
+                    (el as HTMLElement).style.display = '';
+                  }
+                });
+              }
+            }
+          });
+        }
+      }
 
       // Progressive Image Loading with Intersection Observer
       let imageObserver: IntersectionObserver; // Declare in broader scope
@@ -2102,7 +3224,9 @@ const currentYear = new Date().getFullYear();
 
       // Metadata elements
       const metadataFileNumber = document.getElementById('metadataFileNumber');
-      const metadataCategoryValue = document.getElementById('metadataCategoryValue');
+      const categoryDisplay = document.getElementById('categoryDisplay');
+      const categoryDropdownBtn = document.getElementById('categoryDropdownBtn');
+      const categoryDropdownMenu = document.getElementById('categoryDropdownMenu');
       const metadataCamera = document.getElementById('metadataCamera');
       const metadataLens = document.getElementById('metadataLens');
       const metadataFocalLength = document.getElementById('metadataFocalLength');
@@ -2114,10 +3238,15 @@ const currentYear = new Date().getFullYear();
       const metadataLocationItem = document.getElementById('metadataLocationItem');
       const metadataLocationDisplay = document.getElementById('metadataLocationDisplay');
       const metadataLocationInput = document.getElementById('metadataLocationInput');
+      const metadataLensItem = document.getElementById('metadataLensItem');
+      const metadataLensDisplay = document.getElementById('metadataLensDisplay');
+      const metadataLensInput = document.getElementById('metadataLensInput');
 
       let currentImageIndex = 0;
       let visibleItems = [...galleryItems];
 
+      // Image cache to keep preloaded images in memory for instant access
+      const imageCache = new Map();
 
       // Filter functionality
       filterTabs.forEach(tab => {
@@ -2180,53 +3309,72 @@ const currentYear = new Date().getFullYear();
         const itemHref = item.getAttribute('data-href');
 
         if (lightboxImage && itemHref) {
-          // Always use the data-href as the source of truth for lightbox images
+          // Keep full opacity for instant transition - no loading indicator
+          lightboxImage.style.opacity = '1';
+
+          // Always update the src immediately for instant display
+          // The browser cache will handle this quickly if preloaded
           (lightboxImage as HTMLImageElement).src = itemHref;
           (lightboxImage as HTMLImageElement).alt = img.alt || title;
 
-          // Add loading indicator
-          lightboxImage.style.opacity = '0.5';
+          // Check if this is a portrait/vertical photo and if we're on mobile
+          const orientation = item.getAttribute('data-orientation');
+          const isMobile = window.innerWidth <= 768;
 
-          // Handle image load completion
-          const handleImageLoad = () => {
-            lightboxImage.style.opacity = '1';
-            lightboxImage.removeEventListener('load', handleImageLoad);
-            lightboxImage.removeEventListener('error', handleImageError);
-          };
+          if (isMobile && orientation === 'portrait') {
+            lightboxImage.classList.add('vertical-portrait');
+          } else {
+            lightboxImage.classList.remove('vertical-portrait');
+          }
 
-          // Handle image load error
-          const handleImageError = () => {
-            console.warn('Failed to load lightbox image:', itemHref);
-            lightboxImage.style.opacity = '1';
-            lightboxImage.removeEventListener('load', handleImageLoad);
-            lightboxImage.removeEventListener('error', handleImageError);
-          };
+          // Cache current image if not already cached
+          if (!imageCache.has(itemHref)) {
+            const newImg = new Image();
+            newImg.src = itemHref;
+            imageCache.set(itemHref, newImg);
+            newImg.decode().catch(() => {/* ignore */});
+          }
 
-          lightboxImage.addEventListener('load', handleImageLoad);
-          lightboxImage.addEventListener('error', handleImageError);
+          // EXTREMELY aggressively preload ALL images for instant random navigation
+          // Both arrows go to random photos, so we need all images preloaded
+          // Preload in priority order: nearby images first, then all others
 
-          // Preload adjacent images for smoother navigation (optimized for mobile)
-          setTimeout(() => {
-            // Check if user is on mobile or has slow connection
-            const isMobile = window.innerWidth <= 768;
-            const isSlowConnection = 'connection' in navigator &&
-              (navigator.connection as any)?.effectiveType &&
-              ['slow-2g', '2g', '3g'].includes((navigator.connection as any).effectiveType);
-
-            // Only preload on desktop with good connection to save bandwidth
-            if (!isMobile && !isSlowConnection) {
-              const nextIndex = (index + 1) % visibleItems.length;
-
-              // Preload next image only (most likely to be viewed)
-              if (visibleItems[nextIndex]) {
-                const nextHref = visibleItems[nextIndex].getAttribute('data-href');
-                if (nextHref) {
-                  const preloadNext = new Image();
-                  preloadNext.src = nextHref;
-                }
+          // First priority: preload nearby 5 images immediately for quick access
+          for (let i = 1; i <= 5; i++) {
+            const nextIndex = (index + i) % visibleItems.length;
+            if (visibleItems[nextIndex]) {
+              const nextHref = visibleItems[nextIndex].getAttribute('data-href');
+              if (nextHref && !imageCache.has(nextHref)) {
+                const preloadImg = new Image();
+                preloadImg.src = nextHref;
+                imageCache.set(nextHref, preloadImg);
+                preloadImg.decode().catch(() => {/* ignore */});
               }
             }
-          }, 1000); // Longer delay to prioritize current image loading
+          }
+
+          // Second priority: preload ALL other images for instant random navigation
+          // Use requestIdleCallback if available, otherwise immediate
+          const preloadAll = () => {
+            visibleItems.forEach((item: any, idx: number) => {
+              if (idx !== index) { // Skip current image
+                const href = item.getAttribute('data-href');
+                if (href && !imageCache.has(href)) {
+                  const preloadImg = new Image();
+                  preloadImg.src = href;
+                  imageCache.set(href, preloadImg);
+                  preloadImg.decode().catch(() => {/* ignore */});
+                }
+              }
+            });
+          };
+
+          // Start preloading immediately in background
+          if ('requestIdleCallback' in window) {
+            requestIdleCallback(preloadAll);
+          } else {
+            setTimeout(preloadAll, 0);
+          }
         }
 
         // Get real metadata from gallery item (reuse itemHref from above)
@@ -2241,10 +3389,26 @@ const currentYear = new Date().getFullYear();
         }
 
         // Set category value in metadata section
-        if (metadataCategoryValue && galleryItemData) {
-          const categoryLabel = galleryItemData.category || 'All';
-          // Capitalize first letter for display
-          metadataCategoryValue.textContent = categoryLabel.charAt(0).toUpperCase() + categoryLabel.slice(1);
+        if (categoryDisplay && galleryItemData) {
+          const primaryCategory = galleryItemData.category || 'all';
+          const additionalCategories = galleryItemData.additionalCategories || [];
+
+          // Clear and update category display
+          categoryDisplay.innerHTML = '';
+
+          // Add primary category tag
+          const primaryTag = document.createElement('span');
+          primaryTag.className = 'category-tag';
+          primaryTag.textContent = primaryCategory.charAt(0).toUpperCase() + primaryCategory.slice(1);
+          categoryDisplay.appendChild(primaryTag);
+
+          // Add additional category tags
+          additionalCategories.forEach((cat: string) => {
+            const tag = document.createElement('span');
+            tag.className = 'category-tag';
+            tag.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+            categoryDisplay.appendChild(tag);
+          });
         }
 
         if (galleryItemData && galleryItemData.metadata) {
@@ -2273,47 +3437,900 @@ const currentYear = new Date().getFullYear();
           if (metadataTime) metadataTime.textContent = '---';
         }
 
-        // Handle location metadata (localhost only for editing)
-        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        // Handle location metadata (development mode only for editing)
+        // Check if we're in dev mode AND not in prod preview mode
+        const isProdPreviewMode = localStorage.getItem('prodPreviewMode') === 'true';
+        const isDev = import.meta.env.DEV && !isProdPreviewMode;
+        console.log('🔍 Mode check:', {
+          'import.meta.env.DEV': import.meta.env.DEV,
+          isProdPreviewMode,
+          isDev,
+          'body has prod-preview-mode class': document.body.classList.contains('prod-preview-mode')
+        });
         const imageLabel = galleryItemData ? galleryItemData.label : '';
 
         // Load location from localStorage or gallery data
-        const savedLocations = JSON.parse(localStorage.getItem('photoLocations') || '{}');
+        const savedLocations = safeJSONParse<Record<string, string>>(localStorage.getItem('photoLocations'), {});
         let location = savedLocations[imageLabel] || (galleryItemData?.metadata?.location) || '';
 
-        if (metadataLocationItem && metadataLocationDisplay && metadataLocationInput) {
-          if (location || isLocalhost) {
-            // Show location item if location exists OR if on localhost
+        // Helper function to get all unique locations
+        function getAllLocations(): string[] {
+          const locations = new Set<string>();
+
+          // Add from localStorage
+          const saved = safeJSONParse<Record<string, string>>(localStorage.getItem('photoLocations'), {});
+          Object.values(saved).forEach((loc: any) => {
+            if (loc && typeof loc === 'string') locations.add(loc);
+          });
+
+          // Add from gallery data
+          galleryItems.forEach((item: any) => {
+            if (item.metadata?.location) {
+              locations.add(item.metadata.location);
+            }
+          });
+
+          return Array.from(locations).sort();
+        }
+
+        // Helper function to update the datalist
+        function updateLocationDatalist() {
+          const datalist = document.getElementById('locationSuggestions');
+          if (!datalist || !isDev) return;
+
+          datalist.innerHTML = '';
+
+          // Pre-suggested locations in "City Name, Country Name" format
+          const suggestedLocations = [
+            // India
+            'Kolkata, India',
+            'Mumbai, India',
+            'Delhi, India',
+            'Bangalore, India',
+            'Chennai, India',
+            'Hyderabad, India',
+            'Jaipur, India',
+            'Goa, India',
+            'Agra, India',
+            'Varanasi, India',
+            'Udaipur, India',
+            'Rishikesh, India',
+            'Darjeeling, India',
+            'Shimla, India',
+            'Manali, India',
+            'Leh, India',
+            'Ladakh, India',
+            'Srinagar, India',
+            'Pondicherry, India',
+            'Cochin, India',
+            'Kochi, India',
+            'Mysore, India',
+            'Ooty, India',
+            'Munnar, India',
+            'Hampi, India',
+            'Khajuraho, India',
+            'Pushkar, India',
+            'Jodhpur, India',
+            'Jaisalmer, India',
+            'Amritsar, India',
+            'McLeod Ganj, India',
+            'Spiti Valley, India',
+            'Nainital, India',
+            'Mussoorie, India',
+            'Alleppey, India',
+            'Varkala, India',
+            'Gokarna, India',
+            'Kodaikanal, India',
+            'Andaman Islands, India',
+            'Port Blair, India',
+            'Havelock Island, India',
+            'Sikkim, India',
+            'Gangtok, India',
+            'Auli, India',
+            'Kasol, India',
+            'Bir Billing, India',
+
+            // USA
+            'New York City, USA',
+            'Los Angeles, USA',
+            'San Francisco, USA',
+            'Chicago, USA',
+            'Boston, USA',
+            'Seattle, USA',
+            'Miami, USA',
+            'Las Vegas, USA',
+            'Washington DC, USA',
+            'Portland, USA',
+            'Austin, USA',
+            'Denver, USA',
+            'Nashville, USA',
+            'New Orleans, USA',
+            'San Diego, USA',
+            'Philadelphia, USA',
+            'Phoenix, USA',
+            'Grand Canyon, USA',
+            'Yosemite, USA',
+            'Yellowstone, USA',
+            'Zion National Park, USA',
+            'Antelope Canyon, USA',
+            'Monument Valley, USA',
+            'Big Sur, USA',
+            'Lake Tahoe, USA',
+            'Aspen, USA',
+            'Sedona, USA',
+            'Key West, USA',
+            'Santa Fe, USA',
+            'Charleston, USA',
+            'Savannah, USA',
+            'Napa Valley, USA',
+            'Honolulu, USA',
+            'Maui, USA',
+
+            // United Kingdom
+            'London, United Kingdom',
+            'Edinburgh, United Kingdom',
+            'Glasgow, United Kingdom',
+            'Manchester, United Kingdom',
+            'Liverpool, United Kingdom',
+            'Bath, United Kingdom',
+            'Oxford, United Kingdom',
+            'Cambridge, United Kingdom',
+            'York, United Kingdom',
+            'Brighton, United Kingdom',
+            'Cornwall, United Kingdom',
+            'Lake District, United Kingdom',
+            'Cotswolds, United Kingdom',
+            'Stonehenge, United Kingdom',
+            'Isle of Skye, United Kingdom',
+            'Belfast, United Kingdom',
+            'Cardiff, United Kingdom',
+
+            // France
+            'Paris, France',
+            'Nice, France',
+            'Marseille, France',
+            'Lyon, France',
+            'Bordeaux, France',
+            'Cannes, France',
+            'Monaco, France',
+            'Versailles, France',
+            'Mont Saint-Michel, France',
+            'Provence, France',
+            'Chamonix, France',
+            'Annecy, France',
+            'Strasbourg, France',
+            'Colmar, France',
+            'Loire Valley, France',
+            'Normandy, France',
+            'Avignon, France',
+            'Saint-Tropez, France',
+
+            // Italy
+            'Rome, Italy',
+            'Venice, Italy',
+            'Florence, Italy',
+            'Milan, Italy',
+            'Naples, Italy',
+            'Pisa, Italy',
+            'Verona, Italy',
+            'Bologna, Italy',
+            'Turin, Italy',
+            'Genoa, Italy',
+            'Amalfi Coast, Italy',
+            'Positano, Italy',
+            'Cinque Terre, Italy',
+            'Siena, Italy',
+            'Lucca, Italy',
+            'Pompeii, Italy',
+            'Capri, Italy',
+            'Lake Como, Italy',
+            'Dolomites, Italy',
+            'Sicily, Italy',
+            'Palermo, Italy',
+            'Sardinia, Italy',
+            'San Gimignano, Italy',
+            'Matera, Italy',
+            'Assisi, Italy',
+
+            // Spain
+            'Barcelona, Spain',
+            'Madrid, Spain',
+            'Seville, Spain',
+            'Valencia, Spain',
+            'Granada, Spain',
+            'Bilbao, Spain',
+            'San Sebastian, Spain',
+            'Malaga, Spain',
+            'Ibiza, Spain',
+            'Mallorca, Spain',
+            'Toledo, Spain',
+            'Cordoba, Spain',
+            'Ronda, Spain',
+            'Segovia, Spain',
+            'Santiago de Compostela, Spain',
+            'Salamanca, Spain',
+
+            // Germany
+            'Berlin, Germany',
+            'Munich, Germany',
+            'Hamburg, Germany',
+            'Frankfurt, Germany',
+            'Cologne, Germany',
+            'Dresden, Germany',
+            'Heidelberg, Germany',
+            'Nuremberg, Germany',
+            'Rothenburg, Germany',
+            'Neuschwanstein Castle, Germany',
+            'Black Forest, Germany',
+            'Rhine Valley, Germany',
+            'Garmisch-Partenkirchen, Germany',
+
+            // Austria
+            'Vienna, Austria',
+            'Salzburg, Austria',
+            'Innsbruck, Austria',
+            'Hallstatt, Austria',
+            'Graz, Austria',
+            'Zell am See, Austria',
+            'Kitzbühel, Austria',
+            'St. Anton, Austria',
+
+            // Switzerland
+            'Zurich, Switzerland',
+            'Geneva, Switzerland',
+            'Lucerne, Switzerland',
+            'Bern, Switzerland',
+            'Interlaken, Switzerland',
+            'Zermatt, Switzerland',
+            'Lausanne, Switzerland',
+            'Grindelwald, Switzerland',
+            'Jungfraujoch, Switzerland',
+            'St. Moritz, Switzerland',
+
+            // The Netherlands
+            'Amsterdam, The Netherlands',
+            'Rotterdam, The Netherlands',
+            'The Hague, The Netherlands',
+            'Utrecht, The Netherlands',
+            'Giethoorn, The Netherlands',
+            'Kinderdijk, The Netherlands',
+
+            // Czech Republic
+            'Prague, Czech Republic',
+            'Český Krumlov, Czech Republic',
+            'Brno, Czech Republic',
+            'Karlovy Vary, Czech Republic',
+
+            // Hungary
+            'Budapest, Hungary',
+
+            // Greece
+            'Athens, Greece',
+            'Santorini, Greece',
+            'Mykonos, Greece',
+            'Crete, Greece',
+            'Rhodes, Greece',
+            'Corfu, Greece',
+            'Delphi, Greece',
+            'Meteora, Greece',
+            'Thessaloniki, Greece',
+
+            // Turkey
+            'Istanbul, Turkey',
+            'Cappadocia, Turkey',
+            'Antalya, Turkey',
+            'Ephesus, Turkey',
+            'Pamukkale, Turkey',
+            'Bodrum, Turkey',
+
+            // Portugal
+            'Lisbon, Portugal',
+            'Porto, Portugal',
+            'Algarve, Portugal',
+            'Sintra, Portugal',
+            'Madeira, Portugal',
+            'Azores, Portugal',
+
+            // Scandinavia
+            'Stockholm, Sweden',
+            'Gothenburg, Sweden',
+            'Copenhagen, Denmark',
+            'Oslo, Norway',
+            'Bergen, Norway',
+            'Lofoten Islands, Norway',
+            'Tromsø, Norway',
+            'Helsinki, Finland',
+            'Lapland, Finland',
+            'Reykjavik, Iceland',
+            'Blue Lagoon, Iceland',
+            'Jökulsárlón, Iceland',
+
+            // Ireland
+            'Dublin, Ireland',
+            'Galway, Ireland',
+            'Cork, Ireland',
+            'Cliffs of Moher, Ireland',
+            'Ring of Kerry, Ireland',
+
+            // Belgium
+            'Brussels, Belgium',
+            'Bruges, Belgium',
+            'Ghent, Belgium',
+            'Antwerp, Belgium',
+
+            // Luxembourg
+            'Luxembourg City, Luxembourg',
+
+            // Poland
+            'Warsaw, Poland',
+            'Krakow, Poland',
+            'Gdansk, Poland',
+            'Zakopane, Poland',
+
+            // Croatia
+            'Dubrovnik, Croatia',
+            'Split, Croatia',
+            'Zagreb, Croatia',
+            'Plitvice Lakes, Croatia',
+            'Hvar, Croatia',
+
+            // Romania
+            'Bucharest, Romania',
+            'Brasov, Romania',
+            'Cluj-Napoca, Romania',
+            'Timișoara, Romania',
+            'Sibiu, Romania',
+            'Sighișoara, Romania',
+            'Bran, Romania',
+            'Peleș Castle, Romania',
+
+            // Bulgaria
+            'Sofia, Bulgaria',
+            'Plovdiv, Bulgaria',
+            'Varna, Bulgaria',
+            'Burgas, Bulgaria',
+            'Veliko Tarnovo, Bulgaria',
+            'Rila Monastery, Bulgaria',
+
+            // Slovenia
+            'Ljubljana, Slovenia',
+            'Bled, Slovenia',
+            'Piran, Slovenia',
+            'Maribor, Slovenia',
+            'Postojna Cave, Slovenia',
+
+            // Serbia
+            'Belgrade, Serbia',
+            'Novi Sad, Serbia',
+            'Niš, Serbia',
+
+            // Bosnia and Herzegovina
+            'Sarajevo, Bosnia and Herzegovina',
+            'Mostar, Bosnia and Herzegovina',
+
+            // Albania
+            'Tirana, Albania',
+            'Berat, Albania',
+            'Gjirokastër, Albania',
+            'Saranda, Albania',
+
+            // North Macedonia
+            'Skopje, North Macedonia',
+            'Ohrid, North Macedonia',
+
+            // Montenegro
+            'Kotor, Montenegro',
+            'Budva, Montenegro',
+            'Podgorica, Montenegro',
+
+            // Slovakia
+            'Bratislava, Slovakia',
+            'Košice, Slovakia',
+            'Tatras, Slovakia',
+
+            // Estonia
+            'Tallinn, Estonia',
+            'Tartu, Estonia',
+            'Pärnu, Estonia',
+
+            // Latvia
+            'Riga, Latvia',
+            'Jūrmala, Latvia',
+            'Sigulda, Latvia',
+
+            // Lithuania
+            'Vilnius, Lithuania',
+            'Kaunas, Lithuania',
+            'Klaipėda, Lithuania',
+            'Trakai, Lithuania',
+
+            // Georgia
+            'Tbilisi, Georgia',
+            'Batumi, Georgia',
+            'Mtskheta, Georgia',
+            'Kazbegi, Georgia',
+            'Svaneti, Georgia',
+
+            // Armenia
+            'Yerevan, Armenia',
+            'Gyumri, Armenia',
+            'Dilijan, Armenia',
+            'Lake Sevan, Armenia',
+
+            // Azerbaijan
+            'Baku, Azerbaijan',
+            'Sheki, Azerbaijan',
+            'Gabala, Azerbaijan',
+
+            // Ukraine
+            'Kyiv, Ukraine',
+            'Lviv, Ukraine',
+            'Odesa, Ukraine',
+            'Kharkiv, Ukraine',
+
+            // Moldova
+            'Chișinău, Moldova',
+            'Orheiul Vechi, Moldova',
+
+            // Cyprus
+            'Nicosia, Cyprus',
+            'Limassol, Cyprus',
+            'Paphos, Cyprus',
+            'Larnaca, Cyprus',
+
+            // Malta
+            'Valletta, Malta',
+            'Mdina, Malta',
+            'Gozo, Malta',
+
+            // Belarus
+            'Minsk, Belarus',
+            'Brest, Belarus',
+            'Grodno, Belarus',
+
+            // Kosovo
+            'Pristina, Kosovo',
+            'Prizren, Kosovo',
+
+            // Andorra
+            'Andorra la Vella, Andorra',
+
+            // Liechtenstein
+            'Vaduz, Liechtenstein',
+
+            // San Marino
+            'San Marino, San Marino',
+
+            // Monaco
+            'Monte Carlo, Monaco',
+
+            // UAE & Middle East
+            'Dubai, UAE',
+            'Abu Dhabi, UAE',
+            'Doha, Qatar',
+            'Muscat, Oman',
+            'Jerusalem, Israel',
+            'Tel Aviv, Israel',
+            'Petra, Jordan',
+            'Wadi Rum, Jordan',
+            'Beirut, Lebanon',
+
+            // Asia Pacific
+            'Singapore, Singapore',
+            'Hong Kong, China',
+            'Beijing, China',
+            'Shanghai, China',
+            'Xi\'an, China',
+            'Guilin, China',
+            'Yangshuo, China',
+            'Zhangjiajie, China',
+            'Tokyo, Japan',
+            'Kyoto, Japan',
+            'Osaka, Japan',
+            'Hiroshima, Japan',
+            'Nara, Japan',
+            'Hakone, Japan',
+            'Nikko, Japan',
+            'Takayama, Japan',
+            'Seoul, South Korea',
+            'Busan, South Korea',
+            'Jeju Island, South Korea',
+            'Bangkok, Thailand',
+            'Chiang Mai, Thailand',
+            'Phuket, Thailand',
+            'Krabi, Thailand',
+            'Ayutthaya, Thailand',
+            'Bali, Indonesia',
+            'Jakarta, Indonesia',
+            'Yogyakarta, Indonesia',
+            'Lombok, Indonesia',
+            'Komodo Island, Indonesia',
+            'Kuala Lumpur, Malaysia',
+            'Penang, Malaysia',
+            'Langkawi, Malaysia',
+            'Hanoi, Vietnam',
+            'Ho Chi Minh City, Vietnam',
+            'Halong Bay, Vietnam',
+            'Hoi An, Vietnam',
+            'Hue, Vietnam',
+            'Sapa, Vietnam',
+            'Phnom Penh, Cambodia',
+            'Siem Reap, Cambodia',
+            'Angkor Wat, Cambodia',
+            'Luang Prabang, Laos',
+            'Vientiane, Laos',
+            'Manila, Philippines',
+            'Boracay, Philippines',
+            'Palawan, Philippines',
+            'Cebu, Philippines',
+            'Taipei, Taiwan',
+            'Yangon, Myanmar',
+            'Bagan, Myanmar',
+
+            // South Asia
+            'Kathmandu, Nepal',
+            'Pokhara, Nepal',
+            'Everest Base Camp, Nepal',
+            'Colombo, Sri Lanka',
+            'Kandy, Sri Lanka',
+            'Galle, Sri Lanka',
+            'Ella, Sri Lanka',
+            'Dhaka, Bangladesh',
+            'Thimphu, Bhutan',
+            'Paro, Bhutan',
+            'Male, Maldives',
+
+            // Australia & New Zealand
+            'Sydney, Australia',
+            'Melbourne, Australia',
+            'Brisbane, Australia',
+            'Perth, Australia',
+            'Adelaide, Australia',
+            'Cairns, Australia',
+            'Great Barrier Reef, Australia',
+            'Uluru, Australia',
+            'Gold Coast, Australia',
+            'Whitsundays, Australia',
+            'Auckland, New Zealand',
+            'Wellington, New Zealand',
+            'Queenstown, New Zealand',
+            'Christchurch, New Zealand',
+            'Rotorua, New Zealand',
+            'Milford Sound, New Zealand',
+
+            // Canada
+            'Toronto, Canada',
+            'Vancouver, Canada',
+            'Montreal, Canada',
+            'Quebec City, Canada',
+            'Ottawa, Canada',
+            'Calgary, Canada',
+            'Banff, Canada',
+            'Jasper, Canada',
+            'Whistler, Canada',
+            'Niagara Falls, Canada',
+            'Victoria, Canada',
+
+            // Mexico & Central America
+            'Mexico City, Mexico',
+            'Cancun, Mexico',
+            'Playa del Carmen, Mexico',
+            'Tulum, Mexico',
+            'Guadalajara, Mexico',
+            'Oaxaca, Mexico',
+            'San Miguel de Allende, Mexico',
+            'Guanajuato, Mexico',
+            'Guatemala City, Guatemala',
+            'Antigua, Guatemala',
+            'San Jose, Costa Rica',
+            'Panama City, Panama',
+
+            // South America
+            'Buenos Aires, Argentina',
+            'Patagonia, Argentina',
+            'Mendoza, Argentina',
+            'Ushuaia, Argentina',
+            'Rio de Janeiro, Brazil',
+            'São Paulo, Brazil',
+            'Iguazu Falls, Brazil',
+            'Salvador, Brazil',
+            'Brasilia, Brazil',
+            'Lima, Peru',
+            'Cusco, Peru',
+            'Machu Picchu, Peru',
+            'Arequipa, Peru',
+            'Santiago, Chile',
+            'Valparaiso, Chile',
+            'Cartagena, Colombia',
+            'Bogota, Colombia',
+            'Medellin, Colombia',
+            'Quito, Ecuador',
+            'Galapagos Islands, Ecuador',
+            'La Paz, Bolivia',
+            'Uyuni Salt Flats, Bolivia',
+
+            // Africa
+            'Cape Town, South Africa',
+            'Johannesburg, South Africa',
+            'Kruger National Park, South Africa',
+            'Cairo, Egypt',
+            'Luxor, Egypt',
+            'Giza, Egypt',
+            'Marrakech, Morocco',
+            'Fez, Morocco',
+            'Casablanca, Morocco',
+            'Chefchaouen, Morocco',
+            'Nairobi, Kenya',
+            'Masai Mara, Kenya',
+            'Zanzibar, Tanzania',
+            'Serengeti, Tanzania',
+            'Victoria Falls, Zimbabwe',
+            'Mauritius, Mauritius',
+            'Seychelles, Seychelles',
+
+            // Russia
+            'Moscow, Russia',
+            'St Petersburg, Russia',
+            'Kazan, Russia',
+            'Sochi, Russia'
+          ];
+
+          // Get existing locations from the gallery
+          const existingLocations = getAllLocations();
+
+          // Combine suggested and existing locations, remove duplicates
+          const allLocations = Array.from(new Set([...suggestedLocations, ...existingLocations])).sort();
+
+          allLocations.forEach((loc: string) => {
+            const option = document.createElement('option');
+            option.value = loc;
+            datalist.appendChild(option);
+          });
+        }
+
+        const locationInputContainer = document.querySelector('.location-input-container') as HTMLElement;
+        const locationShortcuts = document.getElementById('locationShortcuts') as HTMLElement;
+
+        // Function to populate location shortcut buttons
+        function populateLocationShortcuts() {
+          if (!locationShortcuts) return;
+
+          // Get the most frequently used locations from localStorage
+          const saved = safeJSONParse<Record<string, string>>(localStorage.getItem('photoLocations'), {});
+          const locationCounts: Record<string, number> = {};
+
+          Object.values(saved).forEach((loc: any) => {
+            const location = loc as string;
+            locationCounts[location] = (locationCounts[location] || 0) + 1;
+          });
+
+          // Sort by frequency and get top 5
+          const topLocations = Object.entries(locationCounts)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 5)
+            .map(([loc]) => loc);
+
+          // Clear existing buttons
+          locationShortcuts.innerHTML = '';
+
+          // Add shortcut buttons
+          topLocations.forEach((loc: string) => {
+            const btn = document.createElement('button');
+            btn.className = 'location-shortcut-btn';
+            btn.textContent = loc;
+            btn.onclick = () => {
+              (metadataLocationInput as HTMLInputElement).value = loc;
+              (metadataLocationInput as HTMLInputElement).dispatchEvent(new Event('change'));
+            };
+            locationShortcuts.appendChild(btn);
+          });
+
+          // Show shortcuts if there are any
+          if (topLocations.length > 0) {
+            locationShortcuts.style.display = 'flex';
+          } else {
+            locationShortcuts.style.display = 'none';
+          }
+        }
+
+        if (metadataLocationItem && metadataLocationDisplay) {
+          if (location || isDev) {
+            // Show location item if location exists OR if in development
             metadataLocationItem.style.display = 'flex';
 
-            if (isLocalhost) {
-              // On localhost: show input field, hide display
+            if (isDev && metadataLocationInput) {
+              // In development: show input container, hide display
               metadataLocationDisplay.style.display = 'none';
-              metadataLocationInput.style.display = 'block';
+              if (locationInputContainer) locationInputContainer.style.display = 'flex';
               (metadataLocationInput as HTMLInputElement).value = location;
 
-              // Save location on input change
+              // Populate datalist with all available locations
+              updateLocationDatalist();
+
+              // Populate location shortcuts
+              populateLocationShortcuts();
+
+              // Save location on input change (blur or Enter key)
               metadataLocationInput.onchange = () => {
                 const newLocation = (metadataLocationInput as HTMLInputElement).value.trim();
                 if (newLocation) {
                   savedLocations[imageLabel] = newLocation;
                   localStorage.setItem('photoLocations', JSON.stringify(savedLocations));
+                  // Update datalist to include the new location
+                  updateLocationDatalist();
+                  // Update shortcuts
+                  populateLocationShortcuts();
                 } else {
                   delete savedLocations[imageLabel];
                   localStorage.setItem('photoLocations', JSON.stringify(savedLocations));
                   // Hide the item if location is empty and not on localhost display mode
-                  if (!isLocalhost) {
+                  if (!isDev) {
                     metadataLocationItem.style.display = 'none';
                   }
+                  // Update shortcuts
+                  populateLocationShortcuts();
                 }
                 // Update dropdown after location change
                 updateLocationDropdown(newLocation, imageLabel);
               };
+
+              // Also handle Enter key to immediately save and update
+              metadataLocationInput.onkeydown = (e: KeyboardEvent) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  (metadataLocationInput as HTMLInputElement).blur();
+                  (metadataLocationInput as HTMLInputElement).focus();
+                }
+              };
+
+              // Location Manager functionality
+              const manageLocationsBtn = document.getElementById('manageLocationsBtn');
+              const locationManagerModal = document.getElementById('locationManagerModal');
+              const closeLocationManager = document.getElementById('closeLocationManager');
+              const locationManagerList = document.getElementById('locationManagerList');
+
+              function openLocationManager() {
+                if (!locationManagerModal || !locationManagerList) return;
+
+                // Populate the list
+                const locations = getAllLocations();
+                const savedLocations = safeJSONParse<Record<string, string>>(localStorage.getItem('photoLocations'), {});
+
+                locationManagerList.innerHTML = '';
+
+                if (locations.length === 0) {
+                  locationManagerList.innerHTML = '<div class="location-manager-empty">No locations saved yet. Add locations to photos to manage them here.</div>';
+                } else {
+                  locations.forEach((loc: string) => {
+                    // Count how many photos use this location
+                    const count = Object.values(savedLocations).filter((l: any) => l === loc).length;
+
+                    const item = document.createElement('div');
+                    item.className = 'location-manager-item';
+                    item.innerHTML = `
+                      <input type="text" class="location-manager-item-name readonly" value="${loc}" data-original="${loc}" readonly>
+                      <span class="location-manager-item-count">${count} photo${count !== 1 ? 's' : ''}</span>
+                      <button class="location-manager-btn edit" data-location="${loc}">Edit</button>
+                      <button class="location-manager-btn delete" data-location="${loc}">Delete</button>
+                    `;
+
+                    // Edit button handler
+                    const editBtn = item.querySelector('.edit') as HTMLButtonElement;
+                    const deleteBtn = item.querySelector('.delete') as HTMLButtonElement;
+                    const nameInput = item.querySelector('.location-manager-item-name') as HTMLInputElement;
+
+                    editBtn.onclick = () => {
+                      if (editBtn.textContent === 'Edit') {
+                        // Enter edit mode
+                        nameInput.readOnly = false;
+                        nameInput.classList.remove('readonly');
+                        nameInput.select();
+                        editBtn.textContent = 'Save';
+                        deleteBtn.disabled = true;
+                        deleteBtn.style.opacity = '0.5';
+                      } else {
+                        // Save changes
+                        const oldLocation = nameInput.dataset.original || '';
+                        const newLocation = nameInput.value.trim();
+
+                        if (newLocation && newLocation !== oldLocation) {
+                          // Update all photos with this location
+                          const saved = safeJSONParse<Record<string, string>>(localStorage.getItem('photoLocations'), {});
+                          Object.keys(saved).forEach((label: string) => {
+                            if (saved[label] === oldLocation) {
+                              saved[label] = newLocation;
+                            }
+                          });
+                          localStorage.setItem('photoLocations', JSON.stringify(saved));
+
+                          // Update datalist and current photo if needed
+                          updateLocationDatalist();
+                          if (location === oldLocation) {
+                            location = newLocation;
+                            (metadataLocationInput as HTMLInputElement).value = newLocation;
+                            savedLocations[imageLabel] = newLocation;
+                            updateLocationDropdown(newLocation, imageLabel);
+                          }
+
+                          // Update shortcuts
+                          populateLocationShortcuts();
+
+                          // Refresh the manager list
+                          openLocationManager();
+                        } else {
+                          nameInput.value = oldLocation;
+                          nameInput.readOnly = true;
+                          nameInput.classList.add('readonly');
+                          editBtn.textContent = 'Edit';
+                          deleteBtn.disabled = false;
+                          deleteBtn.style.opacity = '1';
+                        }
+                      }
+                    };
+
+                    // Delete button handler
+                    deleteBtn.onclick = () => {
+                      if (confirm(`Delete location "${loc}"? This will remove it from ${count} photo${count !== 1 ? 's' : ''}.`)) {
+                        // Remove from all photos
+                        const saved = safeJSONParse<Record<string, string>>(localStorage.getItem('photoLocations'), {});
+                        Object.keys(saved).forEach((label: string) => {
+                          if (saved[label] === loc) {
+                            delete saved[label];
+                          }
+                        });
+                        localStorage.setItem('photoLocations', JSON.stringify(saved));
+
+                        // Update datalist and current photo if needed
+                        updateLocationDatalist();
+                        if (location === loc) {
+                          location = '';
+                          (metadataLocationInput as HTMLInputElement).value = '';
+                          delete savedLocations[imageLabel];
+                          updateLocationDropdown('', imageLabel);
+                        }
+
+                        // Update shortcuts
+                        populateLocationShortcuts();
+
+                        // Refresh the manager list
+                        openLocationManager();
+                      }
+                    };
+
+                    locationManagerList.appendChild(item);
+                  });
+                }
+
+                locationManagerModal.style.display = 'flex';
+              }
+
+              function closeLocationManagerModal() {
+                if (locationManagerModal) {
+                  locationManagerModal.style.display = 'none';
+                }
+              }
+
+              if (manageLocationsBtn) {
+                manageLocationsBtn.onclick = openLocationManager;
+              }
+
+              if (closeLocationManager) {
+                closeLocationManager.onclick = closeLocationManagerModal;
+              }
+
+              // Close modal when clicking outside
+              if (locationManagerModal) {
+                locationManagerModal.onclick = (e: MouseEvent) => {
+                  if (e.target === locationManagerModal) {
+                    closeLocationManagerModal();
+                  }
+                };
+              }
             } else {
-              // Not on localhost: show display only if location exists
+              // Not in development: show display only if location exists
               metadataLocationDisplay.style.display = 'inline';
-              metadataLocationInput.style.display = 'none';
-              metadataLocationDisplay.textContent = location;
+              // Format location to display City on one line and Country on the next
+              metadataLocationDisplay.innerHTML = location.replace(', ', '<br>');
             }
           } else {
             // No location and not localhost: hide completely
@@ -2321,75 +4338,250 @@ const currentYear = new Date().getFullYear();
           }
         }
 
-        // Handle location dropdown - show other photos at same location
-        const locationDropdownContainer = document.getElementById('locationDropdownContainer');
-        const locationDropdownList = document.getElementById('locationDropdownList');
+        // Location dropdown feature removed for production
+        function updateLocationDropdown(_currentLocation: string, _currentImageLabel: string) {
+          // Feature disabled - no-op function
+          return;
+        }
 
-        function updateLocationDropdown(currentLocation: string, currentImageLabel: string) {
-          if (!locationDropdownContainer || !locationDropdownList) return;
+        // Handle lens metadata (localhost only for editing)
+        // Load lens from localStorage or gallery data
+        const savedLenses = safeJSONParse<Record<string, string>>(localStorage.getItem('photoLenses'), {});
+        let lens = savedLenses[imageLabel] || (galleryItemData?.metadata?.lens) || '';
 
-          // Clear existing items
-          locationDropdownList.innerHTML = '';
+        // Helper function to get all unique lenses
+        function getAllLenses(): string[] {
+          const lenses = new Set<string>();
 
-          if (!currentLocation) {
-            locationDropdownContainer.style.display = 'none';
-            return;
-          }
+          // Helper to check if a lens value is valid (not a placeholder)
+          const isValidLens = (lens: string) => {
+            return lens &&
+                   lens.trim() !== '' &&
+                   lens !== 'Unknown' &&
+                   lens !== 'Unknown Lens' &&
+                   lens !== '----' &&
+                   lens !== '---';
+          };
 
-          // Build location index from both localStorage and gallery data
-          const locationIndex: Record<string, string[]> = {};
-
-          // Add locations from localStorage
-          const savedLocations = JSON.parse(localStorage.getItem('photoLocations') || '{}') as Record<string, string>;
-          Object.keys(savedLocations).forEach((label: string) => {
-            const loc = savedLocations[label];
-            if (loc) {
-              if (!locationIndex[loc]) locationIndex[loc] = [];
-              locationIndex[loc].push(label);
+          // Add from localStorage
+          const saved = safeJSONParse<Record<string, string>>(localStorage.getItem('photoLenses'), {});
+          Object.values(saved).forEach((lensItem: any) => {
+            if (lensItem && typeof lensItem === 'string' && isValidLens(lensItem)) {
+              lenses.add(lensItem);
             }
           });
 
-          // Add locations from gallery data
+          // Add from gallery data
           galleryItems.forEach((item: any) => {
-            if (item.metadata?.location) {
-              const loc = item.metadata.location;
-              if (!locationIndex[loc]) locationIndex[loc] = [];
-              if (!locationIndex[loc].includes(item.label)) {
-                locationIndex[loc].push(item.label);
-              }
+            if (item.metadata?.lens && isValidLens(item.metadata.lens)) {
+              lenses.add(item.metadata.lens);
             }
           });
 
-          // Get photos at the same location (excluding current photo)
-          const photosAtLocation = (locationIndex[currentLocation] || [])
-            .filter((label: string) => label !== currentImageLabel);
+          return Array.from(lenses).sort();
+        }
 
-          if (photosAtLocation.length === 0) {
-            locationDropdownContainer.style.display = 'none';
-            return;
-          }
+        // Helper function to update the datalist
+        function updateLensDatalist() {
+          const datalist = document.getElementById('lensSuggestions');
+          if (!datalist || !isDev) return;
 
-          // Show dropdown and populate with photos
-          locationDropdownContainer.style.display = 'block';
+          datalist.innerHTML = '';
 
-          photosAtLocation.forEach((photoLabel: string) => {
-            const item = document.createElement('div');
-            item.className = 'location-dropdown-item';
-            item.textContent = photoLabel;
-            item.onclick = () => {
-              // Find the index of the photo in visibleItems
-              const photoIndex = visibleItems.findIndex((img: any) => img.label === photoLabel);
-              if (photoIndex !== -1) {
-                currentImageIndex = photoIndex;
-                openLightbox(currentImageIndex);
-              }
-            };
-            locationDropdownList.appendChild(item);
+          // Get existing lenses from the gallery and localStorage only
+          const existingLenses = getAllLenses();
+
+          existingLenses.forEach((lensItem: string) => {
+            const option = document.createElement('option');
+            option.value = lensItem;
+            datalist.appendChild(option);
           });
         }
 
-        // Initial update of location dropdown
-        updateLocationDropdown(location, imageLabel);
+        const lensInputContainer = document.querySelector('.lens-input-container') as HTMLElement;
+
+        if (metadataLensItem && metadataLensDisplay) {
+          if (lens || isDev) {
+            // Show lens item if lens exists OR if in development
+            metadataLensItem.style.display = 'flex';
+
+            if (isDev && metadataLensInput) {
+              // In development: show input container, hide display
+              metadataLensDisplay.style.display = 'none';
+              if (lensInputContainer) lensInputContainer.style.display = 'flex';
+              (metadataLensInput as HTMLInputElement).value = lens;
+
+              // Populate datalist with all available lenses
+              updateLensDatalist();
+
+              // Save lens on input change (blur or Enter key)
+              metadataLensInput.onchange = () => {
+                const newLens = (metadataLensInput as HTMLInputElement).value.trim();
+                if (newLens) {
+                  savedLenses[imageLabel] = newLens;
+                  localStorage.setItem('photoLenses', JSON.stringify(savedLenses));
+                  // Update datalist to include the new lens
+                  updateLensDatalist();
+                } else {
+                  delete savedLenses[imageLabel];
+                  localStorage.setItem('photoLenses', JSON.stringify(savedLenses));
+                  // Hide the item if lens is empty and not on localhost display mode
+                  if (!isDev) {
+                    metadataLensItem.style.display = 'none';
+                  }
+                }
+                // Lens change handled - dropdown feature removed
+              };
+
+              // Also handle Enter key to immediately save and update
+              metadataLensInput.onkeydown = (e: KeyboardEvent) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  (metadataLensInput as HTMLInputElement).blur();
+                  (metadataLensInput as HTMLInputElement).focus();
+                }
+              };
+
+              // Lens Manager functionality
+              const manageLensesBtn = document.getElementById('manageLensesBtn');
+              const lensManagerModal = document.getElementById('lensManagerModal');
+              const closeLensManager = document.getElementById('closeLensManager');
+              const lensManagerList = document.getElementById('lensManagerList');
+
+              function openLensManager() {
+                if (!lensManagerModal || !lensManagerList) return;
+
+                // Populate the list
+                const lenses = getAllLenses();
+                const savedLenses = safeJSONParse<Record<string, string>>(localStorage.getItem('photoLenses'), {});
+
+                lensManagerList.innerHTML = '';
+
+                if (lenses.length === 0) {
+                  lensManagerList.innerHTML = '<div class="lens-manager-empty">No lenses saved yet. Add lenses to photos to manage them here.</div>';
+                } else {
+                  lenses.forEach((lensItem: string) => {
+                    // Count how many photos use this lens
+                    const count = Object.values(savedLenses).filter((l: any) => l === lensItem).length;
+
+                    const item = document.createElement('div');
+                    item.className = 'lens-manager-item';
+                    item.innerHTML = `
+                      <input type="text" class="lens-manager-item-name readonly" value="${lensItem}" data-original="${lensItem}" readonly>
+                      <span class="lens-manager-item-count">${count} photo${count !== 1 ? 's' : ''}</span>
+                      <button class="lens-manager-btn edit" data-lens="${lensItem}">Edit</button>
+                      <button class="lens-manager-btn delete" data-lens="${lensItem}">Delete</button>
+                    `;
+
+                    // Edit button handler
+                    const editBtn = item.querySelector('.edit') as HTMLButtonElement;
+                    const deleteBtn = item.querySelector('.delete') as HTMLButtonElement;
+                    const nameInput = item.querySelector('.lens-manager-item-name') as HTMLInputElement;
+
+                    editBtn.onclick = () => {
+                      if (editBtn.textContent === 'Edit') {
+                        // Enter edit mode
+                        nameInput.readOnly = false;
+                        nameInput.classList.remove('readonly');
+                        nameInput.select();
+                        editBtn.textContent = 'Save';
+                        deleteBtn.disabled = true;
+                      } else {
+                        // Save changes
+                        const oldLens = nameInput.dataset.original || '';
+                        const newLens = nameInput.value.trim();
+
+                        if (newLens && newLens !== oldLens) {
+                          // Update all photos with this lens
+                          const savedLenses = safeJSONParse<Record<string, string>>(localStorage.getItem('photoLenses'), {});
+                          Object.keys(savedLenses).forEach((label: string) => {
+                            if (savedLenses[label] === oldLens) {
+                              savedLenses[label] = newLens;
+                            }
+                          });
+                          localStorage.setItem('photoLenses', JSON.stringify(savedLenses));
+
+                          // Update current photo if it uses this lens
+                          if ((metadataLensInput as HTMLInputElement).value === oldLens) {
+                            (metadataLensInput as HTMLInputElement).value = newLens;
+                          }
+
+                          // Refresh the manager list
+                          openLensManager();
+                        } else {
+                          // Cancel edit
+                          nameInput.value = oldLens;
+                          nameInput.readOnly = true;
+                          nameInput.classList.add('readonly');
+                          editBtn.textContent = 'Edit';
+                          deleteBtn.disabled = false;
+                        }
+                      }
+                    };
+
+                    // Delete button handler
+                    deleteBtn.onclick = () => {
+                      const lensToDelete = nameInput.dataset.original || '';
+                      if (confirm(`Delete "${lensToDelete}" from all photos?`)) {
+                        const savedLenses = safeJSONParse<Record<string, string>>(localStorage.getItem('photoLenses'), {});
+                        Object.keys(savedLenses).forEach((label: string) => {
+                          if (savedLenses[label] === lensToDelete) {
+                            delete savedLenses[label];
+                          }
+                        });
+                        localStorage.setItem('photoLenses', JSON.stringify(savedLenses));
+
+                        // Clear current photo if it uses this lens
+                        if (metadataLensInput && (metadataLensInput as HTMLInputElement).value === lensToDelete) {
+                          (metadataLensInput as HTMLInputElement).value = '';
+                          if (metadataLensInput.onchange) {
+                            (metadataLensInput.onchange as any)(new Event('change'));
+                          }
+                        }
+
+                        // Refresh the manager list
+                        openLensManager();
+                      }
+                    };
+
+                    lensManagerList.appendChild(item);
+                  });
+                }
+
+                lensManagerModal.style.display = 'flex';
+              }
+
+              if (manageLensesBtn) {
+                manageLensesBtn.onclick = (e) => {
+                  e.stopPropagation();
+                  openLensManager();
+                };
+              }
+
+              if (closeLensManager) {
+                closeLensManager.onclick = () => {
+                  if (lensManagerModal) lensManagerModal.style.display = 'none';
+                };
+              }
+
+              if (lensManagerModal) {
+                lensManagerModal.onclick = (e) => {
+                  if (e.target === lensManagerModal) {
+                    lensManagerModal.style.display = 'none';
+                  }
+                };
+              }
+            } else {
+              // Not in development: show display only if lens exists
+              metadataLensDisplay.style.display = 'inline';
+              metadataLensDisplay.textContent = lens;
+            }
+          } else {
+            // No lens and not localhost: hide completely
+            metadataLensItem.style.display = 'none';
+          }
+        }
+
 
         // Handle description/notes section
         const descriptionSection = document.getElementById('descriptionSection');
@@ -2420,16 +4612,26 @@ const currentYear = new Date().getFullYear();
       }
 
       function navigateLightbox(direction: string) {
-        if (direction === 'next') {
-          currentImageIndex = (currentImageIndex + 1) % visibleItems.length;
-        } else {
-          // Left arrow goes to a random photo (transient viewing)
-          let randomIndex;
-          do {
-            randomIndex = Math.floor(Math.random() * visibleItems.length);
-          } while (randomIndex === currentImageIndex && visibleItems.length > 1);
-          currentImageIndex = randomIndex;
+        devLog(`Navigate lightbox: ${direction}, current index: ${currentImageIndex}`);
+        // Navigate to previous or next photo without looping
+        if (direction === 'prev') {
+          if (currentImageIndex > 0) {
+            currentImageIndex = currentImageIndex - 1;
+          } else {
+            // At first photo, don't go back
+            devLog('Already at first photo, not navigating');
+            return;
+          }
+        } else if (direction === 'next') {
+          if (currentImageIndex < visibleItems.length - 1) {
+            currentImageIndex = currentImageIndex + 1;
+          } else {
+            // At last photo, don't go forward
+            devLog('Already at last photo, not navigating');
+            return;
+          }
         }
+        devLog(`New index: ${currentImageIndex}`);
         openLightbox(currentImageIndex);
       }
 
@@ -2447,10 +4649,18 @@ const currentYear = new Date().getFullYear();
         lightboxClose.addEventListener('click', closeLightbox);
       }
       if (lightboxPrev) {
-        lightboxPrev.addEventListener('click', () => navigateLightbox('prev'));
+        lightboxPrev.addEventListener('click', (e) => {
+          e.stopPropagation();
+          devLog('Prev button clicked');
+          navigateLightbox('prev');
+        });
       }
       if (lightboxNext) {
-        lightboxNext.addEventListener('click', () => navigateLightbox('next'));
+        lightboxNext.addEventListener('click', (e) => {
+          e.stopPropagation();
+          devLog('Next button clicked');
+          navigateLightbox('next');
+        });
       }
 
       // Close lightbox on outside click
@@ -2460,6 +4670,155 @@ const currentYear = new Date().getFullYear();
             closeLightbox();
           }
         });
+      }
+
+      // Category dropdown functionality
+      if (categoryDropdownBtn && categoryDropdownMenu) {
+        // Initialize dropdown with all available categories
+        const initializeCategoryDropdown = () => {
+          if (!categoryDropdownMenu) return;
+
+          // Get all categories from the filter tabs
+          const allCategories: string[] = [];
+          filterTabs.forEach(tab => {
+            const filterValue = tab.getAttribute('data-filter');
+            if (filterValue && filterValue !== 'all') {
+              allCategories.push(filterValue);
+            }
+          });
+
+          // Populate dropdown with checkboxes for each category
+          categoryDropdownMenu.innerHTML = '';
+          allCategories.forEach(category => {
+            const item = document.createElement('div');
+            item.className = 'category-dropdown-item';
+
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = `category-${category}`;
+            checkbox.value = category;
+
+            const label = document.createElement('label');
+            label.htmlFor = `category-${category}`;
+            label.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+
+            item.appendChild(checkbox);
+            item.appendChild(label);
+            categoryDropdownMenu.appendChild(item);
+
+            // Handle checkbox change
+            checkbox.addEventListener('change', (e) => {
+              const target = e.target as HTMLInputElement;
+              const currentItem = visibleItems[currentImageIndex];
+              if (!currentItem) return;
+
+              const itemHref = currentItem.getAttribute('data-href');
+              const galleryItemData = window.galleryData.find((item: any) => item.href === itemHref);
+
+              if (galleryItemData) {
+                // Initialize additionalCategories if it doesn't exist
+                if (!galleryItemData.additionalCategories) {
+                  galleryItemData.additionalCategories = [];
+                }
+
+                if (target.checked) {
+                  // Add category if not already present and not the primary category
+                  if (!galleryItemData.additionalCategories.includes(category) &&
+                      galleryItemData.category !== category) {
+                    galleryItemData.additionalCategories.push(category);
+                  }
+                } else {
+                  // Remove category
+                  const index = galleryItemData.additionalCategories.indexOf(category);
+                  if (index > -1) {
+                    galleryItemData.additionalCategories.splice(index, 1);
+                  }
+                }
+
+                // Update the display
+                updateCategoryDisplay(galleryItemData);
+
+                devLog('Category updated:', {
+                  primary: galleryItemData.category,
+                  additional: galleryItemData.additionalCategories
+                });
+              }
+            });
+          });
+        };
+
+        // Function to update category display
+        const updateCategoryDisplay = (galleryItemData: any) => {
+          if (!categoryDisplay) return;
+
+          const primaryCategory = galleryItemData.category || 'all';
+          const additionalCategories = galleryItemData.additionalCategories || [];
+
+          categoryDisplay.innerHTML = '';
+
+          // Add primary category tag
+          const primaryTag = document.createElement('span');
+          primaryTag.className = 'category-tag';
+          primaryTag.textContent = primaryCategory.charAt(0).toUpperCase() + primaryCategory.slice(1);
+          categoryDisplay.appendChild(primaryTag);
+
+          // Add additional category tags
+          additionalCategories.forEach((cat: string) => {
+            const tag = document.createElement('span');
+            tag.className = 'category-tag';
+            tag.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+            categoryDisplay.appendChild(tag);
+          });
+        };
+
+        // Function to update checkboxes based on current photo's categories
+        const updateCategoryCheckboxes = (galleryItemData: any) => {
+          if (!categoryDropdownMenu) return;
+
+          const primaryCategory = galleryItemData.category || 'all';
+          const additionalCategories = galleryItemData.additionalCategories || [];
+
+          // Update all checkboxes
+          const checkboxes = categoryDropdownMenu.querySelectorAll('input[type="checkbox"]');
+          checkboxes.forEach((checkbox: any) => {
+            const category = checkbox.value;
+            // Check if this category is either primary or in additional categories
+            checkbox.checked = category === primaryCategory || additionalCategories.includes(category);
+            // Disable primary category checkbox
+            checkbox.disabled = category === primaryCategory;
+          });
+        };
+
+        // Toggle dropdown on button click
+        categoryDropdownBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          categoryDropdownMenu?.classList.toggle('active');
+
+          // Update checkboxes when opening
+          if (categoryDropdownMenu?.classList.contains('active')) {
+            const currentItem = visibleItems[currentImageIndex];
+            if (currentItem) {
+              const itemHref = currentItem.getAttribute('data-href');
+              const galleryItemData = window.galleryData.find((item: any) => item.href === itemHref);
+              if (galleryItemData) {
+                updateCategoryCheckboxes(galleryItemData);
+              }
+            }
+          }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+          if (categoryDropdownMenu?.classList.contains('active')) {
+            const target = e.target as HTMLElement;
+            if (!categoryDropdownMenu.contains(target) && target !== categoryDropdownBtn) {
+              categoryDropdownMenu.classList.remove('active');
+            }
+          }
+        });
+
+        // Initialize dropdown
+        initializeCategoryDropdown();
       }
 
       // Keyboard navigation
@@ -2698,7 +5057,9 @@ const currentYear = new Date().getFullYear();
 
           // First, clear any existing animations to allow re-triggering
           circles.forEach(circle => {
-            (circle as unknown as HTMLElement).style.animation = 'none';
+            const circleElement = circle as unknown as HTMLElement;
+            circleElement.style.animation = 'none';
+            circleElement.style.webkitAnimation = 'none';
           });
 
           // Force a reflow to restart the animation
@@ -2711,7 +5072,11 @@ const currentYear = new Date().getFullYear();
             const duration = 0.8 + Math.random() * 0.2; // Full cycle duration
 
             const animationString = `${animationName} ${duration}s ease-in-out ${delay}s`;
-            (circle as unknown as HTMLElement).style.animation = animationString;
+            const circleElement = circle as unknown as HTMLElement;
+
+            // Apply animation with webkit prefix for better mobile support
+            circleElement.style.animation = animationString;
+            circleElement.style.webkitAnimation = animationString;
 
             devLog(`Circle ${index}: applying animation "${animationString}"`);
           });

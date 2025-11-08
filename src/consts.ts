@@ -1,3 +1,20 @@
+/*
+ * ============================================================================
+ * FEATURE INDEX - src/consts.ts
+ * ============================================================================
+ *
+ * ROUTES (Lines 14-17)
+ * └─ Navigation route definitions
+ *
+ * PERSONAL_INFO (Lines 20-28)
+ * └─ Personal information and contact details
+ *
+ * SEO_INFO (Lines 30-37)
+ * └─ SEO metadata for pages
+ *
+ * ============================================================================
+ */
+
 export const ROUTES = [
   { href: "/", label: "Portfolio" },
   { href: "/about", label: "About" },

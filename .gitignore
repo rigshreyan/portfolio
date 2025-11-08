@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # gallery source images (large files, not deployed)
 gallery-source/
+
+# design exploration files
+design-exploration/
