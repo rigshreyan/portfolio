@@ -4132,8 +4132,8 @@ if (import.meta.env.DEV) {
           }
         }
 
-        // Always show location metadata if it exists in gallery data
-        const hasLocationData = galleryItemData?.metadata?.location || location;
+        // Always show location metadata if it exists in gallery data (even if empty string/placeholder)
+        const hasLocationData = galleryItemData?.metadata?.location !== undefined;
 
         if (metadataLocationItem && metadataLocationDisplay) {
           if (hasLocationData) {
@@ -4394,8 +4394,8 @@ if (import.meta.env.DEV) {
 
         const lensInputContainer = document.querySelector('.lens-input-container') as HTMLElement;
 
-        // Always show lens metadata if it exists in gallery data (including placeholder values in production)
-        const hasLensData = galleryItemData?.metadata?.lens || lens;
+        // Always show lens metadata if it exists in gallery data (even if empty string/placeholder)
+        const hasLensData = galleryItemData?.metadata?.lens !== undefined;
 
         if (metadataLensItem && metadataLensDisplay) {
           if (hasLensData) {
@@ -4959,12 +4959,17 @@ if (import.meta.env.DEV) {
         return distributed.map(photo => photo.item);
       }
 
-      function shuffleGallery() {
+      function shuffleGallery(isInitialLoad: boolean = false) {
         devLog('Shuffling gallery...');
 
         // Get the gallery container
-        const galleryGrid = document.querySelector('.gallery-grid');
+        const galleryGrid = document.querySelector('.gallery-grid') as HTMLElement;
         if (!galleryGrid) return;
+
+        // Hide gallery during shuffle on initial load to prevent blinking
+        if (isInitialLoad) {
+          galleryGrid.style.opacity = '0';
+        }
 
         // Smart shuffle the visible items array to keep similar numbers far apart
         const shuffledItems = smartShuffleByFileNumber(visibleItems);
@@ -4978,6 +4983,14 @@ if (import.meta.env.DEV) {
 
         // Update the visibleItems array to reflect the new order
         visibleItems = shuffledItems;
+
+        // Show gallery with fade-in after initial shuffle
+        if (isInitialLoad) {
+          requestAnimationFrame(() => {
+            galleryGrid.style.transition = 'opacity 0.3s ease-in';
+            galleryGrid.style.opacity = '1';
+          });
+        }
 
         // Add a subtle animation to show the shuffle happened
         shuffledItems.forEach((item, index) => {
@@ -5036,8 +5049,8 @@ if (import.meta.env.DEV) {
         });
       }
 
-      // Shuffle gallery on initial page load
-      shuffleGallery();
+      // Shuffle gallery on initial page load (hide during shuffle to prevent blinking)
+      shuffleGallery(true);
 
       // Image protection helper function
       function protectImage(img: HTMLElement) {
