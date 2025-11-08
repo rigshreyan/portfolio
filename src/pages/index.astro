@@ -4857,36 +4857,39 @@ if (import.meta.env.DEV) {
 
         // Create array with comprehensive metadata
         const photos = items.map(extractItemData);
+        const totalPhotos = photos.length;
 
         // Sort by file number first (to establish chronological baseline)
         photos.sort((a, b) => a.fileNumber - b.fileNumber);
 
-        // Advanced distribution algorithm
-        const columnCount = window.innerWidth <= 768 ? 2 : 3;
+        // Group into chunks to distribute chronologically distant photos
+        const numGroups = Math.ceil(Math.sqrt(totalPhotos));
+        const groups: typeof photos[] = Array.from({ length: numGroups }, () => []);
 
-        // Calculate optimal spacing to keep similar numbers far apart
-        const totalPhotos = photos.length;
-        const baseStep = Math.ceil(totalPhotos / Math.ceil(Math.sqrt(totalPhotos)));
+        // Distribute photos into groups (chronological order split into groups)
+        photos.forEach((photo, index) => {
+          const groupIndex = index % numGroups;
+          groups[groupIndex]!.push(photo);
+        });
 
-        // Distribute photos using multi-pass algorithm
-        // Pass 1: Interleaved distribution for file numbers
-        const distributed: (typeof photos[0] | undefined)[] = new Array(totalPhotos);
-        let currentIndex = Math.floor(Math.random() * baseStep);
-        let sourceIndex = 0;
+        // Fisher-Yates shuffle of groups
+        for (let i = groups.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const temp = groups[i]!;
+          groups[i] = groups[j]!;
+          groups[j] = temp;
+        }
 
-        while (sourceIndex < totalPhotos) {
-          if (currentIndex >= totalPhotos) {
-            currentIndex = distributed.findIndex(item => item === undefined);
-            if (currentIndex === -1) break;
+        // Interleave groups to create distributed array
+        const distributed: typeof photos = [];
+        let groupIndex = 0;
+        while (distributed.length < totalPhotos) {
+          const currentGroup = groups[groupIndex]!;
+          if (currentGroup.length > 0) {
+            const photo = currentGroup.shift();
+            if (photo) distributed.push(photo);
           }
-
-          if (distributed[currentIndex] === undefined) {
-            distributed[currentIndex] = photos[sourceIndex]!;
-            sourceIndex++;
-          }
-
-          // Variable step size for better randomization
-          currentIndex += baseStep + Math.floor(Math.random() * 3) - 1;
+          groupIndex = (groupIndex + 1) % numGroups;
         }
 
         // Pass 2: Optimize B&W vs Color distribution
@@ -4896,40 +4899,42 @@ if (import.meta.env.DEV) {
           const next = distributed[i + 1];
           const afterNext = distributed[i + 2];
 
-          if (current && next && afterNext) {
-            // Check for 3+ consecutive B&W or color
-            if ((current.isBW && next.isBW && afterNext.isBW) ||
-                (!current.isBW && !next.isBW && !afterNext.isBW)) {
-              // Find a photo of opposite type to swap with afterNext
-              for (let j = i + 3; j < distributed.length; j++) {
-                const swapCandidate = distributed[j];
-                if (swapCandidate && swapCandidate.isBW !== afterNext.isBW) {
-                  const temp = distributed[i + 2];
-                  distributed[i + 2] = distributed[j];
-                  distributed[j] = temp;
-                  devLog(`🎨 Color mix swap: position ${i + 2} ↔ ${j} (${afterNext.isBW ? 'B&W' : 'Color'} → ${swapCandidate.isBW ? 'B&W' : 'Color'})`);
-                  break;
-                }
+          if (!current || !next || !afterNext) continue;
+
+          // Check for 3+ consecutive B&W or color
+          if ((current.isBW && next.isBW && afterNext.isBW) ||
+              (!current.isBW && !next.isBW && !afterNext.isBW)) {
+            // Find a photo of opposite type to swap with afterNext
+            for (let j = i + 3; j < distributed.length; j++) {
+              const swapCandidate = distributed[j];
+              if (swapCandidate && swapCandidate.isBW !== afterNext.isBW) {
+                const temp = distributed[i + 2]!;
+                distributed[i + 2] = distributed[j]!;
+                distributed[j] = temp;
+                devLog(`🎨 Color mix swap: position ${i + 2} ↔ ${j}`);
+                break;
               }
             }
           }
         }
 
         // Pass 3: Optimize orientation distribution
-        // Ensure good mix of portrait/landscape, avoid clustering
+        const columnCount = window.innerWidth <= 768 ? 2 : 3;
         for (let i = 0; i < distributed.length - columnCount; i++) {
           const row = distributed.slice(i, i + columnCount);
-          const portraitCount = row.filter(p => p?.isPortrait).length;
+          const portraitCount = row.filter(p => p && p.isPortrait).length;
 
           // If we have too many portraits in a row, swap one out
           if (portraitCount >= columnCount - 1) {
             for (let k = 0; k < row.length; k++) {
-              if (row[k]?.isPortrait) {
+              const currentPhoto = row[k];
+              if (currentPhoto && currentPhoto.isPortrait) {
                 // Find a landscape photo to swap with
                 for (let j = i + columnCount; j < distributed.length; j++) {
-                  if (distributed[j]?.isLandscape) {
-                    const temp = distributed[i + k];
-                    distributed[i + k] = distributed[j];
+                  const swapPhoto = distributed[j];
+                  if (swapPhoto && swapPhoto.isLandscape) {
+                    const temp = distributed[i + k]!;
+                    distributed[i + k] = distributed[j]!;
                     distributed[j] = temp;
                     devLog(`📐 Orientation swap: position ${i + k} ↔ ${j}`);
                     break;
@@ -4943,31 +4948,15 @@ if (import.meta.env.DEV) {
 
         devLog('🔀 Advanced multi-factor shuffle applied:');
         devLog('   Total photos:', totalPhotos);
-        devLog('   File number range:', photos[0]?.fileNumber, '-', photos[totalPhotos - 1]?.fileNumber);
-        devLog('   Distribution step:', baseStep);
+        devLog('   Groups created:', numGroups);
         devLog('   B&W photos:', photos.filter(p => p.isBW).length);
         devLog('   Color photos:', photos.filter(p => !p.isBW).length);
         devLog('   Portrait photos:', photos.filter(p => p.isPortrait).length);
         devLog('   Landscape photos:', photos.filter(p => p.isLandscape).length);
+        devLog('✅ Multi-factor distribution complete');
 
-        const filteredResult = distributed.filter((item: any) => item !== undefined);
-
-        // Post-process: Fine-tune brickwork layout
-        function createBrickworkLayout(shuffled: typeof photos): Element[] {
-          // Additional fine-tuning for visual balance
-          // Most work already done in Pass 3 above
-          devLog('✅ Brickwork layout optimized for balanced distribution');
-
-          // Extract just the Element items from our photo objects
-          return shuffled.map(photo => photo.item);
-        }
-
-        // Filter out any undefined values before passing to createBrickworkLayout
-        const validFilteredResult = filteredResult.filter((photo): photo is { item: Element; fileNumber: number; isBW: boolean; isPortrait: boolean; isLandscape: boolean; } => photo !== undefined);
-        const finalResult = createBrickworkLayout(validFilteredResult);
-        devLog('🧱 Multi-factor distribution complete: chronological, color, and orientation optimized');
-
-        return finalResult;
+        // Extract just the Element items from our photo objects
+        return distributed.map(photo => photo.item);
       }
 
       function shuffleGallery() {
