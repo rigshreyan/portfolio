@@ -3228,7 +3228,6 @@ if (import.meta.env.DEV) {
       const categoryDropdownBtn = document.getElementById('categoryDropdownBtn');
       const categoryDropdownMenu = document.getElementById('categoryDropdownMenu');
       const metadataCamera = document.getElementById('metadataCamera');
-      const metadataLens = document.getElementById('metadataLens');
       const metadataFocalLength = document.getElementById('metadataFocalLength');
       const metadataAperture = document.getElementById('metadataAperture');
       const metadataShutterSpeed = document.getElementById('metadataShutterSpeed');
@@ -3418,7 +3417,7 @@ if (import.meta.env.DEV) {
             return (value && value !== 'Unknown' && value !== 'Unknown Camera' && value !== 'Unknown Lens') ? value : '---';
           };
           if (metadataCamera) metadataCamera.textContent = displayValue(metadata.camera);
-          if (metadataLens) metadataLens.textContent = displayValue(metadata.lens);
+          // Lens is handled separately by the lens-specific code below (lines 4411+)
           if (metadataFocalLength) metadataFocalLength.textContent = displayValue(metadata.focalLength);
           if (metadataAperture) metadataAperture.textContent = displayValue(metadata.aperture);
           if (metadataShutterSpeed) metadataShutterSpeed.textContent = displayValue(metadata.shutterSpeed);
@@ -3428,7 +3427,7 @@ if (import.meta.env.DEV) {
         } else {
           // Fallback to default values if metadata not found
           if (metadataCamera) metadataCamera.textContent = '---';
-          if (metadataLens) metadataLens.textContent = '---';
+          // Lens is handled separately by the lens-specific code below
           if (metadataFocalLength) metadataFocalLength.textContent = '---';
           if (metadataAperture) metadataAperture.textContent = '---';
           if (metadataShutterSpeed) metadataShutterSpeed.textContent = '---';
