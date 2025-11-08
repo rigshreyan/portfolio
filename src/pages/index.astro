@@ -3453,6 +3453,24 @@ if (import.meta.env.DEV) {
         const savedLocations = safeJSONParse<Record<string, string>>(localStorage.getItem('photoLocations'), {});
         let location = savedLocations[imageLabel] || (galleryItemData?.metadata?.location) || '';
 
+        // Helper to check if a location value is valid (not a placeholder)
+        const isValidLocation = (location: string) => {
+          return location &&
+                 location.trim() !== '' &&
+                 location !== '----' &&
+                 location !== 'Unknown';
+        };
+
+        // Helper to check if a lens value is valid (not a placeholder)
+        const isValidLens = (lens: string) => {
+          return lens &&
+                 lens.trim() !== '' &&
+                 lens !== 'Unknown' &&
+                 lens !== 'Unknown Lens' &&
+                 lens !== '----' &&
+                 lens !== '---';
+        };
+
         // Helper function to get all unique locations
         function getAllLocations(): string[] {
           const locations = new Set<string>();
@@ -4134,8 +4152,8 @@ if (import.meta.env.DEV) {
         }
 
         if (metadataLocationItem && metadataLocationDisplay) {
-          if (location || isDev) {
-            // Show location item if location exists OR if in development
+          if (isValidLocation(location) || isDev) {
+            // Show location item if valid location exists OR if in development
             metadataLocationItem.style.display = 'flex';
 
             if (isDev && metadataLocationInput) {
@@ -4353,16 +4371,6 @@ if (import.meta.env.DEV) {
         function getAllLenses(): string[] {
           const lenses = new Set<string>();
 
-          // Helper to check if a lens value is valid (not a placeholder)
-          const isValidLens = (lens: string) => {
-            return lens &&
-                   lens.trim() !== '' &&
-                   lens !== 'Unknown' &&
-                   lens !== 'Unknown Lens' &&
-                   lens !== '----' &&
-                   lens !== '---';
-          };
-
           // Add from localStorage
           const saved = safeJSONParse<Record<string, string>>(localStorage.getItem('photoLenses'), {});
           Object.values(saved).forEach((lensItem: any) => {
@@ -4401,8 +4409,8 @@ if (import.meta.env.DEV) {
         const lensInputContainer = document.querySelector('.lens-input-container') as HTMLElement;
 
         if (metadataLensItem && metadataLensDisplay) {
-          if (lens || isDev) {
-            // Show lens item if lens exists OR if in development
+          if (isValidLens(lens) || isDev) {
+            // Show lens item if valid lens exists OR if in development
             metadataLensItem.style.display = 'flex';
 
             if (isDev && metadataLensInput) {
