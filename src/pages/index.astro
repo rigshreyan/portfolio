@@ -3452,24 +3452,6 @@ if (import.meta.env.DEV) {
         const savedLocations = safeJSONParse<Record<string, string>>(localStorage.getItem('photoLocations'), {});
         let location = savedLocations[imageLabel] || (galleryItemData?.metadata?.location) || '';
 
-        // Helper to check if a location value is valid (not a placeholder)
-        const isValidLocation = (location: string) => {
-          return location &&
-                 location.trim() !== '' &&
-                 location !== '----' &&
-                 location !== 'Unknown';
-        };
-
-        // Helper to check if a lens value is valid (not a placeholder)
-        const isValidLens = (lens: string) => {
-          return lens &&
-                 lens.trim() !== '' &&
-                 lens !== 'Unknown' &&
-                 lens !== 'Unknown Lens' &&
-                 lens !== '----' &&
-                 lens !== '---';
-        };
-
         // Helper function to get all unique locations
         function getAllLocations(): string[] {
           const locations = new Set<string>();
@@ -4150,9 +4132,12 @@ if (import.meta.env.DEV) {
           }
         }
 
+        // Always show location metadata if it exists in gallery data
+        const hasLocationData = galleryItemData?.metadata?.location || location;
+
         if (metadataLocationItem && metadataLocationDisplay) {
-          if (isValidLocation(location) || isDev) {
-            // Show location item if valid location exists OR if in development
+          if (hasLocationData) {
+            // Show location item - even if it's a placeholder value
             metadataLocationItem.style.display = 'flex';
 
             if (isDev && metadataLocationInput) {
@@ -4344,13 +4329,15 @@ if (import.meta.env.DEV) {
                 };
               }
             } else {
-              // Not in development: show display only if location exists
+              // Production mode: show location data (including placeholders)
               metadataLocationDisplay.style.display = 'inline';
+              // Display the value from gallery data, or fallback to '---' if completely missing
+              const displayLocation = galleryItemData?.metadata?.location || location || '---';
               // Format location to display City on one line and Country on the next
-              metadataLocationDisplay.innerHTML = location.replace(', ', '<br>');
+              metadataLocationDisplay.innerHTML = displayLocation.replace(', ', '<br>');
             }
           } else {
-            // No location and not localhost: hide completely
+            // Completely hide only if no location data exists at all
             metadataLocationItem.style.display = 'none';
           }
         }
@@ -4373,14 +4360,14 @@ if (import.meta.env.DEV) {
           // Add from localStorage
           const saved = safeJSONParse<Record<string, string>>(localStorage.getItem('photoLenses'), {});
           Object.values(saved).forEach((lensItem: any) => {
-            if (lensItem && typeof lensItem === 'string' && isValidLens(lensItem)) {
+            if (lensItem && typeof lensItem === 'string') {
               lenses.add(lensItem);
             }
           });
 
           // Add from gallery data
           galleryItems.forEach((item: any) => {
-            if (item.metadata?.lens && isValidLens(item.metadata.lens)) {
+            if (item.metadata?.lens) {
               lenses.add(item.metadata.lens);
             }
           });
@@ -4407,9 +4394,12 @@ if (import.meta.env.DEV) {
 
         const lensInputContainer = document.querySelector('.lens-input-container') as HTMLElement;
 
+        // Always show lens metadata if it exists in gallery data (including placeholder values in production)
+        const hasLensData = galleryItemData?.metadata?.lens || lens;
+
         if (metadataLensItem && metadataLensDisplay) {
-          if (isValidLens(lens) || isDev) {
-            // Show lens item if valid lens exists OR if in development
+          if (hasLensData) {
+            // Show lens item - even if it's a placeholder value
             metadataLensItem.style.display = 'flex';
 
             if (isDev && metadataLensInput) {
@@ -4579,12 +4569,14 @@ if (import.meta.env.DEV) {
                 };
               }
             } else {
-              // Not in development: show display only if lens exists
+              // Production mode: show lens data (including placeholders)
               metadataLensDisplay.style.display = 'inline';
-              metadataLensDisplay.textContent = lens;
+              // Display the value from gallery data, or fallback to '---' if completely missing
+              const displayLens = galleryItemData?.metadata?.lens || lens || '---';
+              metadataLensDisplay.textContent = displayLens;
             }
           } else {
-            // No lens and not localhost: hide completely
+            // Completely hide only if no lens data exists at all
             metadataLensItem.style.display = 'none';
           }
         }
@@ -4841,183 +4833,139 @@ if (import.meta.env.DEV) {
         }
       });
 
-      // Hybrid shuffle: Smart distribution with Fisher-Yates randomization
-      // Keeps similar file numbers far apart (priority) while adding random variation
+      // Advanced shuffle: Multi-factor distribution for optimal variety
+      // Distributes by file number, B&W vs color, orientation, and prevents chronological ordering
       function smartShuffleByFileNumber(items: Element[]): Element[] {
-        // Extract file numbers from labels
-        function extractFileNumber(item: Element): number {
+        // Extract comprehensive metadata from each item
+        function extractItemData(item: Element) {
           const img = item.querySelector('img');
           const label = img?.alt || '';
-          // Match common patterns like "IMG 8413", "DSC02870", "IMG_4127", "DSC 08799"
           const match = label.match(/(\d+)/);
-          return match?.[1] ? parseInt(match[1], 10) : 0;
+          const fileNumber = match?.[1] ? parseInt(match[1], 10) : 0;
+          const category = item.getAttribute('data-category') || '';
+          const orientation = item.getAttribute('data-orientation') || 'landscape';
+          const isBW = category === 'bw';
+
+          return {
+            item,
+            fileNumber,
+            isBW,
+            isPortrait: orientation === 'portrait',
+            isLandscape: orientation === 'landscape' || orientation === 'square'
+          };
         }
 
-        // Create array with file numbers
-        const photosWithNumbers = items.map(item => ({
-          item,
-          fileNumber: extractFileNumber(item)
-        }));
+        // Create array with comprehensive metadata
+        const photos = items.map(extractItemData);
 
-        // Sort by file number
-        photosWithNumbers.sort((a, b) => a.fileNumber - b.fileNumber);
+        // Sort by file number first (to establish chronological baseline)
+        photos.sort((a, b) => a.fileNumber - b.fileNumber);
 
-        // Add controlled randomness: shuffle within small adjacent groups
-        // This maintains distance between similar numbers while adding variety
-        const groupSize = Math.max(3, Math.floor(photosWithNumbers.length / 20));
-        for (let i = 0; i < photosWithNumbers.length; i += groupSize) {
-          const groupEnd = Math.min(i + groupSize, photosWithNumbers.length);
-          const group = photosWithNumbers.slice(i, groupEnd);
+        // Advanced distribution algorithm
+        const columnCount = window.innerWidth <= 768 ? 2 : 3;
 
-          // Fisher-Yates shuffle within the small group
-          for (let j = group.length - 1; j > 0; j--) {
-            const k = Math.floor(Math.random() * (j + 1));
-            [group[j]!, group[k]!] = [group[k]!, group[j]!];
-          }
+        // Calculate optimal spacing to keep similar numbers far apart
+        const totalPhotos = photos.length;
+        const baseStep = Math.ceil(totalPhotos / Math.ceil(Math.sqrt(totalPhotos)));
 
-          // Put shuffled group back
-          for (let j = 0; j < group.length; j++) {
-            photosWithNumbers[i + j] = group[j]!;
-          }
-        }
-
-        // Interleaved distribution algorithm with randomized step
-        // This spreads out consecutive numbers maximally
-        const result = new Array(items.length);
-        const baseStep = Math.ceil(Math.sqrt(items.length));
-
-        // Add random variation to starting position
-        let resultIndex = Math.floor(Math.random() * Math.min(baseStep, items.length));
+        // Distribute photos using multi-pass algorithm
+        // Pass 1: Interleaved distribution for file numbers
+        const distributed: (typeof photos[0] | undefined)[] = new Array(totalPhotos);
+        let currentIndex = Math.floor(Math.random() * baseStep);
         let sourceIndex = 0;
 
-        // First pass: distribute with randomized step size
-        while (sourceIndex < photosWithNumbers.length) {
-          if (resultIndex >= result.length) {
-            // Wrap around and find next empty slot
-            resultIndex = result.findIndex((item: any) => item === undefined);
-            if (resultIndex === -1) break;
+        while (sourceIndex < totalPhotos) {
+          if (currentIndex >= totalPhotos) {
+            currentIndex = distributed.findIndex(item => item === undefined);
+            if (currentIndex === -1) break;
           }
 
-          if (result[resultIndex] === undefined) {
-            result[resultIndex] = photosWithNumbers[sourceIndex]!.item;
+          if (distributed[currentIndex] === undefined) {
+            distributed[currentIndex] = photos[sourceIndex]!;
             sourceIndex++;
           }
 
-          // Add random variation to step size (±20% of base step)
-          const stepVariation = Math.floor(baseStep * 0.2);
-          const randomizedStep = baseStep + Math.floor(Math.random() * (stepVariation * 2 + 1)) - stepVariation;
-          resultIndex += Math.max(1, randomizedStep);
+          // Variable step size for better randomization
+          currentIndex += baseStep + Math.floor(Math.random() * 3) - 1;
         }
 
-        // Fill remaining gaps with Fisher-Yates-style random placement
-        let remainingIndices = result
-          .map((item, idx) => item === undefined ? idx : -1)
-          .filter(idx => idx !== -1);
+        // Pass 2: Optimize B&W vs Color distribution
+        // Ensure no more than 2 consecutive B&W or color photos
+        for (let i = 0; i < distributed.length - 2; i++) {
+          const current = distributed[i];
+          const next = distributed[i + 1];
+          const afterNext = distributed[i + 2];
 
-        while (remainingIndices.length > 0 && sourceIndex < photosWithNumbers.length) {
-          // Randomly select from available positions
-          const randomIdx = Math.floor(Math.random() * remainingIndices.length);
-          const targetIdx = remainingIndices[randomIdx]!;
-
-          result[targetIdx] = photosWithNumbers[sourceIndex]!.item;
-          sourceIndex++;
-          remainingIndices.splice(randomIdx, 1);
+          if (current && next && afterNext) {
+            // Check for 3+ consecutive B&W or color
+            if ((current.isBW && next.isBW && afterNext.isBW) ||
+                (!current.isBW && !next.isBW && !afterNext.isBW)) {
+              // Find a photo of opposite type to swap with afterNext
+              for (let j = i + 3; j < distributed.length; j++) {
+                const swapCandidate = distributed[j];
+                if (swapCandidate && swapCandidate.isBW !== afterNext.isBW) {
+                  const temp = distributed[i + 2];
+                  distributed[i + 2] = distributed[j];
+                  distributed[j] = temp;
+                  devLog(`🎨 Color mix swap: position ${i + 2} ↔ ${j} (${afterNext.isBW ? 'B&W' : 'Color'} → ${swapCandidate.isBW ? 'B&W' : 'Color'})`);
+                  break;
+                }
+              }
+            }
+          }
         }
 
-        devLog('🔀 Hybrid shuffle applied:', items.length, 'photos (smart distribution + random variation)');
-        devLog('   File number range:', photosWithNumbers[0]?.fileNumber, '-', photosWithNumbers[photosWithNumbers.length - 1]?.fileNumber);
-        devLog('   Base step:', baseStep, '(with ±20% random variation)');
-        devLog('   Group shuffle size:', groupSize);
+        // Pass 3: Optimize orientation distribution
+        // Ensure good mix of portrait/landscape, avoid clustering
+        for (let i = 0; i < distributed.length - columnCount; i++) {
+          const row = distributed.slice(i, i + columnCount);
+          const portraitCount = row.filter(p => p?.isPortrait).length;
 
-        const filteredResult = result.filter((item: any) => item !== undefined) as Element[];
-
-        // Post-process: Create brickwork layout by distributing portraits optimally
-        // Ensures vertical photos mix and match with horizontal/square photos
-        function createBrickworkLayout(shuffled: Element[]): Element[] {
-          const columnCount = window.innerWidth <= 768 ? 2 : 3; // Match CSS breakpoint
-
-          function isPortrait(item: Element): boolean {
-            const orientation = item.getAttribute('data-orientation');
-            return orientation === 'portrait';
-          }
-
-          function isLandscape(item: Element): boolean {
-            const orientation = item.getAttribute('data-orientation');
-            return orientation === 'landscape' || orientation === 'square';
-          }
-
-          let swapCount = 0;
-
-          // Strategy: Create alternating pattern for balanced brickwork
-          // Pass 1: Break up consecutive portraits (no 2+ portraits side by side)
-          for (let i = 0; i < shuffled.length - columnCount + 1; i++) {
-            const consecutiveGroup = shuffled.slice(i, i + columnCount);
-            const portraitCount = consecutiveGroup.filter(isPortrait).length;
-
-            // If we have 2+ portraits in a row, redistribute
-            if (portraitCount >= 2) {
-              // Find the second portrait in the group
-              let portraitsSeen = 0;
-              for (let k = 0; k < consecutiveGroup.length; k++) {
-                const groupItem = consecutiveGroup[k];
-                if (groupItem && isPortrait(groupItem)) {
-                  portraitsSeen++;
-                  if (portraitsSeen >= 2) {
-                    const swapIdx = i + k;
-                    // Find a landscape photo further down to swap with
-                    for (let j = i + columnCount; j < shuffled.length; j++) {
-                      const targetItem = shuffled[j];
-                      if (targetItem && isLandscape(targetItem)) {
-                        [shuffled[swapIdx]!, shuffled[j]!] = [shuffled[j]!, shuffled[swapIdx]!];
-                        swapCount++;
-                        devLog(`🧱 Brickwork swap: portrait at ${swapIdx} ↔ landscape at ${j}`);
-                        break;
-                      }
-                    }
+          // If we have too many portraits in a row, swap one out
+          if (portraitCount >= columnCount - 1) {
+            for (let k = 0; k < row.length; k++) {
+              if (row[k]?.isPortrait) {
+                // Find a landscape photo to swap with
+                for (let j = i + columnCount; j < distributed.length; j++) {
+                  if (distributed[j]?.isLandscape) {
+                    const temp = distributed[i + k];
+                    distributed[i + k] = distributed[j];
+                    distributed[j] = temp;
+                    devLog(`📐 Orientation swap: position ${i + k} ↔ ${j}`);
                     break;
                   }
                 }
+                break;
               }
             }
           }
-
-          // Pass 2: Ensure better vertical distribution (across columns)
-          // Check every Nth position (same column) to avoid vertical stacking
-          for (let col = 0; col < columnCount; col++) {
-            let consecutivePortraitsInColumn = 0;
-            for (let row = 0; row * columnCount + col < shuffled.length; row++) {
-              const idx = row * columnCount + col;
-              if (idx >= shuffled.length) break;
-
-              const currentItem = shuffled[idx];
-              if (currentItem && isPortrait(currentItem)) {
-                consecutivePortraitsInColumn++;
-                // If we have 2+ portraits vertically in the same column, swap one out
-                if (consecutivePortraitsInColumn >= 2) {
-                  // Find a landscape photo to swap with
-                  for (let j = idx + 1; j < Math.min(idx + columnCount * 3, shuffled.length); j++) {
-                    const swapItem = shuffled[j];
-                    if (swapItem && isLandscape(swapItem)) {
-                      [shuffled[idx]!, shuffled[j]!] = [shuffled[j]!, shuffled[idx]!];
-                      swapCount++;
-                      consecutivePortraitsInColumn = 0;
-                      devLog(`🧱 Vertical distribution: portrait at ${idx} ↔ landscape at ${j}`);
-                      break;
-                    }
-                  }
-                }
-              } else {
-                consecutivePortraitsInColumn = 0;
-              }
-            }
-          }
-
-          devLog(`✅ Brickwork layout created: ${swapCount} optimizations for balanced distribution`);
-          return shuffled;
         }
 
-        const finalResult = createBrickworkLayout(filteredResult);
-        devLog('🧱 Portrait distribution optimized for brickwork pattern');
+        devLog('🔀 Advanced multi-factor shuffle applied:');
+        devLog('   Total photos:', totalPhotos);
+        devLog('   File number range:', photos[0]?.fileNumber, '-', photos[totalPhotos - 1]?.fileNumber);
+        devLog('   Distribution step:', baseStep);
+        devLog('   B&W photos:', photos.filter(p => p.isBW).length);
+        devLog('   Color photos:', photos.filter(p => !p.isBW).length);
+        devLog('   Portrait photos:', photos.filter(p => p.isPortrait).length);
+        devLog('   Landscape photos:', photos.filter(p => p.isLandscape).length);
+
+        const filteredResult = distributed.filter((item: any) => item !== undefined);
+
+        // Post-process: Fine-tune brickwork layout
+        function createBrickworkLayout(shuffled: typeof photos): Element[] {
+          // Additional fine-tuning for visual balance
+          // Most work already done in Pass 3 above
+          devLog('✅ Brickwork layout optimized for balanced distribution');
+
+          // Extract just the Element items from our photo objects
+          return shuffled.map(photo => photo.item);
+        }
+
+        // Filter out any undefined values before passing to createBrickworkLayout
+        const validFilteredResult = filteredResult.filter((photo): photo is { item: Element; fileNumber: number; isBW: boolean; isPortrait: boolean; isLandscape: boolean; } => photo !== undefined);
+        const finalResult = createBrickworkLayout(validFilteredResult);
+        devLog('🧱 Multi-factor distribution complete: chronological, color, and orientation optimized');
 
         return finalResult;
       }
